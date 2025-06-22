@@ -34,7 +34,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" className="scroll-smooth">
+    <html lang="fr">
+      <head>
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </head>
       <body className={`${inter.className} bg-nur-cream-50 text-nur-navy-900 antialiased`}>
         <header className="bg-white shadow-sm border-b border-nur-teal-100">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,7 +100,7 @@ export default function RootLayout({
             </div>
             <div className="mt-8 pt-8 border-t border-nur-navy-700 text-center">
               <p className="text-nur-cream-300">
-                © {new Date().getFullYear()} ACMSI. Tous droits réservés.
+                &copy; {new Date().getFullYear()} ACMSI. Tous droits réservés.
               </p>
             </div>
           </div>

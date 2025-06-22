@@ -1,0 +1,86 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# When using the default proxy server port
+local_backend: true
+
+media_folder: public/images/uploads # Media files will be stored in the repo under public/images/uploads
+public_folder: /images/uploads # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - name: "actualites" # Used in routes, e.g., /admin/collections/actualites
+    label: "Actualités" # Used in the UI
+    folder: "content/actualites" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime" }
+      - { label: "Auteur", name: "author", widget: "string", default: "ACMSI" }
+      - { label: "Image de couverture", name: "featured_image", widget: "image", required: false }
+      - { label: "Résumé", name: "excerpt", widget: "text", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Publié", name: "published", widget: "boolean", default: true }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Page d'accueil"
+        name: "homepage"
+        file: "content/pages/homepage.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre principal", name: "hero_title", widget: "string" }
+          - { label: "Sous-titre", name: "hero_subtitle", widget: "text" }
+          - { label: "Image héro", name: "hero_image", widget: "image", required: false }
+          - { label: "Section Mission - Titre", name: "mission_title", widget: "string" }
+          - { label: "Section Mission - Contenu", name: "mission_content", widget: "markdown" }
+          - { label: "Section Services - Titre", name: "services_title", widget: "string" }
+          - { label: "Section Services - Contenu", name: "services_content", widget: "markdown" }
+          
+      - label: "À propos"
+        name: "about"
+        file: "content/pages/about.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre principal", name: "hero_title", widget: "string" }
+          - { label: "Sous-titre", name: "hero_subtitle", widget: "text" }
+          - { label: "Histoire - Titre", name: "history_title", widget: "string" }
+          - { label: "Histoire - Contenu", name: "history_content", widget: "markdown" }
+          - { label: "Mission - Titre", name: "mission_title", widget: "string" }
+          - { label: "Mission - Contenu", name: "mission_content", widget: "markdown" }
+          - { label: "Valeurs - Titre", name: "values_title", widget: "string" }
+          - { label: "Valeurs - Contenu", name: "values_content", widget: "markdown" }
+
+  - name: "settings"
+    label: "Paramètres"
+    files:
+      - label: "Informations générales"
+        name: "general"
+        file: "content/settings/general.md"
+        fields:
+          - { label: "Nom de l'association", name: "site_title", widget: "string" }
+          - { label: "Description", name: "site_description", widget: "text" }
+          - { label: "Adresse", name: "address", widget: "text" }
+          - { label: "Téléphone", name: "phone", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Réseaux sociaux", name: "social_media", widget: "object", fields: [
+              { label: "Facebook", name: "facebook", widget: "string", required: false },
+              { label: "Instagram", name: "instagram", widget: "string", required: false },
+              { label: "YouTube", name: "youtube", widget: "string", required: false }
+            ]}
+            
+      - label: "Horaires des prières"
+        name: "prayer_times"
+        file: "content/settings/prayer-times.md"
+        fields:
+          - { label: "Fajr", name: "fajr", widget: "string" }
+          - { label: "Dhuhr", name: "dhuhr", widget: "string" }
+          - { label: "Asr", name: "asr", widget: "string" }
+          - { label: "Maghrib", name: "maghrib", widget: "string" }
+          - { label: "Isha", name: "isha", widget: "string" }
+          - { label: "Jumu'ah - Khutbah", name: "jumah_khutbah", widget: "string" }
+          - { label: "Jumu'ah - Prière", name: "jumah_prayer", widget: "string" }
+          - { label: "Note", name: "note", widget: "text", required: false }

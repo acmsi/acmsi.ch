@@ -1,11 +1,35 @@
 import type { Metadata } from 'next'
+import { getGeneralSettings, getPrayerTimes } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Contact - ACMSI',
   description: 'Contactez l\'Association Culturelle Musulmane de Saint-Imier. Adresse, horaires et informations pratiques.',
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const generalSettings = getGeneralSettings()
+  const prayerTimes = getPrayerTimes()
+
+  // Fallback data if CMS content is not available
+  const settings = generalSettings || {
+    site_title: "Association Culturelle Musulmane de Saint-Imier",
+    address: "[Adresse à compléter]\nSaint-Imier, Suisse",
+    phone: "[Numéro à compléter]",
+    email: "contact@acmsi.ch",
+    social_media: {}
+  }
+
+  const prayers = prayerTimes || {
+    fajr: "[Horaire variable selon la saison]",
+    dhuhr: "[Horaire variable selon la saison]",
+    asr: "[Horaire variable selon la saison]",
+    maghrib: "[Horaire variable selon la saison]",
+    isha: "[Horaire variable selon la saison]",
+    jumah_khutbah: "[Heure à compléter]",
+    jumah_prayer: "[Heure à compléter]",
+    note: "Les horaires des prières varient selon les saisons. Consultez notre site web ou contactez-nous pour les horaires actuels."
+  }
+
   return (
     <div className="bg-gradient-to-b from-nur-cream-50 to-white">
       {/* Hero Section */}
@@ -44,27 +68,28 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-nur-navy-900 mb-2">Adresse</h3>
-                    <p className="text-nur-navy-700">
-                      [Adresse à compléter]<br />
-                      Saint-Imier, Suisse
-                    </p>
+                    <div className="text-nur-navy-700 whitespace-pre-line">
+                      {settings.address}
+                    </div>
                   </div>
                 </div>
 
                 {/* Phone */}
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-nur-gold-100 rounded-lg flex items-center justify-center">
-                    <svg className="w-6 h-6 text-nur-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                {settings.phone && (
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-nur-gold-100 rounded-lg flex items-center justify-center">
+                      <svg className="w-6 h-6 text-nur-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-nur-navy-900 mb-2">Téléphone</h3>
+                      <p className="text-nur-navy-700">
+                        {settings.phone}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-nur-navy-900 mb-2">Téléphone</h3>
-                    <p className="text-nur-navy-700">
-                      [Numéro à compléter]
-                    </p>
-                  </div>
-                </div>
+                )}
 
                 {/* Email */}
                 <div className="flex items-start space-x-4">
@@ -76,7 +101,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold text-nur-navy-900 mb-2">Email</h3>
                     <p className="text-nur-navy-700">
-                      contact@acmsi.ch
+                      <a href={`mailto:${settings.email}`} className="hover:text-nur-teal-600 transition-colors">
+                        {settings.email}
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -93,33 +120,41 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-nur-cream-200">
                     <span className="font-medium text-nur-navy-900">Fajr</span>
-                    <span className="text-nur-navy-700">[Horaire variable]</span>
+                    <span className="text-nur-navy-700">{prayers.fajr}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-nur-cream-200">
                     <span className="font-medium text-nur-navy-900">Dhuhr</span>
-                    <span className="text-nur-navy-700">[Horaire variable]</span>
+                    <span className="text-nur-navy-700">{prayers.dhuhr}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-nur-cream-200">
                     <span className="font-medium text-nur-navy-900">Asr</span>
-                    <span className="text-nur-navy-700">[Horaire variable]</span>
+                    <span className="text-nur-navy-700">{prayers.asr}</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-nur-cream-200">
                     <span className="font-medium text-nur-navy-900">Maghrib</span>
-                    <span className="text-nur-navy-700">[Horaire variable]</span>
+                    <span className="text-nur-navy-700">{prayers.maghrib}</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
                     <span className="font-medium text-nur-navy-900">Isha</span>
-                    <span className="text-nur-navy-700">[Horaire variable]</span>
+                    <span className="text-nur-navy-700">{prayers.isha}</span>
                   </div>
                 </div>
                 
                 <div className="mt-6 p-4 bg-nur-teal-50 rounded-lg">
                   <p className="text-sm text-nur-navy-700">
                     <strong>Prière du vendredi (Jumu'ah) :</strong><br />
-                    Khutbah à [heure à compléter]<br />
-                    Prière à [heure à compléter]
+                    Khutbah à {prayers.jumah_khutbah}<br />
+                    Prière à {prayers.jumah_prayer}
                   </p>
                 </div>
+                
+                {prayers.note && (
+                  <div className="mt-4 p-3 bg-nur-gold-50 rounded-lg">
+                    <p className="text-sm text-nur-navy-700">
+                      <strong>Note :</strong> {prayers.note}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

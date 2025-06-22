@@ -1,35 +1,83 @@
+import type { Metadata } from 'next'
+import { getPageContent } from '@/lib/content'
 import Image from 'next/image'
 
-export default function HomePage() {
+export const metadata: Metadata = {
+  title: 'Accueil - ACMSI',
+  description: 'Association Culturelle Musulmane de Saint-Imier - La mosquée Nur accueille la communauté musulmane du Jura bernois.',
+}
+
+export default async function HomePage() {
+  const pageContent = await getPageContent('homepage')
+  
+  // Fallback content if CMS content is not available
+  const content = pageContent || {
+    hero_title: "Bienvenue à la Mosquée Nur",
+    hero_subtitle: "Association Culturelle Musulmane de Saint-Imier - Un lieu de paix, de prière et de communauté au cœur du Jura bernois",
+    mission_title: "Notre Mission",
+    mission_content: "<p>L'Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de servir la communauté musulmane locale et de promouvoir les valeurs islamiques d'<strong>Ihsan</strong> - l'excellence dans l'adoration et la conduite.</p>",
+    services_title: "Nos Services",
+    services_content: "<h3>Prières quotidiennes</h3><p>Cinq prières quotidiennes dans un cadre paisible et spirituel</p>"
+  }
+
   return (
     <div className="bg-gradient-to-b from-nur-cream-50 to-white">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl lg:text-6xl font-bold text-nur-navy-900 mb-6">
-              Bienvenue à la
-              <span className="block text-nur-teal-600">Mosquée Nur</span>
+              {content.hero_title}
             </h1>
-            <p className="text-xl text-nur-navy-700 mb-8 max-w-3xl mx-auto">
-              L'Association Culturelle Musulmane de Saint-Imier vous accueille dans un esprit de paix, 
-              de fraternité et de spiritualité.
+            <p className="text-xl lg:text-2xl text-nur-navy-700 max-w-4xl mx-auto mb-12">
+              {content.hero_subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="/a-propos" 
-                className="bg-nur-teal-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-nur-teal-700 transition-colors"
+                href="/actualites" 
+                className="bg-nur-teal-600 text-white px-8 py-4 rounded-lg font-medium hover:bg-nur-teal-700 transition-colors"
               >
-                Découvrir notre mosquée
+                Voir les actualités
               </a>
               <a 
                 href="/contact" 
-                className="border border-nur-teal-600 text-nur-teal-600 px-8 py-3 rounded-lg font-medium hover:bg-nur-teal-50 transition-colors"
+                className="bg-white text-nur-teal-600 px-8 py-4 rounded-lg font-medium border-2 border-nur-teal-600 hover:bg-nur-teal-50 transition-colors"
               >
                 Nous contacter
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-nur-navy-900 mb-6">
+              {content.mission_title}
+            </h2>
+            <div 
+              className="text-lg text-nur-navy-700 prose prose-lg max-w-none"
+              dangerouslySetInnerHTML={{ __html: content.mission_content }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-16 bg-nur-cream-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-nur-navy-900 mb-6">
+              {content.services_title}
+            </h2>
+          </div>
+          
+          <div 
+            className="prose prose-lg max-w-none text-center"
+            dangerouslySetInnerHTML={{ __html: content.services_content }}
+          />
         </div>
       </section>
 
