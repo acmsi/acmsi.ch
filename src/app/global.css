@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import "tw-animate-css";
+/* @import "tw-animate-css"; */
 @plugin "@tailwindcss/typography";
 
-@theme {
+:root {
   --color-nur-teal-50: #f0fdfa;
   --color-nur-teal-100: #ccfbf1;
   --color-nur-teal-200: #99f6e4;
@@ -50,7 +50,9 @@
   --color-nur-navy-800: #075985;
   --color-nur-navy-900: #0c4a6e;
   --color-nur-navy-950: #082f49;
+}
 
+@theme inline {
   /* Semantic color mappings */
   --color-primary-50: var(--color-nur-teal-50);
   --color-primary-100: var(--color-nur-teal-100);
@@ -87,9 +89,11 @@
   --color-accent-800: var(--color-nur-gold-800);
   --color-accent-900: var(--color-nur-gold-900);
   --color-accent-950: var(--color-nur-gold-950);
+}
 
-  /* Dark theme overrides */
-  @media (prefers-color-scheme: dark) {
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
     --color-primary-50: var(--color-nur-navy-950);
     --color-primary-100: var(--color-nur-navy-900);
     --color-primary-200: var(--color-nur-navy-800);
