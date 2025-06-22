@@ -1,0 +1,54 @@
+This git repository contains the website of the ACMSI the "Association
+Culturelle Musulmane de Saint-Imier", this association is behind the mosque Nur
+or also called Xhamia Nur as some of the founding members of the Mosque are from
+the Balkans, especially Albanian.
+
+## Stack
+
+This website www.acmsi.ch will be built with
+the following stack:
+
+ - Next.js v15
+ - Decap CMS, a headless CMS.
+ - Node +v23 with Typescript
+ - Netlify for deployment
+ - Tailwind CSS v4 and Tailwind UI (Tailwind Plus)
+ - Github Actions CI
+ - Playwright for end-to-end tests
+
+## Features
+
+To start, the features will be simple and limited:
+
+  - Swiss French localization only 
+  - Static generated pages
+  - A news section with content managed through Decap CMS
+  - Good SEO practices especially for social sharing (FB, linkedin, twitter, etc.), sitemap, etc.
+
+The website will be built with Swiss French as the primary and only language for now. But in the future, we will add English, German and maybe Arabic. Therefore, we should built from the get-go with the intent of supporting multiple languages (i18n, l10n, etc.). For multilanguage support, we will use the next-intl library and non primary language will be under a root path like /en, /de, /ar, etc.
+
+## Sitemap
+
+The sitemap structures of acmsi.ch will be the following:
+
+  - / (landing page with presentation of the association and the mosque)
+    - /a-propos (page about the mosque Nur)
+    - /actualités (news)
+    - /donation
+    - /contact
+  
+## UI and UX Details
+
+The UI should use the colors theme as defined in the global.css file.
+
+The colors are inspired by the public/farsh.png image which is a photo of the carpet of the mosque Nur.
+
+The UI should generally be light, clean, meticulous following the value of
+Ihsan.
+
+The website must be inclusive, accessible and respectful of the values of the
+association. The website should be mobile first.
+
+## Instructions
+
+Be methodic, always check the latests online documentations before starting a new task. And inquire the user if you are not sure about something or about to implement a solution to cicumvent an issue or a change of architecture.

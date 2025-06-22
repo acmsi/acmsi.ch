@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-nur-teal-50: #f0fdfa;
+  --color-nur-teal-100: #ccfbf1;
+  --color-nur-teal-200: #99f6e4;
+  --color-nur-teal-300: #5eead4;
+  --color-nur-teal-400: #2dd4bf;
+  --color-nur-teal-500: #14b8a6;
+  --color-nur-teal-600: #0d9488;
+  --color-nur-teal-700: #0f766e;
+  --color-nur-teal-800: #115e59;
+  --color-nur-teal-900: #134e4a;
+  --color-nur-teal-950: #042f2e;
+
+  --color-nur-cream-50: #fefdfb;
+  --color-nur-cream-100: #fdf9f0;
+  --color-nur-cream-200: #faf0e0;
+  --color-nur-cream-300: #f5e4c1;
+  --color-nur-cream-400: #eed49f;
+  --color-nur-cream-500: #e4c078;
+  --color-nur-cream-600: #d4a855;
+  --color-nur-cream-700: #b88c42;
+  --color-nur-cream-800: #956f37;
+  --color-nur-cream-900: #795c30;
+  --color-nur-cream-950: #3f2f18;
+
+  --color-nur-gold-50: #fffbeb;
+  --color-nur-gold-100: #fef3c7;
+  --color-nur-gold-200: #fde68a;
+  --color-nur-gold-300: #fcd34d;
+  --color-nur-gold-400: #fbbf24;
+  --color-nur-gold-500: #f59e0b;
+  --color-nur-gold-600: #d97706;
+  --color-nur-gold-700: #b45309;
+  --color-nur-gold-800: #92400e;
+  --color-nur-gold-900: #78350f;
+  --color-nur-gold-950: #451a03;
+
+  --color-nur-navy-50: #f0f9ff;
+  --color-nur-navy-100: #e0f2fe;
+  --color-nur-navy-200: #bae6fd;
+  --color-nur-navy-300: #7dd3fc;
+  --color-nur-navy-400: #38bdf8;
+  --color-nur-navy-500: #0ea5e9;
+  --color-nur-navy-600: #0284c7;
+  --color-nur-navy-700: #0369a1;
+  --color-nur-navy-800: #075985;
+  --color-nur-navy-900: #0c4a6e;
+  --color-nur-navy-950: #082f49;
+
+  /* Semantic color mappings */
+  --color-primary-50: var(--color-nur-teal-50);
+  --color-primary-100: var(--color-nur-teal-100);
+  --color-primary-200: var(--color-nur-teal-200);
+  --color-primary-300: var(--color-nur-teal-300);
+  --color-primary-400: var(--color-nur-teal-400);
+  --color-primary-500: var(--color-nur-teal-500);
+  --color-primary-600: var(--color-nur-teal-600);
+  --color-primary-700: var(--color-nur-teal-700);
+  --color-primary-800: var(--color-nur-teal-800);
+  --color-primary-900: var(--color-nur-teal-900);
+  --color-primary-950: var(--color-nur-teal-950);
+
+  --color-secondary-50: var(--color-nur-cream-50);
+  --color-secondary-100: var(--color-nur-cream-100);
+  --color-secondary-200: var(--color-nur-cream-200);
+  --color-secondary-300: var(--color-nur-cream-300);
+  --color-secondary-400: var(--color-nur-cream-400);
+  --color-secondary-500: var(--color-nur-cream-500);
+  --color-secondary-600: var(--color-nur-cream-600);
+  --color-secondary-700: var(--color-nur-cream-700);
+  --color-secondary-800: var(--color-nur-cream-800);
+  --color-secondary-900: var(--color-nur-cream-900);
+  --color-secondary-950: var(--color-nur-cream-950);
+
+  --color-accent-50: var(--color-nur-gold-50);
+  --color-accent-100: var(--color-nur-gold-100);
+  --color-accent-200: var(--color-nur-gold-200);
+  --color-accent-300: var(--color-nur-gold-300);
+  --color-accent-400: var(--color-nur-gold-400);
+  --color-accent-500: var(--color-nur-gold-500);
+  --color-accent-600: var(--color-nur-gold-600);
+  --color-accent-700: var(--color-nur-gold-700);
+  --color-accent-800: var(--color-nur-gold-800);
+  --color-accent-900: var(--color-nur-gold-900);
+  --color-accent-950: var(--color-nur-gold-950);
+
+  /* Dark theme overrides */
+  @media (prefers-color-scheme: dark) {
+    --color-primary-50: var(--color-nur-navy-950);
+    --color-primary-100: var(--color-nur-navy-900);
+    --color-primary-200: var(--color-nur-navy-800);
+    --color-primary-300: var(--color-nur-navy-700);
+    --color-primary-400: var(--color-nur-navy-600);
+    --color-primary-500: var(--color-nur-navy-500);
+    --color-primary-600: var(--color-nur-navy-400);
+    --color-primary-700: var(--color-nur-navy-300);
+    --color-primary-800: var(--color-nur-navy-200);
+    --color-primary-900: var(--color-nur-navy-100);
+    --color-primary-950: var(--color-nur-navy-50);
+  }
+}
+
+/* Usage examples and recommended color combinations */
+/*
+
+Light Theme Recommendations:
+- Background: bg-white or bg-secondary-50
+- Text: text-nur-navy-900 or text-gray-900
+- Headers: text-primary-700 or text-primary-800
+- Buttons: bg-primary-600 hover:bg-primary-700 text-white
+- Accent elements: bg-accent-500 or border-accent-400
+- Cards/sections: bg-secondary-100 or bg-primary-50
+
+Dark Theme Recommendations:
+- Background: bg-nur-navy-950 or bg-gray-900
+- Text: text-secondary-100 or text-gray-100
+- Headers: text-primary-300 or text-primary-200
+- Buttons: bg-primary-600 hover:bg-primary-500 text-white
+- Accent elements: bg-accent-400 or border-accent-500
+- Cards/sections: bg-nur-navy-900 or bg-primary-900
+
+Sample Classes:
+- .bg-nur-teal-600 (Main teal color from carpet)
+- .text-nur-cream-200 (Light ornamental pattern color)
+- .border-nur-gold-500 (Accent highlights)
+- .bg-primary-600 (Semantic primary color)
+- .text-secondary-100 (Semantic secondary text)
+
+*/
