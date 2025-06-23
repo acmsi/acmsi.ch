@@ -24,6 +24,7 @@ To start, the features will be simple and limited:
   - Static generated pages
   - A news section with content managed through Decap CMS
   - Good SEO practices especially for social sharing (FB, linkedin, twitter, etc.), sitemap, etc.
+  - The CMS will only be used for news articles, not for pages
 
 The website will be built with Swiss French as the primary and only language for now. But in the future, we will add English, German and maybe Arabic. Therefore, we should built from the get-go with the intent of supporting multiple languages (i18n, l10n, etc.). For multilanguage support, we will use the next-intl library and non primary language will be under a root path like /en, /de, /ar, etc.
 
@@ -52,6 +53,8 @@ association. The website should be mobile first.
 ## Instructions
 
 Be methodic, always check the latests online documentations before starting a new task. And inquire the user if you are not sure about something or about to implement a solution to cicumvent an issue or a change of architecture.
+
+We use the Conventional Commits convention for the git commit messages.
 
 ## Website inspirations for contents
 

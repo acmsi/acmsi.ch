@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -15,22 +15,25 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const article = await getNewsArticle(params.slug)
+  const { slug } = await params
+  const article = await getNewsArticle(slug)
   
   if (!article) {
     return {
       title: 'Article non trouvé - ACMSI',
+      description: 'L\'article demandé n\'a pas été trouvé.',
     }
   }
 
   return {
     title: `${article.title} - ACMSI`,
-    description: article.excerpt || `Actualité de l'Association Culturelle Musulmane de Saint-Imier`,
+    description: article.excerpt || article.content.substring(0, 160),
   }
 }
 
 export default async function ArticlePage({ params }: Props) {
-  const article = await getNewsArticle(params.slug)
+  const { slug } = await params
+  const article = await getNewsArticle(slug)
 
   if (!article) {
     notFound()

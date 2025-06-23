@@ -18,34 +18,6 @@ export interface NewsArticle {
   tags?: string[]
 }
 
-export interface PageContent {
-  [key: string]: any
-}
-
-export interface GeneralSettings {
-  site_title: string
-  site_description: string
-  address: string
-  phone?: string
-  email: string
-  social_media: {
-    facebook?: string
-    instagram?: string
-    youtube?: string
-  }
-}
-
-export interface PrayerTimes {
-  fajr: string
-  dhuhr: string
-  asr: string
-  maghrib: string
-  isha: string
-  jumah_khutbah: string
-  jumah_prayer: string
-  note?: string
-}
-
 // Get all news articles
 export async function getAllNews(): Promise<NewsArticle[]> {
   const newsDirectory = path.join(contentDirectory, 'actualites')
@@ -63,20 +35,28 @@ export async function getAllNews(): Promise<NewsArticle[]> {
         const fullPath = path.join(newsDirectory, fileName)
         const fileContents = fs.readFileSync(fullPath, 'utf8')
         const { data, content } = matter(fileContents)
-        
+
         // Convert markdown to HTML
-        const processedContent = await remark().use(html).process(content)
+        const processedContent = await remark()
+          .use(html)
+          .process(content)
         const contentHtml = processedContent.toString()
 
         return {
           slug,
+          title: data.title || '',
+          date: data.date || '',
+          author: data.author || '',
+          featured_image: data.featured_image,
+          excerpt: data.excerpt,
           content: contentHtml,
-          ...data,
+          published: data.published !== false,
+          tags: data.tags || [],
         } as NewsArticle
       })
   )
 
-  // Sort by date (newest first) and filter published articles
+  // Filter published articles and sort by date (newest first)
   return allNewsData
     .filter(article => article.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -86,72 +66,33 @@ export async function getAllNews(): Promise<NewsArticle[]> {
 export async function getNewsArticle(slug: string): Promise<NewsArticle | null> {
   try {
     const fullPath = path.join(contentDirectory, 'actualites', `${slug}.md`)
+    
+    if (!fs.existsSync(fullPath)) {
+      return null
+    }
+
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
-    
+
     // Convert markdown to HTML
-    const processedContent = await remark().use(html).process(content)
+    const processedContent = await remark()
+      .use(html)
+      .process(content)
     const contentHtml = processedContent.toString()
 
     return {
       slug,
+      title: data.title || '',
+      date: data.date || '',
+      author: data.author || '',
+      featured_image: data.featured_image,
+      excerpt: data.excerpt,
       content: contentHtml,
-      ...data,
+      published: data.published !== false,
+      tags: data.tags || [],
     } as NewsArticle
   } catch (error) {
-    return null
-  }
-}
-
-// Get page content
-export async function getPageContent(pageName: string): Promise<PageContent | null> {
-  try {
-    const fullPath = path.join(contentDirectory, 'pages', `${pageName}.md`)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
-    
-    // Convert markdown content fields to HTML
-    const processedData = { ...data }
-    
-    // Process markdown fields
-    for (const [key, value] of Object.entries(processedData)) {
-      if (typeof value === 'string' && (key.includes('content') || key === 'body')) {
-        const processedContent = await remark().use(html).process(value)
-        processedData[key] = processedContent.toString()
-      }
-    }
-
-    return processedData
-  } catch (error) {
-    console.error(`Error loading page content for ${pageName}:`, error)
-    return null
-  }
-}
-
-// Get general settings
-export function getGeneralSettings(): GeneralSettings | null {
-  try {
-    const fullPath = path.join(contentDirectory, 'settings', 'general.md')
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
-    
-    return data as GeneralSettings
-  } catch (error) {
-    console.error('Error loading general settings:', error)
-    return null
-  }
-}
-
-// Get prayer times
-export function getPrayerTimes(): PrayerTimes | null {
-  try {
-    const fullPath = path.join(contentDirectory, 'settings', 'prayer-times.md')
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
-    
-    return data as PrayerTimes
-  } catch (error) {
-    console.error('Error loading prayer times:', error)
+    console.error(`Error reading news article ${slug}:`, error)
     return null
   }
 }
