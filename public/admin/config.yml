@@ -1,6 +1,9 @@
 backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
+  # Uncomment the following two line and run `decap-server` to test the CMS locally
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
 
 # When using the default proxy server port
 local_backend: true
