@@ -121,7 +121,56 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-4">Contact</h3>
-                <p className="text-gray-300">Saint-Imier, Suisse</p>
+                <div className="space-y-2 text-gray-300">
+                  <p>
+                    <a
+                      href="https://maps.apple/p/BvnLVKA~K_gZw6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-teal-300 transition-colors"
+                    >
+                      ACMSI – Mosquée Nur
+                      <br />
+                      Rue de la Clef 45
+                      <br />
+                      2610 Saint-Imier, Suisse
+                    </a>
+                  </p>
+                  <p>
+                    <a
+                      href="mailto:contact@acmsi.ch"
+                      className="hover:text-teal-300 transition-colors"
+                    >
+                      contact@acmsi.ch
+                    </a>
+                  </p>
+                  <p>
+                    <a href="tel:+41792763500" className="hover:text-teal-300 transition-colors">
+                      079 276 35 00
+                    </a>
+                  </p>
+                  <p className="mt-4 pt-2 border-t border-gray-700">
+                    <a
+                      href="/contact#parking-info"
+                      className="inline-flex items-center text-sm hover:text-teal-300 transition-colors"
+                    >
+                      <svg
+                        className="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                        />
+                      </svg>
+                      Informations Stationnement
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-gray-700 text-center">
