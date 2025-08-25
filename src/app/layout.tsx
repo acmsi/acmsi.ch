@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import './global.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'ACMSI - Association Culturelle Musulmane de Saint-Imier',
@@ -39,7 +36,7 @@ export default function RootLayout({
       <head>
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
       </head>
-      <body className={`${inter.className} bg-nur-cream-50 text-nur-navy-900 antialiased`}>
+      <body className="bg-nur-cream-50 text-nur-navy-900 antialiased font-sans">
         <header className="bg-white shadow-sm border-b border-nur-teal-100">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
