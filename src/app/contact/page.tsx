@@ -9,15 +9,13 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="bg-gradient-to-b from-nur-cream-50 to-white">
+    <div className="bg-white">
       {/* Hero Section */}
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-5xl font-bold text-nur-navy-900 mb-6">
-              Nous Contacter
-            </h1>
-            <p className="text-xl text-nur-navy-700 max-w-3xl mx-auto">
+          <div className="text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Nous Contacter</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Nous sommes là pour vous accueillir et répondre à toutes vos questions
             </p>
           </div>
@@ -30,13 +28,13 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Details */}
             <div>
-              <h2 className="text-3xl font-bold text-nur-navy-900 mb-8">Informations de Contact</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Informations de Contact</h2>
 
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-nur-teal-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <svg
-                      className="w-6 h-6 text-nur-teal-600"
+                      className="w-6 h-6 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -56,8 +54,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-nur-navy-900 mb-1">Adresse</h3>
-                    <p className="text-nur-navy-700">
+                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">Adresse</h3>
+                    <p className="text-gray-600">
                       Mosquée Nur
                       <br />
                       Rue de la Clef 45
@@ -68,9 +66,9 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-nur-teal-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <svg
-                      className="w-6 h-6 text-nur-teal-600"
+                      className="w-6 h-6 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -84,11 +82,11 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-nur-navy-900 mb-1">Email</h3>
-                    <p className="text-nur-navy-700">
+                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">Email</h3>
+                    <p className="text-gray-600">
                       <a
                         href="mailto:contact@acmsi.ch"
-                        className="text-nur-teal-600 hover:text-nur-teal-700"
+                        className="text-teal-600 hover:text-teal-700"
                       >
                         contact@acmsi.ch
                       </a>
@@ -97,9 +95,9 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-nur-teal-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <svg
-                      className="w-6 h-6 text-nur-teal-600"
+                      className="w-6 h-6 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -113,12 +111,9 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-nur-navy-900 mb-1">Téléphone</h3>
-                    <p className="text-nur-navy-700">
-                      <a
-                        href="tel:+41792763500"
-                        className="text-nur-teal-600 hover:text-nur-teal-700"
-                      >
+                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">Téléphone</h3>
+                    <p className="text-gray-600">
+                      <a href="tel:+41792763500" className="text-teal-600 hover:text-teal-700">
                         079 276 35 00
                       </a>
                     </p>
@@ -126,9 +121,9 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-nur-teal-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <svg
-                      className="w-6 h-6 text-nur-teal-600"
+                      className="w-6 h-6 text-gray-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -142,13 +137,13 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-nur-navy-900 mb-1">
+                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">
                       WhatsApp Communauté
                     </h3>
-                    <p className="text-nur-navy-700">
+                    <p className="text-gray-600">
                       Rejoignez notre groupe WhatsApp communautaire
                       <br />
-                      <span className="text-sm text-nur-navy-600">
+                      <span className="text-sm text-gray-500">
                         Contactez-nous pour obtenir le lien d&rsquo;invitation
                       </span>
                     </p>
@@ -159,48 +154,48 @@ export default function ContactPage() {
 
             {/* Prayer Times */}
             <div>
-              <h2 className="text-3xl font-bold text-nur-navy-900 mb-8">Horaires des Prières</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Horaires des Prières</h2>
 
-              <div className="bg-nur-navy-50 rounded-lg p-6">
+              <div className="bg-gray-50 rounded-lg p-6">
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-nur-navy-200">
-                    <span className="font-medium text-nur-navy-900">Fajr</span>
-                    <span className="text-nur-navy-700">Variable selon la saison</span>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span className="font-medium text-gray-900">Fajr</span>
+                    <span className="text-gray-600">Variable selon la saison</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-nur-navy-200">
-                    <span className="font-medium text-nur-navy-900">Dhuhr</span>
-                    <span className="text-nur-navy-700">Variable selon la saison</span>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span className="font-medium text-gray-900">Dhuhr</span>
+                    <span className="text-gray-600">Variable selon la saison</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-nur-navy-200">
-                    <span className="font-medium text-nur-navy-900">Asr</span>
-                    <span className="text-nur-navy-700">Variable selon la saison</span>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span className="font-medium text-gray-900">Asr</span>
+                    <span className="text-gray-600">Variable selon la saison</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-nur-navy-200">
-                    <span className="font-medium text-nur-navy-900">Maghrib</span>
-                    <span className="text-nur-navy-700">Variable selon la saison</span>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                    <span className="font-medium text-gray-900">Maghrib</span>
+                    <span className="text-gray-600">Variable selon la saison</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="font-medium text-nur-navy-900">Isha</span>
-                    <span className="text-nur-navy-700">Variable selon la saison</span>
+                    <span className="font-medium text-gray-900">Isha</span>
+                    <span className="text-gray-600">Variable selon la saison</span>
                   </div>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-nur-navy-200">
-                  <h4 className="font-semibold text-nur-navy-900 mb-2">Prière du Vendredi</h4>
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">Prière du Vendredi</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-nur-navy-700">Khutbah</span>
-                      <span className="text-nur-navy-700">À confirmer</span>
+                      <span className="text-gray-600">Khutbah</span>
+                      <span className="text-gray-600">À confirmer</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-nur-navy-700">Prière</span>
-                      <span className="text-nur-navy-700">À confirmer</span>
+                      <span className="text-gray-600">Prière</span>
+                      <span className="text-gray-600">À confirmer</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-4 p-3 bg-nur-teal-50 rounded-lg">
-                  <p className="text-sm text-nur-teal-800">
+                <div className="mt-4 p-3 bg-teal-50 rounded-lg">
+                  <p className="text-sm text-teal-800">
                     <strong>Note:</strong> Les horaires des prières varient selon les saisons.
                     Contactez-nous pour les horaires actuels ou consultez notre site web.
                   </p>
@@ -212,10 +207,10 @@ export default function ContactPage() {
       </section>
 
       {/* Visit Us Section */}
-      <section className="py-16 bg-nur-teal-600 text-white">
+      <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Venez Nous Rendre Visite</h2>
-          <p className="text-xl text-nur-teal-100 mb-8">
+          <p className="text-xl text-gray-300 mb-8">
             Vous êtes toujours les bienvenus à la mosquée Nur. N&rsquo;hésitez pas à nous contacter
             pour organiser votre visite.
           </p>
@@ -238,7 +233,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2">Prières Quotidiennes</h3>
-              <p className="text-nur-teal-100">Rejoignez-nous pour les cinq prières quotidiennes</p>
+              <p className="text-gray-300">Rejoignez-nous pour les cinq prières quotidiennes</p>
             </div>
 
             <div>
@@ -258,7 +253,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2">Prière du Vendredi</h3>
-              <p className="text-nur-teal-100">Khutbah et prière communautaire chaque vendredi</p>
+              <p className="text-gray-300">Khutbah et prière communautaire chaque vendredi</p>
             </div>
 
             <div>
@@ -278,9 +273,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold mb-2">Événements Spéciaux</h3>
-              <p className="text-nur-teal-100">
-                Cérémonies religieuses et activités communautaires
-              </p>
+              <p className="text-gray-300">Cérémonies religieuses et activités communautaires</p>
             </div>
           </div>
         </div>
@@ -290,20 +283,18 @@ export default function ContactPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-nur-navy-900 mb-4">Nous Localiser</h2>
-            <p className="text-lg text-nur-navy-700">
-              Trouvez facilement la mosquée Nur à Saint-Imier
-            </p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Nous Localiser</h2>
+            <p className="text-lg text-gray-600">Trouvez facilement la mosquée Nur à Saint-Imier</p>
           </div>
 
-          <div className="bg-nur-navy-50 rounded-lg p-8">
+          <div>
             <MosqueLocationMap />
             <div className="mt-2 font-alt text-center">
               <a
                 href="https://maps.app.goo.gl/3n9PYEvDBE7LHkpT9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-lg font-medium text-nur-teal-600 hover:text-nur-teal-700 transition-colors"
+                className="inline-flex items-center text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
