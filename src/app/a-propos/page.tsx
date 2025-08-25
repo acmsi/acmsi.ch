@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'À propos - ACMSI',
@@ -16,7 +17,7 @@ export default function AProposPage() {
               À propos de la Mosquée Nur
             </h1>
             <p className="text-xl text-nur-navy-700 max-w-3xl mx-auto">
-              Découvrez l'histoire, la mission et les valeurs de l'Association Culturelle Musulmane de Saint-Imier
+              Découvrez l&rsquo;histoire, la mission et les valeurs de l&rsquo;Association Culturelle Musulmane de Saint-Imier
             </p>
           </div>
         </div>
@@ -31,10 +32,10 @@ export default function AProposPage() {
             </h2>
             <div className="text-lg text-nur-navy-700 space-y-6">
               <p>
-                La mosquée Nur a été établie pour répondre aux besoins spirituels croissants de la communauté musulmane de Saint-Imier et des environs. Située au cœur du Jura bernois, elle représente un lieu de rassemblement, de prière et d'apprentissage pour tous les musulmans de la région.
+                La mosquée Nur a été établie pour répondre aux besoins spirituels croissants de la communauté musulmane de Saint-Imier et des environs. Située au cœur du Jura bernois, elle représente un lieu de rassemblement, de prière et d&rsquo;apprentissage pour tous les musulmans de la région.
               </p>
               <p>
-                Le nom "Nur" signifie "lumière" en arabe, symbolisant notre aspiration à être une source de guidance spirituelle et de paix dans notre communauté locale.
+                Le nom &ldquo;Nur&rdquo; signifie &ldquo;lumière&rdquo; en arabe, symbolisant notre aspiration à être une source de guidance spirituelle et de paix dans notre communauté locale.
               </p>
             </div>
           </div>
@@ -50,7 +51,7 @@ export default function AProposPage() {
             </h2>
             <div className="text-lg text-nur-navy-700 space-y-6">
               <p>
-                L'Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de faciliter la pratique religieuse et de promouvoir les valeurs islamiques d'<strong>Ihsan</strong> - l'excellence dans l'adoration et la conduite.
+                L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de faciliter la pratique religieuse et de promouvoir les valeurs islamiques d&rsquo;<strong>Ihsan</strong> - l&rsquo;excellence dans l&rsquo;adoration et la conduite.
               </p>
               <p>
                 Nous nous efforçons de créer un environnement accueillant où chaque membre de notre communauté peut grandir spirituellement, socialement et intellectuellement, tout en contribuant positivement à la société suisse.
@@ -76,9 +77,9 @@ export default function AProposPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18m9-9H3" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-nur-navy-900 mb-4">Ihsan - L'Excellence</h3>
+              <h3 className="text-2xl font-semibold text-nur-navy-900 mb-4">Ihsan - L&rsquo;Excellence</h3>
               <p className="text-nur-navy-700">
-                L'<strong>Ihsan</strong> est au cœur de tout ce que nous faisons. C'est l'excellence dans l'adoration d'Allah et dans nos relations avec autrui, comme si nous Le voyions, car même si nous ne Le voyons pas, Lui nous voit.
+                L&rsquo;<strong>Ihsan</strong> est au cœur de tout ce que nous faisons. C&rsquo;est l&rsquo;excellence dans l&rsquo;adoration d&rsquo;Allah et dans nos relations avec autrui, comme si nous Le voyions, car même si nous ne Le voyons pas, Lui nous voit.
               </p>
             </div>
             
@@ -90,7 +91,7 @@ export default function AProposPage() {
               </div>
               <h3 className="text-2xl font-semibold text-nur-navy-900 mb-4">Communauté</h3>
               <p className="text-nur-navy-700">
-                Nous valorisons l'unité, la solidarité et l'entraide au sein de notre communauté, créant des liens forts basés sur la fraternité islamique et le respect mutuel.
+                Nous valorisons l&rsquo;unité, la solidarité et l&rsquo;entraide au sein de notre communauté, créant des liens forts basés sur la fraternité islamique et le respect mutuel.
               </p>
             </div>
             
@@ -102,7 +103,7 @@ export default function AProposPage() {
               </div>
               <h3 className="text-2xl font-semibold text-nur-navy-900 mb-4">Éducation</h3>
               <p className="text-nur-navy-700">
-                L'apprentissage continu du Coran, de la langue arabe et des sciences islamiques est essentiel pour le développement spirituel et intellectuel de notre communauté.
+                L&rsquo;apprentissage continu du Coran, de la langue arabe et des sciences islamiques est essentiel pour le développement spirituel et intellectuel de notre communauté.
               </p>
             </div>
             
@@ -130,12 +131,12 @@ export default function AProposPage() {
           <p className="text-xl text-nur-teal-100 mb-8">
             Nous serions ravis de vous accueillir à la mosquée Nur pour découvrir notre communauté
           </p>
-          <a 
+          <Link 
             href="/contact" 
             className="bg-white text-nur-teal-600 px-8 py-4 rounded-lg font-medium hover:bg-nur-navy-50 transition-colors inline-block"
           >
             Nous contacter
-          </a>
+          </Link>
         </div>
       </section>
     </div>

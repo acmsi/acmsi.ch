@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getNewsArticle, getAllNews } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -99,11 +100,12 @@ export default async function ArticlePage({ params }: Props) {
           </div>
           
           {article.featured_image && (
-            <div className="mb-12">
-              <img 
+            <div className="mb-12 relative aspect-video">
+              <Image 
                 src={article.featured_image} 
                 alt={article.title}
-                className="w-full rounded-lg shadow-lg"
+                fill
+                className="rounded-lg shadow-lg object-cover"
               />
             </div>
           )}

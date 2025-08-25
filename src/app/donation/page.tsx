@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Donation - ACMSI',
@@ -28,7 +29,7 @@ export default function DonationPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-nur-navy-900 mb-4">
-              L'importance de votre soutien
+              L&rsquo;importance de votre soutien
             </h2>
           </div>
           
@@ -54,7 +55,7 @@ export default function DonationPage() {
               </div>
               <h3 className="text-xl font-semibold text-nur-navy-900 mb-3">Programmes éducatifs</h3>
               <p className="text-nur-navy-700">
-                Financement des cours d'arabe, d'éducation islamique et 
+                Financement des cours d&rsquo;arabe, d&rsquo;éducation islamique et 
                 des matériaux pédagogiques pour nos enfants et adultes.
               </p>
             </div>
@@ -67,7 +68,7 @@ export default function DonationPage() {
               </div>
               <h3 className="text-xl font-semibold text-nur-navy-900 mb-3">Activités communautaires</h3>
               <p className="text-nur-navy-700">
-                Organisation d'événements, conférences et activités qui 
+                Organisation d&rsquo;événements, conférences et activités qui 
                 renforcent les liens au sein de notre communauté.
               </p>
             </div>
@@ -96,7 +97,7 @@ export default function DonationPage() {
               Comment faire un don
             </h2>
             <p className="text-lg text-nur-navy-700">
-              Plusieurs moyens s'offrent à vous pour soutenir notre association
+              Plusieurs moyens s&rsquo;offrent à vous pour soutenir notre association
             </p>
           </div>
 
@@ -112,7 +113,7 @@ export default function DonationPage() {
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-nur-navy-900 mb-3">Virement bancaire</h3>
                   <p className="text-nur-navy-700 mb-4">
-                    Effectuez un virement sur le compte de l'ACMSI
+                    Effectuez un virement sur le compte de l&rsquo;ACMSI
                   </p>
                   <div className="bg-nur-cream-50 p-4 rounded-lg">
                     <p className="text-sm text-nur-navy-600 mb-2">Coordonnées bancaires :</p>
@@ -159,12 +160,12 @@ export default function DonationPage() {
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-nur-navy-900 mb-3">Zakat et Sadaqah</h3>
                   <p className="text-nur-navy-700 mb-4">
-                    L'ACMSI accepte et redistribue la Zakat selon les préceptes islamiques
+                    L&rsquo;ACMSI accepte et redistribue la Zakat selon les préceptes islamiques
                   </p>
                   <div className="bg-nur-teal-50 p-4 rounded-lg">
                     <p className="text-sm text-nur-navy-700">
-                      <strong>Important :</strong> Précisez lors de votre don s'il s'agit de Zakat 
-                      afin qu'elle soit distribuée conformément aux règles islamiques aux 
+                      <strong>Important :</strong> Précisez lors de votre don s&rsquo;il s&rsquo;agit de Zakat 
+                      afin qu&rsquo;elle soit distribuée conformément aux règles islamiques aux 
                       bénéficiaires éligibles de notre communauté.
                     </p>
                   </div>
@@ -182,15 +183,15 @@ export default function DonationPage() {
             Questions sur les dons ?
           </h2>
           <p className="text-lg text-nur-navy-700 mb-8">
-            N'hésitez pas à nous contacter pour toute question concernant les dons 
+            N&rsquo;hésitez pas à nous contacter pour toute question concernant les dons 
             ou pour obtenir un reçu fiscal si nécessaire.
           </p>
-          <a 
+          <Link 
             href="/contact" 
             className="bg-nur-teal-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-nur-teal-700 transition-colors inline-block"
           >
             Nous contacter
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -198,7 +199,7 @@ export default function DonationPage() {
       <section className="py-16 bg-nur-teal-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
-            Qu'Allah vous récompense
+            Qu&rsquo;Allah vous récompense
           </h2>
           <p className="text-xl text-nur-teal-100 mb-4">
             جَزَاكُمُ اللَّهُ خَيْرًا

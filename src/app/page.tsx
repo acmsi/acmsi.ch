@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Accueil - ACMSI',
@@ -17,21 +18,21 @@ export default function HomePage() {
               Bienvenue à la Mosquée Nur
             </h1>
             <p className="text-xl lg:text-2xl text-nur-navy-700 max-w-4xl mx-auto mb-12">
-              Association Culturelle Musulmane de Saint-Imier - Un lieu de paix, de prière et de communauté au cœur du Jura bernois, guidé par les valeurs d'<strong>Ihsan</strong>
+              Association Culturelle Musulmane de Saint-Imier - Un lieu de paix, de prière et de communauté au cœur du Jura bernois, guidé par les valeurs d&rsquo;<strong>Ihsan</strong>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <Link 
                 href="/actualites" 
                 className="bg-nur-teal-600 text-white px-8 py-4 rounded-lg font-medium hover:bg-nur-teal-700 transition-colors"
               >
                 Voir les actualités
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/contact" 
                 className="bg-white text-nur-teal-600 px-8 py-4 rounded-lg font-medium border-2 border-nur-teal-600 hover:bg-nur-teal-50 transition-colors"
               >
                 Nous contacter
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -46,7 +47,7 @@ export default function HomePage() {
             </h2>
             <div className="max-w-4xl mx-auto text-lg text-nur-navy-700">
               <p>
-                L'Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de servir la communauté musulmane locale et de promouvoir les valeurs islamiques d'<strong>Ihsan</strong> - l'excellence dans l'adoration et la conduite.
+                L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de servir la communauté musulmane locale et de promouvoir les valeurs islamiques d&rsquo;<strong>Ihsan</strong> - l&rsquo;excellence dans l&rsquo;adoration et la conduite.
               </p>
             </div>
           </div>
@@ -90,7 +91,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-nur-navy-900 mb-2">Éducation islamique</h3>
-              <p className="text-nur-navy-600">Cours d'arabe et d'éducation religieuse pour tous les âges</p>
+              <p className="text-nur-navy-600">Cours d&rsquo;arabe et d&rsquo;éducation religieuse pour tous les âges</p>
             </div>
             
             <div className="text-center">
@@ -116,18 +117,18 @@ export default function HomePage() {
             Découvrez un lieu de spiritualité et de fraternité au cœur de Saint-Imier
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <Link 
               href="/actualites" 
               className="bg-white text-nur-teal-600 px-8 py-4 rounded-lg font-medium hover:bg-nur-navy-50 transition-colors"
             >
               Lire nos actualités
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/donation" 
               className="border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white hover:text-nur-teal-600 transition-colors"
             >
               Faire un don
-            </a>
+            </Link>
           </div>
         </div>
       </section>

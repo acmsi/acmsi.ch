@@ -146,7 +146,7 @@ export default function ContactPage() {
           </h2>
           <p className="text-xl text-nur-teal-100 mb-8">
             Vous êtes toujours les bienvenus à la mosquée Nur. 
-            N'hésitez pas à nous contacter pour organiser votre visite.
+            N&rsquo;hésitez pas à nous contacter pour organiser votre visite.
           </p>
           
           <div className="grid md:grid-cols-3 gap-6 text-center">
@@ -192,7 +192,7 @@ export default function ContactPage() {
             </h2>
             <p className="text-lg text-nur-navy-700">
               Vous avez une question ou souhaitez en savoir plus sur nos activités ? 
-              N'hésitez pas à nous contacter.
+              N&rsquo;hésitez pas à nous contacter.
             </p>
           </div>
           
@@ -264,7 +264,7 @@ export default function ContactPage() {
             <div className="mt-6 p-4 bg-nur-teal-50 rounded-lg">
               <p className="text-sm text-nur-teal-800">
                 <strong>Note:</strong> Ce formulaire est actuellement en développement. 
-                Pour nous contacter immédiatement, veuillez utiliser l'adresse email ci-dessus.
+                Pour nous contacter immédiatement, veuillez utiliser l&rsquo;adresse email ci-dessus.
               </p>
             </div>
           </div>

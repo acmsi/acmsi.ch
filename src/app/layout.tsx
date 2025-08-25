@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 import './global.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
       </head>
       <body className={`${inter.className} bg-nur-cream-50 text-nur-navy-900 antialiased`}>
         <header className="bg-white shadow-sm border-b border-nur-teal-100">
@@ -47,21 +48,21 @@ export default function RootLayout({
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <a href="/" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                  <Link href="/" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                     Accueil
-                  </a>
-                  <a href="/a-propos" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                  </Link>
+                  <Link href="/a-propos" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                     À propos
-                  </a>
-                  <a href="/actualites" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                  </Link>
+                  <Link href="/actualites" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                     Actualités
-                  </a>
-                  <a href="/donation" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                  </Link>
+                  <Link href="/donation" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                     Donation
-                  </a>
-                  <a href="/contact" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
+                  </Link>
+                  <Link href="/contact" className="text-nur-navy-700 hover:text-nur-teal-600 px-3 py-2 rounded-md text-sm font-medium">
                     Contact
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -84,11 +85,11 @@ export default function RootLayout({
               <div>
                 <h3 className="text-lg font-semibold mb-4">Navigation</h3>
                 <ul className="space-y-2">
-                  <li><a href="/" className="text-nur-cream-200 hover:text-nur-teal-300">Accueil</a></li>
-                  <li><a href="/a-propos" className="text-nur-cream-200 hover:text-nur-teal-300">À propos</a></li>
-                  <li><a href="/actualites" className="text-nur-cream-200 hover:text-nur-teal-300">Actualités</a></li>
-                  <li><a href="/donation" className="text-nur-cream-200 hover:text-nur-teal-300">Donation</a></li>
-                  <li><a href="/contact" className="text-nur-cream-200 hover:text-nur-teal-300">Contact</a></li>
+                  <li><Link href="/" className="text-nur-cream-200 hover:text-nur-teal-300">Accueil</Link></li>
+                  <li><Link href="/a-propos" className="text-nur-cream-200 hover:text-nur-teal-300">À propos</Link></li>
+                  <li><Link href="/actualites" className="text-nur-cream-200 hover:text-nur-teal-300">Actualités</Link></li>
+                  <li><Link href="/donation" className="text-nur-cream-200 hover:text-nur-teal-300">Donation</Link></li>
+                  <li><Link href="/contact" className="text-nur-cream-200 hover:text-nur-teal-300">Contact</Link></li>
                 </ul>
               </div>
               <div>

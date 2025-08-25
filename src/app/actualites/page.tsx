@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getAllNews } from '@/lib/content'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Actualités - ACMSI',
@@ -35,11 +36,12 @@ export default async function ActualitesPage() {
               {newsArticles.map((article) => (
                 <article key={article.slug} className="bg-nur-cream-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   {article.featured_image && (
-                    <div className="aspect-video bg-nur-teal-100">
-                      <img 
+                    <div className="aspect-video bg-nur-teal-100 relative">
+                      <Image 
                         src={article.featured_image} 
                         alt={article.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
                       />
                     </div>
                   )}
@@ -129,7 +131,7 @@ export default async function ActualitesPage() {
                 <p className="text-nur-navy-700">
                   Cette section est maintenant gérée par notre système de gestion de contenu (CMS). 
                   Les administrateurs peuvent ajouter, modifier et publier des actualités 
-                  directement via l'interface d'administration.
+                  directement via l&rsquo;interface d&rsquo;administration.
                 </p>
               </div>
             </div>
