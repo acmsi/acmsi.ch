@@ -3,6 +3,7 @@ import { getNewsArticle, getAllNews } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { CaretLeft } from '@phosphor-icons/react/dist/ssr'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -122,14 +123,7 @@ export default async function ArticlePage({ params }: Props) {
               href="/actualites"
               className="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors inline-flex items-center"
             >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
+              <CaretLeft className="w-4 h-4 mr-2" weight="bold" />
               Retour aux actualités
             </Link>
 

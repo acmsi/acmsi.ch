@@ -1,4 +1,13 @@
 import type { Metadata } from 'next'
+import {
+  MapPin,
+  Envelope,
+  Phone,
+  WhatsappLogo,
+  CarSimple,
+  Heart,
+  LetterCircleP,
+} from '@phosphor-icons/react/dist/ssr'
 import MosqueLocationMap from '@/components/mosque-location-map'
 
 export const metadata: Metadata = {
@@ -33,25 +42,7 @@ export default function ContactPage() {
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <svg
-                      className="w-6 h-6 text-gray-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
+                    <MapPin className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 leading-tight">Adresse</h3>
@@ -67,19 +58,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <svg
-                      className="w-6 h-6 text-gray-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
+                    <Envelope className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 leading-tight">Email</h3>
@@ -96,19 +75,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <svg
-                      className="w-6 h-6 text-gray-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                      />
-                    </svg>
+                    <Phone className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 leading-tight">Téléphone</h3>
@@ -122,19 +89,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <svg
-                      className="w-6 h-6 text-gray-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                      />
-                    </svg>
+                    <WhatsappLogo className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 leading-tight">
@@ -221,32 +176,21 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg
-                    className="w-5 h-5 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 18.5c-.77.833.192 2.5 1.732 2.5z"
-                    />
-                  </svg>
+                  <CarSimple className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 mt-2">
                     Places limitées devant la mosquée
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
                     Le stationnement devant la mosquée est très limité. Pendant la prière du
                     vendredi (Jumma) et durant le Ramadan, nous demandons à la communauté de ne pas
                     s'y garer car ces places sont{' '}
-                    <strong>réservées aux personnes à mobilité réduite</strong>, aux personnes
-                    âgées, ainsi qu'à{' '}
-                    <strong>l'Imam qui vient de loin avec un emploi du temps chargé</strong> pour
-                    guider notre communauté. Rappelons que{' '}
+                    <strong>réservées aux personnes à mobilité réduite, ainsi qu'à l'Imam </strong>{' '}
+                    qui vient de loin avec un emploi du temps chargé pour guider notre communauté.
+                  </p>
+                  <p className="text-gray-700 my-2">
+                    Rappelons que{' '}
                     <strong>
                       l'intention et le comportement sont plus importants que la ponctualité
                     </strong>
@@ -257,30 +201,18 @@ export default function ContactPage() {
 
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg
-                    className="w-5 h-5 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
+                  <Heart className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 mt-2">
                     Exemplarité et courtoisie envers nos voisins
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
                     Nous encourageons vivement notre communauté à agir de manière exemplaire :{' '}
                     <strong>respecter scrupuleusement les emplacements de stationnement</strong>, ne
                     jamais bloquer les entrées de garage, et faire preuve de{' '}
-                    <strong>courtoisie et de bienveillance envers nos voisins et riverains</strong>.
-                    Notre comportement reflète les valeurs de notre foi. Et plutôt que de payer des
+                    <strong>courtoisie et de bienveillance envers nos voisins</strong>. Notre
+                    comportement reflète les valeurs de notre foi. Et plutôt que de payer des
                     contraventions, nous vous invitons à{' '}
                     <a href="/donation" className="text-teal-600 hover:text-teal-700 font-medium">
                       faire des dons à la mosquée
@@ -292,40 +224,35 @@ export default function ContactPage() {
 
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg
-                    className="w-5 h-5 text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                  <LetterCircleP className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 mt-2">
                     Options de stationnement
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
                     Saint-Imier dispose de{' '}
                     <strong>nombreuses places gratuites dans les rues avoisinantes</strong> de la
-                    mosquée. Plusieurs parkings publics a 5min a pied sont disponibles :
-                    <br />• <strong>Parking de la Patinoire</strong>
-                    <br />• <strong>Parking en face de la Migros</strong>
-                    <br />• <strong>Parking au centre de la commune</strong>
-                    <br />
+                    mosquée.
+                  </p>
+                  <p className="text-gray-700 my-2">
+                    Plusieurs parkings publics a 5min a pied sont disponibles :
+                  </p>
+                  <ul className="text-gray-700 my-2 ml-4 list-disc">
+                    <li>
+                      <strong>Parking de la Patinoire</strong>
+                    </li>
+                    <li>
+                      <strong>Parking en face de la Migros</strong>
+                    </li>
+                    <li>
+                      <strong>Parking au centre de la commune</strong>
+                    </li>
+                  </ul>
+                  <p className="text-gray-700 my-2">
                     Ces options sont particulièrement recommandées lors d'événements importants
-                    comme les prières du vendredi ou durant le Ramadan.
+                    comme les prières du vendredi ou durant le Ramadan. Consultez la carte
+                    ci-dessous pour visualiser leurs emplacements.
                   </p>
                 </div>
               </div>
@@ -351,20 +278,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+                <MapPin className="w-5 h-5 mr-2" weight="duotone" />
                 Mosquée Nur - Rue de la Clef 45, 2610 Saint-Imier, Suisse
               </a>
             </div>

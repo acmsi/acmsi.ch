@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { LetterCircleP } from '@phosphor-icons/react/dist/ssr'
 import './global.css'
 
 export const metadata: Metadata = {
@@ -154,19 +155,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       href="/contact#parking-info"
                       className="inline-flex items-center text-sm hover:text-teal-300 transition-colors"
                     >
-                      <svg
-                        className="w-4 h-4 mr-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                        />
-                      </svg>
+                      <LetterCircleP className="w-4 h-4 mr-1" />
                       Informations Stationnement
                     </a>
                   </p>
