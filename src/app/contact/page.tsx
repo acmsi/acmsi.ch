@@ -110,28 +110,36 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold mb-8">Horaires des Prières</h2>
 
               <div className="bg-gray-50 rounded-lg p-6">
-                <dl className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <dt className="font-medium">Fajr</dt>
-                    <dd>Variable selon la saison</dd>
+                <div className="relative">
+                  <div className="absolute -top-2 -bottom-2 -left-2 -right-2 bg-gray-100/80 rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-lg font-medium text-gray-700 mb-1">En construction</p>
+                      <p className="text-sm text-gray-600">Horaires bientôt disponibles</p>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <dt className="font-medium">Dhuhr</dt>
-                    <dd>Variable selon la saison</dd>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <dt className="font-medium">Asr</dt>
-                    <dd>Variable selon la saison</dd>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <dt className="font-medium">Maghrib</dt>
-                    <dd>Variable selon la saison</dd>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <dt className="font-medium">Isha</dt>
-                    <dd>Variable selon la saison</dd>
-                  </div>
-                </dl>
+                  <dl className="space-y-4">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Fajr</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Dhuhr</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Asr</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Maghrib</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2">
+                      <dt className="font-medium">Isha</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                  </dl>
+                </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
                   <h4 className="font-semibold mb-2">Jumma – Prière du Vendredi</h4>
@@ -142,7 +150,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex justify-between items-center">
                       <dt>Prière</dt>
-                      <dd>12:45</dd>
+                      <dd>12:30</dd>
                     </div>
                   </dl>
                 </div>

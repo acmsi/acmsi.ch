@@ -17,9 +17,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-3">
-              Bienvenue à la Mosquée Nur
-            </h1>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-3">Bienvenue à la Mosquée Nur</h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-12">
               Association Culturelle Musulmane de Saint-Imier - Un lieu de paix, de prière et de
               communauté au cœur du Jura bernois, guidé par les valeurs d&rsquo;
@@ -36,7 +34,7 @@ export default function HomePage() {
                 href="/contact"
                 className="bg-white text-gray-900 px-8 py-4 rounded-lg font-medium border-2 border-gray-300 hover:bg-gray-50 transition-colors"
               >
-                Nous contacter
+                Nous trouver
               </Link>
             </div>
           </div>
@@ -73,9 +71,7 @@ export default function HomePage() {
                 <Ruku className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Prières quotidiennes</h3>
-              <p>
-                Cinq prières quotidiennes dans un cadre paisible et spirituel
-              </p>
+              <p>Cinq prières quotidiennes dans un cadre paisible et spirituel</p>
             </div>
 
             <div className="text-center">
@@ -91,18 +87,14 @@ export default function HomePage() {
                 <BookOpen className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Éducation islamique</h3>
-              <p>
-                Cours d&rsquo;arabe et d&rsquo;éducation religieuse pour tous les âges
-              </p>
+              <p>Cours d&rsquo;arabe et d&rsquo;éducation religieuse pour tous les âges</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CalendarIslamic className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">
-                Événements communautaires
-              </h3>
+              <h3 className="text-xl font-semibold mb-2">Événements communautaires</h3>
               <p>Cérémonies religieuses et activités sociales</p>
             </div>
           </div>
