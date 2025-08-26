@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getAllNews } from '@/lib/content'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Newspaper } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'Actualités - ACMSI',
@@ -99,19 +100,7 @@ export default async function ActualitesPage() {
           ) : (
             <div className="text-center py-16">
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-8 h-8 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"
-                  />
-                </svg>
+                <Newspaper className="w-8 h-8 text-gray-500" weight="duotone" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Aucune actualité pour le moment
