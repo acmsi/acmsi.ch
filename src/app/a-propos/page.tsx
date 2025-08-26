@@ -16,10 +16,10 @@ export default function AProposPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
               À propos de la Mosquée Nur
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto">
               Découvrez l&rsquo;histoire, la mission et les valeurs de l&rsquo;Association
               Culturelle Musulmane de Saint-Imier
             </p>
@@ -31,8 +31,8 @@ export default function AProposPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Notre Histoire</h2>
-            <div className="text-lg text-gray-600 space-y-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Notre Histoire</h2>
+            <div className="text-lg space-y-6">
               <p>
                 La mosquée Nur a été établie pour répondre aux besoins spirituels croissants de la
                 communauté musulmane de Saint-Imier et des environs. Située au cœur du Jura bernois,
@@ -53,8 +53,8 @@ export default function AProposPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Notre Mission</h2>
-            <div className="text-lg text-gray-600 space-y-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Notre Mission</h2>
+            <div className="text-lg space-y-6">
               <p>
                 L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de
                 faciliter la pratique religieuse et de promouvoir les valeurs islamiques d&rsquo;
@@ -74,7 +74,7 @@ export default function AProposPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Nos Valeurs</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Nos Valeurs</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -82,10 +82,10 @@ export default function AProposPage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Ruku className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-2xl font-semibold mb-4">
                 Ihsan - L&rsquo;Excellence
               </h3>
-              <p className="text-gray-600">
+              <p>
                 L&rsquo;<strong>Ihsan</strong> est au cœur de tout ce que nous faisons. C&rsquo;est
                 l&rsquo;excellence dans l&rsquo;adoration d&rsquo;Allah et dans nos relations avec
                 autrui, comme si nous Le voyions, car même si nous ne Le voyons pas, Lui nous voit.
@@ -96,8 +96,8 @@ export default function AProposPage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <UsersThree className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Communauté</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-semibold mb-4">Communauté</h3>
+              <p>
                 Nous valorisons l&rsquo;unité, la solidarité et l&rsquo;entraide au sein de notre
                 communauté, créant des liens forts basés sur la fraternité islamique et le respect
                 mutuel.
@@ -108,8 +108,8 @@ export default function AProposPage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Éducation</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-semibold mb-4">Éducation</h3>
+              <p>
                 L&rsquo;apprentissage continu du Coran, de la langue arabe et des sciences
                 islamiques est essentiel pour le développement spirituel et intellectuel de notre
                 communauté.
@@ -120,8 +120,8 @@ export default function AProposPage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Accueil</h3>
-              <p className="text-gray-600">
+              <h3 className="text-2xl font-semibold mb-4">Accueil</h3>
+              <p>
                 Notre mosquée est ouverte à tous, musulmans et non-musulmans, dans un esprit de
                 dialogue, de compréhension mutuelle et de respect des différences.
               </p>
