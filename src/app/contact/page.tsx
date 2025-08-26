@@ -32,7 +32,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="pb-16 bg-white">
+      <section className="pb-9 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Details */}
@@ -92,9 +92,7 @@ export default function ContactPage() {
                     <WhatsappLogo className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold leading-tight">
-                      WhatsApp Communauté
-                    </h3>
+                    <h3 className="text-lg font-semibold leading-tight">WhatsApp Communauté</h3>
                     <p>
                       Rejoignez notre groupe WhatsApp communautaire
                       <br />
@@ -112,48 +110,65 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold mb-8">Horaires des Prières</h2>
 
               <div className="bg-gray-50 rounded-lg p-6">
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium">Fajr</span>
-                    <span>Variable selon la saison</span>
+                <div className="relative">
+                  <div className="absolute -top-2 -bottom-2 -left-2 -right-2 bg-gray-100/80 rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <p className="text-lg font-medium text-gray-700 mb-1">En construction</p>
+                      <p className="text-sm text-gray-600">Horaires bientôt disponibles</p>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium">Dhuhr</span>
-                    <span>Variable selon la saison</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium">Asr</span>
-                    <span>Variable selon la saison</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium">Maghrib</span>
-                    <span>Variable selon la saison</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="font-medium">Isha</span>
-                    <span>Variable selon la saison</span>
-                  </div>
+                  <dl className="space-y-4">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Fajr</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Dhuhr</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Asr</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
+                      <dt className="font-medium">Maghrib</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                    <div className="flex justify-between items-center py-2">
+                      <dt className="font-medium">Isha</dt>
+                      <dd>Bientôt disponible</dd>
+                    </div>
+                  </dl>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h4 className="font-semibold mb-2">Prière du Vendredi</h4>
-                  <div className="space-y-2">
+                  <h4 className="font-semibold mb-2">Jumma – Prière du Vendredi</h4>
+                  <dl className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span>Khutbah</span>
-                      <span>À confirmer</span>
+                      <dt>Khutbah</dt>
+                      <dd>12:15</dd>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span>Prière</span>
-                      <span>À confirmer</span>
+                      <dt>Prière</dt>
+                      <dd>12:30</dd>
                     </div>
-                  </div>
+                  </dl>
                 </div>
 
-                <div className="mt-4 p-3 bg-teal-50 rounded-lg">
-                  <p className="text-sm text-teal-800">
-                    <strong>Note:</strong> Les horaires des prières varient selon les saisons.
-                    Contactez-nous pour les horaires actuels ou consultez notre site web.
-                  </p>
+                <div className="mt-4 p-3 bg-red-50 rounded-lg">
+                  <div className="flex items-start">
+                    <LetterCircleP className="w-5 h-5 mr-2 text-red-900 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-red-900">
+                      <strong>Staionnement Jumma:</strong> Ne pas se garer devant la mosquée, ces
+                      places sont réservées aux personnes à mobilité réduite et à l'Imam.{' '}
+                      <a
+                        href="/contact#parking-info"
+                        className="hover:text-red-700 transition-colors underline mt-2 block"
+                      >
+                        Voir les informations complètes pour les options de parking
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,8 +179,8 @@ export default function ContactPage() {
       {/* Parking Information Section */}
       <section id="parking-info" className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4">Informations de Stationnement</h2>
+          <div className="text-center mb-9">
+            <h2 className="text-3xl font-bold mb-4 text-white">Informations de Stationnement</h2>
             <p className="text-xl text-gray-300 mb-6">
               Soyons exemplaires dans notre comportement, y compris lors du stationnement
             </p>
@@ -227,9 +242,7 @@ export default function ContactPage() {
                   <LetterCircleP className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 mt-2">
-                    Options de stationnement
-                  </h3>
+                  <h3 className="text-lg font-semibold mb-2 mt-2">Options de stationnement</h3>
                   <p className="text-gray-700 leading-relaxed">
                     Saint-Imier dispose de{' '}
                     <strong>nombreuses places gratuites dans les rues avoisinantes</strong> de la
@@ -264,7 +277,7 @@ export default function ContactPage() {
       {/* Map Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-9">
             <h2 className="text-3xl font-bold mb-4">Nous Localiser</h2>
             <p className="text-lg">Trouvez facilement la mosquée Nur à Saint-Imier</p>
           </div>

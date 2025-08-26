@@ -60,7 +60,6 @@
 }
 
 @import "tailwindcss";
-/* @import "tw-animate-css"; */
 @plugin "@tailwindcss/typography";
 
 :root {
@@ -252,29 +251,33 @@ Sample Classes:
 
 */
 
-/* Typography - Apply fonts to elements */
-h1,
-h2 {
-  font-family: var(--font-family-headings);
+@layer base {
+  /* Typography - Apply fonts to elements */
+  h1,
+  h2 {
+    font-family: var(--font-family-headings);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-gray-900;
+  }
+
+  body {
+    @apply text-gray-600;
+  }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply text-gray-900;
-}
+@layer compoennts {
+  .font-headings {
+    font-family: var(--font-family-headings);
+  }
 
-body {
-  @apply text-gray-600;
-}
-
-.font-headings {
-  font-family: var(--font-family-headings);
-}
-
-.font-alt {
-  font-family: var(--font-family-alt);
+  .font-alt {
+    font-family: var(--font-family-alt);
+  }
 }

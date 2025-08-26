@@ -16,9 +16,7 @@ export default function AProposPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-3">
-              À propos de la Mosquée Nur
-            </h1>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">À propos de la Mosquée Nur</h1>
             <p className="text-xl max-w-3xl mx-auto">
               Découvrez l&rsquo;histoire, la mission et les valeurs de l&rsquo;Association
               Culturelle Musulmane de Saint-Imier
@@ -82,9 +80,7 @@ export default function AProposPage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Ruku className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-2xl font-semibold mb-4">
-                Ihsan - L&rsquo;Excellence
-              </h3>
+              <h3 className="text-2xl font-semibold mb-4">Ihsan - L&rsquo;Excellence</h3>
               <p>
                 L&rsquo;<strong>Ihsan</strong> est au cœur de tout ce que nous faisons. C&rsquo;est
                 l&rsquo;excellence dans l&rsquo;adoration d&rsquo;Allah et dans nos relations avec
@@ -133,7 +129,7 @@ export default function AProposPage() {
       {/* Contact CTA */}
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Venez nous rencontrer</h2>
+          <h2 className="text-3xl font-bold mb-4 text-white">Venez nous rencontrer</h2>
           <p className="text-xl text-gray-300 mb-8">
             Nous serions ravis de vous accueillir à la mosquée Nur pour découvrir notre communauté
           </p>
