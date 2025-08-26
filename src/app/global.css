@@ -270,7 +270,9 @@ Sample Classes:
   body {
     @apply text-gray-600;
   }
+}
 
+@layer compoennts {
   .font-headings {
     font-family: var(--font-family-headings);
   }

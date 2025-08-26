@@ -32,7 +32,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="pb-16 bg-white">
+      <section className="pb-9 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Details */}
@@ -165,7 +165,7 @@ export default function ContactPage() {
                         href="/contact#parking-info"
                         className="hover:text-red-700 transition-colors underline mt-2 block"
                       >
-                        Voir les informations complètes pour les options parking
+                        Voir les informations complètes pour les options de parking
                       </a>
                     </p>
                   </div>
@@ -179,8 +179,8 @@ export default function ContactPage() {
       {/* Parking Information Section */}
       <section id="parking-info" className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-4 text-gray-300">Informations de Stationnement</h2>
+          <div className="text-center mb-9">
+            <h2 className="text-3xl font-bold mb-4 text-white">Informations de Stationnement</h2>
             <p className="text-xl text-gray-300 mb-6">
               Soyons exemplaires dans notre comportement, y compris lors du stationnement
             </p>
@@ -277,7 +277,7 @@ export default function ContactPage() {
       {/* Map Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-9">
             <h2 className="text-3xl font-bold mb-4">Nous Localiser</h2>
             <p className="text-lg">Trouvez facilement la mosquée Nur à Saint-Imier</p>
           </div>
