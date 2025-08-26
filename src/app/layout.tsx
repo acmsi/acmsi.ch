@@ -109,6 +109,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </Link>
                   </li>
                   <li>
+                    <Link href="/projet-xhamia-nur" className="text-gray-300 hover:text-teal-300">
+                      Projet Xhamia Nur
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/donation" className="text-gray-300 hover:text-teal-300">
                       Donation
                     </Link>

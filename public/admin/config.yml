@@ -23,3 +23,19 @@ collections:
       - { label: 'Contenu', name: 'body', widget: 'markdown' }
       - { label: 'Publié', name: 'published', widget: 'boolean', default: true }
       - { label: 'Tags', name: 'tags', widget: 'list', required: false }
+  
+  - name: 'budget_projet' # Collection pour la gestion budgétaire
+    label: 'Budget Projet Xhamia Nur'
+    folder: 'content/budget'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Type', name: 'type', widget: 'select', options: ['projet_global', 'sous_projet'] }
+      - { label: 'Nom du projet', name: 'nom', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'text', required: false }
+      - { label: 'Objectif (CHF)', name: 'objectif', widget: 'number', value_type: 'int' }
+      - { label: 'Montant levé (CHF)', name: 'montant_leve', widget: 'number', value_type: 'int', default: 0 }
+      - { label: 'Date de dernière mise à jour', name: 'derniere_maj', widget: 'datetime', default: '' }
+      - { label: 'Priorité', name: 'priorite', widget: 'number', value_type: 'int', default: 1, required: false }
+      - { label: 'Statut', name: 'statut', widget: 'select', options: ['active', 'termine'], default: 'active', required: false }
+      - { label: 'Échéance souhaitée', name: 'date_fin_prevue', widget: 'date', required: false }
