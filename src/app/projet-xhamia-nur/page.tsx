@@ -49,7 +49,7 @@ export default async function ProjetXhamiaNurPage() {
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
               Un projet essentiel de <strong>1&rsquo;185&rsquo;500 CHF</strong> pour établir
               l&rsquo;ACMSI sur des bases solides, développer un centre islamique moderne et
-              pérenne, dans le respect de nos valeurs et sans riba.
+              pérenne dans ses murs, dans le respect de nos valeurs et sans riba.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -124,8 +124,8 @@ export default async function ProjetXhamiaNurPage() {
             <p className="text-lg text-gray-700 mb-6">
               Ce projet ambitieux vise à{' '}
               <strong>établir l'ACMSI sur des bases solides et islamiques</strong>, à développer un{' '}
-              <strong>lieu de rencontre et de culte moderne de 540m²</strong>, et à garantir un
-              avenir pérenne <strong>sans riba</strong> pour notre communauté.
+              <strong>centre islamique moderne de 540m², pérenne, dans ses murs</strong>, et à
+              garantir un avenir <strong>sans riba</strong> pour notre communauté.
             </p>
             <p className="text-lg text-gray-700 mb-6">
               Le Projet Xhamia Nur transformera notre lieu de culte en un véritable centre culturel
@@ -346,152 +346,250 @@ export default async function ProjetXhamiaNurPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Sous-projets et suivis</h2>
             <p className="text-lg text-gray-600">
-              L’ACMSI alloue les fonds collectés selon les priorités et la réalité du terrain. 
+              L’ACMSI alloue les fonds collectés selon les priorités et la réalité du terrain.
               Suivez l’avancement des différents aspects du Projet Xhamia Nur.
             </p>
           </div>
 
-          {/* Sous-projets */}
-          {projectData?.sous_projets && projectData.sous_projets.length > 0 && (
-            <div className="mb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projectData.sous_projets.map(sousProjet => (
-                  <div
-                    key={sousProjet.slug}
-                    className={`bg-white rounded-lg shadow-sm border-2 p-6 transition-all duration-200 ${
-                      sousProjet.campagne_active
-                        ? 'border-green-200 shadow-green-50'
-                        : 'border-gray-200 hover:border-green-200'
-                    }`}
-                  >
-                    {/* Titre et priorité */}
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      <Link 
-                        href={`/projet-xhamia-nur/${sousProjet.slug}`}
-                        className="text-xl font-semibold flex-1 leading-tight hover:text-green-600 transition-colors"
+          {/* Projets en cours */}
+          {projectData?.sous_projets &&
+            projectData.sous_projets.filter(p => p.statut !== 'termine').length > 0 && (
+              <div className="mb-16">
+                <h3 className="text-2xl font-bold mb-6 text-center text-green-900">
+                  Sous-projets en cours
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {projectData.sous_projets
+                    .filter(p => p.statut !== 'termine')
+                    .map(sousProjet => (
+                      <div
+                        key={sousProjet.slug}
+                        className={`bg-white rounded-lg shadow-sm border-2 p-6 transition-all duration-200 ${
+                          sousProjet.campagne_active
+                            ? 'border-green-200 shadow-green-50'
+                            : 'border-gray-200 hover:border-green-200'
+                        }`}
                       >
-                        {sousProjet.nom}
-                      </Link>
-                      {sousProjet.priorite && (
-                        <span
-                          className={`text-xs font-medium px-2.5 py-0.5 rounded-full flex-shrink-0 ${
-                            sousProjet.priorite === 1
-                              ? 'bg-red-100 text-red-800'
-                              : sousProjet.priorite === 2
-                                ? 'bg-orange-100 text-orange-800'
-                                : 'bg-gray-100 text-gray-800'
-                          }`}
-                        >
-                          Priorité {sousProjet.priorite}
-                        </span>
-                      )}
-                    </div>
+                        {/* Titre et priorité */}
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <Link
+                            href={`/projet-xhamia-nur/${sousProjet.slug}`}
+                            className="text-xl font-semibold flex-1 leading-tight hover:text-green-600 transition-colors"
+                          >
+                            {sousProjet.nom}
+                          </Link>
+                          {sousProjet.priorite && (
+                            <span
+                              className={`text-xs font-medium px-2.5 py-0.5 rounded-full flex-shrink-0 ${
+                                sousProjet.priorite === 1
+                                  ? 'bg-red-100 text-red-800'
+                                  : sousProjet.priorite === 2
+                                    ? 'bg-orange-100 text-orange-800'
+                                    : 'bg-gray-100 text-gray-800'
+                              }`}
+                            >
+                              Priorité {sousProjet.priorite}
+                            </span>
+                          )}
+                        </div>
 
-                    {/* Badge de statut (seulement si terminé) */}
-                    {sousProjet.statut === 'termine' && (
-                      <div className="flex items-center mb-3">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                        <span className="text-sm font-medium text-gray-600 ml-2">Terminé</span>
-                      </div>
-                    )}
-                    <p className="text-gray-600 mb-4">{sousProjet.description}</p>
+                        {/* Badge de statut (seulement si terminé) */}
+                        {sousProjet.statut === 'termine' && (
+                          <div className="flex items-center mb-3">
+                            <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                            <span className="text-sm font-medium text-gray-600 ml-2">Terminé</span>
+                          </div>
+                        )}
+                        <p className="text-gray-600 mb-4">{sousProjet.description}</p>
 
-                    {/* Barre de progression */}
-                    <div className="mb-4">
-                      <div className="flex justify-between text-sm text-gray-600 mb-2">
-                        <span>CHF {sousProjet.montant_leve.toLocaleString()}</span>
-                        <span>CHF {sousProjet.objectif.toLocaleString()}</span>
-                      </div>
-                      <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
-                        <div
-                          className={`h-3 rounded-full transition-all duration-300 ${
-                            sousProjet.statut === 'termine' ? 'bg-blue-500' : 'bg-green-500'
-                          }`}
-                          style={{ width: `${Math.max(sousProjet.pourcentage_completion, 1)}%` }}
-                        ></div>
-                      </div>
-                      <p className="text-right text-xs text-gray-500 mt-1">
-                        {sousProjet.pourcentage_completion.toFixed(1)}% collecté
-                      </p>
-                    </div>
+                        {/* Barre de progression */}
+                        <div className="mb-4">
+                          <div className="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>CHF {sousProjet.montant_leve.toLocaleString()}</span>
+                            <span>CHF {sousProjet.objectif.toLocaleString()}</span>
+                          </div>
+                          <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
+                            <div
+                              className={`h-3 rounded-full transition-all duration-300 ${
+                                sousProjet.statut === 'termine' ? 'bg-blue-500' : 'bg-green-500'
+                              }`}
+                              style={{
+                                width: `${Math.max(sousProjet.pourcentage_completion, 1)}%`,
+                              }}
+                            ></div>
+                          </div>
+                          <p className="text-right text-xs text-gray-500 mt-1">
+                            {sousProjet.pourcentage_completion.toFixed(1)}% collecté
+                          </p>
+                        </div>
 
-                    {/* Échéance */}
-                    {sousProjet.date_fin_prevue && (
-                      <div className="text-xs text-gray-500 border-t pt-3">
-                        <span className="flex items-center">
-                          <Calendar className="w-3 h-3 mr-1" />
-                          Échéance souhaitée:{' '}
-                          {new Date(sousProjet.date_fin_prevue).toLocaleDateString('fr-CH')}
-                        </span>
+                        {/* Échéance */}
+                        {sousProjet.date_fin_prevue && (
+                          <div className="text-xs text-gray-500 border-t pt-3">
+                            <span className="flex items-center">
+                              <Calendar className="w-3 h-3 mr-1" />
+                              Échéance souhaitée:{' '}
+                              {new Date(sousProjet.date_fin_prevue).toLocaleDateString('fr-CH')}
+                            </span>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* CTA pour campagnes selon priorité */}
-              {projectData.sous_projets.some(p => p.statut !== 'termine') && (
-                <div className="text-center mb-12">
-                  <div className="bg-green-50 rounded-lg p-6">
-                    <div className="flex items-center justify-center mb-3">
-                      <TrendUp className="w-6 h-6 text-green-600 mr-2" weight="duotone" />
-                      <h3 className="text-lg font-semibold text-green-900">
-                        Allocation selon les priorités
-                      </h3>
-                    </div>
-                    <p className="text-green-800 mb-4">
-                      Vos dons permettent à l’association d’avancer sur tous les aspects du projet 
-                      selon les besoins réels et les priorités définies.
-                    </p>
-                    <Link
-                      href="#faire-un-don"
-                      className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
-                    >
-                      Soutenir le projet
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
-                  </div>
+                    ))}
                 </div>
-              )}
-            </div>
-          )}
+
+                {/* CTA pour campagnes selon priorité */}
+                {projectData.sous_projets.filter(p => p.statut !== 'termine').length > 0 && (
+                  <div className="text-center my-9">
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <div className="flex items-center justify-center mb-3">
+                        <TrendUp className="w-6 h-6 text-green-600 mr-2" weight="duotone" />
+                        <h3 className="text-lg font-semibold text-green-900">
+                          Allocation selon les priorités
+                        </h3>
+                      </div>
+                      <p className="text-green-800 mb-4">
+                        Vos dons permettent à l’association d’avancer sur tous les aspects du projet
+                        selon les besoins réels et les priorités définies.
+                      </p>
+                      <Link
+                        href="#faire-un-don"
+                        className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                      >
+                        Soutenir le projet
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+          {/* Projets terminés - Afficher seulement les 2 derniers */}
+          {projectData?.sous_projets &&
+            projectData.sous_projets.filter(p => p.statut === 'termine').length > 0 && (
+              <div className="mb-12">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-center text-green-900 flex-1">
+                    Réalisations accomplies
+                  </h3>
+                </div>
+                <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                  Ces projets ont été menés à bien grâce à la générosité et à l'engagement de notre
+                  communauté.
+                  <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu'Allah récompense tous ceux qui ont
+                  contribué.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {projectData.sous_projets
+                    .filter(p => p.statut === 'termine')
+                    .sort(
+                      (a, b) =>
+                        new Date(b.derniere_maj).getTime() - new Date(a.derniere_maj).getTime(),
+                    )
+                    .slice(0, 2)
+                    .map(sousProjet => (
+                      <div
+                        key={sousProjet.slug}
+                        className="bg-white rounded-lg shadow-sm border-2 border-green-200 p-6 transition-all duration-200 hover:border-green-300"
+                      >
+                        {/* Titre avec badge terminé */}
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <Link
+                            href={`/projet-xhamia-nur/${sousProjet.slug}`}
+                            className="text-xl font-semibold flex-1 leading-tight hover:text-green-600 transition-colors"
+                          >
+                            {sousProjet.nom}
+                          </Link>
+                          <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex-shrink-0">
+                            ✓ Accompli
+                          </span>
+                        </div>
+
+                        <p className="text-gray-600 mb-4">{sousProjet.description}</p>
+
+                        {/* Barre de progression complète */}
+                        <div className="mb-4">
+                          <div className="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>CHF {sousProjet.montant_leve.toLocaleString()}</span>
+                            <span>CHF {sousProjet.objectif.toLocaleString()}</span>
+                          </div>
+                          <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
+                            <div
+                              className="h-3 rounded-full bg-green-500 transition-all duration-300"
+                              style={{
+                                width: `${Math.min(sousProjet.pourcentage_completion, 100)}%`,
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {/* Date de completion */}
+                        {sousProjet.date_fin_prevue && (
+                          <div className="text-xs text-gray-500 border-t pt-3">
+                            <span className="flex items-center">
+                              <CheckCircle
+                                className="w-3 h-3 mr-1 text-green-500"
+                                weight="duotone"
+                              />
+                              Accompli en{' '}
+                              {new Date(sousProjet.date_fin_prevue).toLocaleDateString('fr-CH', {
+                                month: 'long',
+                                year: 'numeric',
+                              })}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                </div>
+                <div className="text-right py-2">
+                  <Link
+                    href="/projet-xhamia-nur/realisations"
+                    className="text-green-600 hover:text-green-700 font-medium transition-colors inline-flex items-center grow-0"
+                  >
+                    Voir toutes les réalisations
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+              </div>
+            )}
 
           {/* Transparence et suivi */}
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="w-8 h-8 text-green-600" weight="duotone" />
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="text-center mb-4">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Target className="w-6 h-6 text-green-600" weight="duotone" />
               </div>
-              <h3 className="text-2xl font-semibold mb-3">Transparence et suivi en temps réel</h3>
+              <h3 className="text-xl font-semibold mb-2">Transparence et suivi</h3>
               <p className="text-gray-600">
                 Nous nous engageons à une totale transparence sur l'utilisation des fonds collectés.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-green-50 rounded-lg p-4">
-                <h4 className="font-semibold text-green-900 mb-2">Mises à jour régulières</h4>
-                <p className="text-sm text-green-800">
-                  Cette section sera régulièrement mise à jour avec des photos des travaux, les
-                  montants collectés et l'avancement du projet.
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="bg-green-50 rounded-lg p-3">
+                <h4 className="font-semibold text-green-900 mb-1 text-sm">Suivi détaillé</h4>
+                <p className="text-xs text-green-800">
+                  Chaque sous-projet dispose de sa propre page avec progression, détails techniques
+                  et reconnaissance des contributions.
                 </p>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-2">Communication ouverte</h4>
-                <p className="text-sm text-blue-800">
-                  Chaque don est comptabilisé et l'utilisation des fonds est documentée pour assurer
-                  une transparence totale.
+              <div className="bg-blue-50 rounded-lg p-3">
+                <h4 className="font-semibold text-blue-900 mb-1 text-sm">Historique complet</h4>
+                <p className="text-xs text-blue-800">
+                  Toutes les réalisations accomplies sont documentées et accessibles dans la section
+                  dédiée.
                 </p>
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h4 className="font-semibold text-gray-800 mb-2">Information importante</h4>
-              <p className="text-sm text-gray-600">
-                <strong>Allocation des dons :</strong> L’ACMSI utilise tous les fonds collectés 
-                de manière globale et flexible, permettant d’adapter les dépenses selon l’évolution 
-                des coûts, des priorités et des opportunités. Les donateurs contribuent au projet 
-                dans son ensemble.
+            <div className="bg-gray-50 rounded-lg p-3">
+              <h4 className="font-semibold text-gray-800 mb-1 text-sm">
+                Allocation flexible des dons
+              </h4>
+              <p className="text-xs text-gray-600">
+                L'ACMSI utilise tous les fonds de manière globale selon les priorités et besoins
+                réels du terrain. Les donateurs contribuent au projet dans son ensemble.
               </p>
             </div>
           </div>

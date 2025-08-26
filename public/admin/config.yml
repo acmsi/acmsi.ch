@@ -39,3 +39,4 @@ collections:
       - { label: 'Priorité', name: 'priorite', widget: 'number', value_type: 'int', default: 1, required: false }
       - { label: 'Statut', name: 'statut', widget: 'select', options: ['active', 'termine'], default: 'active', required: false }
       - { label: 'Échéance souhaitée', name: 'date_fin_prevue', widget: 'date', required: false }
+      - { label: 'Contenu', name: 'body', widget: 'markdown' }
