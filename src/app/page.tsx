@@ -17,7 +17,7 @@ export default function HomePage() {
       <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-3">
               Bienvenue à la Mosquée Nur
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-12">

@@ -19,7 +19,7 @@ export default async function ActualitesPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">Actualités</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">Actualités</h1>
             <p className="text-xl max-w-3xl mx-auto">
               Restez informés des dernières nouvelles de notre communauté, des événements à venir et
               des activités de la mosquée Nur.

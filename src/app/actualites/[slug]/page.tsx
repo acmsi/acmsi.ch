@@ -72,7 +72,7 @@ export default async function ArticlePage({ params }: Props) {
               <span>{article.author}</span>
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-bold mb-6">{article.title}</h1>
+            <h1 className="text-3xl lg:text-4xl font-bold mb-3">{article.title}</h1>
 
             {article.excerpt && (
               <p className="text-xl max-w-3xl mx-auto">{article.excerpt}</p>
