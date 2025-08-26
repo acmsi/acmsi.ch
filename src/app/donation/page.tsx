@@ -22,10 +22,10 @@ export default function DonationPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">
               Soutenir notre Mosquée
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto">
               Votre générosité nous aide à maintenir et développer les services de la mosquée Nur
               pour toute la communauté
             </p>
@@ -37,7 +37,7 @@ export default function DonationPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold mb-4">
               L&rsquo;importance de votre soutien
             </h2>
           </div>
@@ -47,8 +47,8 @@ export default function DonationPage() {
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
                 <Mosque className="w-6 h-6 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Entretien de la mosquée</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3">Entretien de la mosquée</h3>
+              <p>
                 Maintenance des locaux, chauffage, électricité et tous les frais nécessaires au bon
                 fonctionnement de notre lieu de culte.
               </p>
@@ -58,8 +58,8 @@ export default function DonationPage() {
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
                 <ChalkboardTeacher className="w-6 h-6 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Programmes éducatifs</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3">Programmes éducatifs</h3>
+              <p>
                 Financement des cours d&rsquo;arabe, d&rsquo;éducation islamique et des matériaux
                 pédagogiques pour nos enfants et adultes.
               </p>
@@ -69,8 +69,8 @@ export default function DonationPage() {
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
                 <UsersFour className="w-6 h-6 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Activités communautaires</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3">Activités communautaires</h3>
+              <p>
                 Organisation d&rsquo;événements, conférences et activités qui renforcent les liens
                 au sein de notre communauté.
               </p>
@@ -80,8 +80,8 @@ export default function DonationPage() {
               <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
                 <HandHeart className="w-6 h-6 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Actions solidaires</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-3">Actions solidaires</h3>
+              <p>
                 Soutien aux familles dans le besoin et participation aux œuvres caritatives locales
                 et internationales.
               </p>
@@ -94,8 +94,8 @@ export default function DonationPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Comment faire un don</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-3xl font-bold mb-4">Comment faire un don</h2>
+            <p className="text-lg">
               Plusieurs moyens s&rsquo;offrent à vous pour soutenir notre association
             </p>
           </div>
@@ -108,7 +108,7 @@ export default function DonationPage() {
                   <CreditCard className="w-6 h-6 text-gray-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Virement bancaire</h3>
+                  <h3 className="text-xl font-semibold mb-3">Virement bancaire</h3>
                   <p className="text-gray-600 mb-4">
                     Effectuez un virement sur le compte de l&rsquo;ACMSI
                   </p>
@@ -141,7 +141,7 @@ export default function DonationPage() {
                   <Money className="w-6 h-6 text-gray-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Don en espèces</h3>
+                  <h3 className="text-xl font-semibold mb-3">Don en espèces</h3>
                   <p className="text-gray-600 mb-4">
                     Remettez votre don directement à la mosquée lors des prières ou événements
                   </p>
@@ -160,7 +160,7 @@ export default function DonationPage() {
                   <HandHeart className="w-6 h-6 text-gray-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Zakat et Sadaqah</h3>
+                  <h3 className="text-xl font-semibold mb-3">Zakat et Sadaqah</h3>
                   <p className="text-gray-600 mb-4">
                     L&rsquo;ACMSI accepte et redistribue la Zakat selon les préceptes islamiques
                   </p>
@@ -181,8 +181,8 @@ export default function DonationPage() {
       {/* Contact for Donations */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Questions sur les dons ?</h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <h2 className="text-3xl font-bold mb-6">Questions sur les dons ?</h2>
+          <p className="text-lg mb-8">
             N&rsquo;hésitez pas à nous contacter pour toute question concernant les dons ou pour
             obtenir un reçu fiscal si nécessaire.
           </p>

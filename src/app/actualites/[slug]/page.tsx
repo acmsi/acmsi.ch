@@ -51,7 +51,7 @@ export default async function ArticlePage({ params }: Props) {
               Actualités
             </Link>
             <span>/</span>
-            <span className="text-gray-900">{article.title}</span>
+            <span>{article.title}</span>
           </nav>
         </div>
       </section>
@@ -72,10 +72,10 @@ export default async function ArticlePage({ params }: Props) {
               <span>{article.author}</span>
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{article.title}</h1>
+            <h1 className="text-3xl lg:text-4xl font-bold mb-3">{article.title}</h1>
 
             {article.excerpt && (
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{article.excerpt}</p>
+              <p className="text-xl max-w-3xl mx-auto">{article.excerpt}</p>
             )}
 
             {article.tags && article.tags.length > 0 && (

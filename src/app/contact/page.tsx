@@ -23,8 +23,8 @@ export default function ContactPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Nous Contacter</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">Nous Contacter</h1>
+            <p className="text-xl max-w-3xl mx-auto">
               Nous sommes là pour vous accueillir et répondre à toutes vos questions
             </p>
           </div>
@@ -37,7 +37,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Details */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Informations de Contact</h2>
+              <h2 className="text-3xl font-bold mb-8">Informations de Contact</h2>
 
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -45,8 +45,8 @@ export default function ContactPage() {
                     <MapPin className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">Adresse</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-lg font-semibold leading-tight">Adresse</h3>
+                    <p>
                       ACMSI – Mosquée Nur
                       <br />
                       Rue de la Clef 45
@@ -61,8 +61,8 @@ export default function ContactPage() {
                     <Envelope className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">Email</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-lg font-semibold leading-tight">Email</h3>
+                    <p>
                       <a
                         href="mailto:contact@acmsi.ch"
                         className="text-teal-600 hover:text-teal-700"
@@ -78,8 +78,8 @@ export default function ContactPage() {
                     <Phone className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">Téléphone</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-lg font-semibold leading-tight">Téléphone</h3>
+                    <p>
                       <a href="tel:+41792763500" className="text-teal-600 hover:text-teal-700">
                         079 276 35 00
                       </a>
@@ -92,10 +92,10 @@ export default function ContactPage() {
                     <WhatsappLogo className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 leading-tight">
+                    <h3 className="text-lg font-semibold leading-tight">
                       WhatsApp Communauté
                     </h3>
-                    <p className="text-gray-600">
+                    <p>
                       Rejoignez notre groupe WhatsApp communautaire
                       <br />
                       <span className="text-sm text-gray-500">
@@ -109,42 +109,42 @@ export default function ContactPage() {
 
             {/* Prayer Times */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Horaires des Prières</h2>
+              <h2 className="text-3xl font-bold mb-8">Horaires des Prières</h2>
 
               <div className="bg-gray-50 rounded-lg p-6">
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium text-gray-900">Fajr</span>
-                    <span className="text-gray-600">Variable selon la saison</span>
+                    <span className="font-medium">Fajr</span>
+                    <span>Variable selon la saison</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium text-gray-900">Dhuhr</span>
-                    <span className="text-gray-600">Variable selon la saison</span>
+                    <span className="font-medium">Dhuhr</span>
+                    <span>Variable selon la saison</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium text-gray-900">Asr</span>
-                    <span className="text-gray-600">Variable selon la saison</span>
+                    <span className="font-medium">Asr</span>
+                    <span>Variable selon la saison</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="font-medium text-gray-900">Maghrib</span>
-                    <span className="text-gray-600">Variable selon la saison</span>
+                    <span className="font-medium">Maghrib</span>
+                    <span>Variable selon la saison</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="font-medium text-gray-900">Isha</span>
-                    <span className="text-gray-600">Variable selon la saison</span>
+                    <span className="font-medium">Isha</span>
+                    <span>Variable selon la saison</span>
                   </div>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h4 className="font-semibold text-gray-900 mb-2">Prière du Vendredi</h4>
+                  <h4 className="font-semibold mb-2">Prière du Vendredi</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Khutbah</span>
-                      <span className="text-gray-600">À confirmer</span>
+                      <span>Khutbah</span>
+                      <span>À confirmer</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Prière</span>
-                      <span className="text-gray-600">À confirmer</span>
+                      <span>Prière</span>
+                      <span>À confirmer</span>
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@ export default function ContactPage() {
                   <CarSimple className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 mt-2">
+                  <h3 className="text-lg font-semibold mb-2 mt-2">
                     Places limitées devant la mosquée
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -204,7 +204,7 @@ export default function ContactPage() {
                   <Heart className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 mt-2">
+                  <h3 className="text-lg font-semibold mb-2 mt-2">
                     Exemplarité et courtoisie envers nos voisins
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -227,7 +227,7 @@ export default function ContactPage() {
                   <LetterCircleP className="w-5 h-5 text-gray-600" weight="duotone" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 mt-2">
+                  <h3 className="text-lg font-semibold mb-2 mt-2">
                     Options de stationnement
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -265,8 +265,8 @@ export default function ContactPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Nous Localiser</h2>
-            <p className="text-lg text-gray-600">Trouvez facilement la mosquée Nur à Saint-Imier</p>
+            <h2 className="text-3xl font-bold mb-4">Nous Localiser</h2>
+            <p className="text-lg">Trouvez facilement la mosquée Nur à Saint-Imier</p>
           </div>
 
           <div>

@@ -19,8 +19,8 @@ export default async function ActualitesPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Actualités</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">Actualités</h1>
+            <p className="text-xl max-w-3xl mx-auto">
               Restez informés des dernières nouvelles de notre communauté, des événements à venir et
               des activités de la mosquée Nur.
             </p>
@@ -61,7 +61,7 @@ export default async function ActualitesPage() {
                       <span>{article.author}</span>
                     </div>
 
-                    <h2 className="text-xl font-semibold text-gray-900 mb-3">
+                    <h2 className="text-xl font-semibold mb-3">
                       <Link
                         href={`/actualites/${article.slug}`}
                         className="hover:text-teal-600 transition-colors"
@@ -71,7 +71,7 @@ export default async function ActualitesPage() {
                     </h2>
 
                     {article.excerpt && (
-                      <p className="text-gray-600 mb-4 line-clamp-3">{article.excerpt}</p>
+                      <p className="mb-4 line-clamp-3">{article.excerpt}</p>
                     )}
 
                     {article.tags && article.tags.length > 0 && (
@@ -102,10 +102,10 @@ export default async function ActualitesPage() {
               <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-6">
                 <Newspaper className="w-8 h-8 text-gray-500" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              <h3 className="text-xl font-semibold mb-4">
                 Aucune actualité pour le moment
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="mb-6">
                 Les actualités seront bientôt disponibles. Revenez nous voir prochainement !
               </p>
             </div>
