@@ -18,6 +18,8 @@ import {
   TrendUp,
 } from '@phosphor-icons/react/dist/ssr'
 import { getProjectSummary } from '@/lib/content'
+import Ayah from '@/components/ayah'
+import ProjectStatus from '@/components/project-status'
 
 export const metadata: Metadata = {
   title: 'Projet Xhamia Nur - ACMSI',
@@ -133,21 +135,13 @@ export default async function ProjetXhamiaNurPage() {
             </p>
           </div>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mt-8">
-            <div className="flex items-start space-x-3">
-              <Target className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" weight="duotone" />
-              <div>
-                <h3 className="text-lg font-semibold text-green-900 mb-2">Notre engagement</h3>
-                <p className="text-green-800">
-                  <em>
-                    "Et entraidez-vous dans l'accomplissement des bonnes œuvres et de la piété et ne
-                    vous entraidez pas dans le péché et la transgression."
-                  </em>
-                  <br />
-                  <span className="text-sm">— Sourate 5 Al-Maida, Le Festin - Verset 2</span>
-                </p>
-              </div>
-            </div>
+          <div className="mt-12">
+            <Ayah 
+              arabicText="مَنْ بَنَى مَسْجِدًا يَبْتَغِي بِهِ وَجْهَ اللَّهِ بَنَى اللَّهُ لَهُ مِثْلَهُ فِي الْجَنَّةِ"
+              translationText="Celui qui construit une mosquée pour Allah, Allah lui construit son équivalent au Paradis."
+              reference="Sahih Muslim 533"
+              className="text-gray-700"
+            />
           </div>
         </div>
       </section>
@@ -323,20 +317,6 @@ export default async function ProjetXhamiaNurPage() {
             </div>
           </div>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mt-8">
-            <div className="flex items-start space-x-3">
-              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" weight="duotone" />
-              <div>
-                <h3 className="text-lg font-semibold text-green-900 mb-2">
-                  Zakat et Sadaqah acceptées
-                </h3>
-                <p className="text-green-800">
-                  Précisez lors de votre don s'il s'agit de Zakat afin qu'elle soit distribuée
-                  conformément aux règles islamiques.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -378,28 +358,9 @@ export default async function ProjetXhamiaNurPage() {
                           >
                             {sousProjet.nom}
                           </Link>
-                          {sousProjet.priorite && (
-                            <span
-                              className={`text-xs font-medium px-2.5 py-0.5 rounded-full flex-shrink-0 ${
-                                sousProjet.priorite === 1
-                                  ? 'bg-red-100 text-red-800'
-                                  : sousProjet.priorite === 2
-                                    ? 'bg-orange-100 text-orange-800'
-                                    : 'bg-gray-100 text-gray-800'
-                              }`}
-                            >
-                              Priorité {sousProjet.priorite}
-                            </span>
-                          )}
+                          <ProjectStatus status={sousProjet.statut} priority={sousProjet.priorite} className="flex-shrink-0" />
                         </div>
 
-                        {/* Badge de statut (seulement si terminé) */}
-                        {sousProjet.statut === 'termine' && (
-                          <div className="flex items-center mb-3">
-                            <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                            <span className="text-sm font-medium text-gray-600 ml-2">Terminé</span>
-                          </div>
-                        )}
                         <p className="text-gray-600 mb-4">{sousProjet.description}</p>
 
                         {/* Barre de progression */}
@@ -410,9 +371,7 @@ export default async function ProjetXhamiaNurPage() {
                           </div>
                           <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
                             <div
-                              className={`h-3 rounded-full transition-all duration-300 ${
-                                sousProjet.statut === 'termine' ? 'bg-blue-500' : 'bg-green-500'
-                              }`}
+                              className="h-3 bg-green-500 rounded-full transition-all duration-300"
                               style={{
                                 width: `${Math.max(sousProjet.pourcentage_completion, 1)}%`,
                               }}
@@ -574,9 +533,9 @@ export default async function ProjetXhamiaNurPage() {
                   et reconnaissance des contributions.
                 </p>
               </div>
-              <div className="bg-blue-50 rounded-lg p-3">
-                <h4 className="font-semibold text-blue-900 mb-1 text-sm">Historique complet</h4>
-                <p className="text-xs text-blue-800">
+              <div className="bg-green-50 rounded-lg p-3">
+                <h4 className="font-semibold text-green-900 mb-1 text-sm">Historique complet</h4>
+                <p className="text-xs text-green-800">
                   Toutes les réalisations accomplies sont documentées et accessibles dans la section
                   dédiée.
                 </p>
@@ -602,11 +561,16 @@ export default async function ProjetXhamiaNurPage() {
           <h2 className="text-3xl font-bold mb-6">
             Ensemble, construisons l'avenir de notre communauté
           </h2>
-          <p className="text-xl mb-4">جَزَاكُمُ اللَّهُ خَيْرًا</p>
-          <p className="text-lg mb-8 opacity-90">
-            "Celui qui construit une mosquée pour Allah, Allah lui construit son équivalent au
-            Paradis." — Sahih Muslim 533
-          </p>
+          <p className="text-xl mb-6">جَزَاكُمُ اللَّهُ خَيْرًا</p>
+          <div className="mb-8">
+            <Ayah 
+              arabicText="وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ"
+              translationText="Et entraidez-vous dans l'accomplissement des bonnes œuvres et de la piété et ne vous entraidez pas dans le péché et la transgression."
+              reference="Sourate 5 Al-Maida, Le Festin - Verset 2"
+              verseNumber="2"
+              className="text-white opacity-90"
+            />
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#faire-un-don"

@@ -1,64 +1,4 @@
-/* Local Font Faces */
-
-/* Mada Font - Body Text (Variable Font) */
-@font-face {
-  font-family: "Mada";
-  src: url("/fonts/mada/Mada-Variable.woff2") format("woff2-variations");
-  font-weight: 200 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* El Messiri Font - Headings (Variable Font) */
-@font-face {
-  font-family: "El Messiri";
-  src: url("/fonts/el-messiri/ElMessiri-Variable.woff2") format("woff2-variations");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Tajawal Font - Alternative */
-@font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Bold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
+@import "../styles/fonts.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -272,12 +212,49 @@ Sample Classes:
   }
 }
 
-@layer compoennts {
+@layer components {
   .font-headings {
     font-family: var(--font-family-headings);
   }
 
   .font-alt {
     font-family: var(--font-family-alt);
+  }
+
+  .font-arabic {
+    font-family: "El Messiri", Tajawal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .quranic-text {
+    font-family: 'UthmanicHafs', 'Amiri', 'Arabic Typesetting', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'calt', 'liga', 'rlig';
+    font-weight: 400;
+    direction: rtl;
+    unicode-bidi: embed;
+    line-height: 1.8;
+  }
+
+  .ayah-number {
+    font-family: 'UthmanicHafs', 'Amiri', serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .arabic-text {
+    font-family: 'UthmanicHafs', 'Amiri', 'Arabic Typesetting', serif;
+    font-feature-settings: 'calt', 'dlig', 'rlig';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.2px;
+  }
+
+  .surah-header {
+    font-family: 'SurahNames', serif;
   }
 }

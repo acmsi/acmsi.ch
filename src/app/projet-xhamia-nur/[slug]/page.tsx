@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Calendar, Target, TrendUp, CheckCircle } from '@phosphor-icons/react/dist/ssr'
+import { ArrowLeft, Calendar, Target } from '@phosphor-icons/react/dist/ssr'
 import { getBudgetProject, getProjectSummary, getAllBudgetProjects } from '@/lib/content'
+import ProgressBar from '@/components/progress-bar'
+import ProjectStatus from '@/components/project-status'
+import CompletedProjectBanner from '@/components/completed-project-banner'
 
 type Props = {
   params: { slug: string }
@@ -60,21 +63,9 @@ export default async function SousProjetPage({ params }: Props) {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <h1 className="text-3xl lg:text-4xl font-bold text-green-900">{project.nom}</h1>
-              {project.priorite && (
-                <span
-                  className={`text-sm font-medium px-3 py-1 rounded-full ${
-                    project.priorite === 1
-                      ? 'bg-red-100 text-red-800'
-                      : project.priorite === 2
-                        ? 'bg-orange-100 text-orange-800'
-                        : 'bg-gray-100 text-gray-800'
-                  }`}
-                >
-                  Priorité {project.priorite}
-                </span>
-              )}
+            <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-3">{project.nom}</h1>
+            <div className="flex justify-center mb-4">
+              <ProjectStatus status={project.statut} priority={project.priorite} />
             </div>
 
             {project.description && (
@@ -90,24 +81,12 @@ export default async function SousProjetPage({ params }: Props) {
               </h3>
             </div>
 
-            <div className="bg-gray-100 rounded-full h-4 mb-4 relative overflow-hidden">
-              <div
-                className={`h-4 rounded-full transition-all duration-500 ${
-                  project.statut === 'termine' ? 'bg-blue-500' : 'bg-green-500'
-                }`}
-                style={{ width: `${Math.max(project.pourcentage_completion, 1)}%` }}
-              ></div>
-              {project.pourcentage_completion > 15 && (
-                <div className="absolute inset-0 flex items-center justify-center text-white text-xs font-medium">
-                  {project.pourcentage_completion.toFixed(1)}%
-                </div>
-              )}
-            </div>
-
-            <div className="flex justify-between items-center text-sm text-green-800">
-              <span className="font-semibold">CHF {project.montant_leve.toLocaleString()}</span>
-              <span>Objectif : CHF {project.objectif.toLocaleString()}</span>
-            </div>
+            <ProgressBar 
+              percentage={project.pourcentage_completion}
+              raisedAmount={project.montant_leve}
+              targetAmount={project.objectif}
+              size="md"
+            />
 
             {project.date_fin_prevue && (
               <div className="flex items-center justify-center mt-3 text-sm text-green-700">
@@ -119,17 +98,11 @@ export default async function SousProjetPage({ params }: Props) {
 
           {/* Statut */}
           {project.statut === 'termine' && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-              <div className="flex items-center">
-                <CheckCircle className="w-6 h-6 text-blue-600 mr-3" weight="duotone" />
-                <div>
-                  <h3 className="text-lg font-semibold text-blue-900">Sous-projet terminé</h3>
-                  <p className="text-blue-800">
-                    Ce volet du Projet Xhamia Nur a été complété avec succès.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <CompletedProjectBanner 
+              title="Sous-projet accompli"
+              description="Ce volet du Projet Xhamia Nur a été complété avec succès."
+              className="mb-8"
+            />
           )}
         </div>
       </section>

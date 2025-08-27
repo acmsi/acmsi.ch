@@ -202,7 +202,7 @@ export default function ContactPage() {
                     vendredi (Jumma) et durant le Ramadan, nous demandons à la communauté de ne pas
                     s'y garer car ces places sont{' '}
                     <strong>réservées aux personnes à mobilité réduite, ainsi qu'à l'Imam </strong>{' '}
-                    qui vient de loin avec un emploi du temps chargé pour guider notre communauté.
+                    qui prend sur son emploi du temps chargé pour guider notre communauté.
                   </p>
                   <p className="text-gray-700 my-2">
                     Rappelons que{' '}
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     Exemplarité et courtoisie envers nos voisins
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    Nous encourageons vivement notre communauté à agir de manière exemplaire :{' '}
+                    Nous encourageons notre communauté à agir de manière exemplaire :{' '}
                     <strong>respecter scrupuleusement les emplacements de stationnement</strong>, ne
                     jamais bloquer les entrées de garage, et faire preuve de{' '}
                     <strong>courtoisie et de bienveillance envers nos voisins</strong>. Notre

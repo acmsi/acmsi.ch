@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { UsersThree, BookOpen, Warning, ArrowRight } from '@phosphor-icons/react/dist/ssr'
+import { UsersThree, BookOpen, Warning, ArrowRight, Mosque } from '@phosphor-icons/react/dist/ssr'
 import { Ruku, CalendarIslamic } from '@/components/icons'
 import { getProjectSummary } from '@/lib/content'
+import ProjectBanner from '@/components/project-banner'
 
 export const metadata: Metadata = {
   title: 'Accueil - ACMSI',
@@ -43,42 +44,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Urgent: Rachat de la mosquée */}
-      <section className="py-12 bg-green-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start space-x-4">
-            <Warning className="w-10 h-10 text-white flex-shrink-0 mt-1" weight="duotone" />
-            <div className="flex-1">
-              <h2 className="text-2xl lg:text-3xl font-bold mb-3">
-                📿 Projet Xhamia Nur
-              </h2>
-              <p className="text-xl mb-4 opacity-95">
-                L'ACMSI doit racheter la mosquée Nur actuellement en propriété privée pour un avenir pérenne sans riba. 
-                Objectif : {projectData?.total_objectif?.toLocaleString() || "1'185'500"} CHF
-              </p>
-              <p className="text-lg mb-6 opacity-90">
-                Votre soutien nous aidera à établir l'association sur des bases islamiques solides 
-                et à réaliser les rénovations nécessaires.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/projet-xhamia-nur"
-                  className="inline-flex items-center bg-white text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-                >
-                  En savoir plus sur le projet
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-                <Link
-                  href="/projet-xhamia-nur#faire-un-don"
-                  className="inline-flex items-center border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-green-600 transition-colors"
-                >
-                  🤲 Faire un don maintenant
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Projet Xhamia Nur */}
+      <ProjectBanner 
+        variant="full" 
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
 
       {/* Mission Section */}
       <section className="py-20 bg-white">
@@ -162,25 +135,6 @@ export default async function HomePage() {
             >
               Faire un don
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Mosque Image Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Image
-              src="/farsh.png"
-              alt="Mosquée Nur - Tapis de prière"
-              width={800}
-              height={600}
-              className="mx-auto rounded-lg shadow-lg"
-              priority
-            />
-            <p className="mt-6 italic">
-              Le tapis de la mosquée Nur, symbole de notre communauté unie dans la prière
-            </p>
           </div>
         </div>
       </section>

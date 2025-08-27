@@ -7,11 +7,12 @@ import {
   HandHeart,
   CreditCard,
   Money,
-  Warning,
   ArrowRight,
   Users,
   Shield,
 } from '@phosphor-icons/react/dist/ssr'
+import ProjectBanner from '@/components/project-banner'
+import { getProjectSummary } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Donation - ACMSI',
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
     "Soutenez l'Association Culturelle Musulmane de Saint-Imier et la mosquée Nur par vos dons.",
 }
 
-export default function DonationPage() {
+export default async function DonationPage() {
+  const projectData = await getProjectSummary()
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -37,34 +39,14 @@ export default function DonationPage() {
         </div>
       </section>
 
-      {/* Urgent: Rachat de la mosquée */}
-      <section className="py-12 bg-green-50 border-l-4 border-green-500">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start space-x-4">
-            <Warning className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" weight="duotone" />
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-green-900 mb-3">
-                📿 Projet Xhamia Nur
-              </h2>
-              <p className="text-lg text-green-800 mb-4">
-                L'ACMSI doit racheter la mosquée Nur, actuellement en propriété privée, pour établir 
-                l'association sur des bases islamiques solides et sans riba. Ce projet urgent nécessite 1'185'500 CHF.
-              </p>
-              <p className="text-green-700 mb-6">
-                Votre soutien permettra à notre communauté d'avoir un lieu de culte pérenne et d'entreprendre 
-                toutes les rénovations nécessaires.
-              </p>
-              <Link
-                href="/projet-xhamia-nur"
-                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
-              >
-                En savoir plus sur le projet
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Projet Xhamia Nur Banner */}
+      <ProjectBanner 
+        variant="compact" 
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
 
       {/* Importance Section */}
       <section className="py-16 bg-white">
