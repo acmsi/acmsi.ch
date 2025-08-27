@@ -74,22 +74,17 @@ export default async function SousProjetPage({ params }: Props) {
           </div>
 
           {/* Progression */}
-          <div className="bg-green-50 rounded-lg p-6 mb-8">
-            <div className="text-center mb-4">
-              <h3 className="text-lg font-semibold text-green-900 mb-2">
-                Progression du sous-projet
-              </h3>
+          <div className="px-6 mb-6">
+            <ProgressBar percentage={project.pourcentage_completion} variant="thick" />
+            <div className="flex justify-between items-center text-green-800 text-sm mt-3">
+              <span className="font-semibold">
+                CHF {project.montant_leve.toLocaleString()} alloué
+              </span>
+              <span>Budget : CHF {project.objectif.toLocaleString()}</span>
             </div>
 
-            <ProgressBar 
-              percentage={project.pourcentage_completion}
-              raisedAmount={project.montant_leve}
-              targetAmount={project.objectif}
-              size="md"
-            />
-
             {project.date_fin_prevue && (
-              <div className="flex items-center justify-center mt-3 text-sm text-green-700">
+              <div className="flex items-center justify-center mt-3 text-sm text-green-800">
                 <Calendar className="w-4 h-4 mr-1" />
                 Échéance souhaitée : {new Date(project.date_fin_prevue).toLocaleDateString('fr-CH')}
               </div>
@@ -98,7 +93,7 @@ export default async function SousProjetPage({ params }: Props) {
 
           {/* Statut */}
           {project.statut === 'termine' && (
-            <CompletedProjectBanner 
+            <CompletedProjectBanner
               title="Sous-projet accompli"
               description="Ce volet du Projet Xhamia Nur a été complété avec succès."
               className="mb-8"
@@ -126,7 +121,7 @@ export default async function SousProjetPage({ params }: Props) {
 
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
             <div className="flex items-start space-x-3">
-              <Target className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" weight="duotone" />
+              <Target className="w-6 h-6 text-green-800 flex-shrink-0 mt-1" weight="duotone" />
               <div>
                 <h3 className="text-lg font-semibold text-green-900 mb-2">
                   Allocation flexible des dons

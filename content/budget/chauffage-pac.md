@@ -1,11 +1,10 @@
 ---
 type: sous_projet
 nom: Système de chauffage PAC
-description:
-  Installation d'une pompe à chaleur moderne et écologique pour assurer un
-  chauffage efficace et respectueux de l'environnement
+description: Installation d'une pompe à chaleur moderne et écologique pour
+  assurer un chauffage efficace et respectueux de l'environnement
 objectif: 45000
-montant_leve: 5000
+montant_leve: 15000
 derniere_maj: 2025-01-26T10:00:00.000Z
 priorite: 1
 statut: active

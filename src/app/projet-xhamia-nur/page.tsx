@@ -20,6 +20,7 @@ import {
 import { getProjectSummary } from '@/lib/content'
 import Ayah from '@/components/ayah'
 import ProjectStatus from '@/components/project-status'
+import ProgressBar from '@/components/progress-bar'
 
 export const metadata: Metadata = {
   title: 'Projet Xhamia Nur - ACMSI',
@@ -50,8 +51,8 @@ export default async function ProjetXhamiaNurPage() {
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
               Un projet essentiel de <strong>1&rsquo;185&rsquo;500 CHF</strong> pour établir
-              l&rsquo;ACMSI sur des bases solides, développer un centre islamique moderne et
-              pérenne dans ses murs, dans le respect de nos valeurs et sans riba.
+              l&rsquo;ACMSI sur des bases solides, développer un centre islamique moderne et pérenne
+              dans ses murs, dans le respect de nos valeurs et sans riba.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -80,27 +81,17 @@ export default async function ProjetXhamiaNurPage() {
             <p className="text-gray-600">Chaque contribution nous rapproche de notre objectif</p>
           </div>
 
-          <div className="bg-gray-100 rounded-full h-6 mb-4 relative overflow-hidden">
-            <div
-              className="bg-green-600 h-6 rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${Math.max(pourcentageCollecte, 1)}%` }}
-            ></div>
-            {pourcentageCollecte > 10 && (
-              <div className="absolute inset-0 flex items-center justify-center text-white text-sm font-medium">
-                {pourcentageCollecte.toFixed(1)}%
-              </div>
-            )}
-          </div>
+          <ProgressBar percentage={pourcentageCollecte} variant="thick" />
 
           <div className="flex justify-between items-center text-lg mb-3">
             <span className="font-semibold text-green-600">
-              CHF {montantCollecte.toLocaleString()}
+              CHF {montantCollecte.toLocaleString()} collecté
             </span>
             <span className="text-gray-600">Objectif : CHF {objectifTotal.toLocaleString()}</span>
           </div>
 
           <div className="flex justify-between items-center text-sm text-gray-500">
-            <span>{pourcentageCollecte.toFixed(1)}% de l'objectif atteint</span>
+            <span>{pourcentageCollecte % 1 === 0 ? pourcentageCollecte.toFixed(0) : pourcentageCollecte.toFixed(1)}% de l'objectif atteint</span>
             <span className="flex items-center">
               <Calendar className="w-4 h-4 mr-1" />
               Mis à jour le {new Date(derniereMaj).toLocaleDateString('fr-CH')}
@@ -136,7 +127,7 @@ export default async function ProjetXhamiaNurPage() {
           </div>
 
           <div className="mt-12">
-            <Ayah 
+            <Ayah
               arabicText="مَنْ بَنَى مَسْجِدًا يَبْتَغِي بِهِ وَجْهَ اللَّهِ بَنَى اللَّهُ لَهُ مِثْلَهُ فِي الْجَنَّةِ"
               translationText="Celui qui construit une mosquée pour Allah, Allah lui construit son équivalent au Paradis."
               reference="Sahih Muslim 533"
@@ -316,7 +307,6 @@ export default async function ProjetXhamiaNurPage() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -358,28 +348,27 @@ export default async function ProjetXhamiaNurPage() {
                           >
                             {sousProjet.nom}
                           </Link>
-                          <ProjectStatus status={sousProjet.statut} priority={sousProjet.priorite} className="flex-shrink-0" />
+                          <ProjectStatus
+                            status={sousProjet.statut}
+                            priority={sousProjet.priorite}
+                            className="flex-shrink-0"
+                          />
                         </div>
 
                         <p className="text-gray-600 mb-4">{sousProjet.description}</p>
 
                         {/* Barre de progression */}
                         <div className="mb-4">
-                          <div className="flex justify-between text-sm text-gray-600 mb-2">
-                            <span>CHF {sousProjet.montant_leve.toLocaleString()}</span>
-                            <span>CHF {sousProjet.objectif.toLocaleString()}</span>
+                          <ProgressBar
+                            percentage={sousProjet.pourcentage_completion}
+                            variant="medium"
+                          />
+                          <div className="flex justify-between items-center text-green-800 text-sm mt-2">
+                            <span className="font-semibold">
+                              CHF {sousProjet.montant_leve.toLocaleString()} alloué
+                            </span>
+                            <span>Budget : CHF {sousProjet.objectif.toLocaleString()}</span>
                           </div>
-                          <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
-                            <div
-                              className="h-3 bg-green-500 rounded-full transition-all duration-300"
-                              style={{
-                                width: `${Math.max(sousProjet.pourcentage_completion, 1)}%`,
-                              }}
-                            ></div>
-                          </div>
-                          <p className="text-right text-xs text-gray-500 mt-1">
-                            {sousProjet.pourcentage_completion.toFixed(1)}% collecté
-                          </p>
                         </div>
 
                         {/* Échéance */}
@@ -468,17 +457,15 @@ export default async function ProjetXhamiaNurPage() {
 
                         {/* Barre de progression complète */}
                         <div className="mb-4">
-                          <div className="flex justify-between text-sm text-gray-600 mb-2">
-                            <span>CHF {sousProjet.montant_leve.toLocaleString()}</span>
-                            <span>CHF {sousProjet.objectif.toLocaleString()}</span>
-                          </div>
-                          <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
-                            <div
-                              className="h-3 rounded-full bg-green-500 transition-all duration-300"
-                              style={{
-                                width: `${Math.min(sousProjet.pourcentage_completion, 100)}%`,
-                              }}
-                            ></div>
+                          <ProgressBar
+                            percentage={sousProjet.pourcentage_completion}
+                            variant="medium"
+                          />
+                          <div className="flex justify-between items-center text-green-800 text-sm mt-2">
+                            <span className="font-semibold">
+                              CHF {sousProjet.montant_leve.toLocaleString()} alloué
+                            </span>
+                            <span>Budget : CHF {sousProjet.objectif.toLocaleString()}</span>
                           </div>
                         </div>
 
@@ -563,7 +550,7 @@ export default async function ProjetXhamiaNurPage() {
           </h2>
           <p className="text-xl mb-6">جَزَاكُمُ اللَّهُ خَيْرًا</p>
           <div className="mb-8">
-            <Ayah 
+            <Ayah
               arabicText="وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ"
               translationText="Et entraidez-vous dans l'accomplissement des bonnes œuvres et de la piété et ne vous entraidez pas dans le péché et la transgression."
               reference="Sourate 5 Al-Maida, Le Festin - Verset 2"

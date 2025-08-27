@@ -6,6 +6,7 @@ import {
   CheckCircle,
 } from '@phosphor-icons/react/dist/ssr'
 import { getProjectSummary } from '@/lib/content'
+import ProgressBar from '@/components/progress-bar'
 
 export const metadata: Metadata = {
   title: 'Réalisations accomplies - Projet Xhamia Nur - ACMSI',
@@ -85,15 +86,13 @@ export default async function RealisationsPage() {
 
                   {/* Informations du projet */}
                   <div className="mb-4">
-                    <div className="flex justify-between text-sm text-gray-600 mb-2">
-                      <span>Réalisé : CHF {projet.montant_leve.toLocaleString()}</span>
-                      <span>Objectif : CHF {projet.objectif.toLocaleString()}</span>
-                    </div>
-                    <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
-                      <div
-                        className="h-3 rounded-full bg-green-500 transition-all duration-300"
-                        style={{ width: `${Math.min(projet.pourcentage_completion, 100)}%` }}
-                      ></div>
+                    <ProgressBar 
+                      percentage={projet.pourcentage_completion}
+                      variant="medium"
+                    />
+                    <div className="flex justify-between items-center text-green-800 text-sm mt-2">
+                      <span className="font-semibold">CHF {projet.montant_leve.toLocaleString()} alloué</span>
+                      <span>Budget : CHF {projet.objectif.toLocaleString()}</span>
                     </div>
                   </div>
 

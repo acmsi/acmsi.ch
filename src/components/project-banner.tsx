@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Mosque, ArrowRight, TrendUp } from '@phosphor-icons/react/dist/ssr'
+import ProgressBar from './progress-bar'
 
 interface ProjectBannerProps {
   variant?: 'compact' | 'full'
@@ -9,12 +10,12 @@ interface ProjectBannerProps {
   percentage?: number
 }
 
-export default function ProjectBanner({ 
-  variant = 'compact', 
+export default function ProjectBanner({
+  variant = 'compact',
   showProgress = false,
   totalAmount = 1185500,
   raisedAmount = 0,
-  percentage = 0
+  percentage = 0,
 }: ProjectBannerProps) {
   const formatAmount = (amount: number) => {
     return new Intl.NumberFormat('fr-CH').format(amount)
@@ -35,23 +36,18 @@ export default function ProjectBanner({
               Un projet essentiel de <strong>{formatAmount(totalAmount)} CHF</strong> pour établir
               l'ACMSI et développer un centre islamique moderne à Saint-Imier.
             </p>
-            
+
             {showProgress && (
               <div className="max-w-2xl mx-auto mb-8">
                 <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-green-700">Progression</span>
                     <span className="text-sm font-medium text-green-700">{percentage}%</span>
                   </div>
-                  <div className="w-full bg-green-200 rounded-full h-3 mb-4">
-                    <div 
-                      className="bg-green-600 h-3 rounded-full transition-all duration-300"
-                      style={{ width: `${Math.min(percentage, 100)}%` }}
-                    ></div>
-                  </div>
-                  <div className="flex justify-between text-sm text-green-800">
-                    <span>{formatAmount(raisedAmount)} CHF levés</span>
-                    <span>{formatAmount(totalAmount)} CHF objectif</span>
+                  <ProgressBar percentage={percentage} variant="medium" />
+                  <div className="flex justify-between items-center text-green-800 text-sm mt-2">
+                    <span className="font-semibold">CHF {formatAmount(raisedAmount)} collecté</span>
+                    <span>Objectif : CHF {formatAmount(totalAmount)}</span>
                   </div>
                 </div>
               </div>
@@ -80,34 +76,27 @@ export default function ProjectBanner({
             </div>
           </div>
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-green-900 mb-3">
-              Projet Xhamia Nur
-            </h2>
+            <h2 className="text-2xl font-bold text-green-900 mb-3">Projet Xhamia Nur</h2>
             <p className="text-lg text-green-800 mb-4">
-              L'ACMSI doit racheter la mosquée Nur pour établir l'association sur des bases 
+              L'ACMSI doit racheter la mosquée Nur pour établir l'association sur des bases
               islamiques solides et sans riba. Ce projet urgent de{' '}
-              <strong>{formatAmount(totalAmount)} CHF</strong> permettra à notre communauté 
-              d'avoir un lieu de culte pérenne dans ses murs.
+              <strong>{formatAmount(totalAmount)} CHF</strong> permettra à notre communauté d'avoir
+              un lieu de culte pérenne dans ses murs.
             </p>
-            
+
             {showProgress && (
               <div className="bg-white rounded-lg p-4 mb-4">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <TrendUp className="w-4 h-4 text-green-600" />
                     <span className="text-sm font-medium text-green-700">Progression actuelle</span>
                   </div>
                   <span className="text-sm font-bold text-green-700">{percentage}%</span>
                 </div>
-                <div className="w-full bg-green-200 rounded-full h-2 mb-2">
-                  <div 
-                    className="bg-green-600 h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${Math.min(percentage, 100)}%` }}
-                  ></div>
-                </div>
-                <div className="flex justify-between text-xs text-green-700">
-                  <span>{formatAmount(raisedAmount)} CHF</span>
-                  <span>{formatAmount(totalAmount)} CHF</span>
+                <ProgressBar percentage={percentage} variant="medium" />
+                <div className="flex justify-between items-center text-green-800 text-xs mt-1">
+                  <span className="font-semibold">CHF {formatAmount(raisedAmount)} collecté</span>
+                  <span>Objectif : CHF {formatAmount(totalAmount)}</span>
                 </div>
               </div>
             )}
@@ -125,3 +114,4 @@ export default function ProjectBanner({
     </section>
   )
 }
+

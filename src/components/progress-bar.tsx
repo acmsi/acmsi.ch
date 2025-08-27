@@ -1,53 +1,47 @@
 interface ProgressBarProps {
   percentage: number
-  raisedAmount: number
-  targetAmount: number
-  size?: 'sm' | 'md' | 'lg'
-  showLabel?: boolean
+  variant?: 'thin' | 'medium' | 'thick'
   className?: string
 }
 
-export default function ProgressBar({ 
-  percentage, 
-  raisedAmount, 
-  targetAmount, 
-  size = 'md',
-  showLabel = true,
-  className = ''
+export default function ProgressBar({
+  percentage,
+  variant = 'medium',
+  className = '',
 }: ProgressBarProps) {
-  const heightClasses = {
-    sm: 'h-2',
-    md: 'h-4',
-    lg: 'h-6'
+  const variantStyles = {
+    thin: {
+      height: 'h-2',
+      textSize: 'text-xs',
+    },
+    medium: {
+      height: 'h-4',
+      textSize: 'text-sm',
+    },
+    thick: {
+      height: 'h-6',
+      textSize: 'text-sm',
+    },
   }
 
-  const textSizeClasses = {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
-  }
-
-  const formatAmount = (amount: number) => {
-    return new Intl.NumberFormat('fr-CH').format(amount)
-  }
+  const style = variantStyles[variant]
 
   return (
     <div className={className}>
-      <div className={`bg-gray-200 rounded-full ${heightClasses[size]} mb-4 relative overflow-hidden`}>
+      {/* Progress bar */}
+      <div className={`bg-gray-200 rounded-full ${style.height} mb-2 relative overflow-hidden`}>
         <div
-          className={`${heightClasses[size]} bg-green-500 rounded-full transition-all duration-500`}
+          className={`${style.height} bg-green-500 rounded-full transition-all duration-500`}
           style={{ width: `${Math.max(Math.min(percentage, 100), 1)}%` }}
         ></div>
-        {showLabel && percentage > 15 && (
-          <div className={`absolute inset-0 flex items-center justify-center text-white font-medium ${textSizeClasses[size]}`}>
-            {percentage.toFixed(1)}%
+        {percentage > 15 && variant === 'thick' && (
+          <div
+            className={`absolute inset-0 flex items-center ${percentage >= 100 ? 'justify-center' : 'justify-end pr-2'} text-white font-medium ${style.textSize}`}
+            style={{ width: `${Math.max(Math.min(percentage, 100), 1)}%` }}
+          >
+            {percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1)}%
           </div>
         )}
-      </div>
-
-      <div className={`flex justify-between items-center text-green-800 ${textSizeClasses[size]}`}>
-        <span className="font-semibold">CHF {formatAmount(raisedAmount)}</span>
-        <span>Objectif : CHF {formatAmount(targetAmount)}</span>
       </div>
     </div>
   )

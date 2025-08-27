@@ -68,7 +68,7 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
 
         // Calculate percentage
         const pourcentage_completion = data.objectif > 0 
-          ? Math.round((data.montant_leve / data.objectif) * 100) 
+          ? (data.montant_leve / data.objectif) * 100 
           : 0
 
         return {
@@ -108,7 +108,7 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
     // Calculate totals
     const total_objectif = projet_global.objectif
     const total_leve = projet_global.montant_leve + sous_projets.reduce((sum, p) => sum + p.montant_leve, 0)
-    const pourcentage_global = total_objectif > 0 ? Math.round((total_leve / total_objectif) * 100) : 0
+    const pourcentage_global = total_objectif > 0 ? (total_leve / total_objectif) * 100 : 0
 
     // Find most recent update
     const dates = [projet_global.derniere_maj, ...sous_projets.map(p => p.derniere_maj)]
@@ -150,7 +150,7 @@ export async function getBudgetProject(slug: string): Promise<BudgetProject | nu
 
     // Calculate percentage
     const pourcentage_completion = data.objectif > 0 
-      ? Math.round((data.montant_leve / data.objectif) * 100) 
+      ? (data.montant_leve / data.objectif) * 100 
       : 0
 
     return {
