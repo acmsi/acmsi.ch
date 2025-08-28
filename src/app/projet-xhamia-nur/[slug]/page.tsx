@@ -8,7 +8,7 @@ import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
 
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = await getBudgetProject(params.slug)
+  const { slug } = await params
+  const project = await getBudgetProject(slug)
 
   if (!project) {
     return {
@@ -37,7 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function SousProjetPage({ params }: Props) {
-  const project = await getBudgetProject(params.slug)
+  const { slug } = await params
+  const project = await getBudgetProject(slug)
   const projectSummary = await getProjectSummary()
 
   if (!project || project.type !== 'sous_projet') {
@@ -103,12 +105,23 @@ export default async function SousProjetPage({ params }: Props) {
               )}
             </div>
 
-            {project.date_fin_prevue && (
-              <div className="flex items-center justify-center mt-3 text-sm text-green-800">
-                <Calendar className="w-4 h-4 mr-1" />
-                Échéance souhaitée : {new Date(project.date_fin_prevue).toLocaleDateString('fr-CH')}
-              </div>
-            )}
+            <div className="flex flex-col sm:flex-row gap-2 justify-between mt-3 text-sm text-green-800">
+              {project.derniere_maj && (
+                <div className="flex items-center justify-center">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Dernière mise à jour :{' '}
+                  {new Date(project.derniere_maj).toLocaleDateString('fr-CH')}
+                </div>
+              )}
+
+              {project.date_fin_prevue && (
+                <div className="flex items-center justify-center">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Échéance souhaitée :{' '}
+                  {new Date(project.date_fin_prevue).toLocaleDateString('fr-CH')}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Statut */}

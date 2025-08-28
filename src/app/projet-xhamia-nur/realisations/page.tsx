@@ -5,7 +5,7 @@ import {
   Calendar,
   CheckCircle,
 } from '@phosphor-icons/react/dist/ssr'
-import { getProjectSummary } from '@/lib/content'
+import { getProjectSummary, getCompletedProjects } from '@/lib/content'
 import ProgressBar from '@/components/progress-bar'
 
 export const metadata: Metadata = {
@@ -19,8 +19,9 @@ export default async function RealisationsPage() {
   
   // Filtrer et trier les projets terminés par date de dernière mise à jour (plus récent en premier)
   const projetsTermines = projectData?.sous_projets
-    ?.filter(p => p.statut === 'termine')
-    ?.sort((a, b) => new Date(b.derniere_maj).getTime() - new Date(a.derniere_maj).getTime()) || []
+    ? getCompletedProjects(projectData.sous_projets)
+        .sort((a, b) => new Date(b.derniere_maj).getTime() - new Date(a.derniere_maj).getTime())
+    : []
 
   return (
     <div className="bg-white">

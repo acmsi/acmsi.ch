@@ -13,14 +13,13 @@ import {
   PaypalLogo,
   Bank,
   ArrowRight,
-  CheckCircle,
   Calendar,
   TrendUp,
 } from '@phosphor-icons/react/dist/ssr'
-import { getProjectSummary } from '@/lib/content'
+import { getProjectSummary, getActiveProjects, getCompletedProjects } from '@/lib/content'
 import Ayah from '@/components/ayah'
-import ProjectStatus from '@/components/project-status'
 import ProgressBar from '@/components/progress-bar'
+import ProjectCard from '@/components/project-card'
 
 export const metadata: Metadata = {
   title: 'Projet Xhamia Nur - ACMSI',
@@ -328,70 +327,20 @@ export default async function ProjetXhamiaNurPage() {
 
           {/* Projets en cours */}
           {projectData?.sous_projets &&
-            projectData.sous_projets.filter(p => p.statut !== 'termine').length > 0 && (
+            getActiveProjects(projectData.sous_projets).length > 0 && (
               <div className="mb-16">
                 <h3 className="text-2xl font-bold mb-6 text-center text-green-900">
                   Sous-projets en cours
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {projectData.sous_projets
-                    .filter(p => p.statut !== 'termine')
+                  {getActiveProjects(projectData.sous_projets)
                     .map(sousProjet => (
-                      <div
-                        key={sousProjet.slug}
-                        className={`bg-white rounded-lg shadow-sm border-2 p-6 transition-all duration-200 ${
-                          sousProjet.campagne_active
-                            ? 'border-green-200 shadow-green-50'
-                            : 'border-gray-200 hover:border-green-200'
-                        }`}
-                      >
-                        {/* Titre et priorité */}
-                        <div className="flex items-start justify-between gap-3 mb-2">
-                          <Link
-                            href={`/projet-xhamia-nur/${sousProjet.slug}`}
-                            className="text-xl font-semibold flex-1 leading-tight hover:text-green-600 transition-colors"
-                          >
-                            {sousProjet.nom}
-                          </Link>
-                          <ProjectStatus
-                            status={sousProjet.statut}
-                            priority={sousProjet.priorite}
-                            className="flex-shrink-0"
-                          />
-                        </div>
-
-                        <p className="text-gray-600 mb-4">{sousProjet.description}</p>
-
-                        {/* Barre de progression */}
-                        <div className="mb-4">
-                          <ProgressBar
-                            percentage={sousProjet.pourcentage_completion}
-                            variant="medium"
-                          />
-                          <div className="flex justify-between items-center text-green-800 text-sm mt-2">
-                            <span className="font-semibold">
-                              CHF {sousProjet.montant_leve.toLocaleString()} alloué
-                            </span>
-                            <span>Budget : CHF {sousProjet.objectif.toLocaleString()}</span>
-                          </div>
-                        </div>
-
-                        {/* Échéance */}
-                        {sousProjet.date_fin_prevue && (
-                          <div className="text-xs text-gray-500 border-t pt-3">
-                            <span className="flex items-center">
-                              <Calendar className="w-3 h-3 mr-1" />
-                              Échéance souhaitée:{' '}
-                              {new Date(sousProjet.date_fin_prevue).toLocaleDateString('fr-CH')}
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                      <ProjectCard key={sousProjet.slug} project={sousProjet} />
                     ))}
                 </div>
 
                 {/* CTA pour campagnes selon priorité */}
-                {projectData.sous_projets.filter(p => p.statut !== 'termine').length > 0 && (
+                {getActiveProjects(projectData.sous_projets).length > 0 && (
                   <div className="text-center my-9">
                     <div className="bg-green-50 rounded-lg p-6">
                       <div className="flex items-center justify-center mb-3">
@@ -419,7 +368,7 @@ export default async function ProjetXhamiaNurPage() {
 
           {/* Projets terminés - Afficher seulement les 2 derniers */}
           {projectData?.sous_projets &&
-            projectData.sous_projets.filter(p => p.statut === 'termine').length > 0 && (
+            getCompletedProjects(projectData.sous_projets).length > 0 && (
               <div className="mb-12">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-center text-green-900 flex-1">
@@ -433,64 +382,14 @@ export default async function ProjetXhamiaNurPage() {
                   contribué.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {projectData.sous_projets
-                    .filter(p => p.statut === 'termine')
+                  {getCompletedProjects(projectData.sous_projets)
                     .sort(
                       (a, b) =>
                         new Date(b.derniere_maj).getTime() - new Date(a.derniere_maj).getTime(),
                     )
                     .slice(0, 2)
                     .map(sousProjet => (
-                      <div
-                        key={sousProjet.slug}
-                        className="bg-white rounded-lg shadow-sm border-2 border-green-200 p-6 transition-all duration-200 hover:border-green-300"
-                      >
-                        {/* Titre avec badge terminé */}
-                        <div className="flex items-start justify-between gap-3 mb-2">
-                          <Link
-                            href={`/projet-xhamia-nur/${sousProjet.slug}`}
-                            className="text-xl font-semibold flex-1 leading-tight hover:text-green-600 transition-colors"
-                          >
-                            {sousProjet.nom}
-                          </Link>
-                          <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex-shrink-0">
-                            ✓ Accompli
-                          </span>
-                        </div>
-
-                        <p className="text-gray-600 mb-4">{sousProjet.description}</p>
-
-                        {/* Barre de progression complète */}
-                        <div className="mb-4">
-                          <ProgressBar
-                            percentage={sousProjet.pourcentage_completion}
-                            variant="medium"
-                          />
-                          <div className="flex justify-between items-center text-green-800 text-sm mt-2">
-                            <span className="font-semibold">
-                              CHF {sousProjet.montant_leve.toLocaleString()} alloué
-                            </span>
-                            <span>Budget : CHF {sousProjet.objectif.toLocaleString()}</span>
-                          </div>
-                        </div>
-
-                        {/* Date de completion */}
-                        {sousProjet.date_fin_prevue && (
-                          <div className="text-xs text-gray-500 border-t pt-3">
-                            <span className="flex items-center">
-                              <CheckCircle
-                                className="w-3 h-3 mr-1 text-green-500"
-                                weight="duotone"
-                              />
-                              Accompli en{' '}
-                              {new Date(sousProjet.date_fin_prevue).toLocaleDateString('fr-CH', {
-                                month: 'long',
-                                year: 'numeric',
-                              })}
-                            </span>
-                          </div>
-                        )}
-                      </div>
+                      <ProjectCard key={sousProjet.slug} project={sousProjet} />
                     ))}
                 </div>
                 <div className="text-right py-2">

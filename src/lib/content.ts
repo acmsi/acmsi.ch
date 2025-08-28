@@ -27,7 +27,7 @@ export interface BudgetProject {
   montant_leve: number
   derniere_maj: string
   priorite?: number
-  statut?: 'termine' | 'active'
+  statut: 'termine' | 'active'
   date_fin_prevue?: string
   content: string
   pourcentage_completion: number
@@ -42,10 +42,19 @@ export interface ProjectSummary {
   derniere_maj_globale: string
 }
 
+// Helper functions for project filtering
+export function getActiveProjects(projects: BudgetProject[]): BudgetProject[] {
+  return projects.filter(p => p.statut === 'active')
+}
+
+export function getCompletedProjects(projects: BudgetProject[]): BudgetProject[] {
+  return projects.filter(p => p.statut === 'termine')
+}
+
 // Get all budget projects
 export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
   const budgetDirectory = path.join(contentDirectory, 'budget')
-  
+
   if (!fs.existsSync(budgetDirectory)) {
     return []
   }
@@ -54,22 +63,19 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
   const allBudgetData = await Promise.all(
     fileNames
       .filter(fileName => fileName.endsWith('.md'))
-      .map(async (fileName) => {
+      .map(async fileName => {
         const slug = fileName.replace(/\.md$/, '')
         const fullPath = path.join(budgetDirectory, fileName)
         const fileContents = fs.readFileSync(fullPath, 'utf8')
         const { data, content } = matter(fileContents)
 
         // Convert markdown to HTML
-        const processedContent = await remark()
-          .use(html)
-          .process(content)
+        const processedContent = await remark().use(html).process(content)
         const contentHtml = processedContent.toString()
 
         // Calculate percentage
-        const pourcentage_completion = data.objectif > 0 
-          ? (data.montant_leve / data.objectif) * 100 
-          : 0
+        const pourcentage_completion =
+          data.objectif > 0 ? (data.montant_leve / data.objectif) * 100 : 0
 
         return {
           slug,
@@ -80,12 +86,12 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
           montant_leve: data.montant_leve || 0,
           derniere_maj: data.derniere_maj || '',
           priorite: data.priorite,
-          statut: data.statut || 'active',
+          statut: data.statut,
           date_fin_prevue: data.date_fin_prevue,
           content: contentHtml,
           pourcentage_completion,
         } as BudgetProject
-      })
+      }),
   )
 
   return allBudgetData
@@ -95,7 +101,7 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
 export async function getProjectSummary(): Promise<ProjectSummary | null> {
   try {
     const allProjects = await getAllBudgetProjects()
-    
+
     const projet_global = allProjects.find(p => p.type === 'projet_global')
     const sous_projets = allProjects
       .filter(p => p.type === 'sous_projet')
@@ -107,7 +113,8 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
 
     // Calculate totals
     const total_objectif = projet_global.objectif
-    const total_leve = projet_global.montant_leve + sous_projets.reduce((sum, p) => sum + p.montant_leve, 0)
+    const total_leve =
+      projet_global.montant_leve + sous_projets.reduce((sum, p) => sum + p.montant_leve, 0)
     const pourcentage_global = total_objectif > 0 ? (total_leve / total_objectif) * 100 : 0
 
     // Find most recent update
@@ -134,7 +141,7 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
 export async function getBudgetProject(slug: string): Promise<BudgetProject | null> {
   try {
     const fullPath = path.join(contentDirectory, 'budget', `${slug}.md`)
-    
+
     if (!fs.existsSync(fullPath)) {
       return null
     }
@@ -143,15 +150,11 @@ export async function getBudgetProject(slug: string): Promise<BudgetProject | nu
     const { data, content } = matter(fileContents)
 
     // Convert markdown to HTML
-    const processedContent = await remark()
-      .use(html)
-      .process(content)
+    const processedContent = await remark().use(html).process(content)
     const contentHtml = processedContent.toString()
 
     // Calculate percentage
-    const pourcentage_completion = data.objectif > 0 
-      ? (data.montant_leve / data.objectif) * 100 
-      : 0
+    const pourcentage_completion = data.objectif > 0 ? (data.montant_leve / data.objectif) * 100 : 0
 
     return {
       slug,
@@ -176,7 +179,7 @@ export async function getBudgetProject(slug: string): Promise<BudgetProject | nu
 // Get all news articles
 export async function getAllNews(): Promise<NewsArticle[]> {
   const newsDirectory = path.join(contentDirectory, 'actualites')
-  
+
   if (!fs.existsSync(newsDirectory)) {
     return []
   }
@@ -185,16 +188,14 @@ export async function getAllNews(): Promise<NewsArticle[]> {
   const allNewsData = await Promise.all(
     fileNames
       .filter(fileName => fileName.endsWith('.md'))
-      .map(async (fileName) => {
+      .map(async fileName => {
         const slug = fileName.replace(/\.md$/, '')
         const fullPath = path.join(newsDirectory, fileName)
         const fileContents = fs.readFileSync(fullPath, 'utf8')
         const { data, content } = matter(fileContents)
 
         // Convert markdown to HTML
-        const processedContent = await remark()
-          .use(html)
-          .process(content)
+        const processedContent = await remark().use(html).process(content)
         const contentHtml = processedContent.toString()
 
         return {
@@ -208,7 +209,7 @@ export async function getAllNews(): Promise<NewsArticle[]> {
           published: data.published !== false,
           tags: data.tags || [],
         } as NewsArticle
-      })
+      }),
   )
 
   // Filter published articles and sort by date (newest first)
@@ -221,7 +222,7 @@ export async function getAllNews(): Promise<NewsArticle[]> {
 export async function getNewsArticle(slug: string): Promise<NewsArticle | null> {
   try {
     const fullPath = path.join(contentDirectory, 'actualites', `${slug}.md`)
-    
+
     if (!fs.existsSync(fullPath)) {
       return null
     }
@@ -230,9 +231,7 @@ export async function getNewsArticle(slug: string): Promise<NewsArticle | null> 
     const { data, content } = matter(fileContents)
 
     // Convert markdown to HTML
-    const processedContent = await remark()
-      .use(html)
-      .process(content)
+    const processedContent = await remark().use(html).process(content)
     const contentHtml = processedContent.toString()
 
     return {
