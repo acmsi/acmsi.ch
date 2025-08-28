@@ -239,11 +239,11 @@ export default function ContactPage() {
                   <p className="text-gray-700 leading-relaxed">
                     Le stationnement devant la mosquée est très limité. Pendant
                     la prière du vendredi (Jumma) et durant le Ramadan, nous
-                    demandons à la communauté de ne pas s&apos;y garer car ces places
-                    sont{' '}
+                    demandons à la communauté de ne pas s&apos;y garer car ces
+                    places sont{' '}
                     <strong>
-                      réservées aux personnes à mobilité réduite, ainsi qu&apos;à
-                      l&apos;Imam{' '}
+                      réservées aux personnes à mobilité réduite, ainsi
+                      qu&apos;à l&apos;Imam{' '}
                     </strong>{' '}
                     qui prend sur son emploi du temps chargé pour guider notre
                     communauté.
@@ -251,8 +251,8 @@ export default function ContactPage() {
                   <p className="text-gray-700 my-2">
                     Rappelons que{' '}
                     <strong>
-                      l&apos;intention et le comportement sont plus importants que la
-                      ponctualité
+                      l&apos;intention et le comportement sont plus importants
+                      que la ponctualité
                     </strong>
                     .
                   </p>
@@ -326,8 +326,8 @@ export default function ContactPage() {
                   </ul>
                   <p className="text-gray-700 my-2">
                     Ces options sont particulièrement recommandées lors
-                    d&apos;événements importants comme les prières du vendredi ou
-                    durant le Ramadan. Consultez la carte ci-dessous pour
+                    d&apos;événements importants comme les prières du vendredi
+                    ou durant le Ramadan. Consultez la carte ci-dessous pour
                     visualiser leurs emplacements.
                   </p>
                 </div>

@@ -58,9 +58,9 @@ export default async function RealisationsPage() {
             </p>
             <div className="bg-green-50 border border-green-200 rounded-lg p-6 max-w-3xl mx-auto">
               <p className="text-green-800 text-lg">
-                <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu&apos;Allah récompense
-                tous ceux qui ont contribué par leurs dons, leur travail et leur
-                engagement à ces belles réalisations.
+                <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu&apos;Allah
+                récompense tous ceux qui ont contribué par leurs dons, leur
+                travail et leur engagement à ces belles réalisations.
               </p>
             </div>
           </div>
@@ -79,7 +79,8 @@ export default async function RealisationsPage() {
           ) : (
             <div className="text-center py-16">
               <p className="text-xl text-gray-600 mb-4">
-                Aucune réalisation n&apos;est encore enregistrée dans le système.
+                Aucune réalisation n&apos;est encore enregistrée dans le
+                système.
               </p>
               <p className="text-gray-500">
                 Les projets terminés apparaîtront ici au fur et à mesure de leur

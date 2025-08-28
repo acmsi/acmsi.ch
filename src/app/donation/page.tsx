@@ -140,9 +140,9 @@ export default async function DonationPage() {
                   Cotisation annuelle : {formatAmount(360)} minimum par foyer
                 </h3>
                 <p className="text-gray-700 mb-4">
-                  L&apos;adhésion à l&apos;ACMSI vous permet de participer pleinement à la
-                  vie de notre association et de bénéficier de tous nos services
-                  communautaires.
+                  L&apos;adhésion à l&apos;ACMSI vous permet de participer
+                  pleinement à la vie de notre association et de bénéficier de
+                  tous nos services communautaires.
                 </p>
                 <div className="bg-teal-50 p-4 rounded-lg">
                   <p className="text-sm text-teal-800">

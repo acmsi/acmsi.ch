@@ -195,8 +195,8 @@ export default async function ProjetXhamiaNurPage() {
                 Salle de classe (15 élèves)
               </h3>
               <p className="text-gray-600">
-                Un espace dédié à l&apos;apprentissage de l&apos;arabe et de l&apos;éducation
-                islamique pour nos enfants.
+                Un espace dédié à l&apos;apprentissage de l&apos;arabe et de
+                l&apos;éducation islamique pour nos enfants.
               </p>
             </div>
 
@@ -219,8 +219,8 @@ export default async function ProjetXhamiaNurPage() {
                 Appartement 5.5 pièces
               </h3>
               <p className="text-gray-600">
-                Logement pour l&apos;imam et sa famille, garantissant une présence
-                permanente.
+                Logement pour l&apos;imam et sa famille, garantissant une
+                présence permanente.
               </p>
             </div>
 
@@ -246,7 +246,8 @@ export default async function ProjetXhamiaNurPage() {
                 Salle jeux et sport enfants
               </h3>
               <p className="text-gray-600">
-                Un espace récréatif sûr pour l&apos;épanouissement de nos jeunes.
+                Un espace récréatif sûr pour l&apos;épanouissement de nos
+                jeunes.
               </p>
             </div>
           </div>
@@ -261,7 +262,8 @@ export default async function ProjetXhamiaNurPage() {
               Comment contribuer au projet ?
             </h2>
             <p className="text-lg text-gray-600">
-              Plusieurs moyens s&apos;offrent à vous pour soutenir ce projet vital
+              Plusieurs moyens s&apos;offrent à vous pour soutenir ce projet
+              vital
             </p>
           </div>
 
@@ -471,8 +473,8 @@ export default async function ProjetXhamiaNurPage() {
                 Transparence et suivi
               </h3>
               <p className="text-gray-600">
-                Nous nous engageons à une totale transparence sur l&apos;utilisation
-                des fonds collectés.
+                Nous nous engageons à une totale transparence sur
+                l&apos;utilisation des fonds collectés.
               </p>
             </div>
 

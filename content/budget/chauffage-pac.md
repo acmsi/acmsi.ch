@@ -7,7 +7,8 @@ objectif: 45000
 montant_leve: 15000
 derniere_maj: 2025-01-26T10:00:00.000Z
 priorite: 1
-date_fin_prevue: 2025-03-31
+date_fin_prevue: 2025-11-15
+echeance_format: month
 ---
 
 # Système de chauffage PAC
