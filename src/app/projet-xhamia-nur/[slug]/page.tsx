@@ -193,7 +193,7 @@ export default async function SousProjetPage({ params }: Props) {
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
             <div className="flex items-start space-x-3">
               <Target
-                className="w-6 h-6 text-green-800 flex-shrink-0 mt-1"
+                className="w-8 h-8 text-green-800 flex-shrink-0 mt-1"
                 weight="duotone"
               />
               <div>

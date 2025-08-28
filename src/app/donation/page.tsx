@@ -13,6 +13,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 import { Donation } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner'
+import CardKeyPoint from '@/components/card-key-point'
 import { getProjectSummary } from '@/lib/content'
 import { formatAmount } from '@/lib/format'
 
@@ -59,59 +60,38 @@ export default async function DonationPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                <Mosque className="w-6 h-6 text-gray-600" weight="duotone" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">
-                Entretien de la mosquée
-              </h3>
-              <p>
-                Maintenance des locaux, chauffage, électricité et tous les frais
-                nécessaires au bon fonctionnement de notre lieu de culte.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 *:bg-gray-50 *:p-6 *:rounded-lg">
+            <CardKeyPoint
+              icon={<Mosque className="w-8 h-8" weight="duotone" />}
+              title="Entretien de la mosquée"
+              description="Maintenance des locaux, chauffage, électricité et tous les frais nécessaires au bon fonctionnement de notre lieu de culte."
+              iconBgColor="bg-gray-100"
+              iconColor="text-gray-600"
+            />
 
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                <ChalkboardTeacher
-                  className="w-6 h-6 text-gray-600"
-                  weight="duotone"
-                />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">
-                Programmes éducatifs
-              </h3>
-              <p>
-                Financement des cours d&rsquo;arabe, d&rsquo;éducation islamique
-                et des matériaux pédagogiques pour nos enfants et adultes.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<ChalkboardTeacher className="w-8 h-8" weight="duotone" />}
+              title="Programmes éducatifs"
+              description="Financement des cours d'arabe, d'éducation islamique et des matériaux pédagogiques pour nos enfants et adultes."
+              iconBgColor="bg-gray-100"
+              iconColor="text-gray-600"
+            />
 
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                <UsersFour className="w-6 h-6 text-gray-600" weight="duotone" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">
-                Activités communautaires
-              </h3>
-              <p>
-                Organisation d&rsquo;événements, conférences et activités qui
-                renforcent les liens au sein de notre communauté.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<UsersFour className="w-8 h-8" weight="duotone" />}
+              title="Activités communautaires"
+              description="Organisation d'événements, conférences et activités qui renforcent les liens au sein de notre communauté."
+              iconBgColor="bg-gray-100"
+              iconColor="text-gray-600"
+            />
 
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                <HandHeart className="w-6 h-6 text-gray-600" weight="duotone" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Actions solidaires</h3>
-              <p>
-                Soutien aux familles dans le besoin et participation aux œuvres
-                caritatives locales et internationales.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<HandHeart className="w-8 h-8" weight="duotone" />}
+              title="Actions solidaires"
+              description="Soutien aux familles dans le besoin et participation aux œuvres caritatives locales et internationales."
+              iconBgColor="bg-gray-100"
+              iconColor="text-gray-600"
+            />
           </div>
         </div>
       </section>
@@ -134,7 +114,7 @@ export default async function DonationPage() {
           <div className="bg-white rounded-lg shadow-sm p-8">
             <div className="flex items-start space-x-6">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Shield className="w-6 h-6 text-teal-600" weight="duotone" />
+                <Shield className="w-8 h-8 text-teal-600" weight="duotone" />
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold mb-3 text-teal-900">
@@ -185,7 +165,7 @@ export default async function DonationPage() {
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                   <CreditCard
-                    className="w-6 h-6 text-gray-600"
+                    className="w-8 h-8 text-gray-600"
                     weight="duotone"
                   />
                 </div>
@@ -223,7 +203,7 @@ export default async function DonationPage() {
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                   <Donation
-                    className="w-6 h-6 text-gray-600"
+                    className="w-8 h-8 text-gray-600"
                     weight="duotone"
                   />
                 </div>
@@ -247,7 +227,7 @@ export default async function DonationPage() {
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                   <HandHeart
-                    className="w-6 h-6 text-gray-600"
+                    className="w-8 h-8 text-gray-600"
                     weight="duotone"
                   />
                 </div>

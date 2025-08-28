@@ -16,7 +16,7 @@ export default function CompletedProjectBanner({
       className={`bg-green-50 border border-green-200 rounded-lg p-6 ${className}`}
     >
       <div className="flex items-center">
-        <CheckCircle className="w-6 h-6 text-green-600 mr-3" weight="duotone" />
+        <CheckCircle className="w-8 h-8 text-green-600 mr-3" weight="duotone" />
         <div>
           <h3 className="text-lg font-semibold text-green-900">{title}</h3>
           <p className="text-green-800">{description}</p>
