@@ -21,8 +21,8 @@ export default async function ActualitesPage() {
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold mb-3">Actualités</h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Restez informés des dernières nouvelles de notre communauté, des événements à venir et
-              des activités de la mosquée Nur.
+              Restez informés des dernières nouvelles de notre communauté, des
+              événements à venir et des activités de la mosquée Nur.
             </p>
           </div>
         </div>
@@ -106,7 +106,8 @@ export default async function ActualitesPage() {
                 Aucune actualité pour le moment
               </h3>
               <p className="mb-6">
-                Les actualités seront bientôt disponibles. Revenez nous voir prochainement !
+                Les actualités seront bientôt disponibles. Revenez nous voir
+                prochainement !
               </p>
             </div>
           )}

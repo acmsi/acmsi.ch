@@ -41,7 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${project.nom} - Projet Xhamia Nur - ACMSI`,
     description:
-      project.description || `Découvrez le sous-projet "${project.nom}" du Projet Xhamia Nur`,
+      project.description ||
+      `Découvrez le sous-projet "${project.nom}" du Projet Xhamia Nur`,
   }
 }
 
@@ -60,7 +61,10 @@ export default async function SousProjetPage({ params }: Props) {
       <section className="py-8 bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link href="/projet-xhamia-nur" className="hover:text-green-600 transition-colors">
+            <Link
+              href="/projet-xhamia-nur"
+              className="hover:text-green-600 transition-colors"
+            >
               Projet Xhamia Nur
             </Link>
             <span>/</span>
@@ -73,7 +77,9 @@ export default async function SousProjetPage({ params }: Props) {
       <section className="py-16 bg-nur-cream-50 border-b border-nur-cream-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-4">{project.nom}</h1>
+            <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-4">
+              {project.nom}
+            </h1>
 
             {/* Ligne avec dates et priorité */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 mb-6 text-sm text-green-800">
@@ -101,21 +107,25 @@ export default async function SousProjetPage({ params }: Props) {
               {isProjectCompleted(project) && project.date_accomplissement ? (
                 <div className="flex items-center flex-1">
                   <Calendar className="w-4 h-4 mr-1" />
-                  Accompli : {formatCompletionDate(project.date_accomplissement)}
+                  Accompli :{' '}
+                  {formatCompletionDate(project.date_accomplissement)}
                 </div>
               ) : (
                 !isProjectCompleted(project) &&
                 project.date_fin_prevue && (
                   <div className="flex items-center flex-1">
                     <Target className="w-4 h-4 mr-1" />
-                    Échéance souhaitée : {formatDeadlineDate(project.date_fin_prevue)}
+                    Échéance souhaitée :{' '}
+                    {formatDeadlineDate(project.date_fin_prevue)}
                   </div>
                 )
               )}
             </div>
 
             {project.description && (
-              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">{project.description}</p>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+                {project.description}
+              </p>
             )}
           </div>
 
@@ -175,25 +185,32 @@ export default async function SousProjetPage({ params }: Props) {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-4">Contexte dans le projet global</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Contexte dans le projet global
+            </h2>
           </div>
 
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
             <div className="flex items-start space-x-3">
-              <Target className="w-6 h-6 text-green-800 flex-shrink-0 mt-1" weight="duotone" />
+              <Target
+                className="w-6 h-6 text-green-800 flex-shrink-0 mt-1"
+                weight="duotone"
+              />
               <div>
                 <h3 className="text-lg font-semibold text-green-900 mb-2">
                   Allocation flexible des dons
                 </h3>
                 <p className="text-green-800 mb-3">
-                  L'ACMSI gère les fonds collectés de manière globale, permettant une allocation
-                  optimale selon l'évolution des priorités et la réalité du terrain.
+                  L'ACMSI gère les fonds collectés de manière globale,
+                  permettant une allocation optimale selon l'évolution des
+                  priorités et la réalité du terrain.
                 </p>
 
                 {projectSummary && (
                   <div className="text-sm text-green-700">
                     <p>
-                      <strong>Projet global :</strong> {formatAmount(projectSummary.total_leve)} sur{' '}
+                      <strong>Projet global :</strong>{' '}
+                      {formatAmount(projectSummary.total_leve)} sur{' '}
                       {formatAmount(projectSummary.total_objectif)} (
                       {formatPercentage(projectSummary.pourcentage_global)})
                     </p>
@@ -208,10 +225,12 @@ export default async function SousProjetPage({ params }: Props) {
       {/* Appel à contribution */}
       <section className="py-16 bg-green-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4">Soutenez le Projet Xhamia Nur</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-4">
+            Soutenez le Projet Xhamia Nur
+          </h2>
           <p className="text-lg mb-8 opacity-90">
-            Vos contributions permettent de réaliser tous les aspects du projet selon les besoins
-            réels.
+            Vos contributions permettent de réaliser tous les aspects du projet
+            selon les besoins réels.
           </p>
           <div className="flex justify-between items-center">
             <Link

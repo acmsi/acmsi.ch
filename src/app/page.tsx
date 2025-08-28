@@ -19,10 +19,13 @@ export default async function HomePage() {
       <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-3">Bienvenue à la Mosquée Nur</h1>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-3">
+              Bienvenue à la Mosquée Nur
+            </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-12">
-              Association Culturelle Musulmane de Saint-Imier - Un lieu de paix, de prière et de
-              communauté au cœur du Jura bernois, guidé par les valeurs d&rsquo;
+              Association Culturelle Musulmane de Saint-Imier - Un lieu de paix,
+              de prière et de communauté au cœur du Jura bernois, guidé par les
+              valeurs d&rsquo;
               <strong>Ihsan</strong>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -56,13 +59,15 @@ export default async function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-3">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Notre Mission</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+              Notre Mission
+            </h2>
             <div className="max-w-4xl mx-auto text-lg">
               <p>
-                L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI) a pour mission de
-                servir la communauté musulmane locale et de promouvoir les valeurs islamiques
-                d&rsquo;<strong>Ihsan</strong> - l&rsquo;excellence dans l&rsquo;adoration et la
-                conduite.
+                L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI)
+                a pour mission de servir la communauté musulmane locale et de
+                promouvoir les valeurs islamiques d&rsquo;<strong>Ihsan</strong>{' '}
+                - l&rsquo;excellence dans l&rsquo;adoration et la conduite.
               </p>
             </div>
           </div>
@@ -73,7 +78,9 @@ export default async function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Nos Services</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+              Nos Services
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -81,13 +88,20 @@ export default async function HomePage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Ruku className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Prières quotidiennes</h3>
-              <p>Cinq prières quotidiennes dans un cadre paisible et spirituel</p>
+              <h3 className="text-xl font-semibold mb-2">
+                Prières quotidiennes
+              </h3>
+              <p>
+                Cinq prières quotidiennes dans un cadre paisible et spirituel
+              </p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <UsersThree className="w-8 h-8 text-gray-600" weight="duotone" />
+                <UsersThree
+                  className="w-8 h-8 text-gray-600"
+                  weight="duotone"
+                />
               </div>
               <h3 className="text-xl font-semibold mb-2">Prière du vendredi</h3>
               <p>Khutbah et prière communautaire chaque vendredi</p>
@@ -97,15 +111,25 @@ export default async function HomePage() {
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Éducation islamique</h3>
-              <p>Cours d&rsquo;arabe et d&rsquo;éducation religieuse pour tous les âges</p>
+              <h3 className="text-xl font-semibold mb-2">
+                Éducation islamique
+              </h3>
+              <p>
+                Cours d&rsquo;arabe et d&rsquo;éducation religieuse pour tous
+                les âges
+              </p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CalendarIslamic className="w-8 h-8 text-gray-600" weight="duotone" />
+                <CalendarIslamic
+                  className="w-8 h-8 text-gray-600"
+                  weight="duotone"
+                />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Événements communautaires</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                Événements communautaires
+              </h3>
               <p>Cérémonies religieuses et activités sociales</p>
             </div>
           </div>
@@ -119,7 +143,8 @@ export default async function HomePage() {
             Rejoignez Notre Communauté
           </h2>
           <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-            Découvrez un lieu de spiritualité et de fraternité au cœur de Saint-Imier
+            Découvrez un lieu de spiritualité et de fraternité au cœur de
+            Saint-Imier
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

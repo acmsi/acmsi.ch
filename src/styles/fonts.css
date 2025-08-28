@@ -2,8 +2,8 @@
 
 /* Mada Font - Body Text (Variable Font) */
 @font-face {
-  font-family: "Mada";
-  src: url("/fonts/mada/Mada-Variable.woff2") format("woff2-variations");
+  font-family: 'Mada';
+  src: url('/fonts/mada/Mada-Variable.woff2') format('woff2-variations');
   font-weight: 200 900;
   font-style: normal;
   font-display: swap;
@@ -11,8 +11,9 @@
 
 /* El Messiri Font - Headings (Variable Font) */
 @font-face {
-  font-family: "El Messiri";
-  src: url("/fonts/el-messiri/ElMessiri-Variable.woff2") format("woff2-variations");
+  font-family: 'El Messiri';
+  src: url('/fonts/el-messiri/ElMessiri-Variable.woff2')
+    format('woff2-variations');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -20,40 +21,40 @@
 
 /* Tajawal Font - Alternative */
 @font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Light.ttf") format("truetype");
+  font-family: 'Tajawal';
+  src: url('/fonts/tajawal/Tajawal-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Regular.ttf") format("truetype");
+  font-family: 'Tajawal';
+  src: url('/fonts/tajawal/Tajawal-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Medium.ttf") format("truetype");
+  font-family: 'Tajawal';
+  src: url('/fonts/tajawal/Tajawal-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Bold.ttf") format("truetype");
+  font-family: 'Tajawal';
+  src: url('/fonts/tajawal/Tajawal-Bold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Tajawal";
-  src: url("/fonts/tajawal/Tajawal-Bold.ttf") format("truetype");
+  font-family: 'Tajawal';
+  src: url('/fonts/tajawal/Tajawal-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -73,9 +74,10 @@
 /* Amiri - Alternative Arabic Font */
 @font-face {
   font-family: 'Amiri';
-  src: url('/fonts/amiri/Amiri-Regular.woff2') format('woff2'),
-       url('/fonts/amiri/Amiri-Regular.woff') format('woff'),
-       url('/fonts/amiri/Amiri-Regular.ttf') format('truetype');
+  src:
+    url('/fonts/amiri/Amiri-Regular.woff2') format('woff2'),
+    url('/fonts/amiri/Amiri-Regular.woff') format('woff'),
+    url('/fonts/amiri/Amiri-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -83,8 +85,9 @@
 
 @font-face {
   font-family: 'Amiri';
-  src: url('/fonts/amiri/Amiri-Bold.woff') format('woff'),
-       url('/fonts/amiri/Amiri-Bold.ttf') format('truetype');
+  src:
+    url('/fonts/amiri/Amiri-Bold.woff') format('woff'),
+    url('/fonts/amiri/Amiri-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;

@@ -12,15 +12,18 @@ export const metadata: Metadata = {
 
 export default async function RealisationsPage() {
   const projectData = await getProjectSummary()
-  
+
   // Filtrer et trier les projets terminés par date d'accomplissement (plus récent en premier)
   const projetsTermines = projectData?.sous_projets
-    ? getCompletedProjects(projectData.sous_projets)
-        .sort((a, b) => {
-          const dateA = a.date_accomplissement ? new Date(a.date_accomplissement).getTime() : 0
-          const dateB = b.date_accomplissement ? new Date(b.date_accomplissement).getTime() : 0
-          return dateB - dateA
-        })
+    ? getCompletedProjects(projectData.sous_projets).sort((a, b) => {
+        const dateA = a.date_accomplissement
+          ? new Date(a.date_accomplissement).getTime()
+          : 0
+        const dateB = b.date_accomplissement
+          ? new Date(b.date_accomplissement).getTime()
+          : 0
+        return dateB - dateA
+      })
     : []
 
   return (
@@ -29,7 +32,10 @@ export default async function RealisationsPage() {
       <section className="py-8 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link href="/projet-xhamia-nur" className="hover:text-green-600 transition-colors">
+            <Link
+              href="/projet-xhamia-nur"
+              className="hover:text-green-600 transition-colors"
+            >
               Projet Xhamia Nur
             </Link>
             <span>/</span>
@@ -46,14 +52,15 @@ export default async function RealisationsPage() {
               Réalisations accomplies
             </h1>
             <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-8">
-              Découvrez toutes les réalisations qui ont été menées à bien dans le cadre du 
-              Projet Xhamia Nur grâce à la générosité, au travail et à l'engagement 
-              de notre communauté.
+              Découvrez toutes les réalisations qui ont été menées à bien dans
+              le cadre du Projet Xhamia Nur grâce à la générosité, au travail et
+              à l'engagement de notre communauté.
             </p>
             <div className="bg-green-50 border border-green-200 rounded-lg p-6 max-w-3xl mx-auto">
               <p className="text-green-800 text-lg">
-                <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu'Allah récompense tous ceux qui ont contribué 
-                par leurs dons, leur travail et leur engagement à ces belles réalisations.
+                <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu'Allah récompense
+                tous ceux qui ont contribué par leurs dons, leur travail et leur
+                engagement à ces belles réalisations.
               </p>
             </div>
           </div>
@@ -75,7 +82,8 @@ export default async function RealisationsPage() {
                 Aucune réalisation n'est encore enregistrée dans le système.
               </p>
               <p className="text-gray-500">
-                Les projets terminés apparaîtront ici au fur et à mesure de leur accomplissement.
+                Les projets terminés apparaîtront ici au fur et à mesure de leur
+                accomplissement.
               </p>
             </div>
           )}

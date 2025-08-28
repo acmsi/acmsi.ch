@@ -4,10 +4,10 @@ nom: "Balcon de l'espace de prière pour les femmes"
 description: "Construction d'un balcon métallique moderne pour créer un espace de prière dédié aux femmes, respectant les traditions islamiques tout en offrant confort et sérénité"
 objectif: 25000
 montant_leve: 25000
-derniere_maj: "2024-11-30T10:00:00Z"
+derniere_maj: '2024-11-30T10:00:00Z'
 priorite: 1
-date_accomplissement: "2024-11-30T10:00:00Z"
-date_fin_prevue: "2024-11-30"
+date_accomplissement: '2024-11-30T10:00:00Z'
+date_fin_prevue: '2024-11-30'
 ---
 
 # Balcon de l'espace de prière pour les femmes
@@ -38,11 +38,12 @@ Ce projet s'est distingué par la générosité extraordinaire de notre communau
 
 Nous tenons à exprimer notre profonde gratitude envers l'artisan qui a réalisé ce magnifique ouvrage métallique. Par respect pour sa modestie et conformément aux valeurs islamiques, nous préservons son anonymat tout en reconnaissant pleinement son contribution exceptionnelle.
 
-*"Celui qui fait une bonne action en secret, Allah la récompensera au grand jour"* - Cette réalisation témoigne de l'esprit de générosité et d'entraide qui anime notre communauté.
+_"Celui qui fait une bonne action en secret, Allah la récompensera au grand jour"_ - Cette réalisation témoigne de l'esprit de générosité et d'entraide qui anime notre communauté.
 
 ## Impact sur la communauté
 
 Le balcon transforme l'expérience spirituelle des femmes de notre communauté :
+
 - **Confort** : Espace dédié et adapté aux besoins
 - **Intimité** : Respect des traditions islamiques
 - **Participation** : Meilleure intégration dans la vie communautaire

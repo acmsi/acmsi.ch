@@ -18,7 +18,12 @@ collections:
       - { label: 'Titre', name: 'title', widget: 'string' }
       - { label: 'Date de publication', name: 'date', widget: 'datetime' }
       - { label: 'Auteur', name: 'author', widget: 'string', default: 'ACMSI' }
-      - { label: 'Image de couverture', name: 'featured_image', widget: 'image', required: false }
+      - {
+          label: 'Image de couverture',
+          name: 'featured_image',
+          widget: 'image',
+          required: false,
+        }
       - { label: 'Résumé', name: 'excerpt', widget: 'text', required: false }
       - { label: 'Contenu', name: 'body', widget: 'markdown' }
       - { label: 'Publié', name: 'published', widget: 'boolean', default: true }
@@ -30,10 +35,25 @@ collections:
     create: true
     slug: '{{slug}}'
     fields:
-      - { label: 'Type', name: 'type', widget: 'select', options: ['projet_global', 'sous_projet'] }
+      - {
+          label: 'Type',
+          name: 'type',
+          widget: 'select',
+          options: ['projet_global', 'sous_projet'],
+        }
       - { label: 'Nom du projet', name: 'nom', widget: 'string' }
-      - { label: 'Description', name: 'description', widget: 'text', required: false }
-      - { label: 'Objectif (CHF)', name: 'objectif', widget: 'number', value_type: 'int' }
+      - {
+          label: 'Description',
+          name: 'description',
+          widget: 'text',
+          required: false,
+        }
+      - {
+          label: 'Objectif (CHF)',
+          name: 'objectif',
+          widget: 'number',
+          value_type: 'int',
+        }
       - {
           label: 'Montant levé (CHF)',
           name: 'montant_leve',
@@ -56,11 +76,16 @@ collections:
           required: false,
         }
       - {
-          label: 'Date d\'accomplissement',
+          label: "Date d'accomplissement",
           name: 'date_accomplissement',
           widget: 'datetime',
           required: false,
           hint: 'Laisser vide si le projet est encore en cours. Une fois définie, le projet est considéré comme accompli.',
         }
-      - { label: 'Échéance souhaitée', name: 'date_fin_prevue', widget: 'date', required: false }
+      - {
+          label: 'Échéance souhaitée',
+          name: 'date_fin_prevue',
+          widget: 'date',
+          required: false,
+        }
       - { label: 'Contenu', name: 'body', widget: 'markdown' }

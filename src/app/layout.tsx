@@ -30,11 +30,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="fr">
       <head>
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
+        <script
+          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+          async
+        ></script>
       </head>
       <body className="bg-white antialiased font-sans">
         <header className="bg-white shadow-sm border-b border-gray-200">
@@ -70,10 +77,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <h3 className="text-white font-family-headings text-2xl font-semibold mb-4">
                   ACMSI
                 </h3>
-                <p className="text-gray-300">Association Culturelle Musulmane de Saint-Imier</p>
+                <p className="text-gray-300">
+                  Association Culturelle Musulmane de Saint-Imier
+                </p>
               </div>
               <div>
-                <h3 className="text-white text-lg font-semibold mb-4">Navigation</h3>
+                <h3 className="text-white text-lg font-semibold mb-4">
+                  Navigation
+                </h3>
                 <ul className="space-y-2 **:text-gray-300 **:hover:text-teal-300">
                   <li>
                     <Link href="/">Accueil</Link>
@@ -96,7 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h3 className="text-white text-lg font-semibold mb-4">Contact</h3>
+                <h3 className="text-white text-lg font-semibold mb-4">
+                  Contact
+                </h3>
                 <div className="space-y-2 text-gray-300">
                   <p>
                     <a
@@ -121,7 +134,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </a>
                   </p>
                   <p>
-                    <a href="tel:+41792763500" className="hover:text-teal-300 transition-colors">
+                    <a
+                      href="tel:+41792763500"
+                      className="hover:text-teal-300 transition-colors"
+                    >
                       079 276 35 00
                     </a>
                   </p>
@@ -130,7 +146,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       href="/contact#parking-info"
                       className="inline-flex items-center text-sm hover:text-teal-300 transition-colors"
                     >
-                      <LetterCircleP weight="duotone" className="text-blue-500 w-5 h-5 mr-1" />
+                      <LetterCircleP
+                        weight="duotone"
+                        className="text-blue-500 w-5 h-5 mr-1"
+                      />
                       Informations Stationnement
                     </a>
                   </p>
