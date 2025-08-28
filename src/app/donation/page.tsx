@@ -123,7 +123,7 @@ export default async function DonationPage() {
               <Users className="w-8 h-8 text-teal-600" weight="duotone" />
             </div>
             <h2 className="text-3xl font-bold mb-4 text-teal-900">
-              Adhésion à l'ACMSI
+              Adhésion à l&apos;ACMSI
             </h2>
             <p className="text-lg text-teal-800">
               Devenez membre officiel de notre association
@@ -140,14 +140,14 @@ export default async function DonationPage() {
                   Cotisation annuelle : {formatAmount(360)} minimum par foyer
                 </h3>
                 <p className="text-gray-700 mb-4">
-                  L'adhésion à l'ACMSI vous permet de participer pleinement à la
+                  L&apos;adhésion à l&apos;ACMSI vous permet de participer pleinement à la
                   vie de notre association et de bénéficier de tous nos services
                   communautaires.
                 </p>
                 <div className="bg-teal-50 p-4 rounded-lg">
                   <p className="text-sm text-teal-800">
                     <strong>Avantages inclus :</strong> Participation aux
-                    décisions de l'association, accès prioritaire aux
+                    décisions de l&apos;association, accès prioritaire aux
                     événements, et services communautaires dédiés aux membres.
                   </p>
                 </div>
@@ -173,7 +173,7 @@ export default async function DonationPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Comment faire un don</h2>
             <p className="text-lg">
-              Plusieurs moyens s&rsquo;offrent à vous pour soutenir notre
+              Plusieurs moyens s&apos;offrent à vous pour soutenir notre
               association
             </p>
           </div>

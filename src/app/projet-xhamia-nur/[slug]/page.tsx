@@ -201,8 +201,8 @@ export default async function SousProjetPage({ params }: Props) {
                   Allocation flexible des dons
                 </h3>
                 <p className="text-green-800 mb-3">
-                  L'ACMSI gère les fonds collectés de manière globale,
-                  permettant une allocation optimale selon l'évolution des
+                  L&apos;ACMSI gère les fonds collectés de manière globale,
+                  permettant une allocation optimale selon l&apos;évolution des
                   priorités et la réalité du terrain.
                 </p>
 

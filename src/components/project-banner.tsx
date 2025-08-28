@@ -31,7 +31,7 @@ export default function ProjectBanner({
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
               Un projet essentiel de{' '}
-              <strong>{formatAmount(totalAmount)}</strong> pour établir l'ACMSI
+              <strong>{formatAmount(totalAmount)}</strong> pour établir l&apos;ACMSI
               et développer un centre islamique moderne à Saint-Imier.
             </p>
 
@@ -87,10 +87,10 @@ export default function ProjectBanner({
               Projet Xhamia Nur
             </h2>
             <p className="text-lg text-green-800 mb-4">
-              L'ACMSI doit racheter la mosquée Nur pour établir l'association
+              L&apos;ACMSI doit racheter la mosquée Nur pour établir l&apos;association
               sur des bases islamiques solides et sans riba. Ce projet urgent de{' '}
               <strong>{formatAmount(totalAmount)}</strong> permettra à notre
-              communauté d'avoir un lieu de culte pérenne dans ses murs.
+              communauté d&apos;avoir un lieu de culte pérenne dans ses murs.
             </p>
 
             {showProgress && (

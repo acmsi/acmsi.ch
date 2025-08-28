@@ -104,7 +104,7 @@ export default async function ProjetXhamiaNurPage() {
 
           <div className="flex justify-between items-center text-sm text-gray-500">
             <span>
-              {formatPercentage(pourcentageCollecte)} de l'objectif atteint
+              {formatPercentage(pourcentageCollecte)} de l&apos;objectif atteint
             </span>
             <span className="flex items-center">
               <Calendar className="w-4 h-4 mr-1" />
@@ -128,13 +128,13 @@ export default async function ProjetXhamiaNurPage() {
               communauté. La mosquée Nur a été acquise par plusieurs membres
               généreux à titre privé.{' '}
               <strong>
-                Qu'Allah les récompense pour ce geste exemplaire !
+                Qu&apos;Allah les récompense pour ce geste exemplaire !
               </strong>
             </p>
             <p className="text-lg text-gray-700 mb-6">
               Ce projet ambitieux vise à{' '}
               <strong>
-                établir l'ACMSI sur des bases solides et islamiques
+                établir l&apos;ACMSI sur des bases solides et islamiques
               </strong>
               , à développer un{' '}
               <strong>
@@ -195,7 +195,7 @@ export default async function ProjetXhamiaNurPage() {
                 Salle de classe (15 élèves)
               </h3>
               <p className="text-gray-600">
-                Un espace dédié à l'apprentissage de l'arabe et de l'éducation
+                Un espace dédié à l&apos;apprentissage de l&apos;arabe et de l&apos;éducation
                 islamique pour nos enfants.
               </p>
             </div>
@@ -219,7 +219,7 @@ export default async function ProjetXhamiaNurPage() {
                 Appartement 5.5 pièces
               </h3>
               <p className="text-gray-600">
-                Logement pour l'imam et sa famille, garantissant une présence
+                Logement pour l&apos;imam et sa famille, garantissant une présence
                 permanente.
               </p>
             </div>
@@ -246,7 +246,7 @@ export default async function ProjetXhamiaNurPage() {
                 Salle jeux et sport enfants
               </h3>
               <p className="text-gray-600">
-                Un espace récréatif sûr pour l'épanouissement de nos jeunes.
+                Un espace récréatif sûr pour l&apos;épanouissement de nos jeunes.
               </p>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default async function ProjetXhamiaNurPage() {
               Comment contribuer au projet ?
             </h2>
             <p className="text-lg text-gray-600">
-              Plusieurs moyens s'offrent à vous pour soutenir ce projet vital
+              Plusieurs moyens s&apos;offrent à vous pour soutenir ce projet vital
             </p>
           </div>
 
@@ -433,8 +433,8 @@ export default async function ProjetXhamiaNurPage() {
                 </div>
                 <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
                   Ces projets ont été menés à bien grâce à la générosité et à
-                  l'engagement de notre communauté.
-                  <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu'Allah
+                  l&apos;engagement de notre communauté.
+                  <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu&apos;Allah
                   récompense tous ceux qui ont contribué.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -471,7 +471,7 @@ export default async function ProjetXhamiaNurPage() {
                 Transparence et suivi
               </h3>
               <p className="text-gray-600">
-                Nous nous engageons à une totale transparence sur l'utilisation
+                Nous nous engageons à une totale transparence sur l&apos;utilisation
                 des fonds collectés.
               </p>
             </div>
@@ -502,7 +502,7 @@ export default async function ProjetXhamiaNurPage() {
                 Allocation flexible des dons
               </h4>
               <p className="text-xs text-gray-600">
-                L'ACMSI utilise tous les fonds de manière globale selon les
+                L&apos;ACMSI utilise tous les fonds de manière globale selon les
                 priorités et besoins réels du terrain. Les donateurs contribuent
                 au projet dans son ensemble.
               </p>
@@ -515,7 +515,7 @@ export default async function ProjetXhamiaNurPage() {
       <section className="py-16 bg-green-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Ensemble, construisons l'avenir de notre communauté
+            Ensemble, construisons l&apos;avenir de notre communauté
           </h2>
           <p className="text-xl mb-6">جَزَاكُمُ اللَّهُ خَيْرًا</p>
           <div className="mb-8">

@@ -89,7 +89,10 @@ export function formatDeadlineDate(dateString: string): string {
   return formatProjectDate(dateString, getDateDisplayFormat(dateString))
 }
 
-export function getDateDisplayFormat(dateString: string): DateDisplayFormat {
+export function getDateDisplayFormat(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _dateString: string,
+): DateDisplayFormat {
   // Logic to determine format based on date precision
   // For now, default to quarter, but could be enhanced to detect precision
   return 'quarter'

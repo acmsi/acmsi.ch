@@ -54,11 +54,11 @@ export default async function RealisationsPage() {
             <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-8">
               Découvrez toutes les réalisations qui ont été menées à bien dans
               le cadre du Projet Xhamia Nur grâce à la générosité, au travail et
-              à l'engagement de notre communauté.
+              à l&apos;engagement de notre communauté.
             </p>
             <div className="bg-green-50 border border-green-200 rounded-lg p-6 max-w-3xl mx-auto">
               <p className="text-green-800 text-lg">
-                <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu'Allah récompense
+                <strong>جَزَاكُمُ اللَّهُ خَيْرًا</strong> - Qu&apos;Allah récompense
                 tous ceux qui ont contribué par leurs dons, leur travail et leur
                 engagement à ces belles réalisations.
               </p>
@@ -79,7 +79,7 @@ export default async function RealisationsPage() {
           ) : (
             <div className="text-center py-16">
               <p className="text-xl text-gray-600 mb-4">
-                Aucune réalisation n'est encore enregistrée dans le système.
+                Aucune réalisation n&apos;est encore enregistrée dans le système.
               </p>
               <p className="text-gray-500">
                 Les projets terminés apparaîtront ici au fur et à mesure de leur

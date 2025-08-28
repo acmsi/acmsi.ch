@@ -192,7 +192,7 @@ export default function ContactPage() {
                     <p className="text-sm text-red-900">
                       <strong>Staionnement Jumma:</strong> Ne pas se garer
                       devant la mosquée, ces places sont réservées aux personnes
-                      à mobilité réduite et à l'Imam.{' '}
+                      à mobilité réduite et à l&apos;Imam.{' '}
                       <a
                         href="/contact#parking-info"
                         className="hover:text-red-700 transition-colors underline mt-2 block"
@@ -239,11 +239,11 @@ export default function ContactPage() {
                   <p className="text-gray-700 leading-relaxed">
                     Le stationnement devant la mosquée est très limité. Pendant
                     la prière du vendredi (Jumma) et durant le Ramadan, nous
-                    demandons à la communauté de ne pas s'y garer car ces places
+                    demandons à la communauté de ne pas s&apos;y garer car ces places
                     sont{' '}
                     <strong>
-                      réservées aux personnes à mobilité réduite, ainsi qu'à
-                      l'Imam{' '}
+                      réservées aux personnes à mobilité réduite, ainsi qu&apos;à
+                      l&apos;Imam{' '}
                     </strong>{' '}
                     qui prend sur son emploi du temps chargé pour guider notre
                     communauté.
@@ -251,7 +251,7 @@ export default function ContactPage() {
                   <p className="text-gray-700 my-2">
                     Rappelons que{' '}
                     <strong>
-                      l'intention et le comportement sont plus importants que la
+                      l&apos;intention et le comportement sont plus importants que la
                       ponctualité
                     </strong>
                     .
@@ -326,7 +326,7 @@ export default function ContactPage() {
                   </ul>
                   <p className="text-gray-700 my-2">
                     Ces options sont particulièrement recommandées lors
-                    d'événements importants comme les prières du vendredi ou
+                    d&apos;événements importants comme les prières du vendredi ou
                     durant le Ramadan. Consultez la carte ci-dessous pour
                     visualiser leurs emplacements.
                   </p>
