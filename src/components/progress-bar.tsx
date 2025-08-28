@@ -1,4 +1,4 @@
-import { formatAmount } from '@/lib/format'
+import { formatAmount, formatPercentage } from '@/lib/format'
 
 interface ProgressBarProps {
   percentage: number
@@ -36,7 +36,6 @@ export default function ProgressBar({
   const overrunPercentage = isOverBudget ? percentage - 100 : 0
   const overrunAmount = isOverBudget ? allocatedAmount - budgetAmount : 0
 
-
   return (
     <div className={className}>
       {/* Progress bar container */}
@@ -49,7 +48,7 @@ export default function ProgressBar({
         )}
 
         {/* Main progress bar */}
-        <div 
+        <div
           className={`bg-gray-200 rounded-full ${style.height} relative overflow-hidden flex`}
           role="progressbar"
           aria-valuenow={Math.round(percentage)}
@@ -57,8 +56,8 @@ export default function ProgressBar({
           aria-valuemax={100}
           aria-label={
             isOverBudget && budgetAmount > 0
-              ? `Progression : ${Math.round(percentage)}\u2009%, dépassement de budget de ${formatAmount(overrunAmount)} (+${Math.round(overrunPercentage)}\u2009%)`
-              : `Progression : ${Math.round(percentage)}\u2009%${budgetAmount > 0 ? ` sur un budget de ${formatAmount(budgetAmount)}` : ''}`
+              ? `Progression : ${formatPercentage(percentage)}, dépassement de budget de ${formatAmount(overrunAmount)} (+${formatPercentage(overrunPercentage)})`
+              : `Progression : ${formatPercentage(percentage)} ${budgetAmount > 0 ? `sur un budget de ${formatAmount(budgetAmount)}` : ''}`
           }
         >
           {isOverBudget ? (
@@ -67,14 +66,18 @@ export default function ProgressBar({
               <div
                 className={`${style.height} bg-green-500 transition-all duration-500 flex items-center justify-end px-2 relative overflow-hidden`}
                 style={{ width: `${(100 / percentage) * 100}%` }}
-                title={budgetAmount > 0 && allocatedAmount > 0 ? `${formatAmount(allocatedAmount)} alloué, ${percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1)}\u2009% du budget` : undefined}
+                title={
+                  budgetAmount > 0 && allocatedAmount > 0
+                    ? `${formatAmount(allocatedAmount)} alloué, ${formatPercentage(percentage)} du budget`
+                    : undefined
+                }
               >
                 {/* Budget percentage text */}
                 {variant === 'thick' && (
                   <div
                     className={`text-white font-medium text-nowrap overflow-hidden text-ellipsis ${style.textSize}`}
                   >
-                    100&thinsp;%
+                    {formatPercentage(100)}
                   </div>
                 )}
               </div>
@@ -83,18 +86,18 @@ export default function ProgressBar({
               <div
                 className={`${style.height} bg-amber-500 rounded-r-full transition-all duration-500 flex items-center px-2 justify-center relative overflow-hidden`}
                 style={{ width: `${(overrunPercentage / percentage) * 100}%` }}
-                title={overrunAmount > 0 ? `Dépassement : ${formatAmount(overrunAmount)} (+${overrunPercentage % 1 === 0 ? overrunPercentage.toFixed(0) : overrunPercentage.toFixed(1)}\u2009%)` : undefined}
+                title={
+                  overrunAmount > 0
+                    ? `Dépassement : ${formatAmount(overrunAmount)} (+${formatPercentage(overrunPercentage)})`
+                    : undefined
+                }
               >
                 {/* Overrun percentage text */}
                 {variant === 'thick' && overrunPercentage > 10 && (
                   <div
                     className={`text-white font-medium text-ellipsis overflow-hidden text-nowrap ${style.textSize}`}
                   >
-                    +
-                    {overrunPercentage % 1 === 0
-                      ? overrunPercentage.toFixed(0)
-                      : overrunPercentage.toFixed(1)}
-                    &thinsp;%
+                    +{formatPercentage(overrunPercentage)}
                   </div>
                 )}
               </div>
@@ -104,14 +107,18 @@ export default function ProgressBar({
             <div
               className={`${style.height} bg-green-500 rounded-full transition-all duration-500 relative`}
               style={{ width: `${Math.max(budgetPercentage, 1)}%` }}
-              title={budgetAmount > 0 && allocatedAmount > 0 ? `${formatAmount(allocatedAmount)} alloué, ${Math.round(percentage)}\u2009% du budget` : undefined}
+              title={
+                budgetAmount > 0 && allocatedAmount > 0
+                  ? `${formatAmount(allocatedAmount)} alloué, ${formatPercentage(percentage)} du budget`
+                  : undefined
+              }
             >
               {/* Percentage text inside green bar */}
               {percentage > 15 && variant === 'thick' && (
                 <div
                   className={`absolute inset-0 flex items-center ${percentage >= 100 ? 'justify-center' : 'justify-end pr-2'} text-white font-medium ${style.textSize}`}
                 >
-                  {percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1)}&thinsp;%
+                  {formatPercentage(percentage)}
                 </div>
               )}
             </div>

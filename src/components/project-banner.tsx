@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Mosque, ArrowRight, TrendUp } from '@phosphor-icons/react/dist/ssr'
 import ProgressBar from './progress-bar'
-import { formatAmount } from '@/lib/format'
+import { formatAmount, formatPercentage } from '@/lib/format'
 
 interface ProjectBannerProps {
   variant?: 'compact' | 'full'
@@ -43,7 +43,7 @@ export default function ProjectBanner({
                       <TrendUp className="w-4 h-4 text-green-600" />
                       <span className="text-sm font-medium text-green-700">Progression</span>
                     </div>
-                    <span className="text-sm font-medium text-green-700">{percentage}&thinsp;%</span>
+                    <span className="text-sm font-medium text-green-700">{formatPercentage(percentage)}</span>
                   </div>
                   <ProgressBar percentage={percentage} variant="medium" />
                   <div className="flex justify-between items-center text-green-800 text-sm mt-2">
@@ -92,7 +92,7 @@ export default function ProjectBanner({
                     <TrendUp className="w-4 h-4 text-green-600" />
                     <span className="text-sm font-medium text-green-700">Progression</span>
                   </div>
-                  <span className="text-sm font-bold text-green-700">{percentage}&thinsp;%</span>
+                  <span className="text-sm font-bold text-green-700">{formatPercentage(percentage)}</span>
                 </div>
                 <ProgressBar percentage={percentage} variant="medium" />
                 <div className="flex justify-between items-center text-green-800 text-sm mt-1">

@@ -10,3 +10,14 @@ export function formatAmount(amount: number, currency: 'CHF' = 'CHF'): string {
   }).format(amount)
 }
 
+/**
+ * Formate un pourcentage selon les standards suisses
+ * Utilise une espace fine comme séparateur et 1 décimale
+ */
+export function formatPercentage(value: number): string {
+  return new Intl.NumberFormat('fr-CH', {
+    style: 'percent',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 1,
+  }).format(value / 100)
+}

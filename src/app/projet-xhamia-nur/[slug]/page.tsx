@@ -13,7 +13,7 @@ import {
 import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
-import { formatAmount } from '@/lib/format'
+import { formatAmount, formatPercentage } from '@/lib/format'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -194,7 +194,7 @@ export default async function SousProjetPage({ params }: Props) {
                   <div className="text-sm text-green-700">
                     <p>
                       <strong>Projet global :</strong> {formatAmount(projectSummary.total_leve)} sur {formatAmount(projectSummary.total_objectif)} (
-                      {projectSummary.pourcentage_global.toFixed(1)}&thinsp;%)
+                      {formatPercentage(projectSummary.pourcentage_global)})
                     </p>
                   </div>
                 )}
