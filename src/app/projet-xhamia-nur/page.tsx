@@ -83,7 +83,7 @@ export default async function ProjetXhamiaNurPage() {
 
           <ProgressBar percentage={pourcentageCollecte} variant="thick" />
 
-          <div className="flex justify-between items-center text-lg mb-3">
+          <div className="flex justify-between items-center text-lg my-2">
             <span className="font-semibold text-green-600">
               CHF {montantCollecte.toLocaleString()} collecté
             </span>
@@ -91,7 +91,12 @@ export default async function ProjetXhamiaNurPage() {
           </div>
 
           <div className="flex justify-between items-center text-sm text-gray-500">
-            <span>{pourcentageCollecte % 1 === 0 ? pourcentageCollecte.toFixed(0) : pourcentageCollecte.toFixed(1)}% de l'objectif atteint</span>
+            <span>
+              {pourcentageCollecte % 1 === 0
+                ? pourcentageCollecte.toFixed(0)
+                : pourcentageCollecte.toFixed(1)}
+              % de l'objectif atteint
+            </span>
             <span className="flex items-center">
               <Calendar className="w-4 h-4 mr-1" />
               Mis à jour le {new Date(derniereMaj).toLocaleDateString('fr-CH')}

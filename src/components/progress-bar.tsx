@@ -1,12 +1,16 @@
 interface ProgressBarProps {
   percentage: number
   variant?: 'thin' | 'medium' | 'thick'
+  allocatedAmount?: number
+  budgetAmount?: number
   className?: string
 }
 
 export default function ProgressBar({
   percentage,
   variant = 'medium',
+  allocatedAmount = 0,
+  budgetAmount = 0,
   className = '',
 }: ProgressBarProps) {
   const variantStyles = {
@@ -25,23 +29,95 @@ export default function ProgressBar({
   }
 
   const style = variantStyles[variant]
+  const isOverBudget = percentage > 100
+  const budgetPercentage = Math.min(percentage, 100)
+  const overrunPercentage = isOverBudget ? percentage - 100 : 0
+  const overrunAmount = isOverBudget ? allocatedAmount - budgetAmount : 0
+
+  const formatAmount = (amount: number) => {
+    return new Intl.NumberFormat('fr-CH').format(amount)
+  }
 
   return (
     <div className={className}>
-      {/* Progress bar */}
-      <div className={`bg-gray-200 rounded-full ${style.height} mb-2 relative overflow-hidden`}>
-        <div
-          className={`${style.height} bg-green-500 rounded-full transition-all duration-500`}
-          style={{ width: `${Math.max(Math.min(percentage, 100), 1)}%` }}
-        ></div>
-        {percentage > 15 && variant === 'thick' && (
-          <div
-            className={`absolute inset-0 flex items-center ${percentage >= 100 ? 'justify-center' : 'justify-end pr-2'} text-white font-medium ${style.textSize}`}
-            style={{ width: `${Math.max(Math.min(percentage, 100), 1)}%` }}
-          >
-            {percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1)}%
+      {/* Progress bar container */}
+      <div className="relative">
+        {/* Excédent amount above bar (if applicable) */}
+        {isOverBudget && overrunAmount > 0 && (
+          <div className="absolute -top-6 right-0 text-amber-600 font-medium text-xs">
+            +CHF {formatAmount(overrunAmount)}
           </div>
         )}
+
+        {/* Main progress bar */}
+        <div 
+          className={`bg-gray-200 rounded-full ${style.height} relative overflow-hidden flex`}
+          role="progressbar"
+          aria-valuenow={Math.round(percentage)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={
+            isOverBudget && budgetAmount > 0
+              ? `Progression : ${Math.round(percentage)}%, dépassement de budget de CHF ${formatAmount(overrunAmount)} (+${Math.round(overrunPercentage)}%)`
+              : `Progression : ${Math.round(percentage)}%${budgetAmount > 0 ? ` sur un budget de CHF ${formatAmount(budgetAmount)}` : ''}`
+          }
+        >
+          {isOverBudget ? (
+            <>
+              {/* Budget portion (green) - proportional */}
+              <div
+                className={`${style.height} bg-green-500 transition-all duration-500 flex items-center justify-end px-2 relative overflow-hidden`}
+                style={{ width: `${(100 / percentage) * 100}%` }}
+                title={budgetAmount > 0 && allocatedAmount > 0 ? `CHF ${formatAmount(budgetAmount)} alloué, 100% du budget` : undefined}
+              >
+                {/* Budget percentage text */}
+                {variant === 'thick' && (
+                  <div
+                    className={`text-white font-medium text-nowrap overflow-hidden text-ellipsis ${style.textSize}`}
+                  >
+                    100%
+                  </div>
+                )}
+              </div>
+
+              {/* Overrun portion (amber/gold) - proportional */}
+              <div
+                className={`${style.height} bg-amber-500 rounded-r-full transition-all duration-500 flex items-center px-2 justify-center relative overflow-hidden`}
+                style={{ width: `${(overrunPercentage / percentage) * 100}%` }}
+                title={overrunAmount > 0 ? `Dépassement : CHF ${formatAmount(overrunAmount)} (+${overrunPercentage % 1 === 0 ? overrunPercentage.toFixed(0) : overrunPercentage.toFixed(1)}%)` : undefined}
+              >
+                {/* Overrun percentage text */}
+                {variant === 'thick' && overrunPercentage > 10 && (
+                  <div
+                    className={`text-white font-medium text-ellipsis overflow-hidden text-nowrap ${style.textSize}`}
+                  >
+                    +
+                    {overrunPercentage % 1 === 0
+                      ? overrunPercentage.toFixed(0)
+                      : overrunPercentage.toFixed(1)}
+                    %
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            /* Normal progress bar (no overrun) */
+            <div
+              className={`${style.height} bg-green-500 rounded-full transition-all duration-500 relative`}
+              style={{ width: `${Math.max(budgetPercentage, 1)}%` }}
+              title={budgetAmount > 0 && allocatedAmount > 0 ? `CHF ${formatAmount(allocatedAmount)} alloué, ${Math.round(percentage)}% du budget` : undefined}
+            >
+              {/* Percentage text inside green bar */}
+              {percentage > 15 && variant === 'thick' && (
+                <div
+                  className={`absolute inset-0 flex items-center ${percentage >= 100 ? 'justify-center' : 'justify-end pr-2'} text-white font-medium ${style.textSize}`}
+                >
+                  {percentage % 1 === 0 ? percentage.toFixed(0) : percentage.toFixed(1)}%
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

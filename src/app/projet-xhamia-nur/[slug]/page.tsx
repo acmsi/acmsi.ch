@@ -75,12 +75,32 @@ export default async function SousProjetPage({ params }: Props) {
 
           {/* Progression */}
           <div className="px-6 mb-6">
-            <ProgressBar percentage={project.pourcentage_completion} variant="thick" />
-            <div className="flex justify-between items-center text-green-800 text-sm mt-3">
-              <span className="font-semibold">
+            <ProgressBar
+              percentage={project.pourcentage_completion}
+              variant="thick"
+              allocatedAmount={project.montant_leve}
+              budgetAmount={project.objectif}
+            />
+            <div
+              className="relative flex flex-wrap-reverse gap-x-3 justify-between items-center text-green-800 text-sm mt-2 px-1 mb-6 transition-all duration-500"
+              style={{
+                width:
+                  project.pourcentage_completion > 100
+                    ? `${(100 / project.pourcentage_completion) * 100}%`
+                    : '100%',
+              }}
+            >
+              <span className="font-semibold flex-1 text-nowrap">
                 CHF {project.montant_leve.toLocaleString()} alloué
               </span>
-              <span>Budget : CHF {project.objectif.toLocaleString()}</span>
+              <span className="text-right flex-1 text-nowrap">
+                Budget : CHF {project.objectif.toLocaleString()}
+              </span>
+
+              {/* Vertical line */}
+              {project.pourcentage_completion > 100 && (
+                <div className="absolute w-px h-3 bg-green-500 -top-2 right-0"></div>
+              )}
             </div>
 
             {project.date_fin_prevue && (
