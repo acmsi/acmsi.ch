@@ -1,0 +1,25 @@
+name: Check CMS Configuration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-cms-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.tool-versions'
+
+      - name: Install js-yaml
+        run: npm install js-yaml
+
+      - name: Run CMS config tests
+        run: node --test tests/check-cms-config.test.ts

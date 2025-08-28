@@ -29,6 +29,7 @@ export interface BudgetProject {
   priorite?: number
   date_accomplissement?: string
   date_fin_prevue?: string
+  echeance_format?: DateDisplayFormat
   content: string
   pourcentage_completion: number
 }
@@ -84,18 +85,23 @@ export function formatCompletionDate(dateString: string): string {
   return date.toLocaleDateString('fr-CH')
 }
 
-export function formatDeadlineDate(dateString: string): string {
-  // Les échéances peuvent être flexibles - par défaut en quarter
-  return formatProjectDate(dateString, getDateDisplayFormat(dateString))
+export function formatDeadlineDate(
+  dateString: string,
+  project?: BudgetProject,
+): string {
+  // Les échéances peuvent être flexibles - utilise le format du projet
+  return formatProjectDate(
+    dateString,
+    getDateDisplayFormat(dateString, project),
+  )
 }
 
 export function getDateDisplayFormat(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _dateString: string,
+  dateString: string,
+  project?: BudgetProject,
 ): DateDisplayFormat {
-  // Logic to determine format based on date precision
-  // For now, default to quarter, but could be enhanced to detect precision
-  return 'quarter'
+  // Use project's echeance_format if available, otherwise default to quarter
+  return project?.echeance_format || 'quarter'
 }
 
 export function isProjectCompleted(project: BudgetProject): boolean {
@@ -141,6 +147,7 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
           priorite: data.priorite,
           date_accomplissement: data.date_accomplissement,
           date_fin_prevue: data.date_fin_prevue,
+          echeance_format: data.echeance_format,
           content: contentHtml,
           pourcentage_completion,
         } as BudgetProject
@@ -232,6 +239,7 @@ export async function getBudgetProject(
       priorite: data.priorite,
       date_accomplissement: data.date_accomplissement,
       date_fin_prevue: data.date_fin_prevue,
+      echeance_format: data.echeance_format,
       content: contentHtml,
       pourcentage_completion,
     } as BudgetProject

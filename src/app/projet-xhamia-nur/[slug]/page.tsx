@@ -116,7 +116,7 @@ export default async function SousProjetPage({ params }: Props) {
                   <div className="flex items-center flex-1">
                     <Target className="w-4 h-4 mr-1" />
                     Échéance souhaitée :{' '}
-                    {formatDeadlineDate(project.date_fin_prevue)}
+                    {formatDeadlineDate(project.date_fin_prevue, project)}
                   </div>
                 )
               )}
