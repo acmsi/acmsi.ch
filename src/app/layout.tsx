@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <p className="text-gray-300">Association Culturelle Musulmane de Saint-Imier</p>
               </div>
               <div>
-                <h3 className="text-gray-400 text-lg font-semibold mb-4">Navigation</h3>
+                <h3 className="text-white text-lg font-semibold mb-4">Navigation</h3>
                 <ul className="space-y-2 **:text-gray-300 **:hover:text-teal-300">
                   <li>
                     <Link href="/">Accueil</Link>
@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </ul>
               </div>
               <div>
-                <h3 className="text-gray-400 text-lg font-semibold mb-4">Contact</h3>
+                <h3 className="text-white text-lg font-semibold mb-4">Contact</h3>
                 <div className="space-y-2 text-gray-300">
                   <p>
                     <a
@@ -130,7 +130,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       href="/contact#parking-info"
                       className="inline-flex items-center text-sm hover:text-teal-300 transition-colors"
                     >
-                      <LetterCircleP className="w-4 h-4 mr-1" />
+                      <LetterCircleP weight="duotone" className="text-blue-500 w-5 h-5 mr-1" />
                       Informations Stationnement
                     </a>
                   </p>

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-import { UsersThree, BookOpen, Warning, ArrowRight, Mosque } from '@phosphor-icons/react/dist/ssr'
+import { UsersThree, BookOpen } from '@phosphor-icons/react/dist/ssr'
 import { Ruku, CalendarIslamic } from '@/components/icons'
 import { getProjectSummary } from '@/lib/content'
 import ProjectBanner from '@/components/project-banner'
@@ -45,8 +44,8 @@ export default async function HomePage() {
       </section>
 
       {/* Projet Xhamia Nur */}
-      <ProjectBanner 
-        variant="full" 
+      <ProjectBanner
+        variant="full"
         showProgress={true}
         totalAmount={projectData?.total_objectif || 1185500}
         raisedAmount={projectData?.total_leve || 0}
@@ -56,7 +55,7 @@ export default async function HomePage() {
       {/* Mission Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-3">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Notre Mission</h2>
             <div className="max-w-4xl mx-auto text-lg">
               <p>
@@ -73,7 +72,7 @@ export default async function HomePage() {
       {/* Services Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Nos Services</h2>
           </div>
 

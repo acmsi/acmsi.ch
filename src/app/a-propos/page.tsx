@@ -50,7 +50,7 @@ export default function AProposPage() {
       {/* Mission Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-3">
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Notre Mission</h2>
             <div className="text-lg space-y-6">
               <p>
