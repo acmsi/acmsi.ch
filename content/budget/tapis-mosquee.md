@@ -10,6 +10,7 @@ priorite: 1
 date_accomplissement: 2024-08-15T10:00:00Z
 date_fin_prevue: 2024-08-31
 ---
+
 # Tapis de la mosquée
 
 L'acquisition du tapis de prière principal de la mosquée Nur représentait un élément essentiel pour créer un environnement propice au recueillement et à la prière communautaire. Ce projet, désormais achevé, a permis d'offrir à notre communauté un espace de prière digne et accueillant.
@@ -20,10 +21,10 @@ Le choix du tapis s'est porté sur un modèle de qualité supérieure, spéciale
 
 ## Caractéristiques
 
-* **Matériau** : Fibres haute qualité, résistantes et facilement lavables
-* **Dimensions** : Couverture complète de l'espace de prière principal
-* **Design** : Motifs géométriques islamiques traditionnels
-* **Couleurs** : Tons harmonieux favorisant le recueillement
+- **Matériau** : Fibres haute qualité, résistantes et facilement lavables
+- **Dimensions** : Couverture complète de l'espace de prière principal
+- **Design** : Motifs géométriques islamiques traditionnels
+- **Couleurs** : Tons harmonieux favorisant le recueillement
 
 ## Réalisation
 

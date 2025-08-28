@@ -10,7 +10,9 @@
     "export": "next build && next export",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
-    "cms-proxy": "decap-server"
+    "cms-proxy": "decap-server",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -29,12 +31,33 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@eslint/eslintrc": "^3",
     "decap-server": "^3.2.0",
     "eslint": "^9",
     "eslint-config-next": "^15",
+    "prettier": "^3.6.2",
+    "prettier-plugin-sort-json": "^4.1.1",
     "typescript": "^5"
   },
+  "prettier": {
+    "semi": false,
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "trailingComma": "all",
+    "plugins": [
+      "prettier-plugin-sort-json"
+    ],
+    "jsonRecursiveSort": true,
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "printWidth": 120
+        }
+      }
+    ]
+  },
   "engines": {
-    "node": ">=23.0.0"
+    "node": ">=24.3.0"
   }
 }

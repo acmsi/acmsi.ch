@@ -18,7 +18,6 @@ export default function ProjectBanner({
   raisedAmount = 0,
   percentage = 0,
 }: ProjectBannerProps) {
-
   if (variant === 'full') {
     return (
       <section className="py-16 lg:py-24 bg-gradient-to-br from-green-50 to-green-100">
@@ -31,8 +30,9 @@ export default function ProjectBanner({
               Projet Xhamia Nur
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
-              Un projet essentiel de <strong>{formatAmount(totalAmount)}</strong> pour établir
-              l'ACMSI et développer un centre islamique moderne à Saint-Imier.
+              Un projet essentiel de{' '}
+              <strong>{formatAmount(totalAmount)}</strong> pour établir l&apos;ACMSI
+              et développer un centre islamique moderne à Saint-Imier.
             </p>
 
             {showProgress && (
@@ -41,13 +41,19 @@ export default function ProjectBanner({
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-2">
                       <TrendUp className="w-4 h-4 text-green-600" />
-                      <span className="text-sm font-medium text-green-700">Progression</span>
+                      <span className="text-sm font-medium text-green-700">
+                        Progression
+                      </span>
                     </div>
-                    <span className="text-sm font-medium text-green-700">{formatPercentage(percentage)}</span>
+                    <span className="text-sm font-medium text-green-700">
+                      {formatPercentage(percentage)}
+                    </span>
                   </div>
                   <ProgressBar percentage={percentage} variant="medium" />
                   <div className="flex justify-between items-center text-green-800 text-sm mt-2">
-                    <span className="font-semibold">{formatAmount(raisedAmount)} collecté</span>
+                    <span className="font-semibold">
+                      {formatAmount(raisedAmount)} collecté
+                    </span>
                     <span>Objectif : {formatAmount(totalAmount)}</span>
                   </div>
                 </div>
@@ -77,12 +83,14 @@ export default function ProjectBanner({
             </div>
           </div>
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-green-900 mb-3">Projet Xhamia Nur</h2>
+            <h2 className="text-2xl font-bold text-green-900 mb-3">
+              Projet Xhamia Nur
+            </h2>
             <p className="text-lg text-green-800 mb-4">
-              L'ACMSI doit racheter la mosquée Nur pour établir l'association sur des bases
-              islamiques solides et sans riba. Ce projet urgent de{' '}
-              <strong>{formatAmount(totalAmount)}</strong> permettra à notre communauté d'avoir
-              un lieu de culte pérenne dans ses murs.
+              L&apos;ACMSI doit racheter la mosquée Nur pour établir l&apos;association
+              sur des bases islamiques solides et sans riba. Ce projet urgent de{' '}
+              <strong>{formatAmount(totalAmount)}</strong> permettra à notre
+              communauté d&apos;avoir un lieu de culte pérenne dans ses murs.
             </p>
 
             {showProgress && (
@@ -90,13 +98,19 @@ export default function ProjectBanner({
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-2">
                     <TrendUp className="w-4 h-4 text-green-600" />
-                    <span className="text-sm font-medium text-green-700">Progression</span>
+                    <span className="text-sm font-medium text-green-700">
+                      Progression
+                    </span>
                   </div>
-                  <span className="text-sm font-bold text-green-700">{formatPercentage(percentage)}</span>
+                  <span className="text-sm font-bold text-green-700">
+                    {formatPercentage(percentage)}
+                  </span>
                 </div>
                 <ProgressBar percentage={percentage} variant="medium" />
                 <div className="flex justify-between items-center text-green-800 text-sm mt-1">
-                  <span className="font-semibold">{formatAmount(raisedAmount)} collecté</span>
+                  <span className="font-semibold">
+                    {formatAmount(raisedAmount)} collecté
+                  </span>
                   <span>Objectif : {formatAmount(totalAmount)}</span>
                 </div>
               </div>

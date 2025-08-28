@@ -23,9 +23,12 @@ export default function ContactPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-3">Nous Contacter</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">
+              Nous Contacter
+            </h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Nous sommes là pour vous accueillir et répondre à toutes vos questions
+              Nous sommes là pour vous accueillir et répondre à toutes vos
+              questions
             </p>
           </div>
         </div>
@@ -37,15 +40,22 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Details */}
             <div>
-              <h2 className="text-3xl font-bold mb-8">Informations de Contact</h2>
+              <h2 className="text-3xl font-bold mb-8">
+                Informations de Contact
+              </h2>
 
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-gray-600" weight="duotone" />
+                    <MapPin
+                      className="w-6 h-6 text-gray-600"
+                      weight="duotone"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold leading-tight">Adresse</h3>
+                    <h3 className="text-lg font-semibold leading-tight">
+                      Adresse
+                    </h3>
                     <p>
                       ACMSI – Mosquée Nur
                       <br />
@@ -58,10 +68,15 @@ export default function ContactPage() {
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <Envelope className="w-6 h-6 text-gray-600" weight="duotone" />
+                    <Envelope
+                      className="w-6 h-6 text-gray-600"
+                      weight="duotone"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold leading-tight">Email</h3>
+                    <h3 className="text-lg font-semibold leading-tight">
+                      Email
+                    </h3>
                     <p>
                       <a
                         href="mailto:contact@acmsi.ch"
@@ -78,9 +93,14 @@ export default function ContactPage() {
                     <Phone className="w-6 h-6 text-gray-600" weight="duotone" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold leading-tight">Téléphone</h3>
+                    <h3 className="text-lg font-semibold leading-tight">
+                      Téléphone
+                    </h3>
                     <p>
-                      <a href="tel:+41792763500" className="text-teal-600 hover:text-teal-700">
+                      <a
+                        href="tel:+41792763500"
+                        className="text-teal-600 hover:text-teal-700"
+                      >
                         079 276 35 00
                       </a>
                     </p>
@@ -89,10 +109,15 @@ export default function ContactPage() {
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <WhatsappLogo className="w-6 h-6 text-gray-600" weight="duotone" />
+                    <WhatsappLogo
+                      className="w-6 h-6 text-gray-600"
+                      weight="duotone"
+                    />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold leading-tight">WhatsApp Communauté</h3>
+                    <h3 className="text-lg font-semibold leading-tight">
+                      WhatsApp Communauté
+                    </h3>
                     <p>
                       Rejoignez notre groupe WhatsApp communautaire
                       <br />
@@ -113,8 +138,12 @@ export default function ContactPage() {
                 <div className="relative">
                   <div className="absolute -top-2 -bottom-2 -left-2 -right-2 bg-gray-100/80 rounded-lg flex items-center justify-center">
                     <div className="text-center">
-                      <p className="text-lg font-medium text-gray-700 mb-1">En construction</p>
-                      <p className="text-sm text-gray-600">Horaires bientôt disponibles</p>
+                      <p className="text-lg font-medium text-gray-700 mb-1">
+                        En construction
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Horaires bientôt disponibles
+                      </p>
                     </div>
                   </div>
                   <dl className="space-y-4">
@@ -142,7 +171,9 @@ export default function ContactPage() {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h4 className="font-semibold mb-2">Jumma – Prière du Vendredi</h4>
+                  <h4 className="font-semibold mb-2">
+                    Jumma – Prière du Vendredi
+                  </h4>
                   <dl className="space-y-2">
                     <div className="flex justify-between items-center">
                       <dt>Khutbah</dt>
@@ -159,13 +190,15 @@ export default function ContactPage() {
                   <div className="flex items-start">
                     <LetterCircleP className="w-5 h-5 mr-2 text-red-900 flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-red-900">
-                      <strong>Staionnement Jumma:</strong> Ne pas se garer devant la mosquée, ces
-                      places sont réservées aux personnes à mobilité réduite et à l'Imam.{' '}
+                      <strong>Staionnement Jumma:</strong> Ne pas se garer
+                      devant la mosquée, ces places sont réservées aux personnes
+                      à mobilité réduite et à l&apos;Imam.{' '}
                       <a
                         href="/contact#parking-info"
                         className="hover:text-red-700 transition-colors underline mt-2 block"
                       >
-                        Voir les informations complètes pour les options de parking
+                        Voir les informations complètes pour les options de
+                        parking
                       </a>
                     </p>
                   </div>
@@ -180,9 +213,12 @@ export default function ContactPage() {
       <section id="parking-info" className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-9">
-            <h2 className="text-3xl font-bold mb-4 text-white">Informations de Stationnement</h2>
+            <h2 className="text-3xl font-bold mb-4 text-white">
+              Informations de Stationnement
+            </h2>
             <p className="text-xl text-gray-300 mb-6">
-              Soyons exemplaires dans notre comportement, y compris lors du stationnement
+              Soyons exemplaires dans notre comportement, y compris lors du
+              stationnement
             </p>
             <div className="w-16 h-1 bg-teal-500 mx-auto rounded-full"></div>
           </div>
@@ -191,23 +227,32 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <CarSimple className="w-5 h-5 text-gray-600" weight="duotone" />
+                  <CarSimple
+                    className="w-5 h-5 text-gray-600"
+                    weight="duotone"
+                  />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-2 mt-2">
                     Places limitées devant la mosquée
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    Le stationnement devant la mosquée est très limité. Pendant la prière du
-                    vendredi (Jumma) et durant le Ramadan, nous demandons à la communauté de ne pas
-                    s'y garer car ces places sont{' '}
-                    <strong>réservées aux personnes à mobilité réduite, ainsi qu'à l'Imam </strong>{' '}
-                    qui prend sur son emploi du temps chargé pour guider notre communauté.
+                    Le stationnement devant la mosquée est très limité. Pendant
+                    la prière du vendredi (Jumma) et durant le Ramadan, nous
+                    demandons à la communauté de ne pas s&apos;y garer car ces places
+                    sont{' '}
+                    <strong>
+                      réservées aux personnes à mobilité réduite, ainsi qu&apos;à
+                      l&apos;Imam{' '}
+                    </strong>{' '}
+                    qui prend sur son emploi du temps chargé pour guider notre
+                    communauté.
                   </p>
                   <p className="text-gray-700 my-2">
                     Rappelons que{' '}
                     <strong>
-                      l'intention et le comportement sont plus importants que la ponctualité
+                      l&apos;intention et le comportement sont plus importants que la
+                      ponctualité
                     </strong>
                     .
                   </p>
@@ -223,13 +268,23 @@ export default function ContactPage() {
                     Exemplarité et courtoisie envers nos voisins
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
-                    Nous encourageons notre communauté à agir de manière exemplaire :{' '}
-                    <strong>respecter scrupuleusement les emplacements de stationnement</strong>, ne
-                    jamais bloquer les entrées de garage, et faire preuve de{' '}
-                    <strong>courtoisie et de bienveillance envers nos voisins</strong>. Notre
-                    comportement reflète les valeurs de notre foi. Et plutôt que de payer des
-                    contraventions, nous vous invitons à{' '}
-                    <a href="/donation" className="text-teal-600 hover:text-teal-700 font-medium">
+                    Nous encourageons notre communauté à agir de manière
+                    exemplaire :{' '}
+                    <strong>
+                      respecter scrupuleusement les emplacements de
+                      stationnement
+                    </strong>
+                    , ne jamais bloquer les entrées de garage, et faire preuve
+                    de{' '}
+                    <strong>
+                      courtoisie et de bienveillance envers nos voisins
+                    </strong>
+                    . Notre comportement reflète les valeurs de notre foi. Et
+                    plutôt que de payer des contraventions, nous vous invitons à{' '}
+                    <a
+                      href="/donation"
+                      className="text-teal-600 hover:text-teal-700 font-medium"
+                    >
                       faire des dons à la mosquée
                     </a>{' '}
                     qui en a bien besoin !
@@ -239,14 +294,21 @@ export default function ContactPage() {
 
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <LetterCircleP className="w-5 h-5 text-gray-600" weight="duotone" />
+                  <LetterCircleP
+                    className="w-5 h-5 text-gray-600"
+                    weight="duotone"
+                  />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2 mt-2">Options de stationnement</h3>
+                  <h3 className="text-lg font-semibold mb-2 mt-2">
+                    Options de stationnement
+                  </h3>
                   <p className="text-gray-700 leading-relaxed">
                     Saint-Imier dispose de{' '}
-                    <strong>nombreuses places gratuites dans les rues avoisinantes</strong> de la
-                    mosquée.
+                    <strong>
+                      nombreuses places gratuites dans les rues avoisinantes
+                    </strong>{' '}
+                    de la mosquée.
                   </p>
                   <p className="text-gray-700 my-2">
                     Plusieurs parkings publics a 5min a pied sont disponibles :
@@ -263,9 +325,10 @@ export default function ContactPage() {
                     </li>
                   </ul>
                   <p className="text-gray-700 my-2">
-                    Ces options sont particulièrement recommandées lors d'événements importants
-                    comme les prières du vendredi ou durant le Ramadan. Consultez la carte
-                    ci-dessous pour visualiser leurs emplacements.
+                    Ces options sont particulièrement recommandées lors
+                    d&apos;événements importants comme les prières du vendredi ou
+                    durant le Ramadan. Consultez la carte ci-dessous pour
+                    visualiser leurs emplacements.
                   </p>
                 </div>
               </div>
@@ -279,7 +342,9 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-9">
             <h2 className="text-3xl font-bold mb-4">Nous Localiser</h2>
-            <p className="text-lg">Trouvez facilement la mosquée Nur à Saint-Imier</p>
+            <p className="text-lg">
+              Trouvez facilement la mosquée Nur à Saint-Imier
+            </p>
           </div>
 
           <div>

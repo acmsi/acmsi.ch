@@ -6,13 +6,15 @@ interface CompletedProjectBannerProps {
   className?: string
 }
 
-export default function CompletedProjectBanner({ 
-  title = "Projet accompli", 
-  description = "Ce volet du Projet Xhamia Nur a été complété avec succès.",
-  className = ''
+export default function CompletedProjectBanner({
+  title = 'Projet accompli',
+  description = 'Ce volet du Projet Xhamia Nur a été complété avec succès.',
+  className = '',
 }: CompletedProjectBannerProps) {
   return (
-    <div className={`bg-green-50 border border-green-200 rounded-lg p-6 ${className}`}>
+    <div
+      className={`bg-green-50 border border-green-200 rounded-lg p-6 ${className}`}
+    >
       <div className="flex items-center">
         <CheckCircle className="w-6 h-6 text-green-600 mr-3" weight="duotone" />
         <div>

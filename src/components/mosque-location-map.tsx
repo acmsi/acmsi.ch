@@ -47,7 +47,8 @@ export default function MosqueLocationMap() {
       // Load CSS
       if (!document.querySelector('link[href*="maplibre-gl.css"]')) {
         const cssLink = document.createElement('link')
-        cssLink.href = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'
+        cssLink.href =
+          'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'
         cssLink.rel = 'stylesheet'
         document.head.appendChild(cssLink)
       }
@@ -70,7 +71,9 @@ export default function MosqueLocationMap() {
     if (!isLoaded || !mapContainer.current || map.current) return
 
     // Mosque coordinates (Rue de la Clef 45, 2610 Saint-Imier)
-    const mosqueCoords: [number, number] = [6.99398058585594, 47.149850852833914]
+    const mosqueCoords: [number, number] = [
+      6.99398058585594, 47.149850852833914,
+    ]
     // Offset for centering (adjust the second value to move map center up/down)
     const mapCenterOffset: [number, number] = [0, 0.0004] // negative = moves center down
     const mapCenter: [number, number] = [
@@ -78,11 +81,19 @@ export default function MosqueLocationMap() {
       mosqueCoords[1] + mapCenterOffset[1],
     ]
     // Parking coordinates
-    const parkingPatinoireCoords: [number, number] = [6.994509243664554, 47.14814737096132]
-    const parkingMigrosCoords: [number, number] = [6.995482165852466, 47.151296375443266]
-    const parkingCentreCoords: [number, number] = [6.996121793876887, 47.15234866182876]
+    const parkingPatinoireCoords: [number, number] = [
+      6.994509243664554, 47.14814737096132,
+    ]
+    const parkingMigrosCoords: [number, number] = [
+      6.995482165852466, 47.151296375443266,
+    ]
+    const parkingCentreCoords: [number, number] = [
+      6.996121793876887, 47.15234866182876,
+    ]
     // Train station coordinates
-    const trainStationCoords: [number, number] = [7.000641270940067, 47.15158470772189]
+    const trainStationCoords: [number, number] = [
+      7.000641270940067, 47.15158470772189,
+    ]
 
     // Initialize map
     map.current = new window.maplibregl!.Map({
@@ -214,9 +225,21 @@ export default function MosqueLocationMap() {
       }
 
       // Add all parking locations
-      createParkingMarker(parkingPatinoireCoords, 'Parking', 'A coté de la patinoire')
-      createParkingMarker(parkingMigrosCoords, 'Parking', 'En face de la Migros')
-      createParkingMarker(parkingCentreCoords, 'Parking', 'Au centre de la commune')
+      createParkingMarker(
+        parkingPatinoireCoords,
+        'Parking',
+        'A coté de la patinoire',
+      )
+      createParkingMarker(
+        parkingMigrosCoords,
+        'Parking',
+        'En face de la Migros',
+      )
+      createParkingMarker(
+        parkingCentreCoords,
+        'Parking',
+        'Au centre de la commune',
+      )
 
       // Add train station marker
       const trainElement = document.createElement('div')

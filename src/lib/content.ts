@@ -47,23 +47,28 @@ export function getActiveProjects(projects: BudgetProject[]): BudgetProject[] {
   return projects.filter(p => !p.date_accomplissement)
 }
 
-export function getCompletedProjects(projects: BudgetProject[]): BudgetProject[] {
+export function getCompletedProjects(
+  projects: BudgetProject[],
+): BudgetProject[] {
   return projects.filter(p => !!p.date_accomplissement)
 }
 
 // Helper functions for date formatting
 export type DateDisplayFormat = 'full' | 'month' | 'quarter'
 
-export function formatProjectDate(dateString: string, format: DateDisplayFormat = 'quarter'): string {
+export function formatProjectDate(
+  dateString: string,
+  format: DateDisplayFormat = 'quarter',
+): string {
   const date = new Date(dateString)
-  
+
   switch (format) {
     case 'full':
       return date.toLocaleDateString('fr-CH')
     case 'month':
-      return date.toLocaleDateString('fr-CH', { 
-        month: 'long', 
-        year: 'numeric' 
+      return date.toLocaleDateString('fr-CH', {
+        month: 'long',
+        year: 'numeric',
       })
     case 'quarter':
       const quarter = Math.ceil((date.getMonth() + 1) / 3)
@@ -84,7 +89,10 @@ export function formatDeadlineDate(dateString: string): string {
   return formatProjectDate(dateString, getDateDisplayFormat(dateString))
 }
 
-export function getDateDisplayFormat(dateString: string): DateDisplayFormat {
+export function getDateDisplayFormat(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _dateString: string,
+): DateDisplayFormat {
   // Logic to determine format based on date precision
   // For now, default to quarter, but could be enhanced to detect precision
   return 'quarter'
@@ -118,7 +126,9 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
 
         // Calculate percentage
         const pourcentage_completion =
-          data.objectif > 0 ? Math.round((data.montant_leve / data.objectif) * 100 * 10) / 10 : 0
+          data.objectif > 0
+            ? Math.round((data.montant_leve / data.objectif) * 100 * 10) / 10
+            : 0
 
         return {
           slug,
@@ -157,11 +167,18 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
     // Calculate totals
     const total_objectif = projet_global.objectif
     const total_leve =
-      projet_global.montant_leve + sous_projets.reduce((sum, p) => sum + p.montant_leve, 0)
-    const pourcentage_global = total_objectif > 0 ? Math.round((total_leve / total_objectif) * 100 * 10) / 10 : 0
+      projet_global.montant_leve +
+      sous_projets.reduce((sum, p) => sum + p.montant_leve, 0)
+    const pourcentage_global =
+      total_objectif > 0
+        ? Math.round((total_leve / total_objectif) * 100 * 10) / 10
+        : 0
 
     // Find most recent update
-    const dates = [projet_global.derniere_maj, ...sous_projets.map(p => p.derniere_maj)]
+    const dates = [
+      projet_global.derniere_maj,
+      ...sous_projets.map(p => p.derniere_maj),
+    ]
       .filter(date => date)
       .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
     const derniere_maj_globale = dates[0] || projet_global.derniere_maj
@@ -181,7 +198,9 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
 }
 
 // Get a single budget project by slug
-export async function getBudgetProject(slug: string): Promise<BudgetProject | null> {
+export async function getBudgetProject(
+  slug: string,
+): Promise<BudgetProject | null> {
   try {
     const fullPath = path.join(contentDirectory, 'budget', `${slug}.md`)
 
@@ -197,7 +216,10 @@ export async function getBudgetProject(slug: string): Promise<BudgetProject | nu
     const contentHtml = processedContent.toString()
 
     // Calculate percentage
-    const pourcentage_completion = data.objectif > 0 ? Math.round((data.montant_leve / data.objectif) * 100 * 10) / 10 : 0
+    const pourcentage_completion =
+      data.objectif > 0
+        ? Math.round((data.montant_leve / data.objectif) * 100 * 10) / 10
+        : 0
 
     return {
       slug,
@@ -262,7 +284,9 @@ export async function getAllNews(): Promise<NewsArticle[]> {
 }
 
 // Get a single news article by slug
-export async function getNewsArticle(slug: string): Promise<NewsArticle | null> {
+export async function getNewsArticle(
+  slug: string,
+): Promise<NewsArticle | null> {
   try {
     const fullPath = path.join(contentDirectory, 'actualites', `${slug}.md`)
 
