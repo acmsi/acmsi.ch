@@ -74,9 +74,7 @@ export default async function ArticlePage({ params }: Props) {
 
             <h1 className="text-3xl lg:text-4xl font-bold mb-3">{article.title}</h1>
 
-            {article.excerpt && (
-              <p className="text-xl max-w-3xl mx-auto">{article.excerpt}</p>
-            )}
+            {article.excerpt && <p className="text-xl max-w-3xl mx-auto">{article.excerpt}</p>}
 
             {article.tags && article.tags.length > 0 && (
               <div className="flex flex-wrap justify-center gap-2 mt-6">
@@ -109,7 +107,7 @@ export default async function ArticlePage({ params }: Props) {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className="prose prose-lg max-w-none text-gray-700 prose-headings:text-gray-900 prose-links:text-teal-600 prose-strong:text-gray-900"
+            className="prose sm:prose-lg max-w-none text-gray-700 prose-headings:text-gray-900 prose-links:text-teal-600 prose-strong:text-gray-900"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
         </div>

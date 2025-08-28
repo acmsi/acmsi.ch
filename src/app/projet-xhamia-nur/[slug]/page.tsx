@@ -165,7 +165,7 @@ export default async function SousProjetPage({ params }: Props) {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className="prose prose-lg mx-auto"
+            className="prose sm:prose-lg mx-auto"
             dangerouslySetInnerHTML={{ __html: project.content }}
           />
         </div>
@@ -193,7 +193,8 @@ export default async function SousProjetPage({ params }: Props) {
                 {projectSummary && (
                   <div className="text-sm text-green-700">
                     <p>
-                      <strong>Projet global :</strong> {formatAmount(projectSummary.total_leve)} sur {formatAmount(projectSummary.total_objectif)} (
+                      <strong>Projet global :</strong> {formatAmount(projectSummary.total_leve)} sur{' '}
+                      {formatAmount(projectSummary.total_objectif)} (
                       {formatPercentage(projectSummary.pourcentage_global)})
                     </p>
                   </div>

@@ -1,6 +1,6 @@
 ---
 type: sous_projet
-nom: Studio de l'Imam
+nom: Studio de Function
 description:
   Aménagement d'un studio tout confort avec salle de bain privative pour
   l'hébergement ponctuel d'invités religieux
@@ -13,13 +13,13 @@ date_fin_prevue: 2024-12-31T23:59:59.000Z
 campagne_active: false
 ---
 
-# Studio de l'Imam
+# Studio de Function
 
 ## Description du projet
 
 Un studio tout confort équipé d'une salle de bain privative a été créé dans la
 mosquée pour l'hébergement ponctuel d'invités religieux. Ce lieu d'accueil
-permet de recevoir dignement les Imams et personnalités religieuses lors de
+permet de recevoir dignement les personnalités religieuses et Imams invités lors de
 leurs séjours à Saint-Imier.
 
 ## Réalisation accomplie
