@@ -41,42 +41,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
-                <Link href="/" className="text-xl font-bold hover:text-teal-600 transition-colors">
+                <Link
+                  href="/"
+                  className="text-2xl font-family-headings font-bold hover:text-teal-600 transition-colors"
+                >
                   ACMSI
                 </Link>
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                  <Link
-                    href="/"
-                    className="text-gray-700 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Accueil
-                  </Link>
-                  <Link
-                    href="/a-propos"
-                    className="text-gray-700 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    À propos
-                  </Link>
-                  <Link
-                    href="/actualites"
-                    className="text-gray-700 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Actualités
-                  </Link>
-                  <Link
-                    href="/donation"
-                    className="text-gray-700 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Donation
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="text-gray-700 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Contact
-                  </Link>
+                <div className="ml-10 flex items-baseline space-x-4 *:text-gray-700 *:hover:text-teal-600 *:px-3 *:py-2 *:rounded-md *:font-medium">
+                  <Link href="/">Accueil</Link>
+                  <Link href="/a-propos">À propos</Link>
+                  <Link href="/actualites">Actualités</Link>
+                  <Link href="/donation">Donation</Link>
+                  <Link href="/contact">Contact</Link>
                 </div>
               </div>
             </div>
@@ -89,46 +67,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div>
-                <h3 className="text-lg font-semibold mb-4">ACMSI</h3>
+                <h3 className="text-white font-family-headings text-2xl font-semibold mb-4">
+                  ACMSI
+                </h3>
                 <p className="text-gray-300">Association Culturelle Musulmane de Saint-Imier</p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-4">Navigation</h3>
-                <ul className="space-y-2">
+                <h3 className="text-gray-400 text-lg font-semibold mb-4">Navigation</h3>
+                <ul className="space-y-2 **:text-gray-300 **:hover:text-teal-300">
                   <li>
-                    <Link href="/" className="text-gray-300 hover:text-teal-300">
-                      Accueil
-                    </Link>
+                    <Link href="/">Accueil</Link>
                   </li>
                   <li>
-                    <Link href="/a-propos" className="text-gray-300 hover:text-teal-300">
-                      À propos
-                    </Link>
+                    <Link href="/a-propos">À propos</Link>
                   </li>
                   <li>
-                    <Link href="/actualites" className="text-gray-300 hover:text-teal-300">
-                      Actualités
-                    </Link>
+                    <Link href="/actualites">Actualités</Link>
                   </li>
                   <li>
-                    <Link href="/projet-xhamia-nur" className="text-gray-300 hover:text-teal-300">
-                      Projet Xhamia Nur
-                    </Link>
+                    <Link href="/projet-xhamia-nur">Projet Xhamia Nur</Link>
                   </li>
                   <li>
-                    <Link href="/donation" className="text-gray-300 hover:text-teal-300">
-                      Donation
-                    </Link>
+                    <Link href="/donation">Donation</Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="text-gray-300 hover:text-teal-300">
-                      Contact
-                    </Link>
+                    <Link href="/contact">Contact</Link>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-4">Contact</h3>
+                <h3 className="text-gray-400 text-lg font-semibold mb-4">Contact</h3>
                 <div className="space-y-2 text-gray-300">
                   <p>
                     <a

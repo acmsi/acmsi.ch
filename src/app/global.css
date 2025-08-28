@@ -196,6 +196,7 @@ Sample Classes:
   h1,
   h2 {
     font-family: var(--font-family-headings);
+    @apply text-balance;
   }
 
   h1,
@@ -222,15 +223,22 @@ Sample Classes:
   }
 
   .font-arabic {
-    font-family: "El Messiri", Tajawal, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family:
+      "El Messiri",
+      Tajawal,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
   }
 
   .quranic-text {
-    font-family: 'UthmanicHafs', 'Amiri', 'Arabic Typesetting', 'Tahoma', 'Arial Unicode MS', sans-serif;
+    font-family: "UthmanicHafs", "Amiri", "Arabic Typesetting", "Tahoma", "Arial Unicode MS", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'calt', 'liga', 'rlig';
+    font-feature-settings: "calt", "liga", "rlig";
     font-weight: 400;
     direction: rtl;
     unicode-bidi: embed;
@@ -238,7 +246,7 @@ Sample Classes:
   }
 
   .ayah-number {
-    font-family: 'UthmanicHafs', 'Amiri', serif;
+    font-family: "UthmanicHafs", "Amiri", serif;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -246,8 +254,8 @@ Sample Classes:
   }
 
   .arabic-text {
-    font-family: 'UthmanicHafs', 'Amiri', 'Arabic Typesetting', serif;
-    font-feature-settings: 'calt', 'dlig', 'rlig';
+    font-family: "UthmanicHafs", "Amiri", "Arabic Typesetting", serif;
+    font-feature-settings: "calt", "dlig", "rlig";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -255,6 +263,6 @@ Sample Classes:
   }
 
   .surah-header {
-    font-family: 'SurahNames', serif;
+    font-family: "SurahNames", serif;
   }
 }
