@@ -165,7 +165,7 @@ export default async function SousProjetPage({ params }: Props) {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className="prose sm:prose-lg mx-auto"
+            className="prose sm:prose-lg max-w-none mx-auto"
             dangerouslySetInnerHTML={{ __html: project.content }}
           />
         </div>
