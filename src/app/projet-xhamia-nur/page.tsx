@@ -3,10 +3,10 @@ import Link from 'next/link'
 import {
   Mosque,
   Target,
-  BookOpen,
+  BookOpenText,
   Books,
   Coffee,
-  GameController,
+  Joystick,
   House,
   Money,
   DeviceMobile,
@@ -16,10 +16,11 @@ import {
   Calendar,
   TrendUp,
   Wrench,
-  Users,
-  Warning,
-  Phone,
+  Monitor,
+  Briefcase,
+  Tree,
 } from '@phosphor-icons/react/dist/ssr'
+import { Salah } from '@/components/icons'
 import {
   getProjectSummary,
   getActiveProjects,
@@ -28,6 +29,7 @@ import {
 import Ayah from '@/components/ayah'
 import ProgressBar from '@/components/progress-bar'
 import ProjectCard from '@/components/project-card'
+import CardKeyPoint from '@/components/card-key-point'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
 export const metadata: Metadata = {
@@ -61,7 +63,7 @@ export default async function ProjetXhamiaNurPage() {
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
               Un projet essentiel de <strong>1&rsquo;185&rsquo;500 CHF</strong>{' '}
               pour établir l&rsquo;ACMSI sur des bases solides, développer un
-              centre islamique moderne et pérenne dans ses murs, dans le respect
+              centre islamique complet et pérenne dans ses murs, dans le respect
               de nos valeurs et sans riba.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -141,9 +143,7 @@ export default async function ProjetXhamiaNurPage() {
                 établir l&apos;ACMSI sur des bases solides et islamiques
               </strong>
               , à développer un{' '}
-              <strong>
-                centre islamique moderne de 540m², pérenne, dans ses murs
-              </strong>
+              <strong>centre islamique de 540m², pérenne, dans ses murs</strong>
               , et à garantir un avenir <strong>sans riba</strong> pour notre
               communauté.
             </p>
@@ -173,87 +173,64 @@ export default async function ProjetXhamiaNurPage() {
               Un projet complet de 540m²
             </h2>
             <p className="text-lg text-gray-600">
-              Une mosquée moderne et fonctionnelle pour toute la communauté
+              Un centre islamique fonctionnel pour toute la communauté
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <Mosque className="w-6 h-6 text-green-600" weight="duotone" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                Salle de prière mixte
-              </h3>
-              <p className="text-gray-600">
-                Un espace de prière accueillant pour hommes et femmes,
-                respectant les traditions islamiques.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 *:bg-white *:p-6 *:rounded-lg *:shadow-sm">
+            <CardKeyPoint
+              icon={<Salah className="w-8 h-8" weight="duotone" />}
+              title="Salle de prière mixte"
+              description="Un espace de prière accueillant pour hommes et femmes, respectant les traditions islamiques."
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <BookOpen className="w-6 h-6 text-green-600" weight="duotone" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                Salle de classe (15 élèves)
-              </h3>
-              <p className="text-gray-600">
-                Un espace dédié à l&apos;apprentissage de l&apos;arabe et de
-                l&apos;éducation islamique pour nos enfants.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<BookOpenText className="w-8 h-8" weight="duotone" />}
+              title="Salle de classe (15 élèves)"
+              description="Un espace dédié à l'apprentissage de l'arabe et de l'éducation islamique pour nos enfants."
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <Books className="w-6 h-6 text-green-600" weight="duotone" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Bibliothèque</h3>
-              <p className="text-gray-600">
-                Une collection de livres religieux et éducatifs accessible à
-                toute la communauté.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<Books className="w-8 h-8" weight="duotone" />}
+              title="Bibliothèque"
+              description="Une collection de livres religieux et éducatifs accessible à toute la communauté."
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <House className="w-6 h-6 text-green-600" weight="duotone" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                Appartement 5.5 pièces
-              </h3>
-              <p className="text-gray-600">
-                Logement pour l&apos;imam et sa famille, garantissant une
-                présence permanente.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<House className="w-8 h-8" weight="duotone" />}
+              title="Studio de Function"
+              description="Studio pour l'hébergement ponctuel d'invités religieux."
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <Coffee className="w-6 h-6 text-green-600" weight="duotone" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Cafétéria</h3>
-              <p className="text-gray-600">
-                Un espace convivial pour les repas communautaires et les
-                événements spéciaux.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<Coffee className="w-8 h-8" weight="duotone" />}
+              title="Cafétéria"
+              description="Un espace convivial pour les repas communautaires et les événements spéciaux."
+            />
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <GameController
-                  className="w-6 h-6 text-green-600"
-                  weight="duotone"
-                />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                Salle jeux et sport enfants
-              </h3>
-              <p className="text-gray-600">
-                Un espace récréatif sûr pour l&apos;épanouissement de nos
-                jeunes.
-              </p>
-            </div>
+            <CardKeyPoint
+              icon={<Joystick className="w-8 h-8" weight="duotone" />}
+              title="Salle jeux et sport enfants"
+              description="Un espace récréatif sûr pour l'épanouissement de nos jeunes."
+            />
+
+            <CardKeyPoint
+              icon={<Monitor className="w-8 h-8" weight="duotone" />}
+              title="Système médiatique"
+              description="Équipements audiovisuels modernes pour diffusion, streaming en direct, surveillance et communication numérique."
+            />
+
+            <CardKeyPoint
+              icon={<Briefcase className="w-8 h-8" weight="duotone" />}
+              title="Bureaux"
+              description="Espaces de travail dédiés pour l'imam, l'administration et services communautaires, certains disponibles en location."
+            />
+
+            <CardKeyPoint
+              icon={<Tree className="w-8 h-8" weight="duotone" />}
+              title="Extérieur vert"
+              description="Espace détente avec aire de pique-nique, arbres fruitiers et zone de jeux extérieure (ping-pong)."
+            />
           </div>
         </div>
       </section>
@@ -276,7 +253,7 @@ export default async function ProjetXhamiaNurPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Bank className="w-6 h-6 text-green-600" weight="duotone" />
+                  <Bank className="w-8 h-8 text-green-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-3">
@@ -301,7 +278,7 @@ export default async function ProjetXhamiaNurPage() {
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <DeviceMobile
-                    className="w-6 h-6 text-green-600"
+                    className="w-8 h-8 text-green-600"
                     weight="duotone"
                   />
                 </div>
@@ -327,7 +304,7 @@ export default async function ProjetXhamiaNurPage() {
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <PaypalLogo
-                    className="w-6 h-6 text-green-600"
+                    className="w-8 h-8 text-green-600"
                     weight="duotone"
                   />
                 </div>
@@ -352,7 +329,7 @@ export default async function ProjetXhamiaNurPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Money className="w-6 h-6 text-green-600" weight="duotone" />
+                  <Money className="w-8 h-8 text-green-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-3">À la mosquée</h3>
@@ -371,7 +348,7 @@ export default async function ProjetXhamiaNurPage() {
             <div className="bg-gray-50 p-6 rounded-lg md:col-span-2">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Wrench className="w-6 h-6 text-blue-600" weight="duotone" />
+                  <Wrench className="w-8 h-8 text-blue-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-3">
@@ -393,8 +370,8 @@ export default async function ProjetXhamiaNurPage() {
                         </h4>
                         <p className="text-sm text-gray-600">
                           Nous privilégions les professionnels qualifiés pour
-                          garantir qualité et sécurité. Toute contribution doit
-                          être coordonnée préalablement avec l&apos;association.
+                          garantir qualité et sécurité. Nous invitons toute personne 
+                          souhaitant contribuer à contacter et se coordonner au préalable avec l&apos;association.
                         </p>
                       </div>
                       <div className="bg-white p-4 rounded-lg">
@@ -402,9 +379,10 @@ export default async function ProjetXhamiaNurPage() {
                           Besoins variables
                         </h4>
                         <p className="text-sm text-gray-600">
-                          Les besoins spécifiques évoluent selon l&apos;avancement
-                          des sous-projets. Consultez-les régulièrement et
-                          contactez-nous pour connaître les opportunités du moment.
+                          Les besoins spécifiques évoluent selon
+                          l&apos;avancement des sous-projets. Consultez-les
+                          régulièrement et contactez-nous pour connaître les
+                          besoins du moment.
                         </p>
                       </div>
                       <div className="flex gap-3">
@@ -463,7 +441,7 @@ export default async function ProjetXhamiaNurPage() {
                     <div className="bg-green-50 rounded-lg p-6">
                       <div className="flex items-center justify-center mb-3">
                         <TrendUp
-                          className="w-6 h-6 text-green-600 mr-2"
+                          className="w-8 h-8 text-green-600 mr-2"
                           weight="duotone"
                         />
                         <h3 className="text-lg font-semibold text-green-900">
@@ -531,7 +509,7 @@ export default async function ProjetXhamiaNurPage() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="text-center mb-4">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Target className="w-6 h-6 text-green-600" weight="duotone" />
+                <Target className="w-8 h-8 text-green-600" weight="duotone" />
               </div>
               <h3 className="text-xl font-semibold mb-2">
                 Transparence et suivi
