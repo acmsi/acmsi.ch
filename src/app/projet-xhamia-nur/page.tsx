@@ -20,6 +20,7 @@ import { getProjectSummary, getActiveProjects, getCompletedProjects } from '@/li
 import Ayah from '@/components/ayah'
 import ProgressBar from '@/components/progress-bar'
 import ProjectCard from '@/components/project-card'
+import { formatAmount } from '@/lib/format'
 
 export const metadata: Metadata = {
   title: 'Projet Xhamia Nur - ACMSI',
@@ -84,9 +85,9 @@ export default async function ProjetXhamiaNurPage() {
 
           <div className="flex justify-between items-center text-lg my-2">
             <span className="font-semibold text-green-600">
-              CHF {montantCollecte.toLocaleString()} collecté
+              {formatAmount(montantCollecte)} collecté
             </span>
-            <span className="text-gray-600">Objectif : CHF {objectifTotal.toLocaleString()}</span>
+            <span className="text-gray-600">Objectif : {formatAmount(objectifTotal)}</span>
           </div>
 
           <div className="flex justify-between items-center text-sm text-gray-500">
@@ -94,7 +95,7 @@ export default async function ProjetXhamiaNurPage() {
               {pourcentageCollecte % 1 === 0
                 ? pourcentageCollecte.toFixed(0)
                 : pourcentageCollecte.toFixed(1)}
-              % de l'objectif atteint
+              &thinsp;% de l'objectif atteint
             </span>
             <span className="flex items-center">
               <Calendar className="w-4 h-4 mr-1" />

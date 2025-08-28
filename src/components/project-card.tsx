@@ -4,6 +4,7 @@ import type { BudgetProject } from '@/lib/content'
 import { isProjectCompleted, formatCompletionDate } from '@/lib/content'
 import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
+import { formatAmount } from '@/lib/format'
 
 interface ProjectCardProps {
   project: BudgetProject
@@ -55,9 +56,9 @@ export default function ProjectCard({ project, showLastUpdate = true }: ProjectC
           />
           <div className="flex justify-between items-center text-green-800 text-sm mt-2">
             <span className="font-semibold">
-              CHF {project.montant_leve.toLocaleString()} alloué
+              {formatAmount(project.montant_leve)} alloué
             </span>
-            <span>Budget : CHF {project.objectif.toLocaleString()}</span>
+            <span>Budget : {formatAmount(project.objectif)}</span>
           </div>
         </div>
       </div>

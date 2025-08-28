@@ -13,6 +13,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner'
 import { getProjectSummary } from '@/lib/content'
+import { formatAmount } from '@/lib/format'
 
 export const metadata: Metadata = {
   title: 'Donation - ACMSI',
@@ -28,9 +29,7 @@ export default async function DonationPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-3">
-              Soutenir notre Mosquée
-            </h1>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-3">Soutenir notre Mosquée</h1>
             <p className="text-xl max-w-3xl mx-auto">
               Votre générosité nous aide à maintenir et développer les services de la mosquée Nur
               pour toute la communauté
@@ -40,8 +39,8 @@ export default async function DonationPage() {
       </section>
 
       {/* Projet Xhamia Nur Banner */}
-      <ProjectBanner 
-        variant="compact" 
+      <ProjectBanner
+        variant="compact"
         showProgress={true}
         totalAmount={projectData?.total_objectif || 1185500}
         raisedAmount={projectData?.total_leve || 0}
@@ -52,9 +51,7 @@ export default async function DonationPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              L&rsquo;importance de votre soutien
-            </h2>
+            <h2 className="text-3xl font-bold mb-4">L&rsquo;importance de votre soutien</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -113,9 +110,7 @@ export default async function DonationPage() {
               <Users className="w-8 h-8 text-teal-600" weight="duotone" />
             </div>
             <h2 className="text-3xl font-bold mb-4 text-teal-900">Adhésion à l'ACMSI</h2>
-            <p className="text-lg text-teal-800">
-              Devenez membre officiel de notre association
-            </p>
+            <p className="text-lg text-teal-800">Devenez membre officiel de notre association</p>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-8">
@@ -125,16 +120,17 @@ export default async function DonationPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold mb-3 text-teal-900">
-                  Cotisation annuelle : 360 CHF minimum par foyer
+                  Cotisation annuelle : {formatAmount(360)} minimum par foyer
                 </h3>
                 <p className="text-gray-700 mb-4">
-                  L'adhésion à l'ACMSI vous permet de participer pleinement à la vie de notre association 
-                  et de bénéficier de tous nos services communautaires.
+                  L'adhésion à l'ACMSI vous permet de participer pleinement à la vie de notre
+                  association et de bénéficier de tous nos services communautaires.
                 </p>
                 <div className="bg-teal-50 p-4 rounded-lg">
                   <p className="text-sm text-teal-800">
-                    <strong>Avantages inclus :</strong> Participation aux décisions de l'association, 
-                    accès prioritaire aux événements, et services communautaires dédiés aux membres.
+                    <strong>Avantages inclus :</strong> Participation aux décisions de
+                    l'association, accès prioritaire aux événements, et services communautaires
+                    dédiés aux membres.
                   </p>
                 </div>
               </div>

@@ -13,6 +13,7 @@ import {
 import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
+import { formatAmount } from '@/lib/format'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -136,10 +137,10 @@ export default async function SousProjetPage({ params }: Props) {
               }}
             >
               <span className="font-semibold flex-1 text-nowrap">
-                CHF {project.montant_leve.toLocaleString()} alloué
+                {formatAmount(project.montant_leve)} alloué
               </span>
               <span className="text-right flex-1 text-nowrap">
-                Budget : CHF {project.objectif.toLocaleString()}
+                Budget : {formatAmount(project.objectif)}
               </span>
 
               {/* Vertical line */}
@@ -192,10 +193,8 @@ export default async function SousProjetPage({ params }: Props) {
                 {projectSummary && (
                   <div className="text-sm text-green-700">
                     <p>
-                      <strong>Projet global :</strong> CHF{' '}
-                      {projectSummary.total_leve.toLocaleString()} sur CHF{' '}
-                      {projectSummary.total_objectif.toLocaleString()} (
-                      {projectSummary.pourcentage_global.toFixed(1)}%)
+                      <strong>Projet global :</strong> {formatAmount(projectSummary.total_leve)} sur {formatAmount(projectSummary.total_objectif)} (
+                      {projectSummary.pourcentage_global.toFixed(1)}&thinsp;%)
                     </p>
                   </div>
                 )}
