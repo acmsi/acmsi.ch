@@ -15,6 +15,10 @@ import {
   ArrowRight,
   Calendar,
   TrendUp,
+  Wrench,
+  Users,
+  Warning,
+  Phone,
 } from '@phosphor-icons/react/dist/ssr'
 import {
   getProjectSummary,
@@ -362,12 +366,72 @@ export default async function ProjetXhamiaNurPage() {
                 </div>
               </div>
             </div>
+
+            {/* Bénévolat et Contributions Matérielles */}
+            <div className="bg-gray-50 p-6 rounded-lg md:col-span-2">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Wrench className="w-6 h-6 text-blue-600" weight="duotone" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-3">
+                    Bénévolat et contributions matérielles
+                  </h3>
+                  <p className="text-gray-600 mb-3">
+                    Dans le cadre des sous-projets actifs, nous émettons parfois
+                    des invitations à bénévolat, et sommes toujours à
+                    l&apos;écoute de toute entreprise ou professionnel qualifié.
+                  </p>
+                  <details className="group">
+                    <summary className="cursor-pointer text-blue-600 font-medium hover:text-blue-700 mb-3">
+                      Modalités et coordination
+                    </summary>
+                    <div className="space-y-3 pt-2">
+                      <div className="bg-white p-4 rounded-lg">
+                        <h4 className="font-semibold text-gray-800 mb-2">
+                          Contributions encadrées
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Nous privilégions les professionnels qualifiés pour
+                          garantir qualité et sécurité. Toute contribution doit
+                          être coordonnée préalablement avec l&apos;association.
+                        </p>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <h4 className="font-semibold text-gray-800 mb-2">
+                          Besoins variables
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          Les besoins spécifiques évoluent selon l&apos;avancement
+                          des sous-projets. Consultez-les régulièrement et
+                          contactez-nous pour connaître les opportunités du moment.
+                        </p>
+                      </div>
+                      <div className="flex gap-3">
+                        <Link
+                          href="#sous-projets"
+                          className="text-sm bg-blue-600 text-white px-4 py-2 rounded font-medium hover:bg-blue-700 transition-colors"
+                        >
+                          Voir les besoins par sous-projet
+                        </Link>
+                        <Link
+                          href="/contact"
+                          className="text-sm border border-blue-600 text-blue-600 px-4 py-2 rounded font-medium hover:bg-blue-50 transition-colors"
+                        >
+                          Nous contacter
+                        </Link>
+                      </div>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Campagne de financement et suivis - Section unifiée */}
-      <section className="py-16 bg-gray-50">
+      <section id="sous-projets" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Sous-projets et suivis</h2>
