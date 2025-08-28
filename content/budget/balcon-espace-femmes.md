@@ -6,7 +6,7 @@ objectif: 25000
 montant_leve: 25000
 derniere_maj: "2024-11-30T10:00:00Z"
 priorite: 1
-statut: termine
+date_accomplissement: "2024-11-30T10:00:00Z"
 date_fin_prevue: "2024-11-30"
 ---
 

@@ -1,12 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import {
-  ArrowLeft,
-  Calendar,
-  CheckCircle,
-} from '@phosphor-icons/react/dist/ssr'
+import { ArrowLeft } from '@phosphor-icons/react/dist/ssr'
 import { getProjectSummary, getCompletedProjects } from '@/lib/content'
-import ProgressBar from '@/components/progress-bar'
+import ProjectCard from '@/components/project-card'
 
 export const metadata: Metadata = {
   title: 'Réalisations accomplies - Projet Xhamia Nur - ACMSI',
@@ -17,10 +13,14 @@ export const metadata: Metadata = {
 export default async function RealisationsPage() {
   const projectData = await getProjectSummary()
   
-  // Filtrer et trier les projets terminés par date de dernière mise à jour (plus récent en premier)
+  // Filtrer et trier les projets terminés par date d'accomplissement (plus récent en premier)
   const projetsTermines = projectData?.sous_projets
     ? getCompletedProjects(projectData.sous_projets)
-        .sort((a, b) => new Date(b.derniere_maj).getTime() - new Date(a.derniere_maj).getTime())
+        .sort((a, b) => {
+          const dateA = a.date_accomplissement ? new Date(a.date_accomplissement).getTime() : 0
+          const dateB = b.date_accomplissement ? new Date(b.date_accomplissement).getTime() : 0
+          return dateB - dateA
+        })
     : []
 
   return (
@@ -66,54 +66,7 @@ export default async function RealisationsPage() {
           {projetsTermines.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {projetsTermines.map(projet => (
-                <div
-                  key={projet.slug}
-                  className="bg-white rounded-lg shadow-sm border-2 border-green-200 p-6 transition-all duration-200 hover:border-green-300 hover:shadow-md"
-                >
-                  {/* Titre avec badge terminé */}
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <Link 
-                      href={`/projet-xhamia-nur/${projet.slug}`}
-                      className="text-xl font-semibold flex-1 leading-tight hover:text-green-600 transition-colors"
-                    >
-                      {projet.nom}
-                    </Link>
-                    <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex-shrink-0">
-                      ✓ Accompli
-                    </span>
-                  </div>
-                  
-                  <p className="text-gray-600 mb-4">{projet.description}</p>
-
-                  {/* Informations du projet */}
-                  <div className="mb-4">
-                    <ProgressBar 
-                      percentage={projet.pourcentage_completion}
-                      variant="medium"
-                    />
-                    <div className="flex justify-between items-center text-green-800 text-sm mt-2">
-                      <span className="font-semibold">CHF {projet.montant_leve.toLocaleString()} alloué</span>
-                      <span>Budget : CHF {projet.objectif.toLocaleString()}</span>
-                    </div>
-                  </div>
-
-                  {/* Date de completion et dernière mise à jour */}
-                  <div className="text-xs text-gray-500 space-y-1">
-                    {projet.date_fin_prevue && (
-                      <div className="flex items-center">
-                        <CheckCircle className="w-3 h-3 mr-1 text-green-500" weight="duotone" />
-                        Accompli en {new Date(projet.date_fin_prevue).toLocaleDateString('fr-CH', {
-                          month: 'long',
-                          year: 'numeric'
-                        })}
-                      </div>
-                    )}
-                    <div className="flex items-center">
-                      <Calendar className="w-3 h-3 mr-1" />
-                      Dernière mise à jour : {new Date(projet.derniere_maj).toLocaleDateString('fr-CH')}
-                    </div>
-                  </div>
-                </div>
+                <ProjectCard key={projet.slug} project={projet} />
               ))}
             </div>
           ) : (

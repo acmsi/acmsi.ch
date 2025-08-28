@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Calendar, CheckCircle } from '@phosphor-icons/react/dist/ssr'
 import type { BudgetProject } from '@/lib/content'
+import { isProjectCompleted, formatCompletionDate } from '@/lib/content'
 import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
 
@@ -10,7 +11,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, showLastUpdate = true }: ProjectCardProps) {
-  const isCompleted = project.statut === 'termine'
+  const isCompleted = isProjectCompleted(project)
 
   return (
     <div
@@ -37,7 +38,7 @@ export default function ProjectCard({ project, showLastUpdate = true }: ProjectC
             </span>
           ) : (
             <ProjectStatus
-              status={project.statut}
+              status={isCompleted ? 'termine' : 'active'}
               priority={project.priorite}
               className="flex-shrink-0"
             />
@@ -61,8 +62,8 @@ export default function ProjectCard({ project, showLastUpdate = true }: ProjectC
         </div>
       </div>
 
-      {/* Footer - Date de dernière mise à jour */}
-      {showLastUpdate && project.derniere_maj && (
+      {/* Footer - Date de dernière mise à jour ou d'accomplissement */}
+      {showLastUpdate && (isCompleted ? project.date_accomplissement : project.derniere_maj) && (
         <div className="text-xs text-gray-500 border-t pt-3 mt-auto">
           <span className="flex items-center">
             {isCompleted ? (
@@ -74,11 +75,16 @@ export default function ProjectCard({ project, showLastUpdate = true }: ProjectC
               <Calendar className="w-3 h-3 mr-1" />
             )}
             {isCompleted ? 'Accompli' : 'Dernière mise à jour'} :{' '}
-            {new Date(project.derniere_maj).toLocaleDateString('fr-CH', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-            })}
+            {isCompleted && project.date_accomplissement 
+              ? formatCompletionDate(project.date_accomplissement)
+              : project.derniere_maj 
+                ? new Date(project.derniere_maj).toLocaleDateString('fr-CH', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })
+                : ''
+            }
           </span>
         </div>
       )}

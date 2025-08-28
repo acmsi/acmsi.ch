@@ -8,7 +8,7 @@ objectif: 12000
 montant_leve: 14500
 derniere_maj: 2025-01-15T15:00:00.000Z
 priorite: 2
-statut: termine
+date_accomplissement: 2025-01-15T15:00:00.000Z
 date_fin_prevue: 2024-12-31T23:59:59.000Z
 campagne_active: false
 ---

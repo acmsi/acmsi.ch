@@ -56,11 +56,11 @@ collections:
           required: false,
         }
       - {
-          label: 'Statut',
-          name: 'statut',
-          widget: 'select',
-          options: ['active', 'termine'],
-          default: 'active',
+          label: 'Date d\'accomplissement',
+          name: 'date_accomplissement',
+          widget: 'datetime',
+          required: false,
+          hint: 'Laisser vide si le projet est encore en cours. Une fois définie, le projet est considéré comme accompli.',
         }
       - { label: 'Échéance souhaitée', name: 'date_fin_prevue', widget: 'date', required: false }
       - { label: 'Contenu', name: 'body', widget: 'markdown' }

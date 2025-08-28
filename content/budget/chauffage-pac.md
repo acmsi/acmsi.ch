@@ -7,7 +7,6 @@ objectif: 45000
 montant_leve: 15000
 derniere_maj: 2025-01-26T10:00:00.000Z
 priorite: 1
-statut: active
 date_fin_prevue: 2025-03-31
 ---
 

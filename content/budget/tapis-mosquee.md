@@ -7,7 +7,7 @@ objectif: 12000
 montant_leve: 12000
 derniere_maj: 2024-08-15T10:00:00Z
 priorite: 1
-statut: termine
+date_accomplissement: 2024-08-15T10:00:00Z
 date_fin_prevue: 2024-08-31
 ---
 # Tapis de la mosquée

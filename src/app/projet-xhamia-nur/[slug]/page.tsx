@@ -2,7 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Calendar, Target } from '@phosphor-icons/react/dist/ssr'
-import { getBudgetProject, getProjectSummary, getAllBudgetProjects } from '@/lib/content'
+import {
+  getBudgetProject,
+  getProjectSummary,
+  getAllBudgetProjects,
+  isProjectCompleted,
+  formatCompletionDate,
+  formatDeadlineDate,
+} from '@/lib/content'
 import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
@@ -62,12 +69,48 @@ export default async function SousProjetPage({ params }: Props) {
       </section>
 
       {/* En-tête du sous-projet */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-nur-cream-50 border-b border-nur-cream-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-3">{project.nom}</h1>
-            <div className="flex justify-center mb-4">
-              <ProjectStatus status={project.statut} priority={project.priorite} />
+            <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-4">{project.nom}</h1>
+
+            {/* Ligne avec dates et priorité */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 mb-6 text-sm text-green-800">
+              {/* Dernière mise à jour (gauche sur desktop) - toujours affiché */}
+              {project.derniere_maj && (
+                <div className="flex items-center justify-end flex-1">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Dernière mise à jour :{' '}
+                  {new Date(project.derniere_maj).toLocaleDateString('fr-CH')}
+                </div>
+              )}
+
+              {/* Priorité ou badge Accompli (centre sur desktop) */}
+              <div className="order-first sm:order-none">
+                {isProjectCompleted(project) ? (
+                  <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    ✓ Accompli
+                  </span>
+                ) : (
+                  <ProjectStatus status="active" priority={project.priorite} />
+                )}
+              </div>
+
+              {/* Date d'accomplissement ou échéance souhaitée (droite sur desktop) */}
+              {isProjectCompleted(project) && project.date_accomplissement ? (
+                <div className="flex items-center flex-1">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Accompli : {formatCompletionDate(project.date_accomplissement)}
+                </div>
+              ) : (
+                !isProjectCompleted(project) &&
+                project.date_fin_prevue && (
+                  <div className="flex items-center flex-1">
+                    <Target className="w-4 h-4 mr-1" />
+                    Échéance souhaitée : {formatDeadlineDate(project.date_fin_prevue)}
+                  </div>
+                )
+              )}
             </div>
 
             {project.description && (
@@ -104,28 +147,10 @@ export default async function SousProjetPage({ params }: Props) {
                 <div className="absolute w-px h-3 bg-green-500 -top-2 right-0"></div>
               )}
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-2 justify-between mt-3 text-sm text-green-800">
-              {project.derniere_maj && (
-                <div className="flex items-center justify-center">
-                  <Calendar className="w-4 h-4 mr-1" />
-                  Dernière mise à jour :{' '}
-                  {new Date(project.derniere_maj).toLocaleDateString('fr-CH')}
-                </div>
-              )}
-
-              {project.date_fin_prevue && (
-                <div className="flex items-center justify-center">
-                  <Calendar className="w-4 h-4 mr-1" />
-                  Échéance souhaitée :{' '}
-                  {new Date(project.date_fin_prevue).toLocaleDateString('fr-CH')}
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Statut */}
-          {project.statut === 'termine' && (
+          {isProjectCompleted(project) && (
             <CompletedProjectBanner
               title="Sous-projet accompli"
               description="Ce volet du Projet Xhamia Nur a été complété avec succès."
@@ -136,7 +161,7 @@ export default async function SousProjetPage({ params }: Props) {
       </section>
 
       {/* Contenu détaillé */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="prose prose-lg mx-auto"

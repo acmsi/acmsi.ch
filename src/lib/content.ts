@@ -27,7 +27,7 @@ export interface BudgetProject {
   montant_leve: number
   derniere_maj: string
   priorite?: number
-  statut: 'termine' | 'active'
+  date_accomplissement?: string
   date_fin_prevue?: string
   content: string
   pourcentage_completion: number
@@ -44,11 +44,54 @@ export interface ProjectSummary {
 
 // Helper functions for project filtering
 export function getActiveProjects(projects: BudgetProject[]): BudgetProject[] {
-  return projects.filter(p => p.statut === 'active')
+  return projects.filter(p => !p.date_accomplissement)
 }
 
 export function getCompletedProjects(projects: BudgetProject[]): BudgetProject[] {
-  return projects.filter(p => p.statut === 'termine')
+  return projects.filter(p => !!p.date_accomplissement)
+}
+
+// Helper functions for date formatting
+export type DateDisplayFormat = 'full' | 'month' | 'quarter'
+
+export function formatProjectDate(dateString: string, format: DateDisplayFormat = 'quarter'): string {
+  const date = new Date(dateString)
+  
+  switch (format) {
+    case 'full':
+      return date.toLocaleDateString('fr-CH')
+    case 'month':
+      return date.toLocaleDateString('fr-CH', { 
+        month: 'long', 
+        year: 'numeric' 
+      })
+    case 'quarter':
+      const quarter = Math.ceil((date.getMonth() + 1) / 3)
+      return `Q${quarter} ${date.getFullYear()}`
+    default:
+      return dateString
+  }
+}
+
+export function formatCompletionDate(dateString: string): string {
+  // Les dates d'accomplissement sont toujours précises
+  const date = new Date(dateString)
+  return date.toLocaleDateString('fr-CH')
+}
+
+export function formatDeadlineDate(dateString: string): string {
+  // Les échéances peuvent être flexibles - par défaut en quarter
+  return formatProjectDate(dateString, getDateDisplayFormat(dateString))
+}
+
+export function getDateDisplayFormat(dateString: string): DateDisplayFormat {
+  // Logic to determine format based on date precision
+  // For now, default to quarter, but could be enhanced to detect precision
+  return 'quarter'
+}
+
+export function isProjectCompleted(project: BudgetProject): boolean {
+  return !!project.date_accomplissement
 }
 
 // Get all budget projects
@@ -86,7 +129,7 @@ export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
           montant_leve: data.montant_leve || 0,
           derniere_maj: data.derniere_maj || '',
           priorite: data.priorite,
-          statut: data.statut,
+          date_accomplissement: data.date_accomplissement,
           date_fin_prevue: data.date_fin_prevue,
           content: contentHtml,
           pourcentage_completion,
@@ -165,7 +208,7 @@ export async function getBudgetProject(slug: string): Promise<BudgetProject | nu
       montant_leve: data.montant_leve || 0,
       derniere_maj: data.derniere_maj || '',
       priorite: data.priorite,
-      statut: data.statut || 'active',
+      date_accomplissement: data.date_accomplissement,
       date_fin_prevue: data.date_fin_prevue,
       content: contentHtml,
       pourcentage_completion,

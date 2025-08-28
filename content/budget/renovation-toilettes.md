@@ -6,7 +6,6 @@ objectif: 25000
 montant_leve: 0
 derniere_maj: "2025-01-26T10:00:00Z"
 priorite: 2
-statut: active
 date_fin_prevue: "2025-06-30"
 ---
 
