@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { LetterCircleP } from '@phosphor-icons/react/dist/ssr'
+import {
+  LetterCircleP,
+  InstagramLogo,
+  WhatsappLogo,
+} from '@phosphor-icons/react/dist/ssr'
 import './global.css'
 
 export const metadata: Metadata = {
@@ -73,13 +77,26 @@ export default function RootLayout({
         <footer className="bg-gray-900 text-gray-100">
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
+              <div className="order-3 md:order-first">
                 <h3 className="text-white font-family-headings text-2xl font-semibold mb-4">
                   ACMSI
                 </h3>
                 <p className="text-gray-300">
                   Association Culturelle Musulmane de Saint-Imier
                 </p>
+                <div className="flex space-x-3 mt-4">
+                  <a
+                    href="https://www.instagram.com/acmsi.ch/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-teal-300 transition-colors"
+                  >
+                    <InstagramLogo size={33} />
+                  </a>
+                  <div className="text-gray-500">
+                    <WhatsappLogo size={33} />
+                  </div>
+                </div>
               </div>
               <div>
                 <h3 className="text-white text-lg font-semibold mb-4">
@@ -141,7 +158,7 @@ export default function RootLayout({
                       079 276 35 00
                     </a>
                   </p>
-                  <p className="mt-4 pt-2 border-t border-gray-700">
+                  <p className="mt-4 pt-2 md:border-t border-gray-700">
                     <a
                       href="/contact#parking-info"
                       className="inline-flex items-center text-sm hover:text-teal-300 transition-colors"
