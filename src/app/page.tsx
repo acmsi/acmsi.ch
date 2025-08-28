@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { UsersThree, BookOpen } from '@phosphor-icons/react/dist/ssr'
+import { UsersThree, BookOpen, Warning, ArrowRight, Mosque } from '@phosphor-icons/react/dist/ssr'
 import { Ruku, CalendarIslamic } from '@/components/icons'
+import { getProjectSummary } from '@/lib/content'
+import ProjectBanner from '@/components/project-banner'
 
 export const metadata: Metadata = {
   title: 'Accueil - ACMSI',
@@ -10,7 +12,8 @@ export const metadata: Metadata = {
     'Association Culturelle Musulmane de Saint-Imier - La mosquée Nur accueille la communauté musulmane du Jura bernois.',
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const projectData = await getProjectSummary()
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -40,6 +43,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Projet Xhamia Nur */}
+      <ProjectBanner 
+        variant="full" 
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
 
       {/* Mission Section */}
       <section className="py-20 bg-white">
@@ -123,25 +135,6 @@ export default function HomePage() {
             >
               Faire un don
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Mosque Image Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Image
-              src="/farsh.png"
-              alt="Mosquée Nur - Tapis de prière"
-              width={800}
-              height={600}
-              className="mx-auto rounded-lg shadow-lg"
-              priority
-            />
-            <p className="mt-6 italic">
-              Le tapis de la mosquée Nur, symbole de notre communauté unie dans la prière
-            </p>
           </div>
         </div>
       </section>

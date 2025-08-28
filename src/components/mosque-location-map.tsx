@@ -71,6 +71,12 @@ export default function MosqueLocationMap() {
 
     // Mosque coordinates (Rue de la Clef 45, 2610 Saint-Imier)
     const mosqueCoords: [number, number] = [6.99398058585594, 47.149850852833914]
+    // Offset for centering (adjust the second value to move map center up/down)
+    const mapCenterOffset: [number, number] = [0, 0.0005] // negative = moves center down
+    const mapCenter: [number, number] = [
+      mosqueCoords[0] + mapCenterOffset[0],
+      mosqueCoords[1] + mapCenterOffset[1],
+    ]
     // Parking coordinates
     const parkingPatinoireCoords: [number, number] = [6.994509243664554, 47.14814737096132]
     const parkingMigrosCoords: [number, number] = [6.995482165852466, 47.151296375443266]
@@ -99,7 +105,7 @@ export default function MosqueLocationMap() {
           },
         ],
       },
-      center: mosqueCoords,
+      center: mapCenter,
       zoom: 15.4,
       cooperativeGestures: true,
     })
@@ -211,13 +217,13 @@ export default function MosqueLocationMap() {
       createParkingMarker(parkingPatinoireCoords, 'Parking', 'A coté de la patinoire')
       createParkingMarker(parkingMigrosCoords, 'Parking', 'En face de la Migros')
       createParkingMarker(parkingCentreCoords, 'Parking', 'Au centre de la commune')
-      
+
       // Add train station marker
       const trainElement = document.createElement('div')
       trainElement.className = 'train-marker'
       trainElement.innerHTML = `
         <div style="
-          background-color: #dc2626;
+          background-color: #deb4b4;
           color: white;
           width: 28px;
           height: 28px;
@@ -232,7 +238,7 @@ export default function MosqueLocationMap() {
           cursor: pointer;
         ">🚂</div>
       `
-      
+
       new window.maplibregl!.Marker({ element: trainElement })
         .setLngLat(trainStationCoords)
         .setPopup(

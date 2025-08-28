@@ -41,7 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
-                <h1 className="text-xl font-bold">ACMSI</h1>
+                <Link href="/" className="text-xl font-bold hover:text-teal-600 transition-colors">
+                  ACMSI
+                </Link>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
@@ -106,6 +108,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li>
                     <Link href="/actualites" className="text-gray-300 hover:text-teal-300">
                       Actualités
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/projet-xhamia-nur" className="text-gray-300 hover:text-teal-300">
+                      Projet Xhamia Nur
                     </Link>
                   </li>
                   <li>
