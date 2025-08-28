@@ -11,6 +11,7 @@ import {
   Users,
   Shield,
 } from '@phosphor-icons/react/dist/ssr'
+import { Donation } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner'
 import { getProjectSummary } from '@/lib/content'
 import { formatAmount } from '@/lib/format'
@@ -221,7 +222,10 @@ export default async function DonationPage() {
             <div className="bg-white p-8 rounded-lg shadow-sm">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <Money className="w-6 h-6 text-gray-600" weight="duotone" />
+                  <Donation
+                    className="w-6 h-6 text-gray-600"
+                    weight="duotone"
+                  />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-3">Don en espèces</h3>
