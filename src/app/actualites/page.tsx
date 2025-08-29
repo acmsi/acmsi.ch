@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import { getAllNews } from '@/lib/content'
+import { getAllNews, getProjectSummary } from '@/lib/content'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Newspaper } from '@phosphor-icons/react/dist/ssr'
+import ProjectBanner from '@/components/project-banner'
 
 export const metadata: Metadata = {
   title: 'Actualités - ACMSI',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function ActualitesPage() {
   const newsArticles = await getAllNews()
+  const projectData = await getProjectSummary()
 
   return (
     <div className="bg-white">
@@ -113,6 +115,15 @@ export default async function ActualitesPage() {
           )}
         </div>
       </section>
+
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="thin"
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
     </div>
   )
 }

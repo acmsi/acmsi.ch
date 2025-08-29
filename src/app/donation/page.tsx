@@ -6,7 +6,6 @@ import {
   UsersFour,
   HandHeart,
   CreditCard,
-  Money,
   ArrowRight,
   Users,
   Shield,

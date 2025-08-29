@@ -35,7 +35,7 @@ import { formatAmount, formatPercentage } from '@/lib/format'
 export const metadata: Metadata = {
   title: 'Projet Xhamia Nur - ACMSI',
   description:
-    "Soutenez le Projet Xhamia Nur. Un projet essentiel de 1'185'500 CHF pour établir l'ACMSI et développer un centre islamique moderne à Saint-Imier.",
+    "Soutenez le Projet Xhamia Nur pour établir l'ACMSI et développer un centre islamique complet à Saint-Imier. Contribuez à ce projet vital pour notre communauté.",
 }
 
 export default async function ProjetXhamiaNurPage() {
@@ -61,10 +61,11 @@ export default async function ProjetXhamiaNurPage() {
               Projet Xhamia Nur
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
-              Un projet essentiel de <strong>1&rsquo;185&rsquo;500 CHF</strong>{' '}
-              pour établir l&rsquo;ACMSI sur des bases solides, développer un
-              centre islamique complet et pérenne dans ses murs, dans le respect
-              de nos valeurs et sans riba.
+              Un projet essentiel de{' '}
+              <strong>{formatAmount(objectifTotal)}</strong> pour établir
+              l&rsquo;ACMSI sur des bases solides, développer un centre
+              islamique complet et pérenne dans ses murs, dans le respect de nos
+              valeurs et sans riba.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -370,8 +371,9 @@ export default async function ProjetXhamiaNurPage() {
                         </h4>
                         <p className="text-sm text-gray-600">
                           Nous privilégions les professionnels qualifiés pour
-                          garantir qualité et sécurité. Nous invitons toute personne 
-                          souhaitant contribuer à contacter et se coordonner au préalable avec l&apos;association.
+                          garantir qualité et sécurité. Nous invitons toute
+                          personne souhaitant contribuer à contacter et se
+                          coordonner au préalable avec l&apos;association.
                         </p>
                       </div>
                       <div className="bg-white p-4 rounded-lg">
@@ -556,11 +558,8 @@ export default async function ProjetXhamiaNurPage() {
       </section>
 
       {/* Appel final */}
-      <section className="py-16 bg-green-600 text-white">
+      <section className="py-16 bg-gradient-to-t from-gray-900 to-nur-navy-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Ensemble, construisons l&apos;avenir de notre communauté
-          </h2>
           <p className="text-xl mb-6">جَزَاكُمُ اللَّهُ خَيْرًا</p>
           <div className="mb-8">
             <Ayah
@@ -568,19 +567,19 @@ export default async function ProjetXhamiaNurPage() {
               translationText="Et entraidez-vous dans l'accomplissement des bonnes œuvres et de la piété et ne vous entraidez pas dans le péché et la transgression."
               reference="Sourate 5 Al-Maida, Le Festin - Verset 2"
               verseNumber="2"
-              className="text-white opacity-90"
+              className="opacity-90"
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="#faire-un-don"
-              className="bg-white text-green-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              className="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
             >
               🤲 Faire un don maintenant
             </Link>
             <Link
               href="/contact"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-green-600 transition-colors"
+              className="border-2 text-white border-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-gray-900 transition-colors"
             >
               Nous contacter
             </Link>

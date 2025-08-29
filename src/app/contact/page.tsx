@@ -9,6 +9,8 @@ import {
   LetterCircleP,
 } from '@phosphor-icons/react/dist/ssr'
 import MosqueLocationMap from '@/components/mosque-location-map'
+import ProjectBanner from '@/components/project-banner'
+import { getProjectSummary } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Contact - ACMSI',
@@ -16,7 +18,9 @@ export const metadata: Metadata = {
     "Contactez l'Association Culturelle Musulmane de Saint-Imier. Adresse, horaires et informations pratiques.",
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const projectData = await getProjectSummary()
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -363,6 +367,15 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="thin"
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
     </div>
   )
 }

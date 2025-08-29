@@ -4,7 +4,7 @@ import ProgressBar from './progress-bar'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
 interface ProjectBannerProps {
-  variant?: 'compact' | 'full'
+  variant?: 'compact' | 'full' | 'thin'
   showProgress?: boolean
   totalAmount?: number
   raisedAmount?: number
@@ -18,6 +18,54 @@ export default function ProjectBanner({
   raisedAmount = 0,
   percentage = 0,
 }: ProjectBannerProps) {
+  if (variant === 'thin') {
+    return (
+      <section className="py-12 bg-gradient-to-r from-green-50 to-green-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap flex-row items-center justify-center gap-6 lg:gap-12">
+            <div className="md:shrink-0">
+              <div className="flex items-center space-x-3 mb-2">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mosque className="w-6 h-6 text-green-600" weight="duotone" />
+                </div>
+                <h3 className="text-2xl font-headings font-bold text-green-900">
+                  Projet Xhamia Nur
+                </h3>
+              </div>
+              <p className="text-green-700 mb-3 text-sm">
+                Levée de fonds pour l&apos;acquisition et l&apos;aménagement de la mosquée
+              </p>
+
+              {showProgress && (
+                <div className="md:max-w-md">
+                  <div className="bg-white rounded-lg p-3 shadow-sm">
+                    <div className="flex items-center justify-between text-xs text-green-700 mb-1">
+                      <span>{formatAmount(raisedAmount)} collecté</span>
+                      <span>{formatPercentage(percentage)}</span>
+                    </div>
+                    <ProgressBar percentage={percentage} variant="thin" />
+                    <div className="text-xs text-green-600 mt-1">
+                      Objectif : {formatAmount(totalAmount)}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="flex-shrink-0">
+              <Link
+                href="/projet-xhamia-nur"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors inline-flex items-center w-full justify-center md:w-auto"
+              >
+                Soutenir le projet
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   if (variant === 'full') {
     return (
       <section className="py-16 lg:py-24 bg-gradient-to-br from-green-50 to-green-100">
@@ -75,7 +123,7 @@ export default function ProjectBanner({
   }
 
   return (
-    <section className="py-12 bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-500">
+    <section className="py-12 bg-gradient-to-r from-green-50 to-green-100">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-start space-x-4">
           <div className="flex-shrink-0">

@@ -14,11 +14,26 @@ with content management capabilities.
 - `npm run dev` - Start development server (usually on localhost:3000)
 - `npm run build` - Build for production
 - `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+- `npm run lint` - Run ESLint (⚠️ deprecated in Next.js 16)
 - `npm run export` - Build and export static files
 - `npm run test` - Run Playwright tests
 - `npm run test:ui` - Run Playwright tests with UI
 - `npm run cms-proxy` - Start Decap CMS local proxy server for content editing
+
+## Code Quality
+
+### Linting and Formatting
+
+- **ESLint** configured with Next.js recommended rules
+- **TypeScript** strict mode enabled
+
+### Code Standards
+
+- Always fix lint warnings and errors before committing
+- Use proper TypeScript types and interfaces
+- Follow React/Next.js best practices
+- Escape HTML entities in JSX (use `&apos;` for apostrophes)
+- Remove unused imports to keep code clean
 
 ## Architecture
 
@@ -76,6 +91,9 @@ src/app/
 
 - **Playwright** for end-to-end testing
 - Always use viewport resolution of 1024x950 when using Playwright MCP tools
+- Run `npm run test` for headless testing
+- Run `npm run test:ui` for interactive testing with browser UI
+- Tests should cover critical user flows and page functionality
 
 ## Deployment
 
