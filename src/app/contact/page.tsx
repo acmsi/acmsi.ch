@@ -358,9 +358,12 @@ export default async function ContactPage() {
                 href="https://maps.app.goo.gl/3n9PYEvDBE7LHkpT9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
+                className="text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
               >
-                <MapPin className="w-5 h-5 mr-2" weight="duotone" />
+                <MapPin
+                  className="w-5 h-5 mr-2 inline-block"
+                  weight="duotone"
+                />
                 Mosquée Nur - Rue de la Clef 45, 2610 Saint-Imier, Suisse
               </a>
             </div>

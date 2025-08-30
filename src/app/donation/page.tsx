@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Mosque,
   ChalkboardTeacher,
@@ -9,6 +10,7 @@ import {
   ArrowRight,
   Users,
   Shield,
+  QrCode,
 } from '@phosphor-icons/react/dist/ssr'
 import { Donation } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner'
@@ -59,7 +61,7 @@ export default async function DonationPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 *:bg-gray-50 *:p-6 *:rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 *:bg-gray-50 *:p-6 *:rounded-lg">
             <CardKeyPoint
               icon={<Mosque className="w-8 h-8" weight="duotone" />}
               title="Entretien de la mosquée"
@@ -110,13 +112,13 @@ export default async function DonationPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <div className="flex items-start space-x-6">
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Shield className="w-8 h-8 text-teal-600" weight="duotone" />
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold mb-3 text-teal-900">
+                <h3 className="text-xl text-center sm:text-left font-semibold mb-3 text-teal-900">
                   Cotisation annuelle : {formatAmount(360)} minimum par foyer
                 </h3>
                 <p className="text-gray-700 mb-4">
@@ -125,11 +127,93 @@ export default async function DonationPage() {
                   tous nos services communautaires.
                 </p>
                 <div className="bg-teal-50 p-4 rounded-lg">
-                  <p className="text-sm text-teal-800">
-                    <strong>Avantages inclus :</strong> Participation aux
-                    décisions de l&apos;association, accès prioritaire aux
-                    événements, et services communautaires dédiés aux membres.
+                  <p className="text-sm text-teal-800 mb-3">
+                    <strong>Avantages inclus :</strong>
                   </p>
+                  <ul className="text-sm text-teal-800 space-y-1 list-disc list-inside">
+                    <li>
+                      Assurance communautaire pour frais d&apos;enterrement
+                      (rapatriement, etc.)
+                    </li>
+                    <li>
+                      Possibilité de louer la salle cafétéria de la mosquée pour
+                      mariages, enterrements, iftars et autres événements
+                    </li>
+                    <li>Services communautaires dédiés aux membres</li>
+                  </ul>
+                </div>
+
+                <div className="mt-4 space-y-2">
+                  <a
+                    href="https://pay.raisenow.io/xthpj"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center bg-white text-teal-600 border-teal-600 px-4 py-3 rounded-lg font-medium hover:bg-teal-600 hover:text-white transition-colors border border-teal-600"
+                  >
+                    <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
+                    Payer en ligne
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
+
+                  <div className="text-center">
+                    <span className="text-sm text-gray-500 font-medium">
+                      – OU –
+                    </span>
+                  </div>
+
+                  <details className="bg-white border border-teal-200 rounded-lg">
+                    <summary className="px-4 py-3 cursor-pointer hover:bg-teal-50 rounded-lg flex items-center justify-between">
+                      <div className="flex items-center">
+                        <QrCode
+                          className="w-5 h-5 text-teal-600 mr-2"
+                          weight="duotone"
+                        />
+                        <span className="font-medium text-teal-900">
+                          Voir QR Code
+                        </span>
+                      </div>
+                      <svg
+                        className="w-4 h-4 text-teal-600 transform transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </summary>
+                    <div className="px-4 pb-4 border-t border-teal-100">
+                      <p className="text-sm text-gray-600 mb-3 mt-3">
+                        Scannez ce QR code avec votre application bancaire pour
+                        payer directement votre cotisation annuelle de{' '}
+                        {formatAmount(360)}.
+                      </p>
+                      <div className="flex justify-center">
+                        <div className="bg-white p-4 rounded-lg shadow-sm border">
+                          {/* Mobile: Square format */}
+                          <Image
+                            src="/pay_plus_square_white_FR.svg"
+                            alt="QR Code pour paiement adhésion ACMSI"
+                            width={200}
+                            height={200}
+                            className="max-w-full sm:hidden"
+                          />
+                          {/* Desktop: Landscape format */}
+                          <Image
+                            src="/pay_plus_landscape_white_FR.svg"
+                            alt="QR Code pour paiement adhésion ACMSI"
+                            width={500}
+                            height={180}
+                            className="max-w-full hidden sm:block"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </details>
                 </div>
               </div>
             </div>
@@ -138,7 +222,7 @@ export default async function DonationPage() {
           <div className="text-center mt-6">
             <Link
               href="/contact"
-              className="inline-flex items-center bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
+              className="inline-flex w-full sm:w-auto items-center justify-center bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
             >
               Devenir membre
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -160,7 +244,7 @@ export default async function DonationPage() {
 
           <div className="space-y-8">
             {/* Bank Transfer */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                   <CreditCard
@@ -198,7 +282,7 @@ export default async function DonationPage() {
             </div>
 
             {/* Cash Donation */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                   <Donation
@@ -222,7 +306,7 @@ export default async function DonationPage() {
             </div>
 
             {/* Zakat */}
-            <div className="bg-white p-8 rounded-lg shadow-sm border-2 border-gray-200">
+            <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-gray-200">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                   <HandHeart

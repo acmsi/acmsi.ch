@@ -33,7 +33,8 @@ export default function ProjectBanner({
                 </h3>
               </div>
               <p className="text-green-700 mb-3 text-sm">
-                Levée de fonds pour l&apos;acquisition et l&apos;aménagement de la mosquée
+                Levée de fonds pour l&apos;acquisition et l&apos;aménagement de
+                la mosquée
               </p>
 
               {showProgress && (
@@ -111,7 +112,7 @@ export default function ProjectBanner({
 
             <Link
               href="/projet-xhamia-nur"
-              className="inline-flex items-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="inline-flex w-full sm:w-auto items-center justify-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
             >
               Découvrir le projet
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -125,14 +126,14 @@ export default function ProjectBanner({
   return (
     <section className="py-12 bg-gradient-to-r from-green-50 to-green-100">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-start space-x-4">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div className="flex-shrink-0">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
               <Mosque className="w-8 h-8 text-green-600" weight="duotone" />
             </div>
           </div>
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-green-900 mb-3">
+            <h2 className="text-2xl font-bold text-green-900 mb-3 text-center sm:text-left">
               Projet Xhamia Nur
             </h2>
             <p className="text-lg text-green-800 mb-4">
@@ -166,13 +167,15 @@ export default function ProjectBanner({
               </div>
             )}
 
-            <Link
-              href="/projet-xhamia-nur"
-              className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
-            >
-              En savoir plus sur le projet
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
+            <div className="flex flex-col sm:items-center">
+              <Link
+                href="/projet-xhamia-nur"
+                className="inline-flex items-center justify-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              >
+                En savoir plus sur le projet
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
