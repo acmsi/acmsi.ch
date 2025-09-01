@@ -44,9 +44,9 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   return (
-    <div className="bg-white">
+    <div>
       {/* Breadcrumb */}
-      <section className="py-8 bg-white border-b border-gray-200">
+      <section className="py-8 bg-white/70 border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm text-gray-600">
             <Link
@@ -62,7 +62,7 @@ export default async function ArticlePage({ params }: Props) {
       </section>
 
       {/* Article Header */}
-      <section className="py-16">
+      <section className="py-16 bg-linear-to-b from-white/60 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center text-sm text-gray-600 mb-4">
