@@ -57,9 +57,9 @@ export default async function SousProjetPage({ params }: Props) {
   }
 
   return (
-    <div className="bg-white">
+    <div>
       {/* Breadcrumb */}
-      <section className="py-8 bg-white border-b border-gray-200">
+      <section className="py-8 bg-white/70 border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center space-x-2 text-sm text-gray-600">
             <Link
@@ -75,7 +75,7 @@ export default async function SousProjetPage({ params }: Props) {
       </section>
 
       {/* En-tête du sous-projet */}
-      <section className="py-16 bg-nur-cream-50 border-b border-nur-cream-300">
+      <section className="py-16 bg-nur-cream-50/80 border-b border-nur-cream-300">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-4">

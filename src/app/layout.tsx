@@ -47,8 +47,14 @@ export default function RootLayout({
           async
         ></script>
       </head>
-      <body className="bg-white antialiased font-sans">
-        <header className="bg-white shadow-sm border-b border-gray-200">
+      <body
+        className="antialiased font-sans islamic-pattern islamic-pattern-sm md:islamic-pattern-md "
+        style={{
+          '--pattern-background-color': 'white',
+          '--pattern-foreground-color': 'var(--color-nur-cream-200)',
+        }}
+      >
+        <header className="bg-white/70 shadow-sm border-b border-gray-200">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">

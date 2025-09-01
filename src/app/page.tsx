@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const projectData = await getProjectSummary()
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Section */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 bg-linear-to-b from-white/20 to-white/80 lg:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div className="text-center relative z-10">
             <h1 className="text-4xl lg:text-6xl font-bold mb-3">
               Bienvenue à la Mosquée Nur
             </h1>

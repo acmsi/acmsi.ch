@@ -22,9 +22,9 @@ export default async function ContactPage() {
   const projectData = await getProjectSummary()
 
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Section */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-linear-to-b from-white/20 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold mb-3">
@@ -214,7 +214,7 @@ export default async function ContactPage() {
       </section>
 
       {/* Parking Information Section */}
-      <section id="parking-info" className="py-16 bg-gray-900 text-white">
+      <section id="parking-info" className="py-16 bg-gray-900/92 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-9">
             <h2 className="text-3xl font-bold mb-4 text-white">
