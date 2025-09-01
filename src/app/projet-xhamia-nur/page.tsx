@@ -49,9 +49,9 @@ export default async function ProjetXhamiaNurPage() {
     projectData?.derniere_maj_globale || new Date().toISOString()
 
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Section - Urgent */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-green-50 to-green-100">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-green-100/80 to-green-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center mb-4">
@@ -167,7 +167,7 @@ export default async function ProjetXhamiaNurPage() {
       </section>
 
       {/* Le Projet */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-linear-to-b from-gray-50/90 via-gray-50/60 to-gray-50/90">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">

@@ -69,7 +69,7 @@ export default function ProjectBanner({
 
   if (variant === 'full') {
     return (
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-green-50 to-green-100">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-green-100/80 to-green-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center mb-4">

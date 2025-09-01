@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 export default async function DonationPage() {
   const projectData = await getProjectSummary()
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Section */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-linear-to-b from-white/20 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold mb-3">
@@ -98,7 +98,7 @@ export default async function DonationPage() {
       </section>
 
       {/* Adhesion Membres */}
-      <section className="py-16 bg-teal-50 border-t-4 border-teal-500">
+      <section className="py-16 bg-linear-to-b from-teal-100/90 via-teal-100/70 to-teal-50 border-t-4 border-teal-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
