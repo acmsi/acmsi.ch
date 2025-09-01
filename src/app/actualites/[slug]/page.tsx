@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { getNewsArticle, getAllNews } from '@/lib/content'
+import { getNewsArticle, getAllNews, getProjectSummary } from '@/lib/content'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { CaretLeft } from '@phosphor-icons/react/dist/ssr'
+import ProjectBanner from '@/components/project-banner'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -36,6 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
   const article = await getNewsArticle(slug)
+  const projectData = await getProjectSummary()
 
   if (!article) {
     notFound()
@@ -141,6 +143,15 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="thin"
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
     </div>
   )
 }

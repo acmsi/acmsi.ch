@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { UsersThree, BookOpen, Heart } from '@phosphor-icons/react/dist/ssr'
 import { Ruku } from '@/components/icons'
+import ProjectBanner from '@/components/project-banner'
+import { getProjectSummary } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'À propos - ACMSI',
@@ -9,7 +11,9 @@ export const metadata: Metadata = {
     "Découvrez l'histoire, la mission et les valeurs de l'Association Culturelle Musulmane de Saint-Imier et de la mosquée Nur.",
 }
 
-export default function AProposPage() {
+export default async function AProposPage() {
+  const projectData = await getProjectSummary()
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -143,6 +147,14 @@ export default function AProposPage() {
         </div>
       </section>
 
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="thin"
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
       {/* Contact CTA */}
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

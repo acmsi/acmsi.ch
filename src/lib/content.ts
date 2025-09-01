@@ -173,9 +173,7 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
 
     // Calculate totals
     const total_objectif = projet_global.objectif
-    const total_leve =
-      projet_global.montant_leve +
-      sous_projets.reduce((sum, p) => sum + p.montant_leve, 0)
+    const total_leve = projet_global.montant_leve
     const pourcentage_global =
       total_objectif > 0
         ? Math.round((total_leve / total_objectif) * 100 * 10) / 10

@@ -9,6 +9,8 @@ import {
   LetterCircleP,
 } from '@phosphor-icons/react/dist/ssr'
 import MosqueLocationMap from '@/components/mosque-location-map'
+import ProjectBanner from '@/components/project-banner'
+import { getProjectSummary } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Contact - ACMSI',
@@ -16,7 +18,9 @@ export const metadata: Metadata = {
     "Contactez l'Association Culturelle Musulmane de Saint-Imier. Adresse, horaires et informations pratiques.",
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const projectData = await getProjectSummary()
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -48,7 +52,7 @@ export default function ContactPage() {
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <MapPin
-                      className="w-6 h-6 text-gray-600"
+                      className="w-8 h-8 text-gray-600"
                       weight="duotone"
                     />
                   </div>
@@ -69,7 +73,7 @@ export default function ContactPage() {
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <Envelope
-                      className="w-6 h-6 text-gray-600"
+                      className="w-8 h-8 text-gray-600"
                       weight="duotone"
                     />
                   </div>
@@ -90,7 +94,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <Phone className="w-6 h-6 text-gray-600" weight="duotone" />
+                    <Phone className="w-8 h-8 text-gray-600" weight="duotone" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold leading-tight">
@@ -110,7 +114,7 @@ export default function ContactPage() {
                 <div className="flex items-start">
                   <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                     <WhatsappLogo
-                      className="w-6 h-6 text-gray-600"
+                      className="w-8 h-8 text-gray-600"
                       weight="duotone"
                     />
                   </div>
@@ -223,12 +227,12 @@ export default function ContactPage() {
             <div className="w-16 h-1 bg-teal-500 mx-auto rounded-full"></div>
           </div>
 
-          <div className="bg-white text-gray-900 rounded-lg shadow-lg p-8">
+          <div className="bg-white text-gray-900 rounded-lg shadow-lg p-6 sm:p-8">
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <CarSimple
-                    className="w-5 h-5 text-gray-600"
+                    className="w-6 h-6 text-orange-700"
                     weight="duotone"
                   />
                 </div>
@@ -261,7 +265,7 @@ export default function ContactPage() {
 
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <Heart className="w-5 h-5 text-gray-600" weight="duotone" />
+                  <Heart className="w-6 h-6 text-green-600" weight="duotone" />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-2 mt-2">
@@ -295,7 +299,7 @@ export default function ContactPage() {
               <div className="flex items-start space-x-4">
                 <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <LetterCircleP
-                    className="w-5 h-5 text-gray-600"
+                    className="w-6 h-6 text-blue-600"
                     weight="duotone"
                   />
                 </div>
@@ -354,15 +358,27 @@ export default function ContactPage() {
                 href="https://maps.app.goo.gl/3n9PYEvDBE7LHkpT9"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
+                className="text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
               >
-                <MapPin className="w-5 h-5 mr-2" weight="duotone" />
+                <MapPin
+                  className="w-5 h-5 mr-2 inline-block"
+                  weight="duotone"
+                />
                 Mosquée Nur - Rue de la Clef 45, 2610 Saint-Imier, Suisse
               </a>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="thin"
+        showProgress={true}
+        totalAmount={projectData?.total_objectif || 1185500}
+        raisedAmount={projectData?.total_leve || 0}
+        percentage={projectData?.pourcentage_global || 0}
+      />
     </div>
   )
 }

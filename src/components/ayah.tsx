@@ -38,11 +38,11 @@ export default function Ayah({
 
       {/* Traduction française */}
       <div className="text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
-        <p className="italic">« {translationText} »</p>
+        <p className="italic font-medium">« {translationText} »</p>
       </div>
 
       {/* Référence */}
-      <div className="text-sm font-medium opacity-75">
+      <div className="text-sm font-medium">
         <p>— {reference}</p>
       </div>
     </div>

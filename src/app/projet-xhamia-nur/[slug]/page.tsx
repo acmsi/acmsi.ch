@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Calendar, Target } from '@phosphor-icons/react/dist/ssr'
+import { Calendar, Target } from '@phosphor-icons/react/dist/ssr'
 import {
   getBudgetProject,
   getProjectSummary,
@@ -13,6 +13,7 @@ import {
 import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
+import ProjectBanner from '@/components/project-banner'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
 type Props = {
@@ -193,7 +194,7 @@ export default async function SousProjetPage({ params }: Props) {
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
             <div className="flex items-start space-x-3">
               <Target
-                className="w-6 h-6 text-green-800 flex-shrink-0 mt-1"
+                className="w-8 h-8 text-green-800 flex-shrink-0 mt-1"
                 weight="duotone"
               />
               <div>
@@ -209,47 +210,44 @@ export default async function SousProjetPage({ params }: Props) {
                 {projectSummary && (
                   <div className="text-sm text-green-700">
                     <p>
-                      <strong>Projet global :</strong>{' '}
-                      {formatAmount(projectSummary.total_leve)} sur{' '}
-                      {formatAmount(projectSummary.total_objectif)} (
-                      {formatPercentage(projectSummary.pourcentage_global)})
+                      <strong>Montant alloué à ce sous-projet :</strong>{' '}
+                      {formatAmount(project.montant_leve)} (
+                      {formatPercentage(
+                        (project.montant_leve / projectSummary.total_leve) *
+                          100,
+                      )}{' '}
+                      du montant total collecté,{' '}
+                      {formatPercentage(
+                        (project.montant_leve / projectSummary.total_objectif) *
+                          100,
+                      )}{' '}
+                      du budget global)
                     </p>
                   </div>
                 )}
               </div>
             </div>
+
+            <div className="text-center mt-6">
+              <Link
+                href="/projet-xhamia-nur#faire-un-don"
+                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              >
+                🤲 Faire un don
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Appel à contribution */}
-      <section className="py-16 bg-green-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-4">
-            Soutenez le Projet Xhamia Nur
-          </h2>
-          <p className="text-lg mb-8 opacity-90">
-            Vos contributions permettent de réaliser tous les aspects du projet
-            selon les besoins réels.
-          </p>
-          <div className="flex justify-between items-center">
-            <Link
-              href="/projet-xhamia-nur"
-              className="bg-white text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors inline-flex items-center"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" weight="bold" />
-              Retour au projet principal
-            </Link>
-
-            <Link
-              href="/projet-xhamia-nur#faire-un-don"
-              className="text-white font-medium hover:text-green-100 transition-colors"
-            >
-              🤲 Faire un don
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="compact"
+        showProgress={true}
+        totalAmount={projectSummary?.total_objectif || 1185500}
+        raisedAmount={projectSummary?.total_leve || 0}
+        percentage={projectSummary?.pourcentage_global || 0}
+      />
     </div>
   )
 }
