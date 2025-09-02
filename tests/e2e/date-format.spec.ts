@@ -1,8 +1,4 @@
 import { test, expect } from '@playwright/test'
-import {
-  BUDGET_PROJECT_FIXTURES,
-  DATE_FORMAT_TEST_CASES,
-} from '../fixtures/test-data'
 
 /**
  * End-to-end tests for date format functionality
@@ -51,7 +47,6 @@ test.describe('Date Format Display', () => {
 
     if ((await projectCards.count()) > 0) {
       // Check if any dates are displayed in quarter format (Q1, Q2, etc.)
-      const quarterFormatRegex = /Q[1-4]\s+\d{4}/
       const pageContent = await page.textContent('body')
 
       // If we find quarter format dates, that's good - it means default is working

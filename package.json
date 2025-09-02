@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "export": "next build && next export",
     "test:unit": "node --test",
     "test:e2e": "playwright test",

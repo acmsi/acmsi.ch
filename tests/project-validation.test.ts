@@ -73,17 +73,6 @@ test('Project Validation and Edge Cases', async t => {
       pourcentage_completion: 150,
     }
 
-    const exactlyFundedProject: BudgetProject = {
-      slug: 'exactly-funded',
-      type: 'sous_projet',
-      nom: 'Exactly Funded Project',
-      objectif: 10000,
-      montant_leve: 10000, // Exactly 100%
-      derniere_maj: '2025-01-15',
-      content: 'Test content',
-      pourcentage_completion: 100,
-    }
-
     // Verify extreme percentages are calculated correctly
     const overFundedPercentage = Math.round((15000 / 10000) * 100 * 10) / 10
     assert.strictEqual(overFundedPercentage, 150.0)
