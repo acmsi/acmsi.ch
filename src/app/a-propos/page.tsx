@@ -67,8 +67,8 @@ export default async function AProposPage() {
               <p>
                 L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI)
                 a pour mission de faciliter la pratique religieuse et de
-                promouvoir l&rsquo;excellence dans la pratique religieuse
-                et les relations humaines.
+                promouvoir l&rsquo;excellence dans la pratique religieuse et les
+                relations humaines.
               </p>
               <p>
                 Nous nous efforçons de créer un environnement accueillant où
