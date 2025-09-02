@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { Route } from 'next'
 import Link from 'next/link'
 import {
   Mosque,
@@ -290,7 +291,7 @@ export default async function ProjetXhamiaNurPage() {
                     contactez-nous pour les détails.
                   </p>
                   <Link
-                    href="/documents/flyer appel dons mosquée FR.pdf"
+                    href={'/documents/flyer appel dons mosquée FR.pdf' as Route}
                     target="_blank"
                     className="text-green-600 hover:text-green-700 font-medium"
                   >
@@ -316,7 +317,7 @@ export default async function ProjetXhamiaNurPage() {
                     rapide et sécurisé.
                   </p>
                   <Link
-                    href="/documents/flyer appel dons mosquée FR.pdf"
+                    href={'/documents/flyer appel dons mosquée FR.pdf' as Route}
                     target="_blank"
                     className="text-green-600 hover:text-green-700 font-medium"
                   >
