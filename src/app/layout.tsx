@@ -5,6 +5,7 @@ import {
   InstagramLogo,
   WhatsappLogo,
 } from '@phosphor-icons/react/dist/ssr'
+import MobileMenu from '@/components/mobile-menu'
 import './global.css'
 
 export const metadata: Metadata = {
@@ -76,6 +77,7 @@ export default function RootLayout({
                   <Link href="/contact">Contact</Link>
                 </div>
               </div>
+              <MobileMenu />
             </div>
           </nav>
         </header>
