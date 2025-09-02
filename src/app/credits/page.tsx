@@ -52,7 +52,7 @@ export default function CreditsPage() {
                 sans que leur propre récompense ne soit diminuée. &raquo;
               </p>
               <footer className="text-sm text-gray-700 mt-4 leading-4 text-balance">
-                — Hadith rapporté par Abu Mas'ud Al-Ansari (رضي الله عنه) •
+                — Hadith rapporté par Abu Mas&apos;ud Al-Ansari (رضي الله عنه) •
                 Sahih Muslim #1893 – Prophète Muhammad{' '}
                 <span className="text-2xl">ﷺ</span>
               </footer>

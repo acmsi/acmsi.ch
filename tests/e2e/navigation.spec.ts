@@ -9,7 +9,6 @@ const NAVIGATION_LINKS = [
   { text: 'Accueil', href: '/' },
   { text: 'À propos', href: '/a-propos' },
   { text: 'Actualités', href: '/actualites' },
-  { text: 'Projet Xhamia Nur', href: '/projet-xhamia-nur' },
   { text: 'Donation', href: '/donation' },
   { text: 'Contact', href: '/contact' },
 ]
