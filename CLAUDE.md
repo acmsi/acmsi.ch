@@ -16,15 +16,23 @@ with content management capabilities.
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint (⚠️ deprecated in Next.js 16)
 - `npm run export` - Build and export static files
-- `npm run test` - Run Playwright tests
-- `npm run test:ui` - Run Playwright tests with UI
+- `npm run test` - Run all tests (unit + e2e)
+- `npm run test:unit` - Run unit tests
+- `npm run test:e2e` - Run Playwright e2e tests
+- `npm run test:e2e:ui` - Run Playwright tests with UI
+- `npm run test:e2e:debug` - Run Playwright tests in debug mode
+- `npm run test:e2e:headed` - Run Playwright tests in headed mode
+- `npm run test:e2e:report` - Show Playwright test report
 - `npm run cms-proxy` - Start Decap CMS local proxy server for content editing
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
 
 ## Code Quality
 
 ### Linting and Formatting
 
 - **ESLint** configured with Next.js recommended rules
+- **Prettier** for code formatting with custom configuration
 - **TypeScript** strict mode enabled
 
 ### Code Standards
@@ -76,15 +84,16 @@ with content management capabilities.
 ### Page Structure
 
 ```
-src/app/
-├── layout.tsx          # Root layout with navigation and footer
-├── page.tsx           # Home page
-├── a-propos/          # About page
-├── actualites/        # News section
-│   ├── page.tsx       # News listing
-│   └── [slug]/        # Individual news articles
-├── contact/           # Contact page
-└── donation/          # Donation page
+/                               # Home page
+├── /a-propos                   # About page
+├── /actualites                 # News section
+│   └── /actualites/[slug]      # Individual news articles
+├── /contact                    # Contact page
+├── /credits                    # Credits & acknowledgments page
+├── /donation                   # Donation page
+└── /projet-xhamia-nur          # Mosque project section
+    ├── /projet-xhamia-nur/[slug]        # Dynamic project content
+    └── /projet-xhamia-nur/realisations  # Project achievements
 ```
 
 ## Testing
