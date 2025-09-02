@@ -5,7 +5,7 @@ author: 'ACMSI'
 featured_image: ''
 excerpt:
   "Nous sommes heureux de vous présenter le nouveau site web de l'Association
-  Culturelle Musulmane de Saint-Imier, conçu avec les valeurs d'Ihsan."
+  Culturelle Musulmane de Saint-Imier, conçu avec soin pour notre communauté."
 published: true
 tags:
   - 'annonce'
@@ -19,7 +19,7 @@ Assalamu alaykum wa rahmatullahi wa barakatuh,
 
 Nous sommes ravis de vous présenter le nouveau site web de l'Association
 Culturelle Musulmane de Saint-Imier (ACMSI). Ce site a été développé avec soin,
-en gardant à l'esprit les valeurs d'**Ihsan** qui guident toutes nos actions.
+en gardant à l'esprit l'excellence et la bienveillance qui guident toutes nos actions.
 
 ## Un site pensé pour la communauté
 

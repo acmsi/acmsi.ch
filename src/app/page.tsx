@@ -66,8 +66,8 @@ export default async function HomePage() {
               <p>
                 L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI)
                 a pour mission de servir la communauté musulmane locale et de
-                promouvoir les valeurs islamiques d&rsquo;<strong>Ihsan</strong>{' '}
-                - l&rsquo;excellence dans l&rsquo;adoration et la conduite.
+                promouvoir l&rsquo;excellence dans la pratique religieuse et
+                les relations humaines.
               </p>
             </div>
           </div>

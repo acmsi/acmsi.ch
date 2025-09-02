@@ -67,9 +67,8 @@ export default async function AProposPage() {
               <p>
                 L&rsquo;Association Culturelle Musulmane de Saint-Imier (ACMSI)
                 a pour mission de faciliter la pratique religieuse et de
-                promouvoir les valeurs islamiques d&rsquo;
-                <strong>Ihsan</strong> - l&rsquo;excellence dans
-                l&rsquo;adoration et la conduite.
+                promouvoir l&rsquo;excellence dans la pratique religieuse
+                et les relations humaines.
               </p>
               <p>
                 Nous nous efforçons de créer un environnement accueillant où
@@ -95,13 +94,13 @@ export default async function AProposPage() {
                 <Ruku className="w-8 h-8 text-gray-600" weight="duotone" />
               </div>
               <h3 className="text-2xl font-semibold mb-4">
-                Ihsan - L&rsquo;Excellence
+                Excellence Spirituelle
               </h3>
               <p>
-                L&rsquo;<strong>Ihsan</strong> est au cœur de tout ce que nous
-                faisons. C&rsquo;est l&rsquo;excellence dans l&rsquo;adoration
-                d&rsquo;Allah et dans nos relations avec autrui, comme si nous
-                Le voyions, car même si nous ne Le voyons pas, Lui nous voit.
+                L&rsquo;excellence spirituelle est au cœur de tout ce que nous
+                faisons. Nous nous efforçons d&rsquo;atteindre la perfection
+                dans l&rsquo;adoration d&rsquo;Allah et dans nos relations avec
+                autrui, en agissant avec conscience et dévotion.
               </p>
             </div>
 
