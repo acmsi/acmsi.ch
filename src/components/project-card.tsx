@@ -42,7 +42,7 @@ export default function ProjectCard({
             </span>
           ) : (
             <ProjectStatus
-              status={isCompleted ? 'termine' : 'active'}
+              status={isCompleted ? 'termine' : 'en_cours'}
               priority={project.priorite}
               className="flex-shrink-0"
             />
