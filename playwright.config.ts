@@ -48,7 +48,13 @@ export default defineConfig({
     },
   ],
 
-  /* Assumes dev server is already running - no webServer config needed */
+  /* Run your local dev server before starting the tests */
+  webServer: {
+    command: 'npm run build && npm run start',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+    timeout: 60 * 1000, // Reduced timeout
+  },
 
   /* Faster timeouts */
   timeout: 15 * 1000,
