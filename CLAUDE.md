@@ -104,6 +104,41 @@ with content management capabilities.
 - Run `npm run test:ui` for interactive testing with browser UI
 - Tests should cover critical user flows and page functionality
 
+## Basic Authentication (Construction Mode)
+
+The website includes basic authentication to protect content during committee review:
+
+### Local Development
+
+- Copy `.env.local.example` to `.env.local`
+- Default credentials: `acmsi` / `comite2024`
+- Change credentials in `.env.local` as needed
+
+### Production (Netlify)
+
+Set these environment variables in your Netlify dashboard:
+
+- `NEXT_PUBLIC_AUTH_USERNAME`: Your desired username
+- `NEXT_PUBLIC_AUTH_PASSWORD`: Your desired password
+
+### Features
+
+- Session expires after 24 hours
+- Construction banner visible to authenticated users
+- No-index meta tags prevent search engine indexing
+- Logout button in bottom-right corner
+- Mobile-friendly login interface
+- Automatic bypass in development, test, and CI environments (`NODE_ENV=development/test`, `CI=true`, or `NEXT_PUBLIC_BYPASS_AUTH=true`)
+
+### Removing Authentication
+
+When ready to make the site public:
+
+1. Remove `<AuthGuard>` wrapper from `src/app/layout.tsx`
+2. Remove `<ConstructionBanner />` component
+3. Change robots meta tags back to `index: true, follow: true`
+4. Remove the environment variables from Netlify
+
 ## Deployment
 
 - Static export ready for deployment on any static hosting
