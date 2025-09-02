@@ -100,7 +100,10 @@ export default async function SousProjetPage({ params }: Props) {
                     ✓ Accompli
                   </span>
                 ) : (
-                  <ProjectStatus status="active" priority={project.priorite} />
+                  <ProjectStatus
+                    status="en_cours"
+                    priority={project.priorite}
+                  />
                 )}
               </div>
 

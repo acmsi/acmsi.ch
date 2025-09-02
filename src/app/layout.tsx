@@ -49,10 +49,12 @@ export default function RootLayout({
       </head>
       <body
         className="antialiased font-sans islamic-pattern islamic-pattern-sm md:islamic-pattern-md "
-        style={{
-          '--pattern-background-color': 'white',
-          '--pattern-foreground-color': 'var(--color-nur-cream-200)',
-        }}
+        style={
+          {
+            '--pattern-background-color': 'white',
+            '--pattern-foreground-color': 'var(--color-nur-cream-200)',
+          } as React.CSSProperties
+        }
       >
         <header className="bg-white/70 shadow-sm border-b border-gray-200">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
