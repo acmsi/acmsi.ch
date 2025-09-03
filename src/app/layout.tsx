@@ -100,7 +100,7 @@ export default function RootLayout({
                   </p>
                   <div className="flex space-x-3 mt-4">
                     <a
-                      href="https://www.instagram.com/acmsi.ch/"
+                      href="https://www.instagram.com/xhamia_nur_stimier"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-300 hover:text-teal-300 transition-colors"

@@ -34,8 +34,10 @@ test('Footer Social Media Icons', async t => {
   await t.test('contains Instagram link with correct attributes', () => {
     // Check for Instagram link
     assert.ok(
-      layoutContent.includes('href="https://www.instagram.com/acmsi.ch/"'),
-      'Should contain Instagram link to acmsi.ch profile',
+      layoutContent.includes(
+        'href="https://www.instagram.com/xhamia_nur_stimier"',
+      ),
+      'Should contain Instagram link to xhamia_nur_stimier profile',
     )
 
     // Check for proper external link attributes
