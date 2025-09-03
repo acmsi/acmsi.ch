@@ -243,6 +243,37 @@ export default async function DonationPage() {
           </div>
 
           <div className="space-y-8">
+            {/* Twint via RaiseNow */}
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
+                  <CreditCard
+                    className="w-8 h-8 text-teal-600"
+                    weight="duotone"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-3">
+                    Twint (via RaiseNow)
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Faites un don sécurisé de n&rsquo;importe quel montant via
+                    Twint grâce à RaiseNow
+                  </p>
+                  <a
+                    href="https://pay.raisenow.io/jkyys"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
+                  >
+                    <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
+                    Faire un don via Twint
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
             {/* Bank Transfer */}
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-start space-x-4">

@@ -285,18 +285,21 @@ export default async function ProjetXhamiaNurPage() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">Twint</h3>
+                  <h3 className="text-xl font-semibold mb-3">
+                    Twint (via RaiseNow)
+                  </h3>
                   <p className="text-gray-600 mb-3">
-                    Scannez le QR code Twint disponible sur notre flyer ou
-                    contactez-nous pour les détails.
+                    Faites un don sécurisé de n&rsquo;importe quel montant via
+                    Twint grâce à RaiseNow.
                   </p>
-                  <Link
-                    href={'/documents/flyer appel dons mosquée FR.pdf' as Route}
+                  <a
+                    href="https://pay.raisenow.io/jkyys"
                     target="_blank"
-                    className="text-green-600 hover:text-green-700 font-medium"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
                   >
-                    Voir le QR code Twint →
-                  </Link>
+                    Faire un don via Twint →
+                  </a>
                 </div>
               </div>
             </div>
