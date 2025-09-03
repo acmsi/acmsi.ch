@@ -349,16 +349,35 @@ export default function CreditsPage() {
               </h2>
               <p>
                 Dans l&apos;esprit de transparence et de partage qui a guidé ce
-                projet, le code source de ce site web sera bientôt disponible
-                sous licence open source. En attendant cette mise à disposition
-                publique, toute personne ou organisation souhaitant utiliser
-                notre code pour des projets similaires est invitée à nous
-                contacter.
+                projet, le code source de ce site web sera prochainement
+                disponible sur{' '}
+                <a
+                  href="https://github.com/acmsi/acmsi.ch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-nur-teal-600 hover:text-nur-teal-700 underline"
+                >
+                  GitHub
+                </a>{' '}
+                sous <strong>licence ISC</strong>, une licence open source
+                permissive qui permet l&apos;utilisation, la copie, la
+                modification et la distribution libre du code.
               </p>
               <p>
                 Nous croyons fermement que les outils développés pour servir les
                 communautés religieuses devraient être librement accessibles
                 pour le bénéfice de tous.
+              </p>
+              <p className="text-sm text-nur-navy-600">
+                <strong>Licence ISC</strong> :{' '}
+                <a
+                  href="https://opensource.org/license/isc-license-txt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-nur-teal-600 hover:text-nur-teal-700 underline"
+                >
+                  Voir le texte complet de la licence
+                </a>
               </p>
               <p className="text-sm text-nur-navy-600 font-medium">
                 Contact :{' '}

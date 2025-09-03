@@ -188,14 +188,23 @@ export default function RootLayout({
                 </div>
               </div>
               <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p className="text-gray-400">
-                  &copy; {new Date().getFullYear()} ACMSI. Tous droits réservés.{' '}
+                <p className="text-gray-500">
+                  &copy; {new Date().getFullYear()} ACMSI.{' '}
                   <Link
                     href="/credits"
                     className="text-gray-500 hover:text-gray-300 transition-colors text-sm"
                   >
                     Crédits
-                  </Link>
+                  </Link>{' '}
+                  <span className="text-gray-600">|</span>{' '}
+                  <a
+                    href="https://opensource.org/license/isc-license-txt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-300 transition-colors text-sm"
+                  >
+                    Licence ISC
+                  </a>
                 </p>
               </div>
             </div>
