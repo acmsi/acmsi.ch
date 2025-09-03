@@ -22,22 +22,12 @@ export default function ConstructionBanner() {
               </span>
               <span className="hidden md:inline">
                 Ce site est actuellement en cours de révision par le comité de
-                l&apos;association. Certaines informations peuvent être
-                temporairement indisponibles.
+                l&apos;association. De nombreuses informations sont fictives, à
+                titre d&apos;exemples, et sujettes à modifications.
               </span>
             </p>
           </div>
-          <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-            <div className="rounded-md shadow-sm">
-              <a
-                href="mailto:contact@acmsi.ch"
-                className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-amber-800 bg-amber-200 hover:bg-amber-300 transition-colors"
-              >
-                Nous contacter
-              </a>
-            </div>
-          </div>
-          <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-3">
+          <div className="order-2 flex-shrink-0 sm:order-2 sm:ml-3">
             <button
               type="button"
               onClick={() => setIsVisible(false)}
