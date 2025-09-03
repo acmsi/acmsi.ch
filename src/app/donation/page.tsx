@@ -188,8 +188,8 @@ export default async function DonationPage() {
                     </summary>
                     <div className="px-4 pb-4 border-t border-teal-100">
                       <p className="text-sm text-gray-600 mb-3 mt-3">
-                        Scannez ce QR code avec votre application bancaire pour
-                        payer directement votre cotisation annuelle de{' '}
+                        Scannez ce QR code avec votre appareil pour payer
+                        directement votre cotisation annuelle de{' '}
                         {formatAmount(360)}.
                       </p>
                       <div className="flex justify-center">
