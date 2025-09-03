@@ -20,10 +20,14 @@ test('Footer Social Media Icons', async t => {
 
   const layoutContent = fs.readFileSync(layoutPath, 'utf8')
 
-  await t.test('imports Instagram and WhatsApp icons from Phosphor', () => {
+  await t.test('imports social media icons from Phosphor', () => {
     assert.ok(
       layoutContent.includes('InstagramLogo'),
       'Should import InstagramLogo from Phosphor icons',
+    )
+    assert.ok(
+      layoutContent.includes('FacebookLogo'),
+      'Should import FacebookLogo from Phosphor icons',
     )
     assert.ok(
       layoutContent.includes('WhatsappLogo'),
@@ -51,14 +55,35 @@ test('Footer Social Media Icons', async t => {
     )
   })
 
-  await t.test('contains Instagram icon component', () => {
+  await t.test('contains Facebook link with correct attributes', () => {
+    // Check for Facebook link
+    assert.ok(
+      layoutContent.includes(
+        'href="https://www.facebook.com/share/1Diw8r8WrC/"',
+      ),
+      'Should contain Facebook link',
+    )
+
+    // Check for proper external link attributes
+    assert.ok(
+      layoutContent.includes('target="_blank"'),
+      'Facebook link should open in new tab',
+    )
+    assert.ok(
+      layoutContent.includes('rel="noopener noreferrer"'),
+      'Facebook link should have security attributes',
+    )
+  })
+
+  await t.test('contains social media icon components', () => {
     assert.ok(
       layoutContent.includes('<InstagramLogo'),
       'Should contain InstagramLogo component',
     )
-  })
-
-  await t.test('contains WhatsApp icon component', () => {
+    assert.ok(
+      layoutContent.includes('<FacebookLogo'),
+      'Should contain FacebookLogo component',
+    )
     assert.ok(
       layoutContent.includes('<WhatsappLogo'),
       'Should contain WhatsappLogo component',
@@ -66,22 +91,31 @@ test('Footer Social Media Icons', async t => {
   })
 
   await t.test('icons are properly sized', () => {
-    // Check that both icons have size attributes
+    // Check that all icons have size attributes
     const instagramSizeMatch = layoutContent.match(
       /<InstagramLogo[^>]*size=\{(\d+)\}/,
+    )
+    const facebookSizeMatch = layoutContent.match(
+      /<FacebookLogo[^>]*size=\{(\d+)\}/,
     )
     const whatsappSizeMatch = layoutContent.match(
       /<WhatsappLogo[^>]*size=\{(\d+)\}/,
     )
 
     assert.ok(instagramSizeMatch, 'Instagram icon should have a size attribute')
+    assert.ok(facebookSizeMatch, 'Facebook icon should have a size attribute')
     assert.ok(whatsappSizeMatch, 'WhatsApp icon should have a size attribute')
 
-    // Both icons should have the same size
+    // All icons should have the same size
     assert.strictEqual(
       instagramSizeMatch?.[1],
+      facebookSizeMatch?.[1],
+      'Instagram and Facebook icons should have the same size',
+    )
+    assert.strictEqual(
+      facebookSizeMatch?.[1],
       whatsappSizeMatch?.[1],
-      'Instagram and WhatsApp icons should have the same size',
+      'Facebook and WhatsApp icons should have the same size',
     )
   })
 

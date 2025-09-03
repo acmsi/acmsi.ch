@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {
   LetterCircleP,
   InstagramLogo,
+  FacebookLogo,
   WhatsappLogo,
 } from '@phosphor-icons/react/dist/ssr'
 import MobileMenu from '@/components/mobile-menu'
@@ -106,6 +107,14 @@ export default function RootLayout({
                       className="text-gray-300 hover:text-teal-300 transition-colors"
                     >
                       <InstagramLogo size={33} />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/share/1Diw8r8WrC/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-teal-300 transition-colors"
+                    >
+                      <FacebookLogo size={33} />
                     </a>
                     <div className="text-gray-500">
                       <WhatsappLogo size={33} />
