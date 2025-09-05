@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { getAllNews, getProjectSummary } from '@/lib/content'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Newspaper } from '@phosphor-icons/react/dist/ssr'
+import { Newspaper, X } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Actualités - ACMSI',
@@ -11,9 +12,25 @@ export const metadata: Metadata = {
     "Suivez les dernières actualités de l'Association Culturelle Musulmane de Saint-Imier et de la mosquée Nur.",
 }
 
-export default async function ActualitesPage() {
+export default async function ActualitesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag?: string }>
+}) {
   const newsArticles = await getAllNews()
   const projectData = await getProjectSummary()
+  const resolvedSearchParams = await searchParams
+  const selectedTag = resolvedSearchParams.tag
+
+  // Filter articles by tag if specified
+  const filteredArticles = selectedTag
+    ? newsArticles.filter(article => article.tags?.includes(selectedTag))
+    : newsArticles
+
+  // Get all unique tags from all articles for the filter UI
+  const allTags = Array.from(
+    new Set(newsArticles.flatMap(article => article.tags || [])),
+  ).sort()
 
   return (
     <div>
@@ -26,6 +43,15 @@ export default async function ActualitesPage() {
               Restez informés des dernières nouvelles de notre communauté, des
               événements à venir et des activités de la mosquée Nur.
             </p>
+
+            {/* Tag Filter */}
+            {allTags.length > 0 && (
+              <div className="mt-8">
+                <Suspense fallback={<div>Chargement des filtres...</div>}>
+                  <TagFilter tags={allTags} selectedTag={selectedTag} />
+                </Suspense>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -33,9 +59,33 @@ export default async function ActualitesPage() {
       {/* News Articles */}
       <section className="pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {newsArticles.length > 0 ? (
+          {/* Results summary */}
+          {selectedTag && (
+            <div className="mb-6">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <span>Filtré par tag:</span>
+                <span className="px-2 py-1 bg-teal-100 text-teal-700 rounded-full font-medium">
+                  {selectedTag}
+                </span>
+                <Link
+                  href="/actualites"
+                  className="flex items-center gap-1 text-teal-600 hover:text-teal-700 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Effacer le filtre
+                </Link>
+              </div>
+              <p className="text-sm text-gray-500 mt-1">
+                {filteredArticles.length} article
+                {filteredArticles.length !== 1 ? 's' : ''} trouvé
+                {filteredArticles.length !== 1 ? 's' : ''}
+              </p>
+            </div>
+          )}
+
+          {filteredArticles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {newsArticles.map(article => (
+              {filteredArticles.map(article => (
                 <article
                   key={article.slug}
                   className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200"
@@ -79,12 +129,17 @@ export default async function ActualitesPage() {
                     {article.tags && article.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-4">
                         {article.tags.map(tag => (
-                          <span
+                          <Link
                             key={tag}
-                            className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                            href={`/actualites?tag=${encodeURIComponent(tag)}`}
+                            className={`px-2 py-1 text-xs rounded-full transition-colors ${
+                              selectedTag === tag
+                                ? 'bg-teal-100 text-teal-700 font-medium'
+                                : 'bg-gray-100 text-gray-600 hover:bg-teal-50 hover:text-teal-600'
+                            }`}
                           >
                             {tag}
-                          </span>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -105,11 +160,25 @@ export default async function ActualitesPage() {
                 <Newspaper className="w-8 h-8 text-gray-500" weight="duotone" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Aucune actualité pour le moment
+                {selectedTag
+                  ? `Aucune actualité avec le tag "${selectedTag}"`
+                  : 'Aucune actualité pour le moment'}
               </h3>
               <p className="mb-6">
-                Les actualités seront bientôt disponibles. Revenez nous voir
-                prochainement !
+                {selectedTag ? (
+                  <>
+                    Essayez de{' '}
+                    <Link
+                      href="/actualites"
+                      className="text-teal-600 hover:text-teal-700 underline"
+                    >
+                      supprimer le filtre
+                    </Link>{' '}
+                    pour voir toutes les actualités.
+                  </>
+                ) : (
+                  'Les actualités seront bientôt disponibles. Revenez nous voir prochainement !'
+                )}
               </p>
             </div>
           )}
@@ -124,6 +193,43 @@ export default async function ActualitesPage() {
         raisedAmount={projectData?.total_leve || 0}
         percentage={projectData?.pourcentage_global || 0}
       />
+    </div>
+  )
+}
+
+// Client component for tag filter UI
+function TagFilter({
+  tags,
+  selectedTag,
+}: {
+  tags: string[]
+  selectedTag?: string
+}) {
+  return (
+    <div className="flex flex-wrap justify-center gap-2">
+      <Link
+        href="/actualites"
+        className={`px-3 py-1 rounded-full text-sm transition-colors ${
+          !selectedTag
+            ? 'bg-teal-100 text-teal-700 font-medium'
+            : 'bg-gray-100 text-gray-600 hover:bg-teal-50 hover:text-teal-600'
+        }`}
+      >
+        Tous
+      </Link>
+      {tags.map(tag => (
+        <Link
+          key={tag}
+          href={`/actualites?tag=${encodeURIComponent(tag)}`}
+          className={`px-3 py-1 rounded-full text-sm transition-colors ${
+            selectedTag === tag
+              ? 'bg-teal-100 text-teal-700 font-medium'
+              : 'bg-gray-100 text-gray-600 hover:bg-teal-50 hover:text-teal-600'
+          }`}
+        >
+          {tag}
+        </Link>
+      ))}
     </div>
   )
 }

@@ -1,16 +1,15 @@
 ---
-title: "Le nouveau site de l'ACMSI"
+title: Le nouveau site de l'ACMSI
 date: 2024-12-22T10:00:00.000Z
-author: 'ACMSI'
-featured_image: ''
-excerpt:
-  "Nous sommes heureux de vous présenter le nouveau site web de l'Association
-  Culturelle Musulmane de Saint-Imier, conçu avec soin pour notre communauté."
-published: true
 tags:
-  - 'annonce'
-  - 'site web'
-  - 'communauté'
+  - annonce
+  - site web
+author: ACMSI
+featured_image: ''
+excerpt: Nous sommes heureux de vous présenter le nouveau site web de
+  l'Association Culturelle Musulmane de Saint-Imier, conçu avec soin pour notre
+  communauté.
+published: true
 ---
 
 # Bienvenue sur notre nouveau site web
