@@ -47,10 +47,15 @@ test('Donation Links', async t => {
     const donationUrl = 'https://pay.raisenow.io/jkyys'
 
     try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
       const response = await fetch(donationUrl, {
         method: 'HEAD', // Use HEAD to avoid downloading the full page
-        timeout: 10000, // 10 second timeout
+        signal: controller.signal,
       })
+
+      clearTimeout(timeoutId)
 
       assert.ok(
         response.ok,
@@ -62,7 +67,9 @@ test('Donation Links', async t => {
         `RaiseNow link should return 200 status (got: ${response.status})`,
       )
     } catch (error) {
-      assert.fail(`Failed to fetch RaiseNow donation link: ${error.message}`)
+      const errorMessage =
+        error instanceof Error ? error.message : String(error)
+      assert.fail(`Failed to fetch RaiseNow donation link: ${errorMessage}`)
     }
   })
 
