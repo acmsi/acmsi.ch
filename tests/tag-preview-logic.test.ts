@@ -1,10 +1,24 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert'
 
+// Type definitions for Decap CMS data structures
+interface ArticleData {
+  toJS(): {
+    title: string
+    tags?: string[]
+    author: string
+    date: string
+  }
+}
+
+interface MockArticle {
+  get(key: string): ArticleData | string
+}
+
 // Mock data structures similar to what Decap CMS provides
-const mockArticles = [
+const mockArticles: MockArticle[] = [
   {
-    get: (key: string) => {
+    get(key: string): ArticleData | string {
       const mockData = {
         data: {
           toJS: () => ({
@@ -20,7 +34,7 @@ const mockArticles = [
     },
   },
   {
-    get: (key: string) => {
+    get(key: string): ArticleData | string {
       const mockData = {
         data: {
           toJS: () => ({
@@ -36,7 +50,7 @@ const mockArticles = [
     },
   },
   {
-    get: (key: string) => {
+    get(key: string): ArticleData | string {
       const mockData = {
         data: {
           toJS: () => ({
@@ -52,7 +66,7 @@ const mockArticles = [
     },
   },
   {
-    get: (key: string) => {
+    get(key: string): ArticleData | string {
       const mockData = {
         data: {
           toJS: () => ({
@@ -75,8 +89,8 @@ describe('Tag Preview Logic', () => {
 
     // Simulate the filtering logic from the preview template
     const related = mockArticles.filter(article => {
-      const articleData = article.get('data')
-      const dataObj = articleData.toJS ? articleData.toJS() : articleData
+      const articleData = article.get('data') as ArticleData
+      const dataObj = articleData.toJS()
       const tags = dataObj.tags
 
       if (!tags || !Array.isArray(tags)) return false
@@ -95,8 +109,8 @@ describe('Tag Preview Logic', () => {
     const tagName = 'site web'
 
     const related = mockArticles.filter(article => {
-      const articleData = article.get('data')
-      const dataObj = articleData.toJS ? articleData.toJS() : articleData
+      const articleData = article.get('data') as ArticleData
+      const dataObj = articleData.toJS()
       const tags = dataObj.tags
 
       if (!tags || !Array.isArray(tags)) return false
@@ -112,8 +126,8 @@ describe('Tag Preview Logic', () => {
     const tagName = 'any-tag'
 
     const related = mockArticles.filter(article => {
-      const articleData = article.get('data')
-      const dataObj = articleData.toJS ? articleData.toJS() : articleData
+      const articleData = article.get('data') as ArticleData
+      const dataObj = articleData.toJS()
       const tags = dataObj.tags
 
       if (!tags || !Array.isArray(tags)) return false
@@ -129,8 +143,8 @@ describe('Tag Preview Logic', () => {
     const tagName = 'non-existent-tag'
 
     const related = mockArticles.filter(article => {
-      const articleData = article.get('data')
-      const dataObj = articleData.toJS ? articleData.toJS() : articleData
+      const articleData = article.get('data') as ArticleData
+      const dataObj = articleData.toJS()
       const tags = dataObj.tags
 
       if (!tags || !Array.isArray(tags)) return false
@@ -143,8 +157,8 @@ describe('Tag Preview Logic', () => {
 
   it('should extract article data correctly for display', () => {
     const article = mockArticles[0]
-    const articleData = article.get('data')
-    const dataObj = articleData.toJS ? articleData.toJS() : articleData
+    const articleData = article.get('data') as ArticleData
+    const dataObj = articleData.toJS()
     const slug = article.get('slug')
 
     assert.strictEqual(dataObj.title, 'Article avec tag annonce')
@@ -173,8 +187,8 @@ describe('Tag Preview Logic', () => {
     const tagName = 'annonce'
 
     const related = mockArticles.filter(article => {
-      const articleData = article.get('data')
-      const dataObj = articleData.toJS ? articleData.toJS() : articleData
+      const articleData = article.get('data') as ArticleData
+      const dataObj = articleData.toJS()
       const tags = dataObj.tags
 
       if (!tags || !Array.isArray(tags)) return false
@@ -195,8 +209,8 @@ describe('Tag Preview Logic', () => {
     const tagName = 'site web'
 
     const related = mockArticles.filter(article => {
-      const articleData = article.get('data')
-      const dataObj = articleData.toJS ? articleData.toJS() : articleData
+      const articleData = article.get('data') as ArticleData
+      const dataObj = articleData.toJS()
       const tags = dataObj.tags
 
       if (!tags || !Array.isArray(tags)) return false

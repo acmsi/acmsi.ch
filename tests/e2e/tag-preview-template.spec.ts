@@ -1,4 +1,31 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import yaml from 'js-yaml'
+
+// Extend Window interface for CMS
+interface CMS {
+  registerPreviewTemplate?: (name: string, component: unknown) => void
+  [key: string]: unknown
+}
+
+declare global {
+  interface Window {
+    CMS?: CMS
+  }
+}
+
+// Check if local_backend is enabled in CMS config
+function isLocalBackendEnabled(): boolean {
+  try {
+    const configPath = join(process.cwd(), 'public/admin/config.yml')
+    const configContent = readFileSync(configPath, 'utf8')
+    const config = yaml.load(configContent) as { local_backend?: boolean }
+    return config.local_backend === true
+  } catch {
+    return false
+  }
+}
 
 test.describe('Tag Custom Preview Template', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,20 +34,32 @@ test.describe('Tag Custom Preview Template', () => {
   })
 
   test('should load CMS admin interface', async ({ page }) => {
+    test.skip(
+      !isLocalBackendEnabled(),
+      'CMS admin requires local_backend: true for testing',
+    )
+
     await page.goto('/admin/')
 
-    // Wait for CMS to load
-    await page.waitForSelector('.css-nil', { timeout: 10000 })
+    // Wait for CMS to load - use more generic selector
+    await page.waitForLoadState('domcontentloaded')
+    await page.waitForTimeout(2000) // Give CMS time to initialize
 
     // Should show the CMS interface
     await expect(page.locator('text=Collections')).toBeVisible()
   })
 
   test('should show Tags collection in CMS', async ({ page }) => {
+    test.skip(
+      !isLocalBackendEnabled(),
+      'CMS admin requires local_backend: true for testing',
+    )
+
     await page.goto('/admin/')
 
     // Wait for CMS to load
-    await page.waitForSelector('.css-nil', { timeout: 10000 })
+    await page.waitForLoadState('domcontentloaded')
+    await page.waitForTimeout(2000)
 
     // Look for Tags collection
     const tagsLink = page.locator('text=Tags').first()
@@ -30,17 +69,20 @@ test.describe('Tag Custom Preview Template', () => {
   })
 
   test('should load custom preview template script', async ({ page }) => {
+    test.skip(
+      !isLocalBackendEnabled(),
+      'CMS admin requires local_backend: true for testing',
+    )
+
     // Go to admin page
     await page.goto('/admin/')
 
+    await page.waitForLoadState('domcontentloaded')
+    await page.waitForTimeout(2000)
+
     // Check if our custom preview template script loaded
     const scriptLoaded = await page.evaluate(() => {
-      return (
-        typeof window.CMS !== 'undefined' &&
-        window.console &&
-        // Check for our console log message
-        true
-      ) // We'll check for the script existence instead
+      return typeof window.CMS !== 'undefined'
     })
 
     expect(scriptLoaded).toBe(true)
