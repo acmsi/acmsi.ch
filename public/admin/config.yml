@@ -133,3 +133,67 @@ collections:
           hint: "Format d'affichage pour l'échéance dans l'interface utilisateur",
         }
       - { label: 'Contenu', name: 'body', widget: 'markdown' }
+
+  - name: 'galleries' # Collection pour les galeries photo
+    label: 'Galeries Photo'
+    folder: 'content/galleries'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Nom de la galerie', name: 'name', widget: 'string' }
+      - {
+          label: 'Slug',
+          name: 'slug',
+          widget: 'string',
+          hint: 'Identifiant unique (ex: mosquee-photos)',
+        }
+      - {
+          label: 'Type de galerie',
+          name: 'type',
+          widget: 'select',
+          options: ['mosque', 'renovations', 'historical', 'events', 'other'],
+          default: 'mosque',
+        }
+      - {
+          label: 'Description',
+          name: 'description',
+          widget: 'text',
+          required: false,
+        }
+      - {
+          label: 'Photos',
+          name: 'photos',
+          widget: 'list',
+          fields:
+            [
+              { label: 'Image', name: 'image', widget: 'image' },
+              { label: 'Titre', name: 'title', widget: 'string' },
+              {
+                label: 'Description',
+                name: 'description',
+                widget: 'text',
+                required: false,
+              },
+              {
+                label: 'Photographe',
+                name: 'photographer',
+                widget: 'string',
+                required: false,
+              },
+              { label: 'Date', name: 'date', widget: 'date', required: false },
+              {
+                label: 'Texte alternatif',
+                name: 'alt',
+                widget: 'string',
+                hint: 'Description de l&apos;image pour l&apos;accessibilité',
+              },
+            ],
+        }
+      - {
+          label: 'Ordre d&apos;affichage',
+          name: 'order',
+          widget: 'number',
+          value_type: 'int',
+          default: 1,
+        }
+      - { label: 'Publié', name: 'published', widget: 'boolean', default: true }

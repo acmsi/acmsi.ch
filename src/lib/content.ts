@@ -18,6 +18,26 @@ export interface NewsArticle {
   tags?: string[]
 }
 
+export interface Photo {
+  image: string
+  title: string
+  description?: string
+  photographer?: string
+  date?: string
+  alt: string
+}
+
+export interface Gallery {
+  slug: string
+  name: string
+  type: 'mosque' | 'renovations' | 'historical' | 'events' | 'other'
+  description?: string
+  photos: Photo[]
+  order: number
+  published: boolean
+  content: string
+}
+
 export interface BudgetProject {
   slug: string
   type: 'projet_global' | 'sous_projet'
@@ -322,4 +342,85 @@ export async function getNewsArticle(
     console.error(`Error reading news article ${slug}:`, error)
     return null
   }
+}
+
+// Get all galleries
+export async function getAllGalleries(): Promise<Gallery[]> {
+  const galleriesDirectory = path.join(contentDirectory, 'galleries')
+
+  if (!fs.existsSync(galleriesDirectory)) {
+    return []
+  }
+
+  const fileNames = fs.readdirSync(galleriesDirectory)
+  const allGalleryData = await Promise.all(
+    fileNames
+      .filter(fileName => fileName.endsWith('.md'))
+      .map(async fileName => {
+        const slug = fileName.replace(/\.md$/, '')
+        const fullPath = path.join(galleriesDirectory, fileName)
+        const fileContents = fs.readFileSync(fullPath, 'utf8')
+        const { data, content } = matter(fileContents)
+
+        // Convert markdown to HTML
+        const processedContent = await remark().use(html).process(content)
+        const contentHtml = processedContent.toString()
+
+        return {
+          slug,
+          name: data.name || '',
+          type: data.type || 'other',
+          description: data.description,
+          photos: data.photos || [],
+          order: data.order || 99,
+          published: data.published !== false,
+          content: contentHtml,
+        } as Gallery
+      }),
+  )
+
+  // Filter published galleries and sort by order
+  return allGalleryData
+    .filter(gallery => gallery.published)
+    .sort((a, b) => a.order - b.order)
+}
+
+// Get a single gallery by slug
+export async function getGallery(slug: string): Promise<Gallery | null> {
+  try {
+    const fullPath = path.join(contentDirectory, 'galleries', `${slug}.md`)
+
+    if (!fs.existsSync(fullPath)) {
+      return null
+    }
+
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const { data, content } = matter(fileContents)
+
+    // Convert markdown to HTML
+    const processedContent = await remark().use(html).process(content)
+    const contentHtml = processedContent.toString()
+
+    return {
+      slug,
+      name: data.name || '',
+      type: data.type || 'other',
+      description: data.description,
+      photos: data.photos || [],
+      order: data.order || 99,
+      published: data.published !== false,
+      content: contentHtml,
+    } as Gallery
+  } catch (error) {
+    console.error(`Error reading gallery ${slug}:`, error)
+    return null
+  }
+}
+
+// Get galleries by type
+export async function getGalleriesByType(
+  type: Gallery['type'],
+): Promise<Gallery[]> {
+  const allGalleries = await getAllGalleries()
+  return allGalleries.filter(gallery => gallery.type === type)
 }

@@ -26,11 +26,13 @@ import {
   getProjectSummary,
   getActiveProjects,
   getCompletedProjects,
+  getGallery,
 } from '@/lib/content'
 import Ayah from '@/components/ayah'
 import ProgressBar from '@/components/progress-bar'
 import ProjectCard from '@/components/project-card'
 import CardKeyPoint from '@/components/card-key-point'
+import PhotoGallery from '@/components/photo-gallery'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
 export const metadata: Metadata = {
@@ -41,6 +43,7 @@ export const metadata: Metadata = {
 
 export default async function ProjetXhamiaNurPage() {
   const projectData = await getProjectSummary()
+  const renovationsGallery = await getGallery('renovations')
 
   // Fallback data if no project data is found
   const objectifTotal = projectData?.total_objectif || 1185500
@@ -236,6 +239,17 @@ export default async function ProjetXhamiaNurPage() {
           </div>
         </div>
       </section>
+
+      {/* Renovations Gallery */}
+      {renovationsGallery &&
+        renovationsGallery.photos &&
+        renovationsGallery.photos.length > 0 && (
+          <section className="py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <PhotoGallery gallery={renovationsGallery} maxThumbnails={4} />
+            </div>
+          </section>
+        )}
 
       {/* Comment donner */}
       <section id="faire-un-don" className="py-16 bg-white">

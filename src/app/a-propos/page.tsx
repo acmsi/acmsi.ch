@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { UsersThree, BookOpen, Heart } from '@phosphor-icons/react/dist/ssr'
 import { Ruku } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner'
-import { getProjectSummary } from '@/lib/content'
+import PhotoGallery from '@/components/photo-gallery'
+import { getProjectSummary, getGallery } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'À propos - ACMSI',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 
 export default async function AProposPage() {
   const projectData = await getProjectSummary()
+  const mosqueGallery = await getGallery('mosquee-photos')
 
   return (
     <div>
@@ -55,6 +57,15 @@ export default async function AProposPage() {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery */}
+      {mosqueGallery && (
+        <section className="pt-4 pb-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <PhotoGallery gallery={mosqueGallery} maxThumbnails={4} />
+          </div>
+        </section>
+      )}
 
       {/* Mission Section */}
       <section className="py-16 bg-gray-50">
