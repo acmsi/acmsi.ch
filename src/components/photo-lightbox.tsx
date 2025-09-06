@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import {
   X,
   ArrowLeft,
   ArrowRight,
-  Calendar,
-  Camera,
+  ArrowsOut,
+  ArrowsIn,
 } from '@phosphor-icons/react'
 import type { Photo } from '@/lib/content'
 
@@ -25,7 +25,9 @@ export default function PhotoLightbox({
   galleryName,
 }: PhotoLightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
+  const [isFullScreen, setIsFullScreen] = useState(false)
   const currentPhoto = photos[currentIndex]
+  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   const goToNext = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % photos.length)
@@ -38,6 +40,22 @@ export default function PhotoLightbox({
   const goToPhoto = useCallback((index: number) => {
     setCurrentIndex(index)
   }, [])
+
+  const toggleFullScreen = useCallback(() => {
+    setIsFullScreen(prev => !prev)
+  }, [])
+
+  // Scroll current thumbnail into view
+  useEffect(() => {
+    const currentThumbnail = thumbnailRefs.current[currentIndex]
+    if (currentThumbnail) {
+      currentThumbnail.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      })
+    }
+  }, [currentIndex])
 
   // Keyboard navigation
   useEffect(() => {
@@ -52,12 +70,16 @@ export default function PhotoLightbox({
         case 'ArrowLeft':
           goToPrevious()
           break
+        case 'f':
+        case 'F':
+          toggleFullScreen()
+          break
       }
     }
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [goToNext, goToPrevious, onClose])
+  }, [goToNext, goToPrevious, onClose, toggleFullScreen])
 
   // Prevent body scroll when lightbox is open
   useEffect(() => {
@@ -69,28 +91,51 @@ export default function PhotoLightbox({
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-90">
-      {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/50 to-transparent p-4">
-        <div className="flex items-center justify-between text-white">
-          <div>
-            <h2 className="text-lg font-medium">{galleryName}</h2>
-            <p className="text-sm text-gray-300">
-              {currentIndex + 1} sur {photos.length}
-            </p>
+      {/* Header - hidden in full screen mode */}
+      {!isFullScreen && (
+        <div className="absolute top-0 left-0 z-10 bg-gradient-to-b from-black/50 to-transparent p-4 pb-0">
+          <div className="flex items-center justify-between text-white">
+            <div className="flex gap-3 text-gray-300 items-baseline">
+              <h2 className="text-lg font-medium text-gray-300">
+                {galleryName}
+              </h2>
+              <span className="text-sm">
+                {currentIndex + 1} sur {photos.length}
+              </span>
+            </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
-            aria-label="Fermer la galerie"
-          >
-            <X className="w-6 h-6" />
-          </button>
         </div>
+      )}
+
+      {/* Controls - always visible */}
+      <div className="absolute z-10 top-4 right-4 flex gap-2">
+        <button
+          onClick={toggleFullScreen}
+          className="p-2 rounded-full text-white hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+          aria-label={isFullScreen ? 'Quitter le plein écran' : 'Plein écran'}
+        >
+          {isFullScreen ? (
+            <ArrowsIn className="w-6 h-6" />
+          ) : (
+            <ArrowsOut className="w-6 h-6" />
+          )}
+        </button>
+        <button
+          onClick={onClose}
+          className="p-2 rounded-full text-white hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+          aria-label="Fermer la galerie"
+        >
+          <X className="w-6 h-6" />
+        </button>
       </div>
 
       {/* Main Image Container */}
-      <div className="absolute inset-0 flex items-center justify-center pt-20 pb-32">
-        <div className="relative max-w-7xl max-h-full w-full h-full mx-4">
+      <div
+        className={`absolute inset-0 flex flex-col items-center justify-center ${
+          isFullScreen ? 'p-0' : 'pt-12 pb-24 md:px-12'
+        }`}
+      >
+        <div className="relative max-h-full mx-4 h-full w-full flex-4">
           <Image
             src={currentPhoto.image}
             alt={currentPhoto.alt}
@@ -100,6 +145,19 @@ export default function PhotoLightbox({
             priority
           />
         </div>
+        {/* Photo Details - hidden in full screen mode */}
+        {!isFullScreen && (
+          <div className="text-white text-left w-full line-clamp-2 py-2 bg-gradient-to-b from-black/1 to-black/80">
+            <h3 className="text-base text-balance font-medium text-gray-300 line-clamp-2">
+              {currentPhoto.title}
+            </h3>
+            {currentPhoto.description && (
+              <p className="text-gray-300 text-balance text-sm mb-2 line-clamp-2">
+                {currentPhoto.description}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Navigation Arrows */}
         {photos.length > 1 && (
@@ -122,59 +180,40 @@ export default function PhotoLightbox({
         )}
       </div>
 
-      {/* Photo Info & Thumbnail Strip */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-        {/* Photo Details */}
-        <div className="text-white mb-4">
-          <h3 className="text-xl font-medium mb-2">{currentPhoto.title}</h3>
-          {currentPhoto.description && (
-            <p className="text-gray-300 mb-2">{currentPhoto.description}</p>
-          )}
-          <div className="flex items-center gap-4 text-sm text-gray-400">
-            {currentPhoto.photographer && (
-              <div className="flex items-center gap-1">
-                <Camera className="w-4 h-4" />
-                <span>{currentPhoto.photographer}</span>
+      {/* Photo Info & Thumbnail Strip - hidden in full screen mode */}
+      {!isFullScreen && (
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+          {/* Thumbnail Strip */}
+          {photos.length > 1 && (
+            <div className="overflow-x-auto">
+              <div className="flex gap-2 p-2 md:px-8">
+                {photos.map((photo, index) => (
+                  <button
+                    key={index}
+                    ref={el => {
+                      thumbnailRefs.current[index] = el
+                    }}
+                    onClick={() => goToPhoto(index)}
+                    className={`relative flex-shrink-0 w-16 h-16 rounded overflow-hidden transition-all focus:outline-none focus:ring-2 focus:ring-white/50 ${
+                      index === currentIndex
+                        ? 'ring-2 ring-white scale-110'
+                        : 'opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <Image
+                      src={photo.image}
+                      alt={photo.alt}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
               </div>
-            )}
-            {currentPhoto.date && (
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                <span>
-                  {new Date(currentPhoto.date).toLocaleDateString('fr-CH')}
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Thumbnail Strip */}
-        {photos.length > 1 && (
-          <div className="overflow-x-auto">
-            <div className="flex gap-2 pb-2">
-              {photos.map((photo, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToPhoto(index)}
-                  className={`relative flex-shrink-0 w-16 h-16 rounded overflow-hidden transition-all focus:outline-none focus:ring-2 focus:ring-white/50 ${
-                    index === currentIndex
-                      ? 'ring-2 ring-white scale-110'
-                      : 'opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <Image
-                    src={photo.image}
-                    alt={photo.alt}
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                </button>
-              ))}
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       {/* Click outside to close */}
       <div
