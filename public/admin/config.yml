@@ -17,6 +17,17 @@ collections:
     fields: # The fields for each document, usually in front matter
       - { label: 'Titre', name: 'title', widget: 'string' }
       - { label: 'Date de publication', name: 'date', widget: 'datetime' }
+      - {
+          label: 'Tags',
+          name: 'tags',
+          widget: 'relation',
+          collection: 'tags',
+          search_fields: ['name'],
+          value_field: 'name',
+          display_fields: ['name'],
+          multiple: true,
+          required: false,
+        }
       - { label: 'Auteur', name: 'author', widget: 'string', default: 'ACMSI' }
       - {
           label: 'Image de couverture',
@@ -27,7 +38,26 @@ collections:
       - { label: 'Résumé', name: 'excerpt', widget: 'text', required: false }
       - { label: 'Contenu', name: 'body', widget: 'markdown' }
       - { label: 'Publié', name: 'published', widget: 'boolean', default: true }
-      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
+
+  - name: 'tags' # Collection pour les tags
+    label: 'Tags'
+    folder: 'content/tags'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { label: 'Nom', name: 'name', widget: 'string' }
+      - {
+          label: 'Slug',
+          name: 'slug',
+          widget: 'string',
+          hint: 'Identifiant unique (généré automatiquement)',
+        }
+      - {
+          label: 'Description',
+          name: 'description',
+          widget: 'text',
+          required: false,
+        }
 
   - name: 'budget_projet' # Collection pour la gestion budgétaire
     label: 'Budget Projet Xhamia Nur'

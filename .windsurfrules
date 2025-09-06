@@ -20,7 +20,7 @@ the following stack:
 
 To start, the features will be simple and limited:
 
-  - Swiss French localization only 
+  - Swiss French localization only
   - Static generated pages
   - A news section with content managed through Decap CMS
   - Good SEO practices especially for social sharing (FB, linkedin, twitter, etc.), sitemap, etc.
@@ -37,7 +37,7 @@ The sitemap structures of acmsi.ch will be the following:
     - /actualités (news)
     - /donation
     - /contact
-  
+
 ## UI and UX Details
 
 The UI should use the colors theme as defined in the global.css file.
