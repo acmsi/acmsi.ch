@@ -29,6 +29,16 @@ export default function PhotoLightbox({
   const currentPhoto = photos[currentIndex]
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([])
 
+  // Touch interaction state
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
+    null,
+  )
+  const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(
+    null,
+  )
+  const [isDragging, setIsDragging] = useState(false)
+  const imageContainerRef = useRef<HTMLDivElement>(null)
+
   const goToNext = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % photos.length)
   }, [photos.length])
@@ -44,6 +54,66 @@ export default function PhotoLightbox({
   const toggleFullScreen = useCallback(() => {
     setIsFullScreen(prev => !prev)
   }, [])
+
+  // Touch swipe handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setTouchStart({ x: touch.clientX, y: touch.clientY })
+    setTouchEnd(null)
+    setIsDragging(false)
+  }, [])
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!touchStart) return
+
+      const touch = e.touches[0]
+      setTouchEnd({ x: touch.clientX, y: touch.clientY })
+
+      // Calculate the distance moved
+      const deltaX = Math.abs(touch.clientX - touchStart.x)
+      const deltaY = Math.abs(touch.clientY - touchStart.y)
+
+      // If horizontal movement is greater than vertical, we're swiping horizontally
+      if (deltaX > deltaY && deltaX > 10) {
+        setIsDragging(true)
+        // Prevent scrolling while swiping
+        e.preventDefault()
+      }
+    },
+    [touchStart],
+  )
+
+  const handleTouchEnd = useCallback(() => {
+    if (!touchStart || !touchEnd || !isDragging) {
+      setTouchStart(null)
+      setTouchEnd(null)
+      setIsDragging(false)
+      return
+    }
+
+    const deltaX = touchStart.x - touchEnd.x
+    const deltaY = touchStart.y - touchEnd.y
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
+    const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY)
+
+    // Minimum swipe distance to trigger navigation
+    const minSwipeDistance = 50
+
+    if (isHorizontal && distance > minSwipeDistance) {
+      if (deltaX > 0) {
+        // Swiped left - go to next photo
+        goToNext()
+      } else {
+        // Swiped right - go to previous photo
+        goToPrevious()
+      }
+    }
+
+    setTouchStart(null)
+    setTouchEnd(null)
+    setIsDragging(false)
+  }, [touchStart, touchEnd, isDragging, goToNext, goToPrevious])
 
   // Scroll current thumbnail into view
   useEffect(() => {
@@ -135,19 +205,32 @@ export default function PhotoLightbox({
           isFullScreen ? 'p-0' : 'pt-12 pb-24 md:px-12'
         }`}
       >
-        <div className="relative max-h-full mx-4 h-full w-full flex-4">
+        <div
+          ref={imageContainerRef}
+          className={`relative max-h-full mx-4 h-full w-full flex-4 touch-pan-y ${
+            isDragging ? 'cursor-grabbing' : 'cursor-grab'
+          }`}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          style={{
+            userSelect: 'none',
+            touchAction: 'pan-y pinch-zoom',
+          }}
+        >
           <Image
             src={currentPhoto.image}
             alt={currentPhoto.alt}
             fill
             sizes="100vw"
-            className="object-contain"
+            className="object-contain pointer-events-none"
             priority
+            draggable={false}
           />
         </div>
         {/* Photo Details - hidden in full screen mode */}
         {!isFullScreen && (
-          <div className="text-white text-left w-full line-clamp-2 py-2 bg-gradient-to-b from-black/1 to-black/80">
+          <div className="text-white text-left w-full line-clamp-2 py-2 px-4 md:px-0 bg-gradient-to-b from-black/1 to-black/80">
             <h3 className="text-base text-balance font-medium text-gray-300 line-clamp-2">
               {currentPhoto.title}
             </h3>
@@ -159,19 +242,23 @@ export default function PhotoLightbox({
           </div>
         )}
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows - hidden on mobile when touching */}
         {photos.length > 1 && (
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 ${
+                isDragging ? 'opacity-20' : 'opacity-100'
+              }`}
               aria-label="Photo précédente"
             >
               <ArrowLeft className="w-6 h-6" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 ${
+                isDragging ? 'opacity-20' : 'opacity-100'
+              }`}
               aria-label="Photo suivante"
             >
               <ArrowRight className="w-6 h-6" />
@@ -215,12 +302,14 @@ export default function PhotoLightbox({
         </div>
       )}
 
-      {/* Click outside to close */}
-      <div
-        className="absolute inset-0 -z-10"
-        onClick={onClose}
-        aria-label="Fermer la galerie"
-      />
+      {/* Click outside to close - disabled during touch interactions */}
+      {!isDragging && (
+        <div
+          className="absolute inset-0 -z-10"
+          onClick={onClose}
+          aria-label="Fermer la galerie"
+        />
+      )}
     </div>
   )
 }

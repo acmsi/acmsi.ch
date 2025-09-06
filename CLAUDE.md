@@ -31,7 +31,7 @@ with content management capabilities.
 
 - **Development server is usually already running** on localhost:3000
 - **⚠️ NEVER run `npm run build` while dev server is running** - it breaks the dev server due to Next.js issue
-- For TypeScript checking during development, use `npx tsc --noEmit --skipLibCheck` instead
+- For TypeScript checking during development, use `npx tsc --noEmit` instead
 - The command will show TypeScript errors for your code (ignore test file errors during development)
 - Only run build for production deployments or when dev server is stopped
 
