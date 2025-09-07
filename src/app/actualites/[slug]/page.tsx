@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { CaretLeft } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner'
+import Breadcrumbs from '@/components/breadcrumbs'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -46,20 +47,12 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <div>
       {/* Breadcrumb */}
-      <section className="py-8 bg-white/70 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link
-              href="/actualites"
-              className="hover:text-teal-600 transition-colors"
-            >
-              Actualités
-            </Link>
-            <span>/</span>
-            <span>{article.title}</span>
-          </nav>
-        </div>
-      </section>
+      <Breadcrumbs
+        items={[
+          { href: '/actualites', label: 'Actualités' },
+          { label: article.title },
+        ]}
+      />
 
       {/* Article Header */}
       <section className="py-16 bg-linear-to-b from-white/60 to-white">

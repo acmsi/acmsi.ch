@@ -15,6 +15,7 @@ import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
 import ProjectBanner from '@/components/project-banner'
 import { formatAmount, formatPercentage } from '@/lib/format'
+import Breadcrumbs from '@/components/breadcrumbs'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -59,20 +60,12 @@ export default async function SousProjetPage({ params }: Props) {
   return (
     <div>
       {/* Breadcrumb */}
-      <section className="py-8 bg-white/70 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link
-              href="/projet-xhamia-nur"
-              className="hover:text-green-600 transition-colors"
-            >
-              Projet Xhamia Nur
-            </Link>
-            <span>/</span>
-            <span>{project.nom}</span>
-          </nav>
-        </div>
-      </section>
+      <Breadcrumbs
+        items={[
+          { href: '/projet-xhamia-nur', label: 'Projet Xhamia Nur' },
+          { label: project.nom },
+        ]}
+      />
 
       {/* En-tête du sous-projet */}
       <section className="py-16 bg-nur-cream-50/80 border-b border-nur-cream-300">
