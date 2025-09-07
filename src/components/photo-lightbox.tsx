@@ -28,6 +28,7 @@ export default function PhotoLightbox({
   const [isFullScreen, setIsFullScreen] = useState(false)
   const currentPhoto = photos[currentIndex]
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const lightboxRef = useRef<HTMLDivElement>(null)
 
   // Touch interaction state
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
@@ -51,8 +52,24 @@ export default function PhotoLightbox({
     setCurrentIndex(index)
   }, [])
 
-  const toggleFullScreen = useCallback(() => {
-    setIsFullScreen(prev => !prev)
+  const toggleFullScreen = useCallback(async () => {
+    if (!lightboxRef.current) return
+
+    try {
+      if (!document.fullscreenElement) {
+        // Enter fullscreen
+        await lightboxRef.current.requestFullscreen()
+        setIsFullScreen(true)
+      } else {
+        // Exit fullscreen
+        await document.exitFullscreen()
+        setIsFullScreen(false)
+      }
+    } catch {
+      // Fallback to local state if Fullscreen API fails
+      console.warn('Fullscreen API not available, using fallback')
+      setIsFullScreen(prev => !prev)
+    }
   }, [])
 
   // Touch swipe handlers
@@ -151,6 +168,18 @@ export default function PhotoLightbox({
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [goToNext, goToPrevious, onClose, toggleFullScreen])
 
+  // Handle fullscreen change events
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement)
+    }
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange)
+    }
+  }, [])
+
   // Prevent body scroll when lightbox is open
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -160,7 +189,10 @@ export default function PhotoLightbox({
   }, [])
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-90">
+    <div
+      ref={lightboxRef}
+      className="fixed inset-0 z-50 bg-black bg-opacity-90"
+    >
       {/* Header - hidden in full screen mode */}
       {!isFullScreen && (
         <div className="absolute top-0 left-0 z-10 bg-gradient-to-b from-black/50 to-transparent p-4 pb-0">
