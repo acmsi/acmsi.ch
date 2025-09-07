@@ -20,11 +20,11 @@ export interface NewsArticle {
 
 export interface Photo {
   image: string
-  title: string
+  title?: string
   description?: string
   photographer?: string
   date?: string
-  alt: string
+  alt?: string
 }
 
 export interface Gallery {
@@ -50,6 +50,7 @@ export interface BudgetProject {
   date_accomplissement?: string
   date_fin_prevue?: string
   echeance_format?: DateDisplayFormat
+  gallery?: string
   content: string
   pourcentage_completion: number
 }
@@ -260,6 +261,7 @@ export async function getBudgetProject(
       echeance_format: data.echeance_format,
       content: contentHtml,
       pourcentage_completion,
+      gallery: data.gallery,
     } as BudgetProject
   } catch (error) {
     console.error(`Error reading budget project ${slug}:`, error)

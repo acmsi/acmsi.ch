@@ -62,7 +62,7 @@ export default async function AProposPage() {
       {mosqueGallery && (
         <section className="pt-4 pb-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <PhotoGallery gallery={mosqueGallery} maxThumbnails={4} />
+            <PhotoGallery gallery={mosqueGallery} maxThumbnails={3} />
           </div>
         </section>
       )}

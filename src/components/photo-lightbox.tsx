@@ -220,7 +220,7 @@ export default function PhotoLightbox({
         >
           <Image
             src={currentPhoto.image}
-            alt={currentPhoto.alt}
+            alt={currentPhoto.alt || currentPhoto.title || 'Photo de galerie'}
             fill
             sizes="100vw"
             className="object-contain pointer-events-none"
@@ -229,11 +229,13 @@ export default function PhotoLightbox({
           />
         </div>
         {/* Photo Details - hidden in full screen mode */}
-        {!isFullScreen && (
+        {!isFullScreen && (currentPhoto.title || currentPhoto.description) && (
           <div className="text-white text-left w-full line-clamp-2 py-2 px-4 md:px-0 bg-gradient-to-b from-black/1 to-black/80">
-            <h3 className="text-base text-balance font-medium text-gray-300 line-clamp-2">
-              {currentPhoto.title}
-            </h3>
+            {currentPhoto.title && (
+              <h3 className="text-base text-balance font-medium text-gray-300 line-clamp-2">
+                {currentPhoto.title}
+              </h3>
+            )}
             {currentPhoto.description && (
               <p className="text-gray-300 text-balance text-sm mb-2 line-clamp-2">
                 {currentPhoto.description}
@@ -289,7 +291,7 @@ export default function PhotoLightbox({
                   >
                     <Image
                       src={photo.image}
-                      alt={photo.alt}
+                      alt={photo.alt || photo.title || 'Miniature'}
                       fill
                       sizes="64px"
                       className="object-cover"

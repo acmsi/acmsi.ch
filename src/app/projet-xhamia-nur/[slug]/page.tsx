@@ -6,6 +6,7 @@ import {
   getBudgetProject,
   getProjectSummary,
   getAllBudgetProjects,
+  getGallery,
   isProjectCompleted,
   formatCompletionDate,
   formatDeadlineDate,
@@ -14,6 +15,7 @@ import ProgressBar from '@/components/progress-bar'
 import ProjectStatus from '@/components/project-status'
 import CompletedProjectBanner from '@/components/completed-project-banner'
 import ProjectBanner from '@/components/project-banner'
+import PhotoGallery from '@/components/photo-gallery'
 import { formatAmount, formatPercentage } from '@/lib/format'
 import Breadcrumbs from '@/components/breadcrumbs'
 
@@ -52,6 +54,9 @@ export default async function SousProjetPage({ params }: Props) {
   const { slug } = await params
   const project = await getBudgetProject(slug)
   const projectSummary = await getProjectSummary()
+
+  // Fetch associated gallery if specified
+  const gallery = project?.gallery ? await getGallery(project.gallery) : null
 
   if (!project || project.type !== 'sous_projet') {
     notFound()
@@ -177,6 +182,15 @@ export default async function SousProjetPage({ params }: Props) {
           />
         </div>
       </section>
+
+      {/* Galerie photo associée */}
+      {gallery && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <PhotoGallery gallery={gallery} maxThumbnails={6} />
+          </div>
+        </section>
+      )}
 
       {/* Contexte dans le projet global */}
       <section className="py-16 bg-white">

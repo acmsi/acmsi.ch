@@ -132,6 +132,17 @@ collections:
           required: false,
           hint: "Format d'affichage pour l'échéance dans l'interface utilisateur",
         }
+      - {
+          label: 'Galerie photo',
+          name: 'gallery',
+          widget: 'relation',
+          collection: 'galleries',
+          search_fields: ['name', 'slug'],
+          value_field: 'slug',
+          display_fields: ['name', 'type'],
+          required: false,
+          hint: 'Sélectionner une galerie photo à afficher sur cette page de projet',
+        }
       - { label: 'Contenu', name: 'body', widget: 'markdown' }
 
   - name: 'galleries' # Collection pour les galeries photo
@@ -167,7 +178,12 @@ collections:
           fields:
             [
               { label: 'Image', name: 'image', widget: 'image' },
-              { label: 'Titre', name: 'title', widget: 'string' },
+              {
+                label: 'Titre',
+                name: 'title',
+                widget: 'string',
+                required: false,
+              },
               {
                 label: 'Description',
                 name: 'description',
@@ -185,6 +201,7 @@ collections:
                 label: 'Texte alternatif',
                 name: 'alt',
                 widget: 'string',
+                required: false,
                 hint: 'Description de l&apos;image pour l&apos;accessibilité',
               },
             ],

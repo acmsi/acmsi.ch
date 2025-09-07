@@ -43,7 +43,7 @@ export default function PhotoGallery({
       </div>
 
       {/* Thumbnail Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {displayPhotos.map((photo: Photo, index: number) => {
           const isLastPhoto = index === maxThumbnails - 1
           const showMoreOverlay = hasMorePhotos && isLastPhoto
@@ -64,7 +64,7 @@ export default function PhotoGallery({
             >
               <Image
                 src={photo.image}
-                alt={photo.alt}
+                alt={photo.alt || photo.title || 'Photo de galerie'}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -81,11 +81,13 @@ export default function PhotoGallery({
               ) : (
                 /* Normal hover overlay with photo title */
                 <div className="absolute inset-0 group-hover:bg-black/40 transition-all duration-300 flex items-end">
-                  <div className="p-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-sm font-medium truncate">
-                      {photo.title}
-                    </p>
-                  </div>
+                  {photo.title && (
+                    <div className="p-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <p className="text-sm font-medium truncate">
+                        {photo.title}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

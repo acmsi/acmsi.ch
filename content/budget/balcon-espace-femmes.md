@@ -1,18 +1,23 @@
 ---
 type: sous_projet
-nom: "Balcon de l'espace de prière pour les femmes"
-description: "Construction d'un balcon métallique moderne pour créer un espace de prière dédié aux femmes, respectant les traditions islamiques tout en offrant confort et sérénité"
+nom: Balcon de l'espace de prière pour les femmes
+description: Construction d'un balcon métallique moderne pour créer un espace de
+  prière dédié aux femmes, respectant les traditions islamiques tout en offrant
+  confort et sérénité
 objectif: 25000
 montant_leve: 25000
-derniere_maj: '2024-11-30T10:00:00Z'
+derniere_maj: 2024-11-30T10:00:00Z
 priorite: 1
-date_accomplissement: '2024-11-30T10:00:00Z'
-date_fin_prevue: '2024-11-30'
+date_accomplissement: 2024-11-30T10:00:00Z
+date_fin_prevue: 2024-11-30
+gallery: balcon-espace-femmes
 ---
 
 # Balcon de l'espace de prière pour les femmes
 
 La construction du balcon métallique pour l'espace de prière des femmes représente une réalisation majeure dans l'aménagement de notre mosquée. Ce projet, achevé avec succès, offre désormais aux femmes de notre communauté un espace dédié, confortable et respectueux des traditions islamiques.
+
+![Photo du balcon terminé donnant un espace pour les femmes avec une vue plongeante sur l'espace occupé par l'Imam](/images/uploads/xhamia-mosquee-nur-1-of-1.jpeg)
 
 ## Description du projet
 
