@@ -50,7 +50,7 @@ export default async function HomePage() {
       <ProjectBanner
         variant="full"
         showProgress={true}
-        totalAmount={projectData?.total_objectif || 1185500}
+        totalAmount={projectData?.total_objectif || 630000}
         raisedAmount={projectData?.total_leve || 0}
         percentage={projectData?.pourcentage_global || 0}
       />

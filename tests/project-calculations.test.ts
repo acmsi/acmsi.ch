@@ -19,16 +19,16 @@ import {
  */
 
 test('Project Calculations', async t => {
-  // Mock data representing the corrected business logic
+  // Mock data representing the acquisition project
   const projetGlobal: BudgetProject = {
-    slug: 'projet-principal',
+    slug: 'acquisition-mosquee-nur',
     type: 'projet_global',
-    nom: 'Construction de la Mosquée',
-    objectif: 500000, // CHF 500,000 total goal
-    montant_leve: 300000, // CHF 300,000 actually raised
+    nom: 'Acquisition Mosquée Nur',
+    objectif: 630000, // CHF 630,000 acquisition goal
+    montant_leve: 330000, // CHF 330,000 actually raised
     derniere_maj: '2025-01-15',
-    content: 'Description du projet global',
-    pourcentage_completion: 60, // 300k/500k = 60%
+    content: "Description du projet d'acquisition",
+    pourcentage_completion: 52.4, // 330k/630k = 52.4%
   }
 
   const sousProjets: BudgetProject[] = [
@@ -86,9 +86,9 @@ test('Project Calculations', async t => {
       }
 
       // Key assertion: total_leve should equal only the global project's funds
-      assert.strictEqual(projectSummary.total_leve, 300000)
-      assert.strictEqual(projectSummary.total_objectif, 500000)
-      assert.strictEqual(projectSummary.pourcentage_global, 60.0)
+      assert.strictEqual(projectSummary.total_leve, 330000)
+      assert.strictEqual(projectSummary.total_objectif, 630000)
+      assert.strictEqual(projectSummary.pourcentage_global, 52.4)
     },
   )
 
@@ -100,13 +100,13 @@ test('Project Calculations', async t => {
         projetGlobal.montant_leve +
         sousProjets.reduce((sum, p) => sum + p.montant_leve, 0)
 
-      // This would incorrectly sum to 500,000 (300k global + 200k allocated)
-      assert.strictEqual(incorrectTotalLeve, 500000)
+      // This would incorrectly sum to 530,000 (330k global + 200k allocated)
+      assert.strictEqual(incorrectTotalLeve, 530000)
 
-      // This would show 100% completion when only 60% of funds are actually raised
+      // This would show 84.1% completion when only 52.4% of funds are actually raised
       const incorrectPercentage =
         Math.round((incorrectTotalLeve / projetGlobal.objectif) * 100 * 10) / 10
-      assert.strictEqual(incorrectPercentage, 100.0)
+      assert.strictEqual(incorrectPercentage, 84.1)
 
       // This demonstrates why the correction was necessary
       assert.notStrictEqual(incorrectTotalLeve, projetGlobal.montant_leve)

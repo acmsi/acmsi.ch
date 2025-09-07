@@ -14,9 +14,9 @@ interface ProjectBannerProps {
 export default function ProjectBanner({
   variant = 'compact',
   showProgress = false,
-  totalAmount = 1185500,
-  raisedAmount = 0,
-  percentage = 0,
+  totalAmount = 630000,
+  raisedAmount = 330000,
+  percentage = 52.4,
 }: ProjectBannerProps) {
   if (variant === 'thin') {
     return (
@@ -33,8 +33,7 @@ export default function ProjectBanner({
                 </h3>
               </div>
               <p className="text-green-700 mb-3 text-sm">
-                Levée de fonds pour l&apos;acquisition et l&apos;aménagement de
-                la mosquée
+                Levée de fonds urgente pour l&apos;acquisition de la mosquée
               </p>
 
               {showProgress && (
@@ -79,10 +78,9 @@ export default function ProjectBanner({
               Projet Xhamia Nur
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
-              Un projet essentiel de{' '}
-              <strong>{formatAmount(totalAmount)}</strong> pour établir
-              l&apos;ACMSI et développer un centre islamique moderne à
-              Saint-Imier.
+              Un projet urgent de <strong>{formatAmount(totalAmount)}</strong>{' '}
+              pour racheter la mosquée Nur et établir l&apos;ACMSI sur des bases
+              islamiques solides, sans riba.
             </p>
 
             {showProgress && (
@@ -141,7 +139,7 @@ export default function ProjectBanner({
               l&apos;association sur des bases islamiques solides et sans riba.
               Ce projet urgent de <strong>{formatAmount(totalAmount)}</strong>{' '}
               permettra à notre communauté d&apos;avoir un lieu de culte pérenne
-              dans ses murs.
+              dans ses murs, libéré de toute hypothèque.
             </p>
 
             {showProgress && (

@@ -1,5 +1,5 @@
 ---
-type: projet_global
+type: backup_projet_global
 nom: Projet Xhamia Nur
 description: Projet global pour l'établissement de l'ACMSI et le développement
   d'un centre islamique moderne de 540m², pérenne, dans ses murs, à Saint-Imier

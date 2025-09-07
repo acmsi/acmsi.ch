@@ -179,14 +179,14 @@ test('Project Validation and Edge Cases', async t => {
 
   await t.test('Budget allocation validation scenarios', () => {
     const globalProject: BudgetProject = {
-      slug: 'global',
+      slug: 'acquisition-mosquee-nur',
       type: 'projet_global',
-      nom: 'Global Project',
-      objectif: 100000,
-      montant_leve: 50000, // Only 50k raised
+      nom: 'Acquisition Mosquée Nur',
+      objectif: 630000,
+      montant_leve: 330000, // Current acquisition funds
       derniere_maj: '2025-01-15',
-      content: 'Global project',
-      pourcentage_completion: 50,
+      content: "Projet d'acquisition de la mosquée",
+      pourcentage_completion: 52.4,
     }
 
     const subProjects: BudgetProject[] = [
@@ -194,21 +194,21 @@ test('Project Validation and Edge Cases', async t => {
         slug: 'sub1',
         type: 'sous_projet',
         nom: 'Sub Project 1',
-        objectif: 30000,
-        montant_leve: 30000, // Fully allocated
+        objectif: 150000,
+        montant_leve: 200000, // Over-allocated scenario
         derniere_maj: '2025-01-15',
         content: 'Sub project 1',
-        pourcentage_completion: 100,
+        pourcentage_completion: 133.3,
       },
       {
         slug: 'sub2',
         type: 'sous_projet',
         nom: 'Sub Project 2',
-        objectif: 40000,
-        montant_leve: 25000, // Partially allocated
+        objectif: 200000,
+        montant_leve: 150000, // Partially allocated
         derniere_maj: '2025-01-15',
         content: 'Sub project 2',
-        pourcentage_completion: 62.5,
+        pourcentage_completion: 75.0,
       },
     ]
 
@@ -217,15 +217,15 @@ test('Project Validation and Edge Cases', async t => {
       0,
     )
 
-    // Total allocated: 30k + 25k = 55k
-    assert.strictEqual(totalAllocated, 55000)
+    // Total allocated: 200k + 150k = 350k
+    assert.strictEqual(totalAllocated, 350000)
 
-    // This would exceed the actually raised global funds (50k)
+    // This would exceed the actually raised global funds (330k)
     assert.ok(totalAllocated > globalProject.montant_leve)
 
     // This scenario indicates a data integrity issue that should be caught
     const overAllocation = totalAllocated - globalProject.montant_leve
-    assert.strictEqual(overAllocation, 5000)
+    assert.strictEqual(overAllocation, 20000)
 
     // In a real system, this should trigger a validation warning
     assert.ok(overAllocation > 0, 'Over-allocation detected: validation needed')

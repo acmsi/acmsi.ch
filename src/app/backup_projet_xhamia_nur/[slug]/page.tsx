@@ -1,0 +1,263 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { Calendar, Target } from '@phosphor-icons/react/dist/ssr'
+import {
+  getBudgetProject,
+  getProjectSummary,
+  getAllBudgetProjects,
+  getGallery,
+  isProjectCompleted,
+  formatCompletionDate,
+  formatDeadlineDate,
+} from '@/lib/content'
+import ProgressBar from '@/components/progress-bar'
+import ProjectStatus from '@/components/project-status'
+import CompletedProjectBanner from '@/components/completed-project-banner'
+import ProjectBanner from '@/components/project-banner'
+import PhotoGallery from '@/components/photo-gallery'
+import { formatAmount, formatPercentage } from '@/lib/format'
+import Breadcrumbs from '@/components/breadcrumbs'
+
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateStaticParams() {
+  const projects = await getAllBudgetProjects()
+  return projects
+    .filter(project => project.type === 'sous_projet')
+    .map(project => ({
+      slug: project.slug,
+    }))
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const project = await getBudgetProject(slug)
+
+  if (!project) {
+    return {
+      title: 'Sous-projet non trouvé - ACMSI',
+    }
+  }
+
+  return {
+    title: `${project.nom} - Projet Xhamia Nur - ACMSI`,
+    description:
+      project.description ||
+      `Découvrez le sous-projet "${project.nom}" du Projet Xhamia Nur`,
+  }
+}
+
+export default async function SousProjetPage({ params }: Props) {
+  const { slug } = await params
+  const project = await getBudgetProject(slug)
+  const projectSummary = await getProjectSummary()
+
+  // Fetch associated gallery if specified
+  const gallery = project?.gallery ? await getGallery(project.gallery) : null
+
+  if (!project || project.type !== 'sous_projet') {
+    notFound()
+  }
+
+  return (
+    <div>
+      {/* Breadcrumb */}
+      <Breadcrumbs
+        items={[
+          { href: '/projet-xhamia-nur', label: 'Projet Xhamia Nur' },
+          { label: project.nom },
+        ]}
+      />
+
+      {/* En-tête du sous-projet */}
+      <section className="py-16 bg-nur-cream-50/80 border-b border-nur-cream-300">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl lg:text-4xl font-bold text-green-900 mb-4">
+              {project.nom}
+            </h1>
+
+            {/* Ligne avec dates et priorité */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 mb-6 text-sm text-green-800">
+              {/* Dernière mise à jour (gauche sur desktop) - toujours affiché */}
+              {project.derniere_maj && (
+                <div className="flex items-center justify-end flex-1">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Dernière mise à jour :{' '}
+                  {new Date(project.derniere_maj).toLocaleDateString('fr-CH')}
+                </div>
+              )}
+
+              {/* Priorité ou badge Accompli (centre sur desktop) */}
+              <div className="order-first sm:order-none">
+                {isProjectCompleted(project) ? (
+                  <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    ✓ Accompli
+                  </span>
+                ) : (
+                  <ProjectStatus
+                    status="en_cours"
+                    priority={project.priorite}
+                  />
+                )}
+              </div>
+
+              {/* Date d'accomplissement ou échéance souhaitée (droite sur desktop) */}
+              {isProjectCompleted(project) && project.date_accomplissement ? (
+                <div className="flex items-center flex-1">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Accompli :{' '}
+                  {formatCompletionDate(project.date_accomplissement)}
+                </div>
+              ) : (
+                !isProjectCompleted(project) &&
+                project.date_fin_prevue && (
+                  <div className="flex items-center flex-1">
+                    <Target className="w-4 h-4 mr-1" />
+                    Échéance souhaitée :{' '}
+                    {formatDeadlineDate(project.date_fin_prevue, project)}
+                  </div>
+                )
+              )}
+            </div>
+
+            {project.description && (
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+                {project.description}
+              </p>
+            )}
+          </div>
+
+          {/* Progression */}
+          <div className="px-6 mb-6">
+            <ProgressBar
+              percentage={project.pourcentage_completion}
+              variant="thick"
+              allocatedAmount={project.montant_leve}
+              budgetAmount={project.objectif}
+            />
+            <div
+              className="relative flex flex-wrap-reverse gap-x-3 justify-between items-center text-green-800 text-sm mt-2 px-1 mb-6 transition-all duration-500"
+              style={{
+                width:
+                  project.pourcentage_completion > 100
+                    ? `${(100 / project.pourcentage_completion) * 100}%`
+                    : '100%',
+              }}
+            >
+              <span className="font-semibold flex-1 text-nowrap">
+                {formatAmount(project.montant_leve)} alloué
+              </span>
+              <span className="text-right flex-1 text-nowrap">
+                Budget : {formatAmount(project.objectif)}
+              </span>
+
+              {/* Vertical line */}
+              {project.pourcentage_completion > 100 && (
+                <div className="absolute w-px h-3 bg-green-500 -top-2 right-0"></div>
+              )}
+            </div>
+          </div>
+
+          {/* Statut */}
+          {isProjectCompleted(project) && (
+            <CompletedProjectBanner
+              title="Sous-projet accompli"
+              description="Ce volet du Projet Xhamia Nur a été complété avec succès."
+              className="mb-8"
+            />
+          )}
+        </div>
+      </section>
+
+      {/* Contenu détaillé */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className="prose sm:prose-lg max-w-none mx-auto"
+            dangerouslySetInnerHTML={{ __html: project.content }}
+          />
+        </div>
+      </section>
+
+      {/* Galerie photo associée */}
+      {gallery && (
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <PhotoGallery gallery={gallery} maxThumbnails={6} />
+          </div>
+        </section>
+      )}
+
+      {/* Contexte dans le projet global */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-4">
+              Contexte dans le projet global
+            </h2>
+          </div>
+
+          <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+            <div className="flex items-start space-x-3">
+              <Target
+                className="w-8 h-8 text-green-800 flex-shrink-0 mt-1"
+                weight="duotone"
+              />
+              <div>
+                <h3 className="text-lg font-semibold text-green-900 mb-2">
+                  Allocation flexible des dons
+                </h3>
+                <p className="text-green-800 mb-3">
+                  L&apos;ACMSI gère les fonds collectés de manière globale,
+                  permettant une allocation optimale selon l&apos;évolution des
+                  priorités et la réalité du terrain.
+                </p>
+
+                {projectSummary && (
+                  <div className="text-sm text-green-700">
+                    <p>
+                      <strong>Montant alloué à ce sous-projet :</strong>{' '}
+                      {formatAmount(project.montant_leve)} (
+                      {formatPercentage(
+                        (project.montant_leve / projectSummary.total_leve) *
+                          100,
+                      )}{' '}
+                      du montant total collecté,{' '}
+                      {formatPercentage(
+                        (project.montant_leve / projectSummary.total_objectif) *
+                          100,
+                      )}{' '}
+                      du budget global)
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="text-center mt-6">
+              <Link
+                href="/projet-xhamia-nur#faire-un-don"
+                className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              >
+                🤲 Faire un don
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Banner */}
+      <ProjectBanner
+        variant="compact"
+        showProgress={true}
+        totalAmount={projectSummary?.total_objectif || 1185500}
+        raisedAmount={projectSummary?.total_leve || 0}
+        percentage={projectSummary?.pourcentage_global || 0}
+      />
+    </div>
+  )
+}
