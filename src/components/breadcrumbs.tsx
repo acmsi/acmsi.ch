@@ -1,7 +1,8 @@
 import Link from 'next/link'
+import type { ComponentProps } from 'react'
 
 export interface BreadcrumbItem {
-  href?: string
+  href?: ComponentProps<typeof Link>['href']
   label: string
 }
 
