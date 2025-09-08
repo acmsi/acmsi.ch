@@ -175,10 +175,10 @@ export default function RootLayout({
                     </p>
                     <p>
                       <a
-                        href="tel:+41792763500"
+                        href="tel:+41799601790"
                         className="hover:text-teal-300 transition-colors"
                       >
-                        079 276 35 00
+                        079 960 17 90
                       </a>
                     </p>
                     <p className="mt-4 pt-2 md:border-t border-gray-700">

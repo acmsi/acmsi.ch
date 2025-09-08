@@ -102,10 +102,10 @@ export default async function ContactPage() {
                     </h3>
                     <p>
                       <a
-                        href="tel:+41792763500"
+                        href="tel:+41799601790"
                         className="text-teal-600 hover:text-teal-700"
                       >
-                        079 276 35 00
+                        079 960 17 90
                       </a>
                     </p>
                   </div>

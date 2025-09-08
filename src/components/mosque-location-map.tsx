@@ -160,7 +160,7 @@ export default function MosqueLocationMap() {
                   }
                   return false;
                 " style="color: #0d9488; text-decoration: none;">📍 Itinéraire</a><br>
-                <a href="tel:+41792763500" style="color: #0d9488; text-decoration: none;">📞 079 276 35 00</a><br>
+                <a href="tel:+41799601790" style="color: #0d9488; text-decoration: none;">📞 079 960 17 90</a><br>
                 <a href="mailto:contact@acmsi.ch" style="color: #0d9488; text-decoration: none;">✉️ contact@acmsi.ch</a>
               </div>
             </div>
