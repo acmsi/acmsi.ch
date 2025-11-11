@@ -8,7 +8,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 import MobileMenu from '@/components/mobile-menu'
 import AuthGuard from '@/components/auth-guard'
-import ConstructionBanner from '@/components/construction-banner'
+// import ConstructionBanner from '@/components/construction-banner'
 import './global.css'
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export default function RootLayout({
         }
       >
         <AuthGuard>
-          <ConstructionBanner />
+          {/* <ConstructionBanner /> */}
           <header className="bg-white/70 shadow-sm border-b border-gray-200">
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
@@ -105,6 +105,7 @@ export default function RootLayout({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-300 hover:text-teal-300 transition-colors"
+                      title="Suivez-nous sur Instagram"
                     >
                       <InstagramLogo size={33} />
                     </a>
@@ -113,6 +114,7 @@ export default function RootLayout({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-300 hover:text-teal-300 transition-colors"
+                      title="Suivez-nous sur Facebook"
                     >
                       <FacebookLogo size={33} />
                     </a>
