@@ -1,6 +1,6 @@
 ---
 title: Le nouveau site de l'ACMSI
-date: 2024-12-22T10:00:00.000Z
+date: 2025-01-11T19:00:00.000Z
 tags:
   - annonce
   - site web
@@ -17,8 +17,10 @@ published: true
 Assalamu alaykum wa rahmatullahi wa barakatuh,
 
 Nous sommes ravis de vous présenter le nouveau site web de l'Association
-Culturelle Musulmane de Saint-Imier (ACMSI). Ce site a été développé avec soin,
-en gardant à l'esprit l'excellence et la bienveillance qui guident toutes nos actions.
+Culturelle Musulmane de Saint-Imier (ACMSI). Lancé dans une première version
+légère en septembre 2025, ce site a depuis été enrichi et développé avec soin,
+en gardant à l'esprit l'excellence et la bienveillance qui guident toutes nos
+actions.
 
 ## Un site pensé pour la communauté
 
@@ -38,14 +40,29 @@ Fidèles à nos valeurs d'inclusion, nous avons veillé à ce que ce site soit
 accessible à tous, avec une navigation claire et un design respectueux de nos
 traditions islamiques.
 
-## Prochaines étapes
+## Un site qui évolue avec vous
 
-Dans les semaines à venir, nous continuerons d'enrichir le contenu du site avec
-:
+Ce site continuera d'évoluer pour mieux servir notre communauté. Dans les
+semaines à venir, nous continuerons d'améliorer le site avec :
 
-- Plus d'articles sur la vie de notre communauté
-- Des ressources éducatives islamiques
-- Des galeries photos de nos événements
+- Des actualités régulières sur la vie de notre communauté et les activités de
+  la mosquée
+- Des mises à jour sur le [projet Xhamia Nur](/projet-xhamia-nur)
+- L'amélioration continue des informations pratiques
+
+Pour rester informé au quotidien, n'hésitez pas à rejoindre notre
+[communauté WhatsApp](https://chat.whatsapp.com/FsRYOthycLQLCmekiojmQ2).
+
+## Soutenez le projet Xhamia Nur
+
+Notre mosquée a besoin de votre soutien pour le
+[projet d'acquisition de la mosquée Nur](/projet-xhamia-nur). Ce projet urgent
+vise à racheter la mosquée pour établir l'ACMSI sur des bases islamiques
+solides et éliminer définitivement la riba. Chaque contribution, petite ou
+grande, nous rapproche de cet objectif essentiel de 630'000 CHF.
+
+Consultez la page du [projet Xhamia Nur](/projet-xhamia-nur#faire-un-don) pour
+découvrir comment contribuer. Qu'Allah récompense votre générosité.
 
 ## Vos retours sont précieux
 
