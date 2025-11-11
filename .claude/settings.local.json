@@ -6,7 +6,11 @@
       "Bash(npx tsc:*)",
       "Bash(npm run test:e2e:*)"
     ],
-    "ask": [],
-    "deny": []
-  }
+    "deny": [],
+    "ask": []
+  },
+  "enabledMcpjsonServers": [
+    "playwright-test",
+    "github"
+  ]
 }

@@ -3,8 +3,8 @@ type: projet_global
 nom: Acquisition Mosquée Nur
 description: Projet urgent pour le rachat de la mosquée Nur par l'ACMSI afin d'établir l'association sur des bases islamiques solides et d'éliminer la riba
 objectif: 630000
-montant_leve: 330000
-derniere_maj: 2025-01-26T10:00:00.000Z
+montant_leve: 285000
+derniere_maj: 2025-10-08T10:00:00.000Z
 priorite: 1
 ---
 
