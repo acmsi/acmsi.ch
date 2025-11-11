@@ -10,7 +10,7 @@ import {
   Target,
   TrendUp,
 } from '@phosphor-icons/react/dist/ssr'
-import { getBudgetProject } from '@/lib/content'
+import { getProject } from '@/lib/content'
 import Ayah from '@/components/ayah'
 import ProgressBar from '@/components/progress-bar'
 import { formatAmount, formatPercentage } from '@/lib/format'
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default async function ProjetXhamiaNurPage() {
   // Récupérer les données du projet d'acquisition depuis Decap CMS
-  const acquisitionProject = await getBudgetProject('acquisition-mosquee-nur')
+  const acquisitionProject = await getProject('acquisition-mosquee-nur')
 
   // Données par défaut si le projet n'est pas trouvé dans le CMS
   const objectifTotal = acquisitionProject?.objectif || 630000

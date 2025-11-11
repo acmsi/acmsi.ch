@@ -74,7 +74,7 @@ with content management capabilities.
 
 - **News articles** stored in `content/actualites/` as Markdown files
 - **Tags** stored in `content/tags/` as individual Markdown files for CMS management
-- **Project budget** stored in `content/budget/` for funding tracking
+- **Projects** stored in `content/projects/` for project tracking
 - Content utility library at `src/lib/content.ts` handles:
   - Fetching all news articles with `getAllNews()`
   - Getting single articles by slug with `getNewsArticle()`

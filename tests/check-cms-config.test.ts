@@ -57,26 +57,24 @@ test('Decap CMS Configuration', async t => {
     assert.ok('branch' in backend, 'backend should have branch property')
   })
 
-  await t.test('budget_projet collection has echeance_format field', () => {
+  await t.test('projets collection has echeance_format field', () => {
     const configContent = fs.readFileSync(configPath, 'utf8')
     const config = yaml.load(configContent) as Record<string, unknown>
 
-    // Find budget_projet collection
+    // Find projets collection
     const collections = config.collections as Array<Record<string, unknown>>
-    const budgetCollection = collections.find(
-      col => col.name === 'budget_projet',
-    )
+    const projetsCollection = collections.find(col => col.name === 'projets')
 
-    assert.ok(budgetCollection, 'budget_projet collection should exist')
+    assert.ok(projetsCollection, 'projets collection should exist')
 
-    const fields = budgetCollection.fields as Array<Record<string, unknown>>
+    const fields = projetsCollection.fields as Array<Record<string, unknown>>
     const echeanceFormatField = fields.find(
       field => field.name === 'echeance_format',
     )
 
     assert.ok(
       echeanceFormatField,
-      'echeance_format field should exist in budget_projet collection',
+      'echeance_format field should exist in projets collection',
     )
     assert.strictEqual(
       echeanceFormatField.widget,

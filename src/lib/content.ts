@@ -71,7 +71,7 @@ export interface ProjectSummary {
 export async function getProjectSummary(): Promise<ProjectSummary | null> {
   try {
     // Get the acquisition project directly
-    const acquisitionProject = await getBudgetProject('acquisition-mosquee-nur')
+    const acquisitionProject = await getProject('acquisition-mosquee-nur')
 
     if (!acquisitionProject) {
       return null
@@ -99,12 +99,10 @@ export async function getProjectSummary(): Promise<ProjectSummary | null> {
   }
 }
 
-// Get a single budget project by slug
-export async function getBudgetProject(
-  slug: string,
-): Promise<BudgetProject | null> {
+// Get a single project by slug
+export async function getProject(slug: string): Promise<BudgetProject | null> {
   try {
-    const fullPath = path.join(contentDirectory, 'budget', `${slug}.md`)
+    const fullPath = path.join(contentDirectory, 'projects', `${slug}.md`)
 
     if (!fs.existsSync(fullPath)) {
       return null
@@ -140,7 +138,7 @@ export async function getBudgetProject(
       gallery: data.gallery,
     } as BudgetProject
   } catch (error) {
-    console.error(`Error reading budget project ${slug}:`, error)
+    console.error(`Error reading project ${slug}:`, error)
     return null
   }
 }

@@ -59,9 +59,9 @@ collections:
           required: false,
         }
 
-  - name: 'budget_projet' # Collection pour la gestion budgétaire
-    label: 'Budget Projet Xhamia Nur'
-    folder: 'content/budget'
+  - name: 'projets' # Collection pour les projets
+    label: 'Projets'
+    folder: 'content/projects'
     create: true
     slug: '{{slug}}'
     fields:
