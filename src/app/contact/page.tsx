@@ -44,7 +44,7 @@ export default async function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Details */}
             <div>
-              <h2 className="text-3xl font-bold mb-8">
+              <h2 className="text-3xl font-bold mb-6">
                 Informations de Contact
               </h2>
 
@@ -136,59 +136,44 @@ export default async function ContactPage() {
 
             {/* Prayer Times */}
             <div>
-              <h2 className="text-3xl font-bold mb-8">Horaires des Prières</h2>
+              <h2 className="text-3xl font-bold mb-6">Horaires des Prières</h2>
+
+              {/* Desktop/Tablet iframe */}
+              <div className="w-full mb-6 hidden md:block">
+                <iframe
+                  src="//mawaqit.net/en/w/mosquee-nur-2610-saint-imier-switzerland?showOnly5PrayerTimes=0"
+                  frameBorder="0"
+                  scrolling="no"
+                  className="widget w-full rounded-lg aspect-[510/250] min-h-[250px]"
+                  title="Horaires des prières Mosquée Nur"
+                />
+              </div>
+
+              {/* Mobile iframe */}
+              <div className="w-full mb-6 block md:hidden">
+                <iframe
+                  src="//mawaqit.net/en/m/mosquee-nur-2610-saint-imier-switzerland?showNotification=0&showSearchButton=0&showFooter=0&showFlashMessage=0&view=mobile"
+                  frameBorder="0"
+                  scrolling="no"
+                  className="mobile w-full rounded-lg min-h-[500px]"
+                  title="Horaires des prières Mosquée Nur"
+                />
+              </div>
 
               <div className="bg-gray-50 rounded-lg p-6">
-                <div className="relative">
-                  <div className="absolute -top-2 -bottom-2 -left-2 -right-2 bg-gray-100/80 rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="text-lg font-medium text-gray-700 mb-1">
-                        En construction
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        Horaires bientôt disponibles
-                      </p>
-                    </div>
+                <h4 className="font-semibold mb-2">
+                  Jumma – Prière du Vendredi
+                </h4>
+                <dl className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <dt>Khutbah</dt>
+                    <dd>12:15</dd>
                   </div>
-                  <dl className="space-y-4">
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <dt className="font-medium">Fajr</dt>
-                      <dd>Bientôt disponible</dd>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <dt className="font-medium">Dhuhr</dt>
-                      <dd>Bientôt disponible</dd>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <dt className="font-medium">Asr</dt>
-                      <dd>Bientôt disponible</dd>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <dt className="font-medium">Maghrib</dt>
-                      <dd>Bientôt disponible</dd>
-                    </div>
-                    <div className="flex justify-between items-center py-2">
-                      <dt className="font-medium">Isha</dt>
-                      <dd>Bientôt disponible</dd>
-                    </div>
-                  </dl>
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <h4 className="font-semibold mb-2">
-                    Jumma – Prière du Vendredi
-                  </h4>
-                  <dl className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <dt>Khutbah</dt>
-                      <dd>12:15</dd>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <dt>Prière</dt>
-                      <dd>12:30</dd>
-                    </div>
-                  </dl>
-                </div>
+                  <div className="flex justify-between items-center">
+                    <dt>Prière</dt>
+                    <dd>12:30</dd>
+                  </div>
+                </dl>
 
                 <div className="mt-4 p-3 bg-red-50 rounded-lg">
                   <div className="flex items-start">
