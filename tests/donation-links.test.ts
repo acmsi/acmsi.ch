@@ -31,20 +31,20 @@ test('Donation Links', async t => {
 
   await t.test('contains RaiseNow donation link in donation page', () => {
     assert.ok(
-      donationPageContent.includes('https://pay.raisenow.io/jkyys'),
+      donationPageContent.includes('https://donate.raisenow.io/wfphr'),
       'Should contain RaiseNow donation link',
     )
   })
 
   await t.test('contains RaiseNow donation link in project page', () => {
     assert.ok(
-      projectPageContent.includes('https://pay.raisenow.io/jkyys'),
+      projectPageContent.includes('https://pay.raisenow.io/fnsym'),
       'Should contain RaiseNow donation link',
     )
   })
 
   await t.test('RaiseNow donation link is accessible', async () => {
-    const donationUrl = 'https://pay.raisenow.io/jkyys'
+    const donationUrl = 'https://donate.raisenow.io/wfphr'
 
     try {
       const controller = new AbortController()
@@ -89,15 +89,15 @@ test('Donation Links', async t => {
     )
   })
 
-  await t.test('Twint via RaiseNow sections are properly labeled', () => {
+  await t.test('RaiseNow sections are properly labeled', () => {
     assert.ok(
-      donationPageContent.includes('Twint (via RaiseNow)'),
-      'Donation page should have proper Twint RaiseNow label',
+      donationPageContent.includes('Via RaiseNow'),
+      'Donation page should have proper RaiseNow label',
     )
 
     assert.ok(
-      projectPageContent.includes('Twint (via RaiseNow)'),
-      'Project page should have proper Twint RaiseNow label',
+      projectPageContent.includes('Via RaiseNow'),
+      'Project page should have proper RaiseNow label',
     )
   })
 })

@@ -253,21 +253,19 @@ export default async function DonationPage() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">
-                    Twint (via RaiseNow)
-                  </h3>
+                  <h3 className="text-xl font-semibold mb-3">Via RaiseNow</h3>
                   <p className="text-gray-600 mb-4">
                     Faites un don sécurisé de n&rsquo;importe quel montant via
-                    Twint grâce à RaiseNow
+                    RaiseNow
                   </p>
                   <a
-                    href="https://pay.raisenow.io/jkyys"
+                    href="https://donate.raisenow.io/wfphr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
                   >
                     <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
-                    Faire un don via Twint
+                    Faire un don via RaiseNow
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
                 </div>
@@ -307,6 +305,12 @@ export default async function DonationPage() {
                         St-Imier
                       </p>
                     </div>
+                  </div>
+                  <div className="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
+                    <p className="text-sm font-semibold text-amber-900">
+                      ⚠️ Important : Précisez &quot;Don libre ACMSI&quot; dans
+                      la communication
+                    </p>
                   </div>
                 </div>
               </div>

@@ -6,7 +6,6 @@ import {
   Calendar,
   Bank,
   DeviceMobile,
-  PaypalLogo,
   Money,
   Target,
   TrendUp,
@@ -203,8 +202,54 @@ export default async function ProjetXhamiaNurPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* IBAN */}
+            {/* Via RaiseNow */}
             <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <DeviceMobile
+                    className="w-8 h-8 text-green-600"
+                    weight="duotone"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-3">Via RaiseNow</h3>
+                  <p className="text-gray-600 mb-3">
+                    Faites un don sécurisé de n&rsquo;importe quel montant grâce
+                    à RaiseNow.
+                  </p>
+                  <a
+                    href="https://pay.raisenow.io/fnsym"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                  >
+                    Faire un don en ligne →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Don à la mosquée */}
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Money className="w-8 h-8 text-green-600" weight="duotone" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-3">À la mosquée</h3>
+                  <p className="text-gray-600 mb-3">
+                    Remettez votre don directement lors des prières ou
+                    contactez-nous au :
+                  </p>
+                  <p className="font-semibold text-green-600">
+                    +41 (0) 79 276 35 00
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* IBAN - Prend toute la largeur */}
+            <div className="bg-white p-6 rounded-lg shadow-sm md:col-span-2">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Bank className="w-8 h-8 text-green-600" weight="duotone" />
@@ -223,83 +268,12 @@ export default async function ProjetXhamiaNurPage() {
                       Rue de la Clef 45, 2610 St-Imier
                     </p>
                   </div>
-                  <p className="text-xs text-gray-500 mt-2">
-                    Précisez &quot;Projet Xhamia Nur&quot; dans la communication
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Twint */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <DeviceMobile
-                    className="w-8 h-8 text-green-600"
-                    weight="duotone"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">
-                    Twint (via RaiseNow)
-                  </h3>
-                  <p className="text-gray-600 mb-3">
-                    Faites un don sécurisé de n&rsquo;importe quel montant via
-                    Twint grâce à RaiseNow.
-                  </p>
-                  <a
-                    href="https://pay.raisenow.io/jkyys"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
-                  >
-                    Faire un don via Twint →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* PayPal */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <PaypalLogo
-                    className="w-8 h-8 text-green-600"
-                    weight="duotone"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">PayPal</h3>
-                  <p className="text-gray-600 mb-3">
-                    Utilisez le QR code PayPal pour un don rapide et sécurisé.
-                  </p>
-                  <a
-                    href="/documents/flyer appel dons mosquée FR.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 hover:text-green-700 font-medium"
-                  >
-                    Voir le QR code PayPal →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Don en espèces */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Money className="w-8 h-8 text-green-600" weight="duotone" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">À la mosquée</h3>
-                  <p className="text-gray-600 mb-3">
-                    Remettez votre don directement lors des prières ou
-                    contactez-nous au :
-                  </p>
-                  <p className="font-semibold text-green-600">
-                    +41 (0) 79 276 35 00
-                  </p>
+                  <div className="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
+                    <p className="text-sm font-semibold text-amber-900">
+                      ⚠️Important : Précisez &quot;Projet Xhamia Nur&quot; dans
+                      la communication
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
