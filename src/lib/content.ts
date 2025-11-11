@@ -38,6 +38,9 @@ export interface Gallery {
   content: string
 }
 
+// Type for date display format
+export type DateDisplayFormat = 'full' | 'month' | 'quarter'
+
 export interface BudgetProject {
   slug: string
   type: 'projet_global' | 'sous_projet'
@@ -64,158 +67,31 @@ export interface ProjectSummary {
   derniere_maj_globale: string
 }
 
-// Helper functions for project filtering
-export function getActiveProjects(projects: BudgetProject[]): BudgetProject[] {
-  return projects.filter(p => !p.date_accomplissement)
-}
-
-export function getCompletedProjects(
-  projects: BudgetProject[],
-): BudgetProject[] {
-  return projects.filter(p => !!p.date_accomplissement)
-}
-
-// Helper functions for date formatting
-export type DateDisplayFormat = 'full' | 'month' | 'quarter'
-
-export function formatProjectDate(
-  dateString: string,
-  format: DateDisplayFormat = 'quarter',
-): string {
-  const date = new Date(dateString)
-
-  switch (format) {
-    case 'full':
-      return date.toLocaleDateString('fr-CH')
-    case 'month':
-      return date.toLocaleDateString('fr-CH', {
-        month: 'long',
-        year: 'numeric',
-      })
-    case 'quarter':
-      const quarter = Math.ceil((date.getMonth() + 1) / 3)
-      return `Q${quarter} ${date.getFullYear()}`
-    default:
-      return dateString
-  }
-}
-
-export function formatCompletionDate(dateString: string): string {
-  // Les dates d'accomplissement sont toujours précises
-  const date = new Date(dateString)
-  return date.toLocaleDateString('fr-CH')
-}
-
-export function formatDeadlineDate(
-  dateString: string,
-  project?: BudgetProject,
-): string {
-  // Les échéances peuvent être flexibles - utilise le format du projet
-  return formatProjectDate(
-    dateString,
-    getDateDisplayFormat(dateString, project),
-  )
-}
-
-export function getDateDisplayFormat(
-  dateString: string,
-  project?: BudgetProject,
-): DateDisplayFormat {
-  // Use project's echeance_format if available, otherwise default to quarter
-  return project?.echeance_format || 'quarter'
-}
-
-export function isProjectCompleted(project: BudgetProject): boolean {
-  return !!project.date_accomplissement
-}
-
-// Get all budget projects
-export async function getAllBudgetProjects(): Promise<BudgetProject[]> {
-  const budgetDirectory = path.join(contentDirectory, 'budget')
-
-  if (!fs.existsSync(budgetDirectory)) {
-    return []
-  }
-
-  const fileNames = fs.readdirSync(budgetDirectory)
-  const allBudgetData = await Promise.all(
-    fileNames
-      .filter(fileName => fileName.endsWith('.md'))
-      .map(async fileName => {
-        const slug = fileName.replace(/\.md$/, '')
-        const fullPath = path.join(budgetDirectory, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const { data, content } = matter(fileContents)
-
-        // Convert markdown to HTML
-        const processedContent = await remark().use(html).process(content)
-        const contentHtml = processedContent.toString()
-
-        // Calculate percentage
-        const pourcentage_completion =
-          data.objectif > 0
-            ? Math.round((data.montant_leve / data.objectif) * 100 * 10) / 10
-            : 0
-
-        return {
-          slug,
-          type: data.type,
-          nom: data.nom || '',
-          description: data.description,
-          objectif: data.objectif || 0,
-          montant_leve: data.montant_leve || 0,
-          derniere_maj: data.derniere_maj || '',
-          priorite: data.priorite,
-          date_accomplissement: data.date_accomplissement,
-          date_fin_prevue: data.date_fin_prevue,
-          echeance_format: data.echeance_format,
-          content: contentHtml,
-          pourcentage_completion,
-        } as BudgetProject
-      }),
-  )
-
-  return allBudgetData
-}
-
-// Get project summary with global project and sub-projects
+// Get project summary - simplified for single acquisition project
 export async function getProjectSummary(): Promise<ProjectSummary | null> {
   try {
-    const allProjects = await getAllBudgetProjects()
+    // Get the acquisition project directly
+    const acquisitionProject = await getBudgetProject('acquisition-mosquee-nur')
 
-    const projet_global = allProjects.find(p => p.type === 'projet_global')
-    const sous_projets = allProjects
-      .filter(p => p.type === 'sous_projet')
-      .sort((a, b) => (a.priorite || 99) - (b.priorite || 99))
-
-    if (!projet_global) {
+    if (!acquisitionProject) {
       return null
     }
 
-    // Calculate totals
-    const total_objectif = projet_global.objectif
-    const total_leve = projet_global.montant_leve
+    // Calculate totals based on the acquisition project
+    const total_objectif = acquisitionProject.objectif
+    const total_leve = acquisitionProject.montant_leve
     const pourcentage_global =
       total_objectif > 0
         ? Math.round((total_leve / total_objectif) * 100 * 10) / 10
         : 0
 
-    // Find most recent update
-    const dates = [
-      projet_global.derniere_maj,
-      ...sous_projets.map(p => p.derniere_maj),
-    ]
-      .filter(date => date)
-      .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
-    const derniere_maj_globale = dates[0] || projet_global.derniere_maj
-
     return {
-      projet_global,
-      sous_projets,
+      projet_global: acquisitionProject,
+      sous_projets: [], // No sub-projects anymore
       total_objectif,
       total_leve,
       pourcentage_global,
-      derniere_maj_globale,
+      derniere_maj_globale: acquisitionProject.derniere_maj,
     }
   } catch (error) {
     console.error('Error loading project summary:', error)
