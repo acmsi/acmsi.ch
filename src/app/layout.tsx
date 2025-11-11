@@ -116,9 +116,15 @@ export default function RootLayout({
                     >
                       <FacebookLogo size={33} />
                     </a>
-                    <div className="text-gray-500">
+                    <a
+                      href="https://chat.whatsapp.com/FsRYOthycLQLCmekiojmQ2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-teal-300 transition-colors"
+                      title="Rejoindre la communauté WhatsApp"
+                    >
                       <WhatsappLogo size={33} />
-                    </div>
+                    </a>
                   </div>
                 </div>
                 <div>

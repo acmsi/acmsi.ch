@@ -331,3 +331,19 @@ test.describe('Navigation Cross-Device Behavior', () => {
     await expect(mobileMenuButton).toBeVisible()
   })
 })
+
+test.describe('WhatsApp Community Links', () => {
+  const WHATSAPP_URL = 'https://chat.whatsapp.com/FsRYOthycLQLCmekiojmQ2'
+
+  test('footer has WhatsApp link', async ({ page }) => {
+    await page.goto('/')
+    const whatsappLink = page.locator(`footer a[href="${WHATSAPP_URL}"]`)
+    await expect(whatsappLink).toBeVisible()
+  })
+
+  test('contact page has WhatsApp link', async ({ page }) => {
+    await page.goto('/contact')
+    const whatsappLink = page.locator(`a[href="${WHATSAPP_URL}"]`)
+    await expect(whatsappLink).toBeVisible()
+  })
+})

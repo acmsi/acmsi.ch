@@ -122,13 +122,18 @@ export default async function ContactPage() {
                     <h3 className="text-lg font-semibold leading-tight">
                       WhatsApp Communauté
                     </h3>
-                    <p>
-                      Rejoignez notre groupe WhatsApp communautaire
-                      <br />
-                      <span className="text-sm text-gray-500">
-                        Contactez-nous pour obtenir le lien d&rsquo;invitation
-                      </span>
+                    <p className="mb-2">
+                      Rejoignez notre communauté sur WhatsApp pour rester
+                      informé des activités de la mosquée
                     </p>
+                    <a
+                      href="https://chat.whatsapp.com/FsRYOthycLQLCmekiojmQ2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium"
+                    >
+                      Rejoindre la communauté →
+                    </a>
                   </div>
                 </div>
               </div>
