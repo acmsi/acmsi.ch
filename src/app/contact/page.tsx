@@ -146,7 +146,7 @@ export default async function ContactPage() {
               {/* Desktop/Tablet iframe */}
               <div className="w-full mb-6 hidden md:block">
                 <iframe
-                  src="//mawaqit.net/en/w/mosquee-nur-2610-saint-imier-switzerland?showOnly5PrayerTimes=0"
+                  src="//mawaqit.net/fr/w/mosquee-nur-2610-saint-imier-switzerland?showOnly5PrayerTimes=0"
                   frameBorder="0"
                   scrolling="no"
                   className="widget w-full rounded-lg aspect-[510/250] min-h-[250px]"
@@ -157,7 +157,7 @@ export default async function ContactPage() {
               {/* Mobile iframe */}
               <div className="w-full mb-6 block md:hidden">
                 <iframe
-                  src="//mawaqit.net/en/m/mosquee-nur-2610-saint-imier-switzerland?showNotification=0&showSearchButton=0&showFooter=0&showFlashMessage=0&view=mobile"
+                  src="//mawaqit.net/fr/m/mosquee-nur-2610-saint-imier-switzerland?showNotification=0&showSearchButton=0&showFooter=0&showFlashMessage=0&view=mobile"
                   frameBorder="0"
                   scrolling="no"
                   className="mobile w-full rounded-lg min-h-[500px]"

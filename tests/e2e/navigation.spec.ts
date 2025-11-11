@@ -343,7 +343,9 @@ test.describe('WhatsApp Community Links', () => {
 
   test('contact page has WhatsApp link', async ({ page }) => {
     await page.goto('/contact')
-    const whatsappLink = page.locator(`a[href="${WHATSAPP_URL}"]`)
+    const whatsappLink = page.locator(
+      `a[href="${WHATSAPP_URL}"]:has-text("Rejoindre la communauté")`,
+    )
     await expect(whatsappLink).toBeVisible()
   })
 })

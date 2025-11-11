@@ -378,7 +378,7 @@ export default async function DonationPage() {
           <h2 className="text-3xl font-bold mb-6">Questions sur les dons ?</h2>
           <p className="text-lg mb-8">
             N&rsquo;hésitez pas à nous contacter pour toute question concernant
-            les dons ou pour obtenir un reçu fiscal si nécessaire.
+            les dons.
           </p>
           <Link
             href="/contact"
