@@ -16,8 +16,10 @@ with content management capabilities.
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint (⚠️ deprecated in Next.js 16)
 - `npm run export` - Build and export static files
-- `npm run test` - Run all tests (unit + e2e)
+- `npm run test` - Run all tests (unit + components + e2e)
 - `npm run test:unit` - Run unit tests
+- `npm run test:components` - Run Playwright component tests
+- `npm run test:components:ui` - Run component tests with UI
 - `npm run test:e2e` - Run Playwright e2e tests
 - `npm run test:e2e:ui` - Run Playwright tests with UI
 - `npm run test:e2e:debug` - Run Playwright tests in debug mode
@@ -118,20 +120,35 @@ with content management capabilities.
 - Test files in `tests/*.test.ts`
 - Run with `npm run test:unit`
 
+### Component Testing
+
+- **Playwright Component Testing** for React component tests
+- Uses `@playwright/experimental-ct-react@next` (alpha version required for jsx-runtime fix)
+- Test files co-located with components: `src/components/*.test.tsx`
+- Import from `@playwright/experimental-ct-react` and use `mount()` fixture
+- Run `npm run test:components` for headless testing
+- Run `npm run test:components:ui` for interactive testing with browser UI
+- Configuration in `playwright-ct.config.ts`
+- Always use viewport resolution of 1024x950 when using Playwright MCP tools
+
 ### End-to-End Testing
 
 - **Playwright** for end-to-end testing
-- Always use viewport resolution of 1024x950 when using Playwright MCP tools
 - Test files in `tests/e2e/*.spec.ts`
+- Import from `@playwright/test` and use `page` fixture
 - Run `npm run test:e2e` for headless testing
 - Run `npm run test:e2e:ui` for interactive testing with browser UI
+- Configuration in `playwright.config.ts`
 - Tests should cover critical user flows and page functionality
 
 ### Test Writing Guidelines
 
 - **Unit tests**: Use Node.js assertions (`assert.strictEqual`, `assert.ok`, `assert.deepStrictEqual`)
+- **Component tests**: Use Playwright CT assertions (`expect(component).toBeVisible()`, `expect(component).toContainText()`)
 - **E2E tests**: Use Playwright assertions (`expect(page.locator(...)).toBeVisible()`)
 - Always test tag filtering, CMS configuration, and core functionality
+- Component tests are co-located with components for easier maintenance
+- E2E tests are organized in `tests/e2e/` by feature area
 
 ## Basic Authentication (Construction Mode)
 

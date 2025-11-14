@@ -30,7 +30,7 @@ For a complete list of commands and detailed documentation, see [CLAUDE.md](./CL
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with custom "nur" color palette
 - **Content Management**: [Decap CMS](https://decapcms.org/) (formerly Netlify CMS)
-- **Testing**: [Playwright](https://playwright.dev/) for e2e testing
+- **Testing**: [Playwright](https://playwright.dev/) for component and e2e testing
 - **Icons**: [Phosphor Icons](https://phosphoricons.com/)
 
 ## 📁 Project Structure
@@ -47,6 +47,8 @@ src/
 │   ├── donation/                 # Donation page
 │   └── projet-xhamia-nur/        # Mosque project section
 ├── components/                   # Reusable React components
+│   ├── *.tsx                     # Component implementations
+│   └── *.test.tsx                # Component tests (co-located)
 ├── lib/                         # Utility functions and content management
 └── styles/                      # Global styles and Tailwind configuration
 public/
@@ -55,6 +57,8 @@ public/
 └── ...                         # Other static assets
 content/
 └── actualites/                 # Markdown files for news articles
+tests/
+└── e2e/                        # End-to-end tests
 ```
 
 ## 🎨 Features
@@ -69,17 +73,32 @@ content/
 ## 🧪 Testing
 
 ```bash
-# Run all tests
+# Run all tests (unit + components + e2e)
 npm run test
+
+# Unit tests only
+npm run test:unit
+
+# Component tests only
+npm run test:components
+
+# Component tests with UI
+npm run test:components:ui
 
 # E2E tests only
 npm run test:e2e
 
-# Interactive testing
+# E2E tests with UI
 npm run test:e2e:ui
 ```
 
-Tests cover critical user flows including navigation, mobile menu functionality, and page accessibility.
+The project uses a comprehensive testing strategy:
+
+- **Unit tests**: Node.js built-in test runner for utility functions
+- **Component tests**: Playwright Component Testing for React components (co-located with components)
+- **E2E tests**: Playwright for full user flow testing
+
+Tests cover critical user flows including navigation, mobile menu functionality, page accessibility, and component behavior.
 
 ## 🚀 Deployment
 
