@@ -154,7 +154,7 @@ export default async function ContactPage() {
               <h2 className="text-3xl font-bold mb-6">Horaires des Prières</h2>
 
               {/* Desktop/Tablet iframe */}
-              <div className="w-full mb-6 hidden md:block">
+              <div className="w-full mb-6 hidden sm:block">
                 <iframe
                   src="//mawaqit.net/fr/w/mosquee-nur-2610-saint-imier-switzerland?showOnly5PrayerTimes=0"
                   frameBorder="0"
@@ -165,12 +165,12 @@ export default async function ContactPage() {
               </div>
 
               {/* Mobile iframe */}
-              <div className="w-full mb-6 block md:hidden">
+              <div className="w-full mb-6 block sm:hidden">
                 <iframe
                   src="//mawaqit.net/fr/m/mosquee-nur-2610-saint-imier-switzerland?showNotification=0&showSearchButton=0&showFooter=0&showFlashMessage=0&view=mobile"
                   frameBorder="0"
                   scrolling="no"
-                  className="mobile w-full rounded-lg min-h-[500px]"
+                  className="mobile w-full rounded-lg min-h-[520px]"
                   title="Horaires des prières Mosquée Nur"
                 />
               </div>
