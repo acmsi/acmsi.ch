@@ -60,13 +60,23 @@ export default async function ContactPage() {
                     <h3 className="text-lg font-semibold leading-tight">
                       Adresse
                     </h3>
-                    <p>
+                    <address>
                       ACMSI – Mosquée Nur
                       <br />
                       Rue de la Clef 45
                       <br />
                       2610 Saint-Imier, Suisse
-                    </p>
+                    </address>
+                    <a
+                      href="/contact#parking-info"
+                      className="mt-3 inline-flex items-center text-sm hover:text-teal-700 transition-colors"
+                    >
+                      <LetterCircleP
+                        weight="duotone"
+                        className="text-blue-500 w-5 h-5 mr-1"
+                      />
+                      Informations Stationnement
+                    </a>
                   </div>
                 </div>
 
@@ -188,7 +198,7 @@ export default async function ContactPage() {
                       devant la mosquée, ces places sont réservées aux personnes
                       à mobilité réduite et à l&apos;Imam.{' '}
                       <a
-                        href="/contact#parking-info"
+                        href="#parking-info"
                         className="hover:text-red-700 transition-colors underline mt-2 block"
                       >
                         Voir les informations complètes pour les options de
@@ -268,8 +278,8 @@ export default async function ContactPage() {
                       respecter scrupuleusement les emplacements de
                       stationnement
                     </strong>
-                    , ne jamais bloquer les entrées de garage, et faire preuve
-                    de{' '}
+                    , ne jamais bloquer les entrées de garage, les trottoirs, et
+                    faire preuve de{' '}
                     <strong>
                       courtoisie et de bienveillance envers nos voisins
                     </strong>

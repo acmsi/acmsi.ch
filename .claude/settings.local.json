@@ -1,4 +1,5 @@
 {
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": ["playwright-test", "github"],
   "permissions": {
     "allow": [
