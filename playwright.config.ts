@@ -22,7 +22,7 @@ export default defineConfig({
   /* Simplified reporter for speed */
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'test-results/html', open: 'never' }],
+    ['html', { outputFolder: 'test-results/e2e/html', open: 'never' }],
   ],
 
   /* Shared settings optimized for speed */
@@ -70,5 +70,5 @@ export default defineConfig({
   },
 
   /* Output directory for test results */
-  outputDir: 'test-results/artifacts',
+  outputDir: 'test-results/e2e/artifacts',
 })

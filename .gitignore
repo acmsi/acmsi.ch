@@ -14,7 +14,11 @@
 /coverage
 /test-results/
 /playwright-report/
+/playwright/.cache/
+/playwright/.auth/
 /.tmp/
+/blob-report/
+node_modules/
 
 # next.js
 /.next/
