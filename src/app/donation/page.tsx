@@ -11,10 +11,12 @@ import {
   Users,
   Shield,
   QrCode,
+  Bank,
 } from '@phosphor-icons/react/dist/ssr'
 import { Donation } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner'
 import CardKeyPoint from '@/components/card-key-point'
+import BankDetails from '@/components/bank-details'
 import { getProjectSummary } from '@/lib/content'
 import { formatAmount } from '@/lib/format'
 
@@ -276,10 +278,7 @@ export default async function DonationPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <CreditCard
-                    className="w-8 h-8 text-gray-600"
-                    weight="duotone"
-                  />
+                  <Bank className="w-8 h-8 text-gray-600" weight="duotone" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-3">
@@ -288,24 +287,10 @@ export default async function DonationPage() {
                   <p className="text-gray-600 mb-4">
                     Effectuez un virement sur le compte de l&rsquo;ACMSI
                   </p>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm text-gray-600 mb-2">
-                      Coordonnées bancaires :
-                    </p>
-                    <div className="space-y-1 text-gray-900">
-                      <p>
-                        <strong>Bénéficiaire :</strong> Association Culturelle
-                        Musulmane de Saint-Imier
-                      </p>
-                      <p>
-                        <strong>IBAN :</strong> CH97 0079 0042 4236 1827 8
-                      </p>
-                      <p>
-                        <strong>Adresse :</strong> Rue de la Clef 45, 2610
-                        St-Imier
-                      </p>
-                    </div>
-                  </div>
+                  <BankDetails
+                    message="Don libre ACMSI"
+                    ibanColorClass="text-teal-600"
+                  />
                   <div className="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
                     <p className="text-sm font-semibold text-amber-900">
                       ⚠️ Important : Précisez &quot;Don libre ACMSI&quot; dans

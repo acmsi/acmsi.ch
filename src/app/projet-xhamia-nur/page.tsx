@@ -13,6 +13,7 @@ import {
 import { getProject } from '@/lib/content'
 import Ayah from '@/components/ayah'
 import ProgressBar from '@/components/progress-bar'
+import BankDetails from '@/components/bank-details'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
 export const metadata: Metadata = {
@@ -256,21 +257,12 @@ export default async function ProjetXhamiaNurPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-3">
-                    Virement bancaire (IBAN)
+                    Virement bancaire
                   </h3>
-                  <div className="bg-gray-50 p-4 rounded border">
-                    <p className="font-mono text-lg font-bold text-green-600 mb-2">
-                      CH97 0079 0042 4236 1827 8
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Association Culturelle Musulmane
-                      <br />
-                      Rue de la Clef 45, 2610 St-Imier
-                    </p>
-                  </div>
+                  <BankDetails message="Projet Xhamia Nur" />
                   <div className="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
                     <p className="text-sm font-semibold text-amber-900">
-                      ⚠️Important : Précisez &quot;Projet Xhamia Nur&quot; dans
+                      ⚠️ Important : Précisez &quot;Projet Xhamia Nur&quot; dans
                       la communication
                     </p>
                   </div>
