@@ -69,7 +69,7 @@ export default async function ContactPage() {
                     </address>
                     <a
                       href="/contact#parking-info"
-                      className="mt-3 inline-flex items-center text-sm hover:text-teal-700 transition-colors"
+                      className="mt-3 inline-flex items-center hover:text-teal-700 transition-colors"
                     >
                       <LetterCircleP
                         weight="duotone"
@@ -193,7 +193,7 @@ export default async function ContactPage() {
                 <div className="mt-4 p-3 bg-red-50 rounded-lg">
                   <div className="flex items-start">
                     <LetterCircleP className="w-5 h-5 mr-2 text-red-900 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-red-900">
+                    <p className="text-red-900">
                       <strong>Staionnement Jumma:</strong> Ne pas se garer
                       devant la mosquée, ces places sont réservées aux personnes
                       à mobilité réduite et à l&apos;Imam.{' '}

@@ -59,6 +59,7 @@
 }
 
 @theme inline {
+  --text-xs: 0.8rem;
   /* Font Families */
   --font-family-sans:
     Mada, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

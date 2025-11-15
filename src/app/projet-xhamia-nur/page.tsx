@@ -82,16 +82,16 @@ export default async function ProjetXhamiaNurPage() {
 
           <ProgressBar percentage={pourcentageCollecte} variant="thick" />
 
-          <div className="flex justify-between items-center text-lg my-2">
-            <span className="font-semibold text-green-600">
+          <div className="flex flex-wrap gap-1 justify-between items-center sm:text-lg my-2">
+            <span className="flex-1 min-w-0 max-w-fit font-semibold text-green-600">
               {formatAmount(montantCollecte)} collecté
             </span>
-            <span className="text-gray-600">
+            <span className="flex-1 min-w-0 max-w-fit text-right text-gray-600">
               Objectif : {formatAmount(objectifTotal)}
             </span>
           </div>
 
-          <div className="flex justify-between items-center text-sm text-gray-500">
+          <div className="flex flex-wrap gap-1 justify-between items-center text-sm text-gray-500">
             <span>
               {formatPercentage(pourcentageCollecte)} de l&apos;objectif atteint
             </span>
@@ -150,14 +150,14 @@ export default async function ProjetXhamiaNurPage() {
               acquisition.
             </p>
 
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+            <div className="not-prose bg-green-50 border border-green-200 rounded-lg p-6">
               <div className="flex items-start space-x-3">
                 <Target
                   className="w-8 h-8 text-green-800 flex-shrink-0 mt-1"
                   weight="duotone"
                 />
                 <div>
-                  <h3 className="text-lg font-semibold text-green-900 mb-2">
+                  <h3 className="text-lg font-semibold text-green-900 my-2">
                     Objectif de cette collecte
                   </h3>
                   <ul className="list-disc list-inside text-green-800 space-y-2">
@@ -298,7 +298,7 @@ export default async function ProjetXhamiaNurPage() {
               <h4 className="font-semibold text-green-900 mb-2 text-sm">
                 Utilisation des fonds
               </h4>
-              <p className="text-xs text-green-800">
+              <p className="text-base text-green-800">
                 100% des dons collectés via cette campagne seront utilisés
                 exclusivement pour l&apos;acquisition de la mosquée Nur par
                 l&apos;ACMSI. Aucun frais administratif n&apos;est prélevé sur

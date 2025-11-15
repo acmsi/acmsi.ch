@@ -192,7 +192,7 @@ export default function RootLayout({
                     <p className="mt-4 pt-2 md:border-t border-gray-700">
                       <a
                         href="/contact#parking-info"
-                        className="inline-flex items-center text-sm hover:text-teal-300 transition-colors"
+                        className="inline-flex items-center hover:text-teal-300 transition-colors"
                       >
                         <LetterCircleP
                           weight="duotone"

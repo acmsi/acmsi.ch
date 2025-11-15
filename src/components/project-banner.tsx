@@ -32,19 +32,19 @@ export default function ProjectBanner({
                   Projet Xhamia Nur
                 </h3>
               </div>
-              <p className="text-green-700 mb-3 text-sm">
+              <p className="text-green-700 mb-3">
                 Levée de fonds urgente pour l&apos;acquisition de la mosquée
               </p>
 
               {showProgress && (
                 <div className="md:max-w-md">
-                  <div className="bg-white rounded-lg p-3 shadow-sm">
-                    <div className="flex items-center justify-between text-xs text-green-700 mb-1">
+                  <div className="bg-white rounded-lg p-3 shadow-sm text-sm">
+                    <div className="flex items-center justify-between text-green-700 mb-1">
                       <span>{formatAmount(raisedAmount)} collecté</span>
                       <span>{formatPercentage(percentage)}</span>
                     </div>
                     <ProgressBar percentage={percentage} variant="thin" />
-                    <div className="text-xs text-green-600 mt-1">
+                    <div className="text-green-600 mt-1">
                       Objectif : {formatAmount(totalAmount)}
                     </div>
                   </div>
@@ -98,7 +98,7 @@ export default function ProjectBanner({
                     </span>
                   </div>
                   <ProgressBar percentage={percentage} variant="medium" />
-                  <div className="flex justify-between items-center text-green-800 text-sm mt-2">
+                  <div className="flex justify-between items-center text-green-800 text-xs mt-2">
                     <span className="font-semibold">
                       {formatAmount(raisedAmount)} collecté
                     </span>
@@ -156,7 +156,7 @@ export default function ProjectBanner({
                   </span>
                 </div>
                 <ProgressBar percentage={percentage} variant="medium" />
-                <div className="flex justify-between items-center text-green-800 text-sm mt-1">
+                <div className="flex justify-between items-center text-green-800 text-xs mt-1">
                   <span className="font-semibold">
                     {formatAmount(raisedAmount)} collecté
                   </span>

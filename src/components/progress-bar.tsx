@@ -42,7 +42,7 @@ export default function ProgressBar({
       <div className="relative">
         {/* Excédent amount above bar (if applicable) */}
         {isOverBudget && overrunAmount > 0 && (
-          <div className="absolute -top-6 right-0 text-amber-600 font-medium text-xs">
+          <div className="absolute -top-6 right-0 text-amber-600 font-medium text-sm">
             +{formatAmount(overrunAmount)}
           </div>
         )}
