@@ -242,9 +242,12 @@ export default async function ProjetXhamiaNurPage() {
                     Remettez votre don directement lors des prières ou
                     contactez-nous au :
                   </p>
-                  <p className="font-semibold text-green-600">
+                  <a
+                    href="tel:+41792763500"
+                    className="font-semibold text-green-600 hover:text-green-700 transition-colors"
+                  >
                     +41 (0) 79 276 35 00
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>
