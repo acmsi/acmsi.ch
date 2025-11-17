@@ -150,40 +150,37 @@ with content management capabilities.
 - Component tests are co-located with components for easier maintenance
 - E2E tests are organized in `tests/e2e/` by feature area
 
-## Basic Authentication (Construction Mode)
+## Security
 
-The website includes basic authentication to protect content during committee review:
+The website implements security best practices:
 
-### Local Development
+### Security Headers
 
-- Copy `.env.local.example` to `.env.local`
-- Default credentials: `acmsi` / `comite2024`
-- Change credentials in `.env.local` as needed
+Security headers are configured in `src/middleware.ts`:
 
-### Production (Netlify)
+- **Content Security Policy (CSP)**: Balanced approach allowing necessary external services
+  - Netlify Identity for CMS authentication
+  - MapLibre GL for interactive maps from unpkg.com CDN
+  - Mawaqit iframe for prayer times widget
+  - OpenStreetMap tiles and MapTiler API for map data
+- **X-Frame-Options**: `SAMEORIGIN` to prevent clickjacking
+- **X-Content-Type-Options**: `nosniff` to prevent MIME type sniffing
+- **Referrer-Policy**: `strict-origin-when-cross-origin` for privacy
+- **Permissions-Policy**: Restricts camera, microphone, geolocation access
+- **Strict-Transport-Security (HSTS)**: Forces HTTPS in production (31536000 seconds = 1 year)
 
-Set these environment variables in your Netlify dashboard:
+### External Resources
 
-- `NEXT_PUBLIC_AUTH_USERNAME`: Your desired username
-- `NEXT_PUBLIC_AUTH_PASSWORD`: Your desired password
+- Netlify Identity widget loaded from trusted Netlify CDN
+- MapLibre GL resources loaded from unpkg.com CDN
+- No Subresource Integrity (SRI) hashes used as external scripts are not versioned permalinks and may change
+- Sources are reputable and trusted (Netlify, unpkg.com)
 
-### Features
+### Content Security
 
-- Session expires after 24 hours
-- Construction banner visible to authenticated users
-- No-index meta tags prevent search engine indexing
-- Logout button in bottom-right corner
-- Mobile-friendly login interface
-- Automatic bypass in development, test, and CI environments (`NODE_ENV=development/test`, `CI=true`, or `NEXT_PUBLIC_BYPASS_AUTH=true`)
-
-### Removing Authentication
-
-When ready to make the site public:
-
-1. Remove `<AuthGuard>` wrapper from `src/app/layout.tsx`
-2. Remove `<ConstructionBanner />` component
-3. Change robots meta tags back to `index: true, follow: true`
-4. Remove the environment variables from Netlify
+- Markdown content is processed server-side using remark
+- HTML output rendered via `dangerouslySetInnerHTML` (acceptable as content comes from trusted CMS)
+- Only committee members with Netlify Identity access can edit content
 
 ## Deployment
 
