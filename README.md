@@ -68,7 +68,8 @@ tests/
 - **Multilingual Ready**: French-focused with English support structure
 - **Accessibility**: ARIA compliant with keyboard navigation support
 - **SEO Optimized**: Meta tags, Open Graph, and structured data
-- **Static Export**: Ready for deployment on any static hosting platform
+- **Security Headers**: Comprehensive CSP, HSTS, and security best practices
+- **Hybrid Rendering**: Static generation with dynamic capabilities where needed
 
 ## 🧪 Testing
 
@@ -102,14 +103,19 @@ Tests cover critical user flows including navigation, mobile menu functionality,
 
 ## 🚀 Deployment
 
-The site is configured for static export and can be deployed to any static hosting platform:
+The site uses Next.js hybrid rendering and is optimized for Netlify deployment:
 
 ```bash
-npm run export
-# Files will be generated in the 'out/' directory
+npm run build
+# Deploy as Next.js application (not static export)
 ```
 
-Currently optimized for Netlify deployment with Netlify Identity integration.
+**Deployment Notes**:
+
+- Deploy as a Next.js application to support server-side rendering
+- Netlify automatically handles SSR via Functions
+- Netlify Identity integrated for CMS authentication
+- Security headers configured via middleware
 
 ## 📝 Content Management
 
