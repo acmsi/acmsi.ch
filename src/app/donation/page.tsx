@@ -100,7 +100,10 @@ export default async function DonationPage() {
       </section>
 
       {/* Adhesion Membres */}
-      <section className="py-16 bg-linear-to-b from-teal-100/90 via-teal-100/70 to-teal-50 border-t-4 border-teal-500">
+      <section
+        id="adhesion"
+        className="py-16 bg-linear-to-b from-teal-100/90 via-teal-100/70 to-teal-50 border-t-4 border-teal-500"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
