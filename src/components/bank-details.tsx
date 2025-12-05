@@ -12,6 +12,7 @@ export default function BankDetails({
   ibanColorClass = 'text-green-600',
 }: BankDetailsProps) {
   const iban = 'CH97 0079 0042 4236 1827 8'
+  const swift = 'KBBECH22'
   const beneficiary = 'Association Culturelle Musulmane de Saint-Imier'
   const address = 'Rue de la Clef 45, 2610 St-Imier'
 
@@ -24,6 +25,13 @@ export default function BankDetails({
           <dd className={`text-lg font-semibold ${ibanColorClass}`}>
             {iban}
             <CopyButton text={iban} label="l'IBAN" className="ml-2" />
+          </dd>
+        </div>
+        <div className="sm:grid sm:grid-cols-[auto_1fr] sm:gap-x-2 sm:items-baseline">
+          <dt className="font-bold">SWIFT/BIC :</dt>
+          <dd>
+            {swift}
+            <CopyButton text={swift} label="le SWIFT" className="ml-2" />
           </dd>
         </div>
         <div className="sm:grid sm:grid-cols-[auto_1fr] sm:gap-x-2 sm:items-baseline">
