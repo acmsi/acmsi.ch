@@ -211,7 +211,7 @@ export default function RootLayout({
                 </Link>{' '}
                 <span className="text-gray-600">|</span>{' '}
                 <a
-                  href="https://opensource.org/license/isc-license-txt"
+                  href="https://github.com/acmsi/acmsi.ch/blob/main/LICENSE.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-500 hover:text-gray-300 transition-colors text-sm"

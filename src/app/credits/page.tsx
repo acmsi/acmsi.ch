@@ -349,8 +349,7 @@ export default function CreditsPage() {
               </h2>
               <p>
                 Dans l&apos;esprit de transparence et de partage qui a guidé ce
-                projet, le code source de ce site web sera prochainement
-                disponible sur{' '}
+                projet, le code source de ce site web est disponible sur{' '}
                 <a
                   href="https://github.com/acmsi/acmsi.ch"
                   target="_blank"
