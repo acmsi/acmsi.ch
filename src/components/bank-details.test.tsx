@@ -64,8 +64,18 @@ test.describe('BankDetails Component', () => {
     const component = await mount(<BankDetails message="Test" />)
 
     // Should have 5 copy buttons: IBAN, SWIFT, beneficiary, address, message
-    const copyButtons = component.getByRole('button')
+    const copyButtons = component.getByRole('button', { name: /^Copier / })
     await expect(copyButtons).toHaveCount(5)
+  })
+
+  test('displays info tooltip for SWIFT code format', async ({ mount }) => {
+    const component = await mount(<BankDetails message="Test" />)
+
+    await expect(
+      component.getByText(
+        'Si votre banque demande 11 caractères, ajoutez XXX à la fin : KBBECH22XXX',
+      ),
+    ).toBeAttached()
   })
 
   test('applies custom IBAN color class', async ({ mount }) => {

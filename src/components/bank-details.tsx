@@ -1,4 +1,5 @@
 import CopyButton from '@/components/copy-button'
+import InfoTooltip from '@/components/info-tooltip'
 
 interface BankDetailsProps {
   message: string
@@ -32,6 +33,7 @@ export default function BankDetails({
           <dd>
             {swift}
             <CopyButton text={swift} label="le SWIFT" className="ml-2" />
+            <InfoTooltip text="Si votre banque demande 11 caractères, ajoutez XXX à la fin : KBBECH22XXX" />
           </dd>
         </div>
         <div className="sm:grid sm:grid-cols-[auto_1fr] sm:gap-x-2 sm:items-baseline">
