@@ -21,7 +21,9 @@ test.describe('BankDetails Component', () => {
     const component = await mount(<BankDetails message="Test message" />)
 
     await expect(component.getByText('SWIFT/BIC :')).toBeVisible()
-    await expect(component.getByText(EXPECTED_BANK_DETAILS.swift)).toBeVisible()
+    await expect(
+      component.getByText(EXPECTED_BANK_DETAILS.swift, { exact: true }),
+    ).toBeVisible()
   })
 
   test('displays correct beneficiary', async ({ mount }) => {

@@ -36,7 +36,7 @@ test.describe('Bank Details on Donation Page', () => {
     const bankSection = getBankSection(page)
     await expect(bankSection.getByText('SWIFT/BIC :')).toBeVisible()
     await expect(
-      bankSection.getByText(EXPECTED_BANK_DETAILS.swift),
+      bankSection.getByText(EXPECTED_BANK_DETAILS.swift, { exact: true }),
     ).toBeVisible()
   })
 
@@ -71,7 +71,7 @@ test.describe('Bank Details on Projet Xhamia Nur Page', () => {
     const bankSection = getBankSection(page)
     await expect(bankSection.getByText('SWIFT/BIC :')).toBeVisible()
     await expect(
-      bankSection.getByText(EXPECTED_BANK_DETAILS.swift),
+      bankSection.getByText(EXPECTED_BANK_DETAILS.swift, { exact: true }),
     ).toBeVisible()
   })
 
