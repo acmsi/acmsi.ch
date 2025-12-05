@@ -1,6 +1,6 @@
 ---
 title: Le nouveau site de l'ACMSI
-date: 2025-01-11T19:00:00.000Z
+date: 2025-10-11T19:00:00.000Z
 tags:
   - annonce
   - site web
