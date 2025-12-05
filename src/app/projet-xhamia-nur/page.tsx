@@ -213,6 +213,7 @@ export default async function ProjetXhamiaNurPage() {
                 />
               }
               title="Via RaiseNow"
+              id="don-en-ligne"
               iconBgColor="bg-green-100"
             >
               <p className="text-gray-600 mb-3">
@@ -255,6 +256,7 @@ export default async function ProjetXhamiaNurPage() {
                 <Bank className="w-8 h-8 text-green-600" weight="duotone" />
               }
               title="Virement bancaire"
+              id="coordonnees-bancaires"
               iconBgColor="bg-green-100"
               className="md:col-span-2"
             >

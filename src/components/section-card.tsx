@@ -6,6 +6,7 @@ interface SectionCardProps {
   children: ReactNode
   iconBgColor?: string
   className?: string
+  id?: string
 }
 
 export default function SectionCard({
@@ -14,9 +15,10 @@ export default function SectionCard({
   children,
   iconBgColor = 'bg-gray-100',
   className = '',
+  id,
 }: SectionCardProps) {
   return (
-    <div className={`bg-white p-6 rounded-lg shadow-sm ${className}`}>
+    <div id={id} className={`bg-white p-6 rounded-lg shadow-sm ${className}`}>
       <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-4">
         <div className="flex items-center gap-3 sm:block mb-3 sm:mb-0">
           <div

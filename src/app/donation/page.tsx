@@ -258,6 +258,7 @@ export default async function DonationPage() {
                 />
               }
               title="Via RaiseNow"
+              id="don-en-ligne"
               iconBgColor="bg-teal-100"
             >
               <p className="text-gray-600 mb-4">
@@ -280,6 +281,7 @@ export default async function DonationPage() {
             <SectionCard
               icon={<Bank className="w-8 h-8 text-gray-600" weight="duotone" />}
               title="Virement bancaire"
+              id="coordonnees-bancaires"
             >
               <p className="text-gray-600 mb-4">
                 Effectuez un virement sur le compte de l&rsquo;ACMSI
