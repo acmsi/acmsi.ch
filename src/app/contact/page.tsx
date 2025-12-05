@@ -194,7 +194,7 @@ export default async function ContactPage() {
                   <div className="flex items-start">
                     <LetterCircleP className="w-5 h-5 mr-2 text-red-900 flex-shrink-0 mt-0.5" />
                     <p className="text-red-900">
-                      <strong>Staionnement Jumma:</strong> Ne pas se garer
+                      <strong>Stationnement Jumma:</strong> Ne pas se garer
                       devant la mosquée, ces places sont réservées aux personnes
                       à mobilité réduite et à l&apos;Imam.{' '}
                       <a
@@ -228,19 +228,55 @@ export default async function ContactPage() {
           </div>
 
           <div className="bg-white text-gray-900 rounded-lg shadow-lg p-6 sm:p-8">
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <CarSimple
-                    className="w-6 h-6 text-orange-700"
-                    weight="duotone"
-                  />
+            <div className="space-y-8 sm:space-y-6">
+              {/* Mobile: icon centered above title, Desktop: icon left of title with indented content */}
+              <div>
+                <div className="flex justify-center mb-3 sm:hidden">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                    <CarSimple
+                      className="w-7 h-7 text-orange-700"
+                      weight="duotone"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 mt-2">
-                    Places limitées devant la mosquée
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                <h3 className="text-lg font-semibold mb-2 text-center sm:hidden">
+                  Places limitées devant la mosquée
+                </h3>
+                <div className="hidden sm:flex sm:items-start sm:space-x-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <CarSimple
+                      className="w-6 h-6 text-orange-700"
+                      weight="duotone"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 mt-2">
+                      Places limitées devant la mosquée
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed text-pretty">
+                      Le stationnement devant la mosquée est très limité.
+                      Pendant la prière du vendredi (Jumma) et durant le
+                      Ramadan, nous demandons à la communauté de ne pas s&apos;y
+                      garer car ces places sont{' '}
+                      <strong>
+                        réservées aux personnes à mobilité réduite, ainsi
+                        qu&apos;à l&apos;Imam{' '}
+                      </strong>{' '}
+                      qui prend sur son emploi du temps chargé pour guider notre
+                      communauté.
+                    </p>
+                    <p className="text-gray-700 my-2 text-pretty">
+                      Rappelons que{' '}
+                      <strong>
+                        l&apos;intention et le comportement sont plus importants
+                        que la ponctualité
+                      </strong>
+                      .
+                    </p>
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <p className="text-gray-700 leading-relaxed text-pretty">
                     Le stationnement devant la mosquée est très limité. Pendant
                     la prière du vendredi (Jumma) et durant le Ramadan, nous
                     demandons à la communauté de ne pas s&apos;y garer car ces
@@ -252,7 +288,7 @@ export default async function ContactPage() {
                     qui prend sur son emploi du temps chargé pour guider notre
                     communauté.
                   </p>
-                  <p className="text-gray-700 my-2">
+                  <p className="text-gray-700 my-2 text-pretty">
                     Rappelons que{' '}
                     <strong>
                       l&apos;intention et le comportement sont plus importants
@@ -263,15 +299,56 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <Heart className="w-6 h-6 text-green-600" weight="duotone" />
+              <div>
+                <div className="flex justify-center mb-3 sm:hidden">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                    <Heart
+                      className="w-7 h-7 text-green-600"
+                      weight="duotone"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 mt-2">
-                    Exemplarité et courtoisie envers nos voisins
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                <h3 className="text-lg font-semibold mb-2 text-center sm:hidden">
+                  Exemplarité et courtoisie envers nos voisins
+                </h3>
+                <div className="hidden sm:flex sm:items-start sm:space-x-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Heart
+                      className="w-6 h-6 text-green-600"
+                      weight="duotone"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 mt-2">
+                      Exemplarité et courtoisie envers nos voisins
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed text-pretty">
+                      Nous encourageons notre communauté à agir de manière
+                      exemplaire :{' '}
+                      <strong>
+                        respecter scrupuleusement les emplacements de
+                        stationnement
+                      </strong>
+                      , ne jamais bloquer les entrées de garage, les trottoirs,
+                      et faire preuve de{' '}
+                      <strong>
+                        courtoisie et de bienveillance envers nos voisins
+                      </strong>
+                      . Notre comportement reflète les valeurs de notre foi. Et
+                      plutôt que de payer des contraventions, nous vous invitons
+                      à{' '}
+                      <a
+                        href="/donation"
+                        className="text-teal-600 hover:text-teal-700 font-medium"
+                      >
+                        faire des dons à la mosquée
+                      </a>{' '}
+                      qui en a bien besoin !
+                    </p>
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <p className="text-gray-700 leading-relaxed text-pretty">
                     Nous encourageons notre communauté à agir de manière
                     exemplaire :{' '}
                     <strong>
@@ -296,25 +373,68 @@ export default async function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <LetterCircleP
-                    className="w-6 h-6 text-blue-600"
-                    weight="duotone"
-                  />
+              <div>
+                <div className="flex justify-center mb-3 sm:hidden">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                    <LetterCircleP
+                      className="w-7 h-7 text-blue-600"
+                      weight="duotone"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 mt-2">
-                    Options de stationnement
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                <h3 className="text-lg font-semibold mb-2 text-center sm:hidden">
+                  Options de stationnement
+                </h3>
+                <div className="hidden sm:flex sm:items-start sm:space-x-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <LetterCircleP
+                      className="w-6 h-6 text-blue-600"
+                      weight="duotone"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2 mt-2">
+                      Options de stationnement
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed text-pretty">
+                      Saint-Imier dispose de{' '}
+                      <strong>
+                        nombreuses places gratuites dans les rues avoisinantes
+                      </strong>{' '}
+                      de la mosquée.
+                    </p>
+                    <p className="text-gray-700 my-2 text-pretty">
+                      Plusieurs parkings publics a 5min a pied sont disponibles
+                      :
+                    </p>
+                    <ul className="text-gray-700 my-2 ml-4 list-disc">
+                      <li>
+                        <strong>Parking de la Patinoire</strong>
+                      </li>
+                      <li>
+                        <strong>Parking en face de la Migros</strong>
+                      </li>
+                      <li>
+                        <strong>Parking au centre de la commune</strong>
+                      </li>
+                    </ul>
+                    <p className="text-gray-700 my-2 text-pretty">
+                      Ces options sont particulièrement recommandées lors
+                      d&apos;événements importants comme les prières du vendredi
+                      ou durant le Ramadan. Consultez la carte ci-dessous pour
+                      visualiser leurs emplacements.
+                    </p>
+                  </div>
+                </div>
+                <div className="sm:hidden">
+                  <p className="text-gray-700 leading-relaxed text-pretty">
                     Saint-Imier dispose de{' '}
                     <strong>
                       nombreuses places gratuites dans les rues avoisinantes
                     </strong>{' '}
                     de la mosquée.
                   </p>
-                  <p className="text-gray-700 my-2">
+                  <p className="text-gray-700 my-2 text-pretty">
                     Plusieurs parkings publics a 5min a pied sont disponibles :
                   </p>
                   <ul className="text-gray-700 my-2 ml-4 list-disc">
@@ -328,7 +448,7 @@ export default async function ContactPage() {
                       <strong>Parking au centre de la commune</strong>
                     </li>
                   </ul>
-                  <p className="text-gray-700 my-2">
+                  <p className="text-gray-700 my-2 text-pretty">
                     Ces options sont particulièrement recommandées lors
                     d&apos;événements importants comme les prières du vendredi
                     ou durant le Ramadan. Consultez la carte ci-dessous pour
