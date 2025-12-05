@@ -17,6 +17,7 @@ import { Donation } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner'
 import CardKeyPoint from '@/components/card-key-point'
 import BankDetails from '@/components/bank-details'
+import SectionCard from '@/components/section-card'
 import { getProjectSummary } from '@/lib/content'
 import { formatAmount } from '@/lib/format'
 
@@ -249,113 +250,91 @@ export default async function DonationPage() {
 
           <div className="space-y-8">
             {/* Twint via RaiseNow */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
-                  <CreditCard
-                    className="w-8 h-8 text-teal-600"
-                    weight="duotone"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">Via RaiseNow</h3>
-                  <p className="text-gray-600 mb-4">
-                    Faites un don sécurisé de n&rsquo;importe quel montant via
-                    RaiseNow
-                  </p>
-                  <a
-                    href="https://donate.raisenow.io/wfphr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
-                  >
-                    <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
-                    Faire un don via RaiseNow
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
-                </div>
-              </div>
-            </div>
+            <SectionCard
+              icon={
+                <CreditCard
+                  className="w-8 h-8 text-teal-600"
+                  weight="duotone"
+                />
+              }
+              title="Via RaiseNow"
+              iconBgColor="bg-teal-100"
+            >
+              <p className="text-gray-600 mb-4">
+                Faites un don sécurisé de n&rsquo;importe quel montant via
+                RaiseNow
+              </p>
+              <a
+                href="https://donate.raisenow.io/wfphr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
+              >
+                <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
+                Faire un don via RaiseNow
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </SectionCard>
 
             {/* Bank Transfer */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <Bank className="w-8 h-8 text-gray-600" weight="duotone" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">
-                    Virement bancaire
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Effectuez un virement sur le compte de l&rsquo;ACMSI
-                  </p>
-                  <BankDetails
-                    message="Don libre ACMSI"
-                    ibanColorClass="text-teal-600"
-                  />
-                  <div className="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
-                    <p className="text-sm font-semibold text-amber-900">
-                      ⚠️ Important : Précisez &quot;Don libre ACMSI&quot; dans
-                      la communication
-                    </p>
-                  </div>
-                </div>
+            <SectionCard
+              icon={<Bank className="w-8 h-8 text-gray-600" weight="duotone" />}
+              title="Virement bancaire"
+            >
+              <p className="text-gray-600 mb-4">
+                Effectuez un virement sur le compte de l&rsquo;ACMSI
+              </p>
+              <BankDetails
+                message="Don libre ACMSI"
+                ibanColorClass="text-teal-600"
+              />
+              <div className="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
+                <p className="text-sm font-semibold text-amber-900">
+                  ⚠️ Important : Précisez &quot;Don libre ACMSI&quot; dans la
+                  communication
+                </p>
               </div>
-            </div>
+            </SectionCard>
 
             {/* Cash Donation */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <Donation
-                    className="w-8 h-8 text-gray-600"
-                    weight="duotone"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">Don en espèces</h3>
-                  <p className="text-gray-600 mb-4">
-                    Remettez votre don directement à la mosquée lors des prières
-                    ou événements
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Les responsables de la mosquée sont disponibles après les
-                    prières du vendredi pour recevoir vos dons et répondre à vos
-                    questions.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <SectionCard
+              icon={
+                <Donation className="w-8 h-8 text-gray-600" weight="duotone" />
+              }
+              title="Don en espèces"
+            >
+              <p className="text-gray-600 mb-4">
+                Remettez votre don directement à la mosquée lors des prières ou
+                événements
+              </p>
+              <p className="text-sm text-gray-600">
+                Les responsables de la mosquée sont disponibles après les
+                prières du vendredi pour recevoir vos dons et répondre à vos
+                questions.
+              </p>
+            </SectionCard>
 
             {/* Zakat */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-gray-200">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <HandHeart
-                    className="w-8 h-8 text-gray-600"
-                    weight="duotone"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-3">
-                    Zakat et Sadaqah
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    L&rsquo;ACMSI accepte et redistribue la Zakat selon les
-                    préceptes islamiques
-                  </p>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm text-gray-700">
-                      <strong>Important :</strong> Précisez lors de votre don
-                      s&rsquo;il s&rsquo;agit de Zakat afin qu&rsquo;elle soit
-                      distribuée conformément aux règles islamiques aux
-                      bénéficiaires éligibles de notre communauté.
-                    </p>
-                  </div>
-                </div>
+            <SectionCard
+              icon={
+                <HandHeart className="w-8 h-8 text-gray-600" weight="duotone" />
+              }
+              title="Zakat et Sadaqah"
+              className="border-2 border-gray-200"
+            >
+              <p className="text-gray-600 mb-4">
+                L&rsquo;ACMSI accepte et redistribue la Zakat selon les
+                préceptes islamiques
+              </p>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-700">
+                  <strong>Important :</strong> Précisez lors de votre don
+                  s&rsquo;il s&rsquo;agit de Zakat afin qu&rsquo;elle soit
+                  distribuée conformément aux règles islamiques aux
+                  bénéficiaires éligibles de notre communauté.
+                </p>
               </div>
-            </div>
+            </SectionCard>
           </div>
         </div>
       </section>
