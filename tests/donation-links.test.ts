@@ -29,21 +29,21 @@ test('Donation Links', async t => {
   const donationPageContent = fs.readFileSync(donationPagePath, 'utf8')
   const projectPageContent = fs.readFileSync(projectPagePath, 'utf8')
 
-  await t.test('contains RaiseNow donation link in donation page', () => {
+  await t.test('contains online payment link in donation page', () => {
     assert.ok(
       donationPageContent.includes('https://donate.raisenow.io/wfphr'),
-      'Should contain RaiseNow donation link',
+      'Should contain online payment link',
     )
   })
 
-  await t.test('contains RaiseNow donation link in project page', () => {
+  await t.test('contains online payment link in project page', () => {
     assert.ok(
       projectPageContent.includes('https://pay.raisenow.io/fnsym'),
-      'Should contain RaiseNow donation link',
+      'Should contain online payment link',
     )
   })
 
-  await t.test('RaiseNow donation link is accessible', async () => {
+  await t.test('online payment link is accessible', async () => {
     const donationUrl = 'https://donate.raisenow.io/wfphr'
 
     try {
@@ -59,17 +59,17 @@ test('Donation Links', async t => {
 
       assert.ok(
         response.ok,
-        `RaiseNow link should be accessible (status: ${response.status})`,
+        `Online payment link should be accessible (status: ${response.status})`,
       )
       assert.strictEqual(
         response.status,
         200,
-        `RaiseNow link should return 200 status (got: ${response.status})`,
+        `Online payment link should return 200 status (got: ${response.status})`,
       )
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error)
-      assert.fail(`Failed to fetch RaiseNow donation link: ${errorMessage}`)
+      assert.fail(`Failed to fetch online payment link: ${errorMessage}`)
     }
   })
 
@@ -89,15 +89,15 @@ test('Donation Links', async t => {
     )
   })
 
-  await t.test('RaiseNow sections are properly labeled', () => {
+  await t.test('online payment sections are properly labeled', () => {
     assert.ok(
-      donationPageContent.includes('Via RaiseNow'),
-      'Donation page should have proper RaiseNow label',
+      donationPageContent.includes('Paiement en ligne'),
+      'Donation page should have proper online payment label',
     )
 
     assert.ok(
-      projectPageContent.includes('Via RaiseNow'),
-      'Project page should have proper RaiseNow label',
+      projectPageContent.includes('Paiement en ligne'),
+      'Project page should have proper online payment label',
     )
   })
 })

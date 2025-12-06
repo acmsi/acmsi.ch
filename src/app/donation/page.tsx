@@ -249,7 +249,7 @@ export default async function DonationPage() {
           </div>
 
           <div className="space-y-8">
-            {/* Twint via RaiseNow */}
+            {/* Paiement en ligne */}
             <SectionCard
               icon={
                 <CreditCard
@@ -257,13 +257,13 @@ export default async function DonationPage() {
                   weight="duotone"
                 />
               }
-              title="Via RaiseNow"
+              title="Paiement en ligne"
               id="don-en-ligne"
               iconBgColor="bg-teal-100"
             >
               <p className="text-gray-600 mb-4">
-                Faites un don sécurisé de n&rsquo;importe quel montant via
-                RaiseNow
+                Faites un don sécurisé par Twint, carte de crédit ou autres
+                méthodes de paiement en ligne
               </p>
               <a
                 href="https://donate.raisenow.io/wfphr"
@@ -272,7 +272,7 @@ export default async function DonationPage() {
                 className="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
               >
                 <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
-                Faire un don via RaiseNow
+                Faire un don en ligne
                 <ArrowRight className="w-4 h-4 ml-2" />
               </a>
             </SectionCard>

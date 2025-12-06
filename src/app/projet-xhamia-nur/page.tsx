@@ -204,7 +204,7 @@ export default async function ProjetXhamiaNurPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Via RaiseNow */}
+            {/* Paiement en ligne */}
             <SectionCard
               icon={
                 <DeviceMobile
@@ -212,13 +212,13 @@ export default async function ProjetXhamiaNurPage() {
                   weight="duotone"
                 />
               }
-              title="Via RaiseNow"
+              title="Paiement en ligne"
               id="don-en-ligne"
               iconBgColor="bg-green-100"
             >
               <p className="text-gray-600 mb-3">
-                Faites un don sécurisé de n&rsquo;importe quel montant grâce à
-                RaiseNow.
+                Faites un don sécurisé par Twint, carte de crédit ou autres
+                méthodes de paiement en ligne.
               </p>
               <a
                 href="https://pay.raisenow.io/fnsym"
