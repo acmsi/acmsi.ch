@@ -150,7 +150,7 @@ export default async function ContactPage() {
             </div>
 
             {/* Prayer Times */}
-            <div>
+            <div id="horaires-prieres">
               <h2 className="text-3xl font-bold mb-6">Horaires des Prières</h2>
 
               {/* Desktop/Tablet iframe */}
@@ -175,7 +175,7 @@ export default async function ContactPage() {
                 />
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div id="jumma" className="bg-gray-50 rounded-lg p-6">
                 <h4 className="font-semibold mb-2">
                   Jumma – Prière du Vendredi
                 </h4>

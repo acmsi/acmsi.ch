@@ -1,6 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { UsersThree, BookOpen } from '@phosphor-icons/react/dist/ssr'
+import {
+  UsersThree,
+  BookOpen,
+  Mosque,
+  Clock,
+  LetterCircleP,
+} from '@phosphor-icons/react/dist/ssr'
 import { Ruku, CalendarIslamic } from '@/components/icons'
 import { getProjectSummary } from '@/lib/content'
 import ProjectBanner from '@/components/project-banner'
@@ -41,6 +47,42 @@ export default async function HomePage() {
               >
                 Nous trouver
               </Link>
+            </div>
+
+            {/* Section Jumma */}
+            <div className="mt-8 text-sm sm:text-base">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+                <Link
+                  href="/contact#jumma"
+                  className="flex items-center gap-2 text-gray-700 hover:text-nur-teal-600 transition-colors"
+                >
+                  <Mosque
+                    className="w-5 h-5 text-nur-teal-600"
+                    weight="duotone"
+                  />
+                  <span className="font-medium">Jumma : 12h15</span>
+                  <span className="text-gray-500">(Salat 12h30)</span>
+                </Link>
+
+                <Link
+                  href="/contact#horaires-prieres"
+                  className="flex items-center gap-1 text-nur-teal-600 hover:underline"
+                >
+                  <Clock className="w-4 h-4" weight="duotone" />
+                  Horaires des prières
+                </Link>
+
+                <Link
+                  href="/contact#parking-info"
+                  className="flex items-center gap-1 text-gray-600 hover:underline"
+                >
+                  <LetterCircleP
+                    className="w-4 h-4 text-blue-500"
+                    weight="duotone"
+                  />
+                  Informations Stationnement
+                </Link>
+              </div>
             </div>
           </div>
         </div>

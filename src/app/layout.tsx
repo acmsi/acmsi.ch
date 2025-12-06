@@ -5,6 +5,7 @@ import {
   InstagramLogo,
   FacebookLogo,
   WhatsappLogo,
+  Clock,
 } from '@phosphor-icons/react/dist/ssr'
 import MobileMenu from '@/components/mobile-menu'
 import './global.css'
@@ -195,6 +196,18 @@ export default function RootLayout({
                         className="text-blue-500 w-5 h-5 mr-1"
                       />
                       Informations Stationnement
+                    </a>
+                  </p>
+                  <p className="mt-2">
+                    <a
+                      href="/contact#horaires-prieres"
+                      className="inline-flex items-center hover:text-teal-300 transition-colors"
+                    >
+                      <Clock
+                        weight="duotone"
+                        className="text-nur-teal-500 w-5 h-5 mr-1"
+                      />
+                      Horaires des prières
                     </a>
                   </p>
                 </div>
