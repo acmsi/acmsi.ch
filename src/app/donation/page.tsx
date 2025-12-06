@@ -139,7 +139,8 @@ export default async function DonationPage() {
                   <ul className="text-sm text-teal-800 space-y-1 list-disc list-inside">
                     <li>
                       Assurance communautaire pour frais d&apos;enterrement
-                      (rapatriement, etc.)
+                      (rapatriement, etc.) — l&apos;épouse et les enfants
+                      jusqu&apos;à 21 ans sont couverts
                     </li>
                     <li>
                       Possibilité de louer la salle cafétéria de la mosquée pour
