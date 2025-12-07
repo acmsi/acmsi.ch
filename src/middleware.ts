@@ -8,8 +8,8 @@ export function middleware() {
     "default-src 'self'",
     // Allow inline styles for Next.js and Tailwind
     "style-src 'self' 'unsafe-inline' https://unpkg.com",
-    // Scripts: self, Next.js, Netlify Identity, MapLibre
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com",
+    // Scripts: self, Next.js, Netlify Identity, MapLibre, Netlify RUM
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com https://netlify-rum.netlify.app",
     // Workers: allow blob URLs for MapLibre GL performance optimization
     "worker-src 'self' blob:",
     // Child sources: allow blob URLs for workers
