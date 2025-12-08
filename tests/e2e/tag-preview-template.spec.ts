@@ -66,7 +66,8 @@ test.describe('Tag Custom Preview Template', () => {
     await page.waitForTimeout(1000)
 
     // The preview pane should show our custom TagPreview component
-    const previewFrame = page.frameLocator('iframe').first()
+    const previewIframe = page.locator('iframe').first()
+    const previewFrame = previewIframe.contentFrame()
     await expect(
       previewFrame.locator('text=Articles utilisant ce tag'),
     ).toBeVisible({ timeout: 10000 })

@@ -1,5 +1,9 @@
 ---
-import { Mosque, ArrowRight, TrendUp } from '@phosphor-icons/react/dist/ssr'
+import {
+  MosqueIcon,
+  ArrowRightIcon,
+  TrendUpIcon,
+} from '@phosphor-icons/react/dist/ssr'
 import ProgressBar from './progress-bar.astro'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
@@ -28,7 +32,10 @@ const {
           <div class="md:shrink-0">
             <div class="flex items-center space-x-3 mb-2">
               <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Mosque className="w-6 h-6 text-green-600" weight="duotone" />
+                <MosqueIcon
+                  className="w-6 h-6 text-green-600"
+                  weight="duotone"
+                />
               </div>
               <h3 class="text-2xl font-headings font-bold text-green-900">
                 Projet Xhamia Nur
@@ -59,7 +66,7 @@ const {
               class="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors inline-flex items-center w-full justify-center md:w-auto"
             >
               Soutenir le projet
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRightIcon className="w-4 h-4 ml-2" />
             </a>
           </div>
         </div>
@@ -74,7 +81,7 @@ const {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
           <div class="flex justify-center mb-4">
-            <Mosque className="w-16 h-16 text-green-600" weight="duotone" />
+            <MosqueIcon className="w-16 h-16 text-green-600" weight="duotone" />
           </div>
           <h1 class="text-4xl lg:text-6xl font-bold mb-3 text-green-900">
             Projet Xhamia Nur
@@ -90,7 +97,7 @@ const {
               <div class="bg-white rounded-lg p-6 shadow-sm">
                 <div class="flex items-center justify-between mb-3">
                   <div class="flex items-center space-x-2">
-                    <TrendUp className="w-4 h-4 text-green-600" />
+                    <TrendUpIcon className="w-4 h-4 text-green-600" />
                     <span class="text-sm font-medium text-green-700">
                       Progression
                     </span>
@@ -115,7 +122,7 @@ const {
             class="inline-flex w-full sm:w-auto items-center justify-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
           >
             Decouvrir le projet
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <ArrowRightIcon className="w-4 h-4 ml-2" />
           </a>
         </div>
       </div>
@@ -130,7 +137,7 @@ const {
         <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div class="flex-shrink-0">
             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <Mosque className="w-8 h-8 text-green-600" weight="duotone" />
+              <MosqueIcon className="w-8 h-8 text-green-600" weight="duotone" />
             </div>
           </div>
           <div class="flex-1">
@@ -149,7 +156,7 @@ const {
               <div class="bg-white rounded-lg p-4 mb-4">
                 <div class="flex items-center justify-between mb-3">
                   <div class="flex items-center space-x-2">
-                    <TrendUp className="w-4 h-4 text-green-600" />
+                    <TrendUpIcon className="w-4 h-4 text-green-600" />
                     <span class="text-sm font-medium text-green-700">
                       Progression
                     </span>
@@ -174,7 +181,7 @@ const {
                 class="inline-flex items-center justify-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
               >
                 En savoir plus sur le projet
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRightIcon className="w-4 h-4 ml-2" />
               </a>
             </div>
           </div>

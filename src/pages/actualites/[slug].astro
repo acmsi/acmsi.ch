@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { getAllNews, getProjectSummary } from '@/lib/content'
-import { CaretLeft } from '@phosphor-icons/react/dist/ssr'
+import { CaretLeftIcon } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner.astro'
 import Breadcrumbs from '@/components/breadcrumbs.astro'
 
@@ -108,7 +108,7 @@ const { Content } = await article.render()
           href="/actualites"
           class="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors inline-flex items-center"
         >
-          <CaretLeft className="w-4 h-4 mr-2" weight="bold" />
+          <CaretLeftIcon className="w-4 h-4 mr-2" weight="bold" />
           Retour aux actualites
         </a>
 

@@ -1,4 +1,13 @@
-export async function onRequest(context) {
+interface Env {
+  GITHUB_CLIENT_ID: string
+}
+
+interface Context {
+  request: Request
+  env: Env
+}
+
+export async function onRequest(context: Context): Promise<Response> {
   const { request, env } = context
   const client_id = env.GITHUB_CLIENT_ID
 
@@ -15,6 +24,7 @@ export async function onRequest(context) {
     return Response.redirect(redirectUrl.href, 301)
   } catch (error) {
     console.error(error)
-    return new Response(error.message, { status: 500 })
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    return new Response(message, { status: 500 })
   }
 }

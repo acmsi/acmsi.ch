@@ -1,4 +1,23 @@
-function renderBody(status, content) {
+interface Env {
+  GITHUB_CLIENT_ID: string
+  GITHUB_CLIENT_SECRET: string
+}
+
+interface Context {
+  request: Request
+  env: Env
+}
+
+interface GitHubTokenResponse {
+  access_token?: string
+  error?: string
+  error_description?: string
+}
+
+function renderBody(
+  status: 'success' | 'error',
+  content: Record<string, unknown>,
+): Blob {
   const html = `
     <script>
       const receiveMessage = (message) => {
@@ -15,7 +34,7 @@ function renderBody(status, content) {
   return new Blob([html])
 }
 
-export async function onRequest(context) {
+export async function onRequest(context: Context): Promise<Response> {
   const { request, env } = context
   const client_id = env.GITHUB_CLIENT_ID
   const client_secret = env.GITHUB_CLIENT_SECRET
@@ -35,13 +54,16 @@ export async function onRequest(context) {
         body: JSON.stringify({ client_id, client_secret, code }),
       },
     )
-    const result = await response.json()
+    const result: GitHubTokenResponse = await response.json()
 
     if (result.error) {
-      return new Response(renderBody('error', result), {
-        headers: { 'content-type': 'text/html;charset=UTF-8' },
-        status: 401,
-      })
+      return new Response(
+        renderBody('error', result as Record<string, unknown>),
+        {
+          headers: { 'content-type': 'text/html;charset=UTF-8' },
+          status: 401,
+        },
+      )
     }
 
     return new Response(
@@ -53,6 +75,7 @@ export async function onRequest(context) {
     )
   } catch (error) {
     console.error(error)
-    return new Response(error.message, { status: 500 })
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    return new Response(message, { status: 500 })
   }
 }

@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { getAllNews, getProjectSummary } from '@/lib/content'
-import { Newspaper, X } from '@phosphor-icons/react/dist/ssr'
+import { NewspaperIcon, XIcon } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner.astro'
 
 // Enable server-side rendering for URL query parameter handling
@@ -90,7 +90,7 @@ const allTags = Array.from(
                 href="/actualites"
                 class="flex items-center gap-1 text-teal-600 hover:text-teal-700 transition-colors"
               >
-                <X className="w-4 h-4" />
+                <XIcon className="w-4 h-4" />
                 Effacer le filtre
               </a>
             </div>
@@ -174,7 +174,10 @@ const allTags = Array.from(
         ) : (
           <div class="text-center py-16">
             <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-              <Newspaper className="w-8 h-8 text-gray-500" weight="duotone" />
+              <NewspaperIcon
+                className="w-8 h-8 text-gray-500"
+                weight="duotone"
+              />
             </div>
             <h3 class="text-xl font-semibold mb-4">
               {selectedTag

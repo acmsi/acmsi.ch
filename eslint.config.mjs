@@ -7,6 +7,7 @@ export default [
       'node_modules/**',
       'dist/**',
       '.astro/**',
+      '.wrangler/**',
       'test-results/**',
       'playwright-report/**',
       'playwright/.cache/**',

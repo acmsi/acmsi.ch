@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { DotsThreeOutline, X } from '@phosphor-icons/react/dist/ssr'
+import { useState, useEffect } from 'react'
+import { DotsThreeOutlineIcon, XIcon } from '@phosphor-icons/react/dist/ssr'
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -23,7 +23,7 @@ export default function MobileMenu() {
         onClick={toggleMenu}
         aria-label="Menu"
       >
-        <DotsThreeOutline size={24} />
+        <DotsThreeOutlineIcon size={24} />
       </button>
 
       {isOpen && (
@@ -46,7 +46,7 @@ export default function MobileMenu() {
               aria-label="Fermer"
               autoFocus
             >
-              <X size={24} />
+              <XIcon size={24} />
             </button>
           </div>
           <nav className="flex flex-col gap-6 p-6 text-lg font-medium">

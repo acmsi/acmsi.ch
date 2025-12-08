@@ -1,18 +1,18 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import {
-  Mosque,
-  ChalkboardTeacher,
-  UsersFour,
-  HandHeart,
-  CreditCard,
-  ArrowRight,
-  Users,
-  Shield,
-  QrCode,
-  Bank,
+  MosqueIcon,
+  ChalkboardTeacherIcon,
+  UsersFourIcon,
+  HandHeartIcon,
+  CreditCardIcon,
+  ArrowRightIcon,
+  UsersIcon,
+  ShieldIcon,
+  QrCodeIcon,
+  BankIcon,
 } from '@phosphor-icons/react/dist/ssr'
-import { Donation } from '@/components/icons'
+import { Donation as DonationIcon } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner.astro'
 import CardKeyPoint from '@/components/card-key-point.astro'
 import BankDetails from '@/components/react/bank-details'
@@ -69,7 +69,7 @@ const projectData = await getProjectSummary()
           iconBgColor="bg-gray-100"
           iconColor="text-gray-600"
         >
-          <Mosque slot="icon" className="w-8 h-8" weight="duotone" />
+          <MosqueIcon slot="icon" className="w-8 h-8" weight="duotone" />
         </CardKeyPoint>
 
         <CardKeyPoint
@@ -78,7 +78,11 @@ const projectData = await getProjectSummary()
           iconBgColor="bg-gray-100"
           iconColor="text-gray-600"
         >
-          <ChalkboardTeacher slot="icon" className="w-8 h-8" weight="duotone" />
+          <ChalkboardTeacherIcon
+            slot="icon"
+            className="w-8 h-8"
+            weight="duotone"
+          />
         </CardKeyPoint>
 
         <CardKeyPoint
@@ -87,7 +91,7 @@ const projectData = await getProjectSummary()
           iconBgColor="bg-gray-100"
           iconColor="text-gray-600"
         >
-          <UsersFour slot="icon" className="w-8 h-8" weight="duotone" />
+          <UsersFourIcon slot="icon" className="w-8 h-8" weight="duotone" />
         </CardKeyPoint>
 
         <CardKeyPoint
@@ -96,7 +100,7 @@ const projectData = await getProjectSummary()
           iconBgColor="bg-gray-100"
           iconColor="text-gray-600"
         >
-          <HandHeart slot="icon" className="w-8 h-8" weight="duotone" />
+          <HandHeartIcon slot="icon" className="w-8 h-8" weight="duotone" />
         </CardKeyPoint>
       </div>
     </div>
@@ -112,7 +116,7 @@ const projectData = await getProjectSummary()
         <div
           class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4"
         >
-          <Users className="w-8 h-8 text-teal-600" weight="duotone" />
+          <UsersIcon className="w-8 h-8 text-teal-600" weight="duotone" />
         </div>
         <h2 class="text-3xl font-bold mb-4 text-teal-900">
           Adhésion à l&apos;ACMSI
@@ -129,7 +133,7 @@ const projectData = await getProjectSummary()
           <div
             class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0"
           >
-            <Shield className="w-8 h-8 text-teal-600" weight="duotone" />
+            <ShieldIcon className="w-8 h-8 text-teal-600" weight="duotone" />
           </div>
           <div class="flex-1">
             <h3
@@ -167,9 +171,9 @@ const projectData = await getProjectSummary()
                 rel="noopener noreferrer"
                 class="w-full inline-flex items-center justify-center bg-white text-teal-600 border-teal-600 px-4 py-3 rounded-lg font-medium hover:bg-teal-600 hover:text-white transition-colors border border-teal-600"
               >
-                <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
+                <CreditCardIcon className="w-5 h-5 mr-2" weight="duotone" />
                 Payer en ligne
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <ArrowRightIcon className="w-4 h-4 ml-2" />
               </a>
 
               <div class="text-center">
@@ -181,7 +185,7 @@ const projectData = await getProjectSummary()
                   class="px-4 py-3 cursor-pointer hover:bg-teal-50 rounded-lg flex items-center justify-between"
                 >
                   <div class="flex items-center">
-                    <QrCode
+                    <QrCodeIcon
                       className="w-5 h-5 text-teal-600 mr-2"
                       weight="duotone"
                     />
@@ -241,7 +245,7 @@ const projectData = await getProjectSummary()
           class="inline-flex w-full sm:w-auto items-center justify-center bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
         >
           Devenir membre
-          <ArrowRight className="w-4 h-4 ml-2" />
+          <ArrowRightIcon className="w-4 h-4 ml-2" />
         </a>
       </div>
     </div>
@@ -264,7 +268,7 @@ const projectData = await getProjectSummary()
           id="don-en-ligne"
           iconBgColor="bg-teal-100"
         >
-          <CreditCard
+          <CreditCardIcon
             slot="icon"
             className="w-8 h-8 text-teal-600"
             weight="duotone"
@@ -279,15 +283,15 @@ const projectData = await getProjectSummary()
             rel="noopener noreferrer"
             class="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
           >
-            <CreditCard className="w-5 h-5 mr-2" weight="duotone" />
+            <CreditCardIcon className="w-5 h-5 mr-2" weight="duotone" />
             Faire un don en ligne
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <ArrowRightIcon className="w-4 h-4 ml-2" />
           </a>
         </SectionCard>
 
         <!-- Bank Transfer -->
         <SectionCard title="Virement bancaire" id="coordonnees-bancaires">
-          <Bank
+          <BankIcon
             slot="icon"
             className="w-8 h-8 text-gray-600"
             weight="duotone"
@@ -310,7 +314,7 @@ const projectData = await getProjectSummary()
 
         <!-- Cash Donation -->
         <SectionCard title="Don en espèces">
-          <Donation
+          <DonationIcon
             slot="icon"
             className="w-8 h-8 text-gray-600"
             weight="duotone"
@@ -327,7 +331,7 @@ const projectData = await getProjectSummary()
 
         <!-- Zakat -->
         <SectionCard title="Zakat et Sadaqah" class="border-2 border-gray-200">
-          <HandHeart
+          <HandHeartIcon
             slot="icon"
             className="w-8 h-8 text-gray-600"
             weight="duotone"

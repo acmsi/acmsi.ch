@@ -1,6 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import { UsersThree, BookOpen, Heart } from '@phosphor-icons/react/dist/ssr'
+import {
+  UsersThreeIcon,
+  BookOpenIcon,
+  HeartIcon,
+} from '@phosphor-icons/react/dist/ssr'
 import { Ruku } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner.astro'
 import PhotoGallery from '@/components/react/photo-gallery'
@@ -126,7 +130,10 @@ const galleryData = mosqueGallery
           <div
             class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
           >
-            <UsersThree className="w-8 h-8 text-gray-600" weight="duotone" />
+            <UsersThreeIcon
+              className="w-8 h-8 text-gray-600"
+              weight="duotone"
+            />
           </div>
           <h3 class="text-2xl font-semibold mb-4">Communauté</h3>
           <p>
@@ -140,7 +147,7 @@ const galleryData = mosqueGallery
           <div
             class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
           >
-            <BookOpen className="w-8 h-8 text-gray-600" weight="duotone" />
+            <BookOpenIcon className="w-8 h-8 text-gray-600" weight="duotone" />
           </div>
           <h3 class="text-2xl font-semibold mb-4">Éducation</h3>
           <p>
@@ -154,7 +161,7 @@ const galleryData = mosqueGallery
           <div
             class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
           >
-            <Heart className="w-8 h-8 text-gray-600" weight="duotone" />
+            <HeartIcon className="w-8 h-8 text-gray-600" weight="duotone" />
           </div>
           <h3 class="text-2xl font-semibold mb-4">Accueil</h3>
           <p>

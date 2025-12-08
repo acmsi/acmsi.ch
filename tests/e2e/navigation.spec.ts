@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 
 /**
  * End-to-end tests for navigation functionality
@@ -14,11 +14,11 @@ async function openMobileMenu(page: Page) {
     .getByRole('banner')
     .getByRole('button', { name: 'Menu' })
   await expect(menuButton).toBeVisible()
-  // Wait for React hydration before clicking
-  await page.waitForTimeout(100)
+  // Wait for React hydration before clicking (increased for CI environments)
+  await page.waitForTimeout(300)
   await menuButton.click()
   const mobileMenu = page.getByRole('dialog')
-  await expect(mobileMenu).toBeVisible()
+  await expect(mobileMenu).toBeVisible({ timeout: 10000 })
   return mobileMenu
 }
 

@@ -103,24 +103,23 @@ Tests cover critical user flows including navigation, mobile menu functionality,
 
 ## 🚀 Deployment
 
-The site uses Next.js hybrid rendering and is optimized for Netlify deployment:
+The site uses Astro hybrid rendering and is deployed to Cloudflare Pages:
 
 ```bash
 npm run build
-# Deploy as Next.js application (not static export)
+# Deploy to Cloudflare Pages
 ```
 
 **Deployment Notes**:
 
-- Deploy as a Next.js application to support server-side rendering
-- Netlify automatically handles SSR via Functions
-- Netlify Identity integrated for CMS authentication
-- Security headers configured via middleware
+- Deployed to Cloudflare Pages with edge rendering
+- GitHub OAuth for CMS authentication via Cloudflare Pages Functions
+- Security headers configured via `public/_headers`
 
 ## 📝 Content Management
 
 1. Start the CMS proxy: `npm run cms-proxy`
-2. Navigate to `http://localhost:3000/admin`
+2. Navigate to `http://localhost:4321/admin`
 3. Create and publish articles directly through the web interface
 4. Changes are committed to the git repository automatically
 

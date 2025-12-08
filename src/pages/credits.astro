@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import { Heart } from '@phosphor-icons/react/dist/ssr'
+import { HeartIcon } from '@phosphor-icons/react/dist/ssr'
 ---
 
 <Layout
@@ -22,7 +22,10 @@ import { Heart } from '@phosphor-icons/react/dist/ssr'
           <div
             class="w-16 h-16 bg-nur-cream-300 rounded-full flex items-center justify-center"
           >
-            <Heart className="w-8 h-8 text-nur-cream-700" weight="duotone" />
+            <HeartIcon
+              className="w-8 h-8 text-nur-cream-700"
+              weight="duotone"
+            />
           </div>
         </div>
         <h1 class="text-4xl lg:text-5xl font-bold mb-4">
@@ -136,7 +139,7 @@ import { Heart } from '@phosphor-icons/react/dist/ssr'
                 <br />
                 <span class="text-gray-600">
                   Anciennement Netlify CMS, maintenu par la communauté
-                  <br />© Netlify • Licence MIT
+                  <br />© Decap • Licence MIT
                 </span>
               </div>
             </div>

@@ -1,15 +1,15 @@
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import * as fs from 'fs'
 import * as path from 'path'
 
 // Performance thresholds (in milliseconds unless noted)
-// Note: TBT threshold is higher in dev mode due to HMR/debugging overhead
+// These thresholds are for production builds tested via wrangler pages dev
 const THRESHOLDS = {
-  fcp: 2500, // First Contentful Paint
-  lcp: 4000, // Largest Contentful Paint
-  cls: 0.25, // Cumulative Layout Shift (unitless)
-  tbt: 600, // Total Blocking Time (relaxed for dev server)
-  ttfb: 800, // Time To First Byte
+  fcp: 1500, // First Contentful Paint
+  lcp: 2500, // Largest Contentful Paint
+  cls: 0.1, // Cumulative Layout Shift (unitless)
+  tbt: 300, // Total Blocking Time
+  ttfb: 600, // Time To First Byte
 }
 
 // Pages to audit

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy, Check } from '@phosphor-icons/react'
+import { CopyIcon, CheckIcon } from '@phosphor-icons/react'
 
 interface CopyButtonProps {
   text: string
@@ -45,9 +45,9 @@ export default function CopyButton({
         type="button"
       >
         {copied ? (
-          <Check className="w-5 h-5 text-green-600" weight="bold" />
+          <CheckIcon className="w-5 h-5 text-green-600" weight="bold" />
         ) : (
-          <Copy className="w-5 h-5 text-gray-600" weight="regular" />
+          <CopyIcon className="w-5 h-5 text-gray-600" weight="regular" />
         )}
       </button>
       <span

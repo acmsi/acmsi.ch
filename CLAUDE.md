@@ -31,7 +31,7 @@ management capabilities, deployed to Cloudflare Pages.
 
 - **Development server is usually already running** on localhost:4321
 - For TypeScript checking during development, use `npx astro check`
-- The Cloudflare adapter doesn't support `npm run preview` - use `npm run dev` for local testing
+- `npm run preview` uses wrangler to preview production builds locally (requires `npm run build` first)
 
 ## Code Quality
 
@@ -174,10 +174,10 @@ The website implements security best practices:
 
 ### Security Headers
 
-Security headers are configured in Astro middleware (`src/middleware.ts`):
+Security headers are configured in `public/_headers`:
 
 - **Content Security Policy (CSP)**: Balanced approach allowing necessary external services
-  - Netlify Identity for CMS authentication
+  - GitHub OAuth for CMS authentication
   - MapLibre GL for interactive maps from unpkg.com CDN
   - Mawaqit iframe for prayer times widget
   - OpenStreetMap tiles and MapTiler API for map data
@@ -189,9 +189,9 @@ Security headers are configured in Astro middleware (`src/middleware.ts`):
 
 ### External Resources
 
-- Netlify Identity widget loaded from trusted Netlify CDN (for CMS auth)
+- GitHub OAuth for CMS authentication via Cloudflare Pages Functions
 - MapLibre GL resources loaded from unpkg.com CDN
-- Sources are reputable and trusted (Netlify, unpkg.com)
+- Sources are reputable and trusted (GitHub, unpkg.com)
 
 ### Content Security
 

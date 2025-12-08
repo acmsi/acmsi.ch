@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import {
-  X,
-  ArrowLeft,
-  ArrowRight,
-  ArrowsOut,
-  ArrowsIn,
+  XIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowsOutIcon,
+  ArrowsInIcon,
 } from '@phosphor-icons/react'
 import type { Photo } from '@/lib/content'
 
@@ -216,9 +216,9 @@ export default function PhotoLightbox({
           aria-label={isFullScreen ? 'Quitter le plein écran' : 'Plein écran'}
         >
           {isFullScreen ? (
-            <ArrowsIn className="w-6 h-6" />
+            <ArrowsInIcon className="w-6 h-6" />
           ) : (
-            <ArrowsOut className="w-6 h-6" />
+            <ArrowsOutIcon className="w-6 h-6" />
           )}
         </button>
         <button
@@ -226,7 +226,7 @@ export default function PhotoLightbox({
           className="p-2 rounded-full text-white hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
           aria-label="Fermer la galerie"
         >
-          <X className="w-6 h-6" />
+          <XIcon className="w-6 h-6" />
         </button>
       </div>
 
@@ -282,7 +282,7 @@ export default function PhotoLightbox({
               }`}
               aria-label="Photo précédente"
             >
-              <ArrowLeft className="w-6 h-6" />
+              <ArrowLeftIcon className="w-6 h-6" />
             </button>
             <button
               onClick={goToNext}
@@ -291,7 +291,7 @@ export default function PhotoLightbox({
               }`}
               aria-label="Photo suivante"
             >
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRightIcon className="w-6 h-6" />
             </button>
           </>
         )}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Info } from '@phosphor-icons/react'
+import { InfoIcon } from '@phosphor-icons/react'
 
 interface InfoTooltipProps {
   text: string
@@ -49,7 +49,7 @@ export default function InfoTooltip({
         aria-label={text}
         aria-expanded={isOpen}
       >
-        <Info className="w-5 h-5" weight="regular" />
+        <InfoIcon className="w-5 h-5" weight="regular" />
       </button>
       <span
         className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 rounded transition-opacity pointer-events-none w-48 text-center ${
