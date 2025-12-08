@@ -118,14 +118,19 @@ test.describe('Jumma Prayer Information', () => {
   test('prayer times link navigates to correct section', async ({ page }) => {
     await page.goto('/')
 
-    // Click on prayer times link
-    await page.getByRole('link', { name: 'Horaires des prières' }).click()
+    // Click on prayer times link in hero (not footer)
+    await page
+      .getByRole('main')
+      .getByRole('link', { name: 'Horaires des prières' })
+      .click()
 
     // Should navigate to contact page with anchor
     await expect(page).toHaveURL('/contact#horaires-prieres')
 
     // The prayer times section should be visible
-    await expect(page.getByText('Horaires des Prières')).toBeVisible()
+    await expect(
+      page.getByRole('heading', { name: 'Horaires des Prières' }),
+    ).toBeVisible()
   })
 
   test('parking info link navigates to correct section', async ({ page }) => {
