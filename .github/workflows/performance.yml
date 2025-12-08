@@ -1,0 +1,255 @@
+name: Performance Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Run on main branch pushes - saves baseline
+  baseline:
+    name: Update Performance Baseline
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+
+      - name: Build application
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BYPASS_AUTH: true
+
+      - name: Run performance tests
+        run: npm run test:perf:summary
+        env:
+          CI: true
+
+      - name: Save baseline artifact
+        uses: actions/cache/save@v4
+        with:
+          path: test-results/performance/performance-report.json
+          key: performance-baseline-${{ github.sha }}
+
+      # Also save with a fixed key for PRs to find
+      - name: Save latest baseline
+        uses: actions/cache/save@v4
+        with:
+          path: test-results/performance/performance-report.json
+          key: performance-baseline-main-latest
+
+  # Run on PRs - compares against baseline
+  compare:
+    name: Performance Comparison
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+
+      - name: Build application
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BYPASS_AUTH: true
+
+      - name: Run performance tests on PR
+        run: |
+          npm run test:perf:summary 2>&1 | tee perf-output.txt || true
+          if [ -f test-results/performance/performance-report.json ]; then
+            cp test-results/performance/performance-report.json pr-performance.json
+          fi
+        env:
+          CI: true
+
+      - name: Restore baseline from cache
+        id: cache-baseline
+        uses: actions/cache/restore@v4
+        with:
+          path: test-results/performance/performance-report.json
+          key: performance-baseline-main-latest
+
+      - name: Copy baseline if found
+        run: |
+          if [ -f test-results/performance/performance-report.json ]; then
+            cp test-results/performance/performance-report.json main-performance.json
+            echo "BASELINE_FOUND=true" >> $GITHUB_ENV
+          else
+            echo "BASELINE_FOUND=false" >> $GITHUB_ENV
+          fi
+
+      - name: Generate comparison report
+        run: |
+          node << 'EOF'
+          const fs = require('fs');
+
+          // Read reports
+          let prReport, mainReport;
+          try {
+            prReport = JSON.parse(fs.readFileSync('pr-performance.json', 'utf8'));
+          } catch (e) {
+            console.log('PR report not found');
+            prReport = null;
+          }
+          try {
+            mainReport = JSON.parse(fs.readFileSync('main-performance.json', 'utf8'));
+          } catch (e) {
+            console.log('Main baseline not found');
+            mainReport = null;
+          }
+
+          if (!prReport && !mainReport) {
+            fs.writeFileSync('comment.md', '## Performance Tests\n\nNo performance data available.');
+            process.exit(0);
+          }
+
+          // Helper functions
+          const formatMs = (ms) => ms === null ? 'N/A' : ms < 1000 ? `${Math.round(ms)}ms` : `${(ms / 1000).toFixed(2)}s`;
+          const formatDelta = (pr, main) => {
+            if (pr === null || main === null || main === 0) return '';
+            const delta = ((pr - main) / main * 100).toFixed(1);
+            const num = parseFloat(delta);
+            if (Math.abs(num) < 1) return '';
+            // For performance metrics, negative is better (faster)
+            const emoji = num < 0 ? ':arrow_down_small:' : ':arrow_up_small:';
+            const sign = num > 0 ? '+' : '';
+            return ` (${sign}${delta}%${emoji})`;
+          };
+
+          let comment = '## Performance Test Results\n\n';
+
+          if (prReport && mainReport) {
+            // Create comparison table
+            comment += '| Page | Metric | Main | PR | Delta |\n';
+            comment += '|------|--------|------|-----|-------|\n';
+
+            const metrics = ['fcp', 'lcp', 'cls', 'tbt', 'ttfb'];
+            const metricNames = {
+              fcp: 'FCP',
+              lcp: 'LCP',
+              cls: 'CLS',
+              tbt: 'TBT',
+              ttfb: 'TTFB'
+            };
+
+            let improvements = 0, regressions = 0, unchanged = 0;
+
+            for (const prResult of prReport.results) {
+              const mainResult = mainReport.results.find(r => r.page === prResult.page);
+              if (!mainResult) continue;
+
+              for (const metric of metrics) {
+                const prValue = prResult.metrics[metric];
+                const mainValue = mainResult.metrics[metric];
+
+                const prFormatted = metric === 'cls'
+                  ? (prValue?.toFixed(4) || 'N/A')
+                  : formatMs(prValue);
+                const mainFormatted = metric === 'cls'
+                  ? (mainValue?.toFixed(4) || 'N/A')
+                  : formatMs(mainValue);
+
+                let delta = '';
+                if (prValue !== null && mainValue !== null && mainValue !== 0) {
+                  const change = ((prValue - mainValue) / mainValue * 100);
+                  if (Math.abs(change) >= 5) {
+                    if (change < 0) improvements++;
+                    else regressions++;
+                    delta = formatDelta(prValue, mainValue);
+                  } else {
+                    unchanged++;
+                  }
+                }
+
+                comment += `| ${prResult.page} | ${metricNames[metric]} | ${mainFormatted} | ${prFormatted} | ${delta} |\n`;
+              }
+            }
+
+            // Summary
+            comment += '\n**Summary**: ';
+            if (improvements > 0) comment += `${improvements} improvements `;
+            if (regressions > 0) comment += `${regressions} regressions `;
+            if (unchanged > 0) comment += `${unchanged} unchanged`;
+            comment += '\n';
+
+            // Averages
+            comment += '\n### Averages\n\n';
+            comment += '| Metric | Main | PR | Delta |\n';
+            comment += '|--------|------|-----|-------|\n';
+            for (const metric of metrics) {
+              const prAvg = prReport.averages[metric];
+              const mainAvg = mainReport.averages[metric];
+              const prFormatted = metric === 'cls' ? prAvg?.toFixed(4) : formatMs(prAvg);
+              const mainFormatted = metric === 'cls' ? mainAvg?.toFixed(4) : formatMs(mainAvg);
+              const delta = formatDelta(prAvg, mainAvg);
+              comment += `| ${metricNames[metric]} | ${mainFormatted} | ${prFormatted} | ${delta} |\n`;
+            }
+
+          } else if (prReport) {
+            comment += '> **Note**: No baseline data from main branch. This is normal for the first PR after adding performance tests.\n\n';
+            comment += '### PR Results\n\n';
+            comment += '| Page | FCP | LCP | CLS | TBT | TTFB |\n';
+            comment += '|------|-----|-----|-----|-----|------|\n';
+            for (const result of prReport.results) {
+              const m = result.metrics;
+              comment += `| ${result.page} | ${formatMs(m.fcp)} | ${formatMs(m.lcp)} | ${m.cls?.toFixed(4)} | ${formatMs(m.tbt)} | ${formatMs(m.ttfb)} |\n`;
+            }
+          }
+
+          comment += '\n<details>\n<summary>Thresholds</summary>\n\n';
+          comment += '- FCP: < 2500ms\n';
+          comment += '- LCP: < 4000ms\n';
+          comment += '- CLS: < 0.25\n';
+          comment += '- TBT: < 300ms\n';
+          comment += '- TTFB: < 800ms\n';
+          comment += '</details>\n';
+
+          fs.writeFileSync('comment.md', comment);
+          console.log('Comment generated successfully');
+          EOF
+
+      - name: Post comment on PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: comment.md
+
+      - name: Upload performance reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-reports
+          path: |
+            pr-performance.json
+            main-performance.json
+            perf-output.txt
+          retention-days: 7
