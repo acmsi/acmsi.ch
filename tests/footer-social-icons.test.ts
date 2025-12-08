@@ -12,9 +12,9 @@ const __dirname = path.dirname(__filename)
  * Test to ensure that the footer contains social media icons with correct attributes
  */
 test('Footer Social Media Icons', async t => {
-  const layoutPath = path.join(__dirname, '../src/app/layout.tsx')
+  const layoutPath = path.join(__dirname, '../src/layouts/Layout.astro')
 
-  await t.test('layout.tsx file exists', () => {
+  await t.test('Layout.astro file exists', () => {
     assert.strictEqual(fs.existsSync(layoutPath), true)
   })
 

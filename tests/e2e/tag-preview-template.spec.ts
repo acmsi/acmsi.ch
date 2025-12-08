@@ -1,7 +1,4 @@
 import { test, expect } from '@playwright/test'
-import { readFileSync } from 'fs'
-import { join } from 'path'
-import yaml from 'js-yaml'
 
 // Extend Window interface for CMS
 interface CMS {
@@ -15,16 +12,18 @@ declare global {
   }
 }
 
-// Check if local_backend is enabled in CMS config
-function isLocalBackendEnabled(): boolean {
-  try {
-    const configPath = join(process.cwd(), 'public/admin/config.yml')
-    const configContent = readFileSync(configPath, 'utf8')
-    const config = yaml.load(configContent) as { local_backend?: boolean }
-    return config.local_backend === true
-  } catch {
-    return false
-  }
+// Helper to login to CMS
+async function loginToCms(page: import('@playwright/test').Page) {
+  await page.goto('/admin/index.html')
+  await page.waitForLoadState('domcontentloaded')
+
+  // With local_backend: true, CMS shows a Login button that auto-authenticates via the proxy
+  const loginButton = page.locator('button:has-text("Login")')
+  await expect(loginButton).toBeVisible({ timeout: 10000 })
+  await loginButton.click()
+
+  // Wait for CMS to load after login
+  await expect(page.locator('text=Collections')).toBeVisible({ timeout: 10000 })
 }
 
 test.describe('Tag Custom Preview Template', () => {
@@ -34,51 +33,12 @@ test.describe('Tag Custom Preview Template', () => {
   })
 
   test('should load CMS admin interface', async ({ page }) => {
-    test.skip(
-      !isLocalBackendEnabled(),
-      'CMS admin requires local_backend: true for testing',
-    )
-
-    await page.goto('/admin/')
-
-    // Wait for CMS to load - use more generic selector
-    await page.waitForLoadState('domcontentloaded')
-    await page.waitForTimeout(2000) // Give CMS time to initialize
-
-    // Should show the CMS interface
-    await expect(page.locator('text=Collections')).toBeVisible()
-  })
-
-  test('should show Tags collection in CMS', async ({ page }) => {
-    test.skip(
-      !isLocalBackendEnabled(),
-      'CMS admin requires local_backend: true for testing',
-    )
-
-    await page.goto('/admin/')
-
-    // Wait for CMS to load
-    await page.waitForLoadState('domcontentloaded')
-    await page.waitForTimeout(2000)
-
-    // Look for Tags collection
-    const tagsLink = page.locator('text=Tags').first()
-    if ((await tagsLink.count()) > 0) {
-      await expect(tagsLink).toBeVisible()
-    }
+    await loginToCms(page)
+    // If we got here, the CMS loaded successfully
   })
 
   test('should load custom preview template script', async ({ page }) => {
-    test.skip(
-      !isLocalBackendEnabled(),
-      'CMS admin requires local_backend: true for testing',
-    )
-
-    // Go to admin page
-    await page.goto('/admin/')
-
-    await page.waitForLoadState('domcontentloaded')
-    await page.waitForTimeout(2000)
+    await loginToCms(page)
 
     // Check if our custom preview template script loaded
     const scriptLoaded = await page.evaluate(() => {
@@ -88,76 +48,27 @@ test.describe('Tag Custom Preview Template', () => {
     expect(scriptLoaded).toBe(true)
   })
 
-  test('should have preview templates script accessible', async ({ page }) => {
-    // Test that our preview template file is accessible
-    const response = await page.goto('/admin/preview-templates.js')
-    expect(response?.status()).toBe(200)
-
-    const content = await page.content()
-    expect(content).toContain('TagPreview')
-    expect(content).toContain('registerPreviewTemplate')
-  })
-
-  test.skip('should show custom preview when editing a tag', async ({
-    page,
-  }) => {
-    // This test is skipped because it requires CMS authentication
-    // and complex interaction with the CMS interface
-
-    await page.goto('/admin/')
-    await page.waitForSelector('.css-nil', { timeout: 10000 })
+  test('should show custom preview when editing a tag', async ({ page }) => {
+    await loginToCms(page)
 
     // Navigate to Tags collection
     await page.click('text=Tags')
+    await page.waitForTimeout(500)
 
-    // Create or edit a tag to see preview
-    // This would require more complex setup with authentication
-  })
+    // Click on an existing tag to edit it
+    const tagEntry = page
+      .locator('a[href*="/collections/tags/entries/"]')
+      .first()
+    await expect(tagEntry).toBeVisible({ timeout: 5000 })
+    await tagEntry.click()
 
-  test('should display links to actualites page correctly', async ({
-    page,
-  }) => {
-    // Test that the preview template generates correct URLs
-    await page.goto('/admin/preview-templates.js')
+    // Wait for editor to load with preview pane
+    await page.waitForTimeout(1000)
 
-    const content = await page.textContent('body')
-
-    // Check that our URL generation logic is present
-    expect(content).toContain('/actualites?tag=')
-    expect(content).toContain('encodeURIComponent(tagName)')
-  })
-
-  test('should have proper component structure', async ({ page }) => {
-    await page.goto('/admin/preview-templates.js')
-
-    const content = await page.textContent('body')
-
-    // Check for Decap CMS patterns (ES5 style)
-    expect(content).toContain('createClass')
-    expect(content).toContain('getInitialState')
-    expect(content).toContain('componentDidMount')
-    expect(content).toContain('getCollection')
-  })
-
-  test('should handle tag filtering logic correctly', async ({ page }) => {
-    await page.goto('/admin/preview-templates.js')
-
-    const content = await page.textContent('body')
-
-    // Check for filtering logic (updated to match current implementation)
-    expect(content).toContain('tags.includes(tagName)')
-    expect(content).toContain('filter(function (article)')
-  })
-
-  test('should provide user-friendly interface elements', async ({ page }) => {
-    await page.goto('/admin/preview-templates.js')
-
-    const content = await page.textContent('body')
-
-    // Check for user-friendly features
-    expect(content).toContain('Voir les articles filtrés')
-    expect(content).toContain('Articles utilisant ce tag')
-    expect(content).toContain('Conseils')
-    expect(content).toContain("target: '_blank'") // External links
+    // The preview pane should show our custom TagPreview component
+    const previewFrame = page.frameLocator('iframe').first()
+    await expect(
+      previewFrame.locator('text=Articles utilisant ce tag'),
+    ).toBeVisible({ timeout: 10000 })
   })
 })

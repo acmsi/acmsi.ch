@@ -56,7 +56,7 @@ describe('Tag Collection Configuration', () => {
     )
     assert.ok(tagsCollection)
     assert.strictEqual(tagsCollection.label, 'Tags')
-    assert.strictEqual(tagsCollection.folder, 'content/tags')
+    assert.strictEqual(tagsCollection.folder, 'src/content/tags')
     assert.strictEqual(tagsCollection.create, true)
   })
 
@@ -110,9 +110,9 @@ describe('Tag Collection Configuration', () => {
 
   it('should have existing tag files in correct location', () => {
     const tagFiles = [
-      'content/tags/annonce.md',
-      'content/tags/site-web.md',
-      'content/tags/communaute.md',
+      'src/content/tags/annonce.md',
+      'src/content/tags/site-web.md',
+      'src/content/tags/communaute.md',
     ]
 
     tagFiles.forEach(filePath => {
@@ -122,7 +122,7 @@ describe('Tag Collection Configuration', () => {
   })
 
   it('should have valid tag file structure', () => {
-    const tagFilePath = join(process.cwd(), 'content/tags/annonce.md')
+    const tagFilePath = join(process.cwd(), 'src/content/tags/annonce.md')
     const content = readFileSync(tagFilePath, 'utf8')
 
     // Should have frontmatter
@@ -150,7 +150,7 @@ describe('Tag Collection Configuration', () => {
     ]
 
     tagData.forEach(({ file, name, slug }) => {
-      const filePath = join(process.cwd(), 'content/tags', file)
+      const filePath = join(process.cwd(), 'src/content/tags', file)
       const content = readFileSync(filePath, 'utf8')
 
       const frontmatterEnd = content.indexOf('---', 3)
@@ -165,7 +165,7 @@ describe('Tag Collection Configuration', () => {
   })
 
   it('should have tags directory structure', () => {
-    const tagsDir = join(process.cwd(), 'content/tags')
+    const tagsDir = join(process.cwd(), 'src/content/tags')
     assert.strictEqual(existsSync(tagsDir), true)
   })
 
@@ -178,12 +178,12 @@ describe('Tag Collection Configuration', () => {
     })
   })
 
-  it('should have backend configuration for git-gateway', () => {
+  it('should have backend configuration for github', () => {
     const configContent = readFileSync(configPath, 'utf8')
     const config = yaml.load(configContent) as CMSConfig
 
     assert.ok(config.backend)
-    assert.strictEqual(config.backend.name, 'git-gateway')
+    assert.strictEqual(config.backend.name, 'github')
     assert.strictEqual(config.backend.branch, 'main')
   })
 

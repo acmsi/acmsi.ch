@@ -1,5 +1,12 @@
-import { forwardRef } from 'react'
-import { IconProps, IconWeight } from '@phosphor-icons/react'
+import { forwardRef, type SVGProps } from 'react'
+
+type IconWeight = 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone'
+
+interface IconProps extends SVGProps<SVGSVGElement> {
+  weight?: IconWeight
+  color?: string
+  size?: string | number
+}
 
 const weights = new Map<IconWeight, React.ReactNode>([
   [

@@ -1,0 +1,246 @@
+---
+import '@/styles/global.css'
+import MobileMenu from '@/components/react/mobile-menu'
+import {
+  LetterCircleP,
+  InstagramLogo,
+  FacebookLogo,
+  WhatsappLogo,
+  Clock,
+} from '@phosphor-icons/react/dist/ssr'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+}
+
+const {
+  title = 'ACMSI - Association Culturelle Musulmane de Saint-Imier',
+  description = "Site officiel de l'Association Culturelle Musulmane de Saint-Imier et de la mosquée Nur.",
+  image,
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const currentYear = new Date().getFullYear()
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="ACMSI, mosquée, Saint-Imier, islam, association, Nur"
+    />
+    <meta name="author" content="ACMSI" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="ACMSI" />
+    <meta property="og:locale" content="fr_CH" />
+    {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {
+      image && (
+        <meta name="twitter:image" content={new URL(image, Astro.site)} />
+      )
+    }
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Netlify Identity Widget (for CMS) -->
+    <script
+      is:inline
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+      async></script>
+
+    <slot name="head" />
+  </head>
+  <body
+    class="antialiased font-sans islamic-pattern islamic-pattern-sm md:islamic-pattern-md"
+    style="--pattern-background-color: white; --pattern-foreground-color: var(--color-nur-cream-200);"
+  >
+    <header class="bg-white/70 shadow-sm border-b border-gray-200">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <a
+              href="/"
+              class="text-2xl font-family-headings font-bold hover:text-teal-600 transition-colors"
+            >
+              ACMSI
+            </a>
+          </div>
+          <div class="hidden md:block">
+            <div
+              class="ml-10 flex items-baseline space-x-4 *:text-gray-700 *:hover:text-teal-600 *:px-3 *:py-2 *:rounded-md *:font-medium"
+            >
+              <a href="/">Accueil</a>
+              <a href="/a-propos">À propos</a>
+              <a href="/actualites">Actualités</a>
+              <a href="/donation">Donation</a>
+              <a href="/contact">Contact</a>
+            </div>
+          </div>
+          <MobileMenu client:load />
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="bg-gray-900 text-gray-100">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="order-3 md:order-first">
+            <h3
+              class="text-white font-family-headings text-2xl font-semibold mb-4"
+            >
+              ACMSI
+            </h3>
+            <p class="text-gray-300">
+              Association Culturelle Musulmane de Saint-Imier
+            </p>
+            <div class="flex space-x-3 mt-4">
+              <a
+                href="https://www.instagram.com/xhamia_nur_stimier"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-300 hover:text-teal-300 transition-colors"
+                title="Suivez-nous sur Instagram"
+              >
+                <InstagramLogo size={33} />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1Diw8r8WrC/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-300 hover:text-teal-300 transition-colors"
+                title="Suivez-nous sur Facebook"
+              >
+                <FacebookLogo size={33} />
+              </a>
+              <a
+                href="https://chat.whatsapp.com/FsRYOthycLQLCmekiojmQ2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-300 hover:text-teal-300 transition-colors"
+                title="Rejoindre la communauté WhatsApp"
+              >
+                <WhatsappLogo size={33} />
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-white text-lg font-semibold mb-4">Navigation</h3>
+            <ul class="space-y-2 **:text-gray-300 **:hover:text-teal-300">
+              <li><a href="/">Accueil</a></li>
+              <li><a href="/a-propos">À propos</a></li>
+              <li><a href="/actualites">Actualités</a></li>
+              <li><a href="/projet-xhamia-nur">Projet Xhamia Nur</a></li>
+              <li><a href="/donation">Donation</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white text-lg font-semibold mb-4">Contact</h3>
+            <div class="space-y-2 text-gray-300">
+              <p>
+                <a
+                  href="https://maps.apple/p/BvnLVKA~K_gZw6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-teal-300 transition-colors"
+                >
+                  ACMSI – Mosquée Nur<br />
+                  Rue de la Clef 45<br />
+                  2610 Saint-Imier, Suisse
+                </a>
+              </p>
+              <p>
+                <a
+                  href="mailto:contact@acmsi.ch"
+                  class="hover:text-teal-300 transition-colors"
+                >
+                  contact@acmsi.ch
+                </a>
+              </p>
+              <p>
+                <a
+                  href="tel:+41799601790"
+                  class="hover:text-teal-300 transition-colors"
+                >
+                  079 960 17 90
+                </a>
+              </p>
+              <p class="mt-4 pt-2 md:border-t border-gray-700">
+                <a
+                  href="/contact#parking-info"
+                  class="inline-flex items-center hover:text-teal-300 transition-colors"
+                >
+                  <LetterCircleP
+                    weight="duotone"
+                    className="text-blue-500 w-5 h-5 mr-1"
+                  />
+                  Informations Stationnement
+                </a>
+              </p>
+              <p class="mt-2">
+                <a
+                  href="/contact#horaires-prieres"
+                  class="inline-flex items-center hover:text-teal-300 transition-colors"
+                >
+                  <Clock
+                    weight="duotone"
+                    className="text-nur-teal-500 w-5 h-5 mr-1"
+                  />
+                  Horaires des prières
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+          <p class="text-gray-500">
+            &copy; {currentYear} ACMSI.{' '}
+            <a
+              href="/credits"
+              class="text-gray-500 hover:text-gray-300 transition-colors text-sm"
+            >
+              Crédits
+            </a>{' '}
+            <span class="text-gray-600">|</span>{' '}
+            <a
+              href="https://github.com/acmsi/acmsi.ch/blob/main/LICENSE.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-500 hover:text-gray-300 transition-colors text-sm"
+            >
+              Licence ISC
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

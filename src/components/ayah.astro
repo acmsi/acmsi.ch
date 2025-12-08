@@ -1,0 +1,52 @@
+---
+interface Props {
+  arabicText: string
+  translationText: string
+  reference: string
+  verseNumber?: string
+  class?: string
+}
+
+const {
+  arabicText,
+  translationText,
+  reference,
+  verseNumber,
+  class: className = '',
+} = Astro.props
+---
+
+<div class:list={['text-center space-y-6', className]}>
+  {/* Texte arabe style Quran.com */}
+  <div class="relative max-w-5xl mx-auto">
+    <p
+      class="text-3xl lg:text-4xl quranic-text leading-loose"
+      dir="rtl"
+      lang="ar"
+    >
+      {arabicText}
+      {
+        verseNumber && (
+          <span class="inline-flex items-center justify-center align-middle mx-3">
+            <span class="w-10 h-10 lg:w-12 lg:h-12 inline-flex items-center justify-center relative text-2xl lg:text-3xl ayah-number">
+              ۝
+              <span class="absolute text-sm lg:text-base font-semibold">
+                {verseNumber}
+              </span>
+            </span>
+          </span>
+        )
+      }
+    </p>
+  </div>
+
+  {/* Traduction francaise */}
+  <div class="text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
+    <p class="italic font-medium">&laquo; {translationText} &raquo;</p>
+  </div>
+
+  {/* Reference */}
+  <div class="text-sm font-medium">
+    <p>&mdash; {reference}</p>
+  </div>
+</div>

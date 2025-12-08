@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string
+  description: string
+  iconBgColor?: string
+  iconColor?: string
+  class?: string
+}
+
+const {
+  title,
+  description,
+  iconBgColor = 'bg-green-100',
+  iconColor = 'text-green-600',
+  class: className = '',
+} = Astro.props
+---
+
+<div
+  class:list={[
+    'flex items-start space-x-4 lg:flex-col lg:items-center lg:text-center lg:space-x-0',
+    className,
+  ]}
+>
+  <div
+    class:list={[
+      'w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 lg:mb-4',
+      iconBgColor,
+    ]}
+  >
+    <div class={iconColor}>
+      <slot name="icon" />
+    </div>
+  </div>
+  <div class="flex-1">
+    <h3 class="text-lg font-semibold mb-2">{title}</h3>
+    <p class="text-gray-600">{description}</p>
+  </div>
+</div>

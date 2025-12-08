@@ -1,9 +1,24 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, Page } from '@playwright/test'
 
 /**
  * End-to-end tests for navigation functionality
  * Tests both mobile and desktop navigation behavior
  */
+
+/**
+ * Helper to open mobile menu reliably
+ * Waits for React hydration and ensures the menu opens
+ */
+async function openMobileMenu(page: Page) {
+  const menuButton = page.getByRole('banner').getByRole('button', { name: 'Menu' })
+  await expect(menuButton).toBeVisible()
+  // Wait for React hydration before clicking
+  await page.waitForTimeout(100)
+  await menuButton.click()
+  const mobileMenu = page.getByRole('dialog')
+  await expect(mobileMenu).toBeVisible()
+  return mobileMenu
+}
 
 const NAVIGATION_LINKS = [
   { text: 'Accueil', href: '/' },
@@ -19,156 +34,90 @@ test.describe('Mobile Navigation', () => {
     await page.setViewportSize({ width: 375, height: 667 })
   })
 
-  test('displays mobile menu button and hides desktop navigation', async ({
-    page,
-  }) => {
+  test('displays mobile menu button', async ({ page }) => {
     await page.goto('/')
 
-    // Mobile menu button should be visible
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
+    // Scope to header to avoid Astro dev toolbar
+    const header = page.getByRole('banner')
+    const mobileMenuButton = header.getByRole('button', { name: 'Menu' })
     await expect(mobileMenuButton).toBeVisible()
-
-    // Verify the button contains DotsThreeOutline icon (by checking for button with specific aria-label)
-    await expect(mobileMenuButton).toHaveClass(/md:hidden/)
-
-    // Desktop navigation should be hidden
-    const desktopNav = page.locator('.hidden.md\\:block')
-    await expect(desktopNav).toBeHidden()
   })
 
-  test('opens mobile menu overlay when menu button is clicked', async ({
-    page,
-  }) => {
+  test('opens and closes mobile menu', async ({ page }) => {
     await page.goto('/')
 
-    // Click the mobile menu button
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
+    // Open mobile menu using helper
+    const mobileMenu = await openMobileMenu(page)
 
-    // Mobile menu overlay should be visible
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toBeVisible()
-
-    // Check that overlay has correct styling (fullscreen, backdrop blur)
-    await expect(mobileMenuOverlay).toHaveClass(/fixed/)
-    await expect(mobileMenuOverlay).toHaveClass(/inset-0/)
-    await expect(mobileMenuOverlay).toHaveClass(/bg-white\/95/)
-    await expect(mobileMenuOverlay).toHaveClass(/backdrop-blur-sm/)
+    // Close it
+    await mobileMenu.getByRole('button', { name: 'Fermer' }).click()
+    await expect(mobileMenu).toBeHidden()
   })
 
   test('displays all navigation links in mobile menu', async ({ page }) => {
     await page.goto('/')
 
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
+    // Open mobile menu using helper
+    const mobileMenu = await openMobileMenu(page)
 
     // Check that all expected navigation links are present
     for (const link of NAVIGATION_LINKS) {
-      const linkElement = page.locator(
-        `[role="dialog"] nav a[href="${link.href}"]`,
-      )
+      const linkElement = mobileMenu.getByRole('link', { name: link.text })
       await expect(linkElement).toBeVisible()
-      await expect(linkElement).toHaveText(link.text)
+      await expect(linkElement).toHaveAttribute('href', link.href)
     }
-  })
-
-  test('closes mobile menu when X button is clicked', async ({ page }) => {
-    await page.goto('/')
-
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
-
-    // Mobile menu should be open
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toBeVisible()
-
-    // Click the close button
-    const closeButton = page.locator('[aria-label="Fermer"]')
-    await expect(closeButton).toBeVisible()
-    await closeButton.click()
-
-    // Mobile menu should be closed
-    await expect(mobileMenuOverlay).toBeHidden()
   })
 
   test('closes mobile menu when ESC key is pressed', async ({ page }) => {
     await page.goto('/')
 
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
+    // Open mobile menu using helper
+    const mobileMenu = await openMobileMenu(page)
 
-    // Mobile menu should be open
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toBeVisible()
-
-    // Press ESC key
+    // Press ESC key to close
     await page.keyboard.press('Escape')
 
-    // Mobile menu should be closed
-    await expect(mobileMenuOverlay).toBeHidden()
+    await expect(mobileMenu).toBeHidden()
   })
 
-  test('navigates to correct page and closes menu when link is clicked', async ({
+  test('navigates to page and closes menu when link is clicked', async ({
     page,
   }) => {
     await page.goto('/')
 
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
-
-    // Click on "À propos" link
-    const aboutLink = page.locator('[role="dialog"] nav a[href="/a-propos"]')
-    await aboutLink.click()
+    // Open mobile menu using helper
+    const mobileMenu = await openMobileMenu(page)
+    await mobileMenu.getByRole('link', { name: 'À propos' }).click()
 
     // Should navigate to the about page
     await expect(page).toHaveURL('/a-propos')
 
     // Mobile menu should be closed after navigation
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toBeHidden()
+    await expect(page.getByRole('dialog')).toBeHidden()
   })
 
-  test('ACMSI logo in mobile menu navigates to home and closes menu', async ({
-    page,
-  }) => {
-    await page.goto('/contact') // Start from a different page
+  test('ACMSI logo navigates to home', async ({ page }) => {
+    await page.goto('/contact')
 
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
+    // Open mobile menu using helper
+    const mobileMenu = await openMobileMenu(page)
 
     // Click on ACMSI logo in mobile menu
-    const logoLink = page.locator('[role="dialog"] a[href="/"]').first()
-    await expect(logoLink).toHaveText('ACMSI')
+    const logoLink = mobileMenu.getByRole('link', { name: 'ACMSI' })
     await logoLink.click()
 
-    // Should navigate to home page
     await expect(page).toHaveURL('/')
-
-    // Mobile menu should be closed
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toBeHidden()
   })
 
   test('mobile menu has correct accessibility attributes', async ({ page }) => {
     await page.goto('/')
 
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
+    // Open mobile menu using helper
+    const mobileMenu = await openMobileMenu(page)
+    await expect(mobileMenu).toHaveAttribute('aria-modal', 'true')
 
-    // Check accessibility attributes
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toHaveAttribute('role', 'dialog')
-    await expect(mobileMenuOverlay).toHaveAttribute('aria-modal', 'true')
-
-    // Close button should have focus
-    const closeButton = page.locator('[aria-label="Fermer"]')
-    await expect(closeButton).toHaveAttribute('aria-label', 'Fermer')
+    // Close button should have focus for keyboard navigation
+    const closeButton = mobileMenu.getByRole('button', { name: 'Fermer' })
     await expect(closeButton).toBeFocused()
   })
 })
@@ -184,150 +133,74 @@ test.describe('Desktop Navigation', () => {
   }) => {
     await page.goto('/')
 
-    // Desktop navigation should be visible
-    const desktopNav = page.locator('.hidden.md\\:block')
-    await expect(desktopNav).toBeVisible()
+    // Header navigation should be visible
+    const header = page.getByRole('banner')
+    const nav = header.getByRole('navigation')
+    await expect(nav).toBeVisible()
 
-    // Mobile menu button should be hidden
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
+    // Mobile menu button should be hidden (scoped to header)
+    const mobileMenuButton = header.getByRole('button', { name: 'Menu' })
     await expect(mobileMenuButton).toBeHidden()
   })
 
-  test('displays all navigation links in desktop navigation', async ({
-    page,
-  }) => {
+  test('displays all navigation links', async ({ page }) => {
     await page.goto('/')
 
-    // Check that all expected navigation links are present in desktop nav
+    const nav = page.getByRole('banner').getByRole('navigation')
+
+    // Check that all expected navigation links are present
     for (const link of NAVIGATION_LINKS) {
-      const linkElement = page.locator(
-        `.hidden.md\\:block a[href="${link.href}"]`,
-      )
+      const linkElement = nav.getByRole('link', { name: link.text })
       await expect(linkElement).toBeVisible()
-      await expect(linkElement).toHaveText(link.text)
+      await expect(linkElement).toHaveAttribute('href', link.href)
     }
   })
 
-  test('desktop navigation links are functional', async ({ page }) => {
+  test('navigation links work correctly', async ({ page }) => {
     await page.goto('/')
+
+    const nav = page.getByRole('banner').getByRole('navigation')
 
     // Test navigation to About page
-    const aboutLink = page.locator('.hidden.md\\:block a[href="/a-propos"]')
-    await aboutLink.click()
+    await nav.getByRole('link', { name: 'À propos' }).click()
     await expect(page).toHaveURL('/a-propos')
 
-    // Go back to home
-    await page.goto('/')
-
     // Test navigation to Contact page
-    const contactLink = page.locator('.hidden.md\\:block a[href="/contact"]')
-    await contactLink.click()
+    await nav.getByRole('link', { name: 'Contact' }).click()
     await expect(page).toHaveURL('/contact')
 
     // Test navigation to Donation page
-    await page.goto('/')
-    const donationLink = page.locator('.hidden.md\\:block a[href="/donation"]')
-    await donationLink.click()
+    await nav.getByRole('link', { name: 'Donation' }).click()
     await expect(page).toHaveURL('/donation')
   })
 
-  test('desktop navigation has hover effects', async ({ page }) => {
-    await page.goto('/')
+  test('ACMSI logo navigates to home', async ({ page }) => {
+    await page.goto('/contact')
 
-    // Test that navigation container has the proper CSS classes with * selectors
-    const navContainer = page.locator('.hidden.md\\:block > div')
-    await expect(navContainer).toHaveClass(/\*:text-gray-700/)
-    await expect(navContainer).toHaveClass(/\*:hover:text-teal-600/)
-    await expect(navContainer).toHaveClass(/\*:px-3/)
-    await expect(navContainer).toHaveClass(/\*:py-2/)
-    await expect(navContainer).toHaveClass(/\*:rounded-md/)
-    await expect(navContainer).toHaveClass(/\*:font-medium/)
-
-    // Test that links exist and are functional
-    const homeLink = page.locator('.hidden.md\\:block a[href="/"]')
-    await expect(homeLink).toBeVisible()
-    await expect(homeLink).toHaveText('Accueil')
-  })
-
-  test('ACMSI logo is functional in desktop view', async ({ page }) => {
-    await page.goto('/contact') // Start from a different page
-
-    // Click on ACMSI logo
-    const logoLink = page.locator('header a[href="/"]').first()
-    await expect(logoLink).toHaveText('ACMSI')
+    // Click on ACMSI logo in header
+    const header = page.getByRole('banner')
+    const logoLink = header.getByRole('link', { name: 'ACMSI' })
     await logoLink.click()
 
-    // Should navigate to home page
     await expect(page).toHaveURL('/')
-  })
-
-  test('desktop navigation layout is correct', async ({ page }) => {
-    await page.goto('/')
-
-    // Check header structure
-    const header = page.locator('header')
-    await expect(header).toBeVisible()
-
-    // Check navigation container
-    const nav = page.locator('header nav')
-    await expect(nav).toHaveClass(/max-w-7xl/)
-    await expect(nav).toHaveClass(/mx-auto/)
-
-    // Check navigation flex layout
-    const navContent = page.locator('header nav > div')
-    await expect(navContent).toHaveClass(/flex/)
-    await expect(navContent).toHaveClass(/justify-between/)
-    await expect(navContent).toHaveClass(/items-center/)
   })
 })
 
-test.describe('Navigation Cross-Device Behavior', () => {
-  test('mobile menu does not interfere with desktop navigation', async ({
+test.describe('Responsive Breakpoints', () => {
+  test('switches between mobile and desktop navigation at md breakpoint', async ({
     page,
   }) => {
-    // Start with mobile viewport
-    await page.setViewportSize({ width: 375, height: 667 })
     await page.goto('/')
 
-    // Open mobile menu
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-    await mobileMenuButton.click()
+    const header = page.getByRole('banner')
+    const mobileMenuButton = header.getByRole('button', { name: 'Menu' })
 
-    // Verify mobile menu is open
-    const mobileMenuOverlay = page.locator('[role="dialog"][aria-modal="true"]')
-    await expect(mobileMenuOverlay).toBeVisible()
-
-    // Resize to desktop viewport
-    await page.setViewportSize({ width: 1024, height: 950 })
-
-    // Mobile menu should be hidden due to CSS classes
-    await expect(mobileMenuOverlay).toHaveClass(/md:hidden/)
-
-    // Desktop navigation should be visible
-    const desktopNav = page.locator('.hidden.md\\:block')
-    await expect(desktopNav).toBeVisible()
-
-    // Mobile menu button should be hidden
-    await expect(mobileMenuButton).toBeHidden()
-  })
-
-  test('responsive breakpoints work correctly', async ({ page }) => {
-    await page.goto('/')
-
-    // Test at exactly 768px (md breakpoint)
+    // At md breakpoint (768px), mobile button should be hidden
     await page.setViewportSize({ width: 768, height: 600 })
-
-    // At md breakpoint, desktop nav should be visible, mobile button hidden
-    const desktopNav = page.locator('.hidden.md\\:block')
-    const mobileMenuButton = page.locator('[aria-label="Menu"]')
-
-    await expect(desktopNav).toBeVisible()
     await expect(mobileMenuButton).toBeHidden()
 
-    // Test below md breakpoint
+    // Below md breakpoint, mobile menu button should be visible
     await page.setViewportSize({ width: 767, height: 600 })
-
-    await expect(desktopNav).toBeHidden()
     await expect(mobileMenuButton).toBeVisible()
   })
 })
@@ -337,15 +210,17 @@ test.describe('WhatsApp Community Links', () => {
 
   test('footer has WhatsApp link', async ({ page }) => {
     await page.goto('/')
-    const whatsappLink = page.locator(`footer a[href="${WHATSAPP_URL}"]`)
+    const footer = page.getByRole('contentinfo')
+    const whatsappLink = footer.locator(`a[href="${WHATSAPP_URL}"]`)
     await expect(whatsappLink).toBeVisible()
   })
 
   test('contact page has WhatsApp link', async ({ page }) => {
     await page.goto('/contact')
-    const whatsappLink = page.locator(
-      `a[href="${WHATSAPP_URL}"]:has-text("Rejoindre la communauté")`,
-    )
-    await expect(whatsappLink).toBeVisible()
+    // Use exact name to avoid matching footer link
+    const whatsappLink = page.getByRole('link', {
+      name: 'Rejoindre la communauté →',
+    })
+    await expect(whatsappLink).toHaveAttribute('href', WHATSAPP_URL)
   })
 })

@@ -1,0 +1,185 @@
+---
+import { Mosque, ArrowRight, TrendUp } from '@phosphor-icons/react/dist/ssr'
+import ProgressBar from './progress-bar.astro'
+import { formatAmount, formatPercentage } from '@/lib/format'
+
+interface Props {
+  variant?: 'compact' | 'full' | 'thin'
+  showProgress?: boolean
+  totalAmount?: number
+  raisedAmount?: number
+  percentage?: number
+}
+
+const {
+  variant = 'compact',
+  showProgress = false,
+  totalAmount = 630000,
+  raisedAmount = 330000,
+  percentage = 52.4,
+} = Astro.props
+---
+
+{
+  variant === 'thin' && (
+    <section class="py-12 bg-gradient-to-r from-green-50 to-green-100">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap flex-row items-center justify-center gap-6 lg:gap-12">
+          <div class="md:shrink-0">
+            <div class="flex items-center space-x-3 mb-2">
+              <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Mosque className="w-6 h-6 text-green-600" weight="duotone" />
+              </div>
+              <h3 class="text-2xl font-headings font-bold text-green-900">
+                Projet Xhamia Nur
+              </h3>
+            </div>
+            <p class="text-green-700 mb-3">
+              Levee de fonds urgente pour l'acquisition de la mosquee
+            </p>
+
+            {showProgress && (
+              <div class="md:max-w-md">
+                <div class="bg-white rounded-lg p-3 shadow-sm text-sm">
+                  <div class="flex items-center justify-between text-green-700 mb-1">
+                    <span>{formatAmount(raisedAmount)} collecte</span>
+                    <span>{formatPercentage(percentage)}</span>
+                  </div>
+                  <ProgressBar percentage={percentage} variant="thin" />
+                  <div class="text-green-600 mt-1">
+                    Objectif : {formatAmount(totalAmount)}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div class="flex-shrink-0">
+            <a
+              href="/projet-xhamia-nur"
+              class="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors inline-flex items-center w-full justify-center md:w-auto"
+            >
+              Soutenir le projet
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+{
+  variant === 'full' && (
+    <section class="py-16 lg:py-24 bg-gradient-to-br from-green-100/80 to-green-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <Mosque className="w-16 h-16 text-green-600" weight="duotone" />
+          </div>
+          <h1 class="text-4xl lg:text-6xl font-bold mb-3 text-green-900">
+            Projet Xhamia Nur
+          </h1>
+          <p class="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
+            Un projet urgent de <strong>{formatAmount(totalAmount)}</strong>{' '}
+            pour racheter la mosquee Nur et etablir l'ACMSI sur des bases
+            islamiques solides, sans riba.
+          </p>
+
+          {showProgress && (
+            <div class="max-w-2xl mx-auto mb-8">
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center space-x-2">
+                    <TrendUp className="w-4 h-4 text-green-600" />
+                    <span class="text-sm font-medium text-green-700">
+                      Progression
+                    </span>
+                  </div>
+                  <span class="text-sm font-medium text-green-700">
+                    {formatPercentage(percentage)}
+                  </span>
+                </div>
+                <ProgressBar percentage={percentage} variant="medium" />
+                <div class="flex justify-between items-center text-green-800 text-xs mt-2">
+                  <span class="font-semibold">
+                    {formatAmount(raisedAmount)} collecte
+                  </span>
+                  <span>Objectif : {formatAmount(totalAmount)}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <a
+            href="/projet-xhamia-nur"
+            class="inline-flex w-full sm:w-auto items-center justify-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+          >
+            Decouvrir le projet
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+{
+  variant === 'compact' && (
+    <section class="py-12 bg-gradient-to-r from-green-50 to-green-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <div class="flex-shrink-0">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+              <Mosque className="w-8 h-8 text-green-600" weight="duotone" />
+            </div>
+          </div>
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold text-green-900 mb-3 text-center sm:text-left">
+              Projet Xhamia Nur
+            </h2>
+            <p class="text-lg text-green-800 mb-4">
+              L'ACMSI doit racheter la mosquee Nur pour etablir l'association
+              sur des bases islamiques solides et sans riba. Ce projet urgent de{' '}
+              <strong>{formatAmount(totalAmount)}</strong> permettra a notre
+              communaute d'avoir un lieu de culte perenne dans ses murs, libere
+              de toute hypotheque.
+            </p>
+
+            {showProgress && (
+              <div class="bg-white rounded-lg p-4 mb-4">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center space-x-2">
+                    <TrendUp className="w-4 h-4 text-green-600" />
+                    <span class="text-sm font-medium text-green-700">
+                      Progression
+                    </span>
+                  </div>
+                  <span class="text-sm font-bold text-green-700">
+                    {formatPercentage(percentage)}
+                  </span>
+                </div>
+                <ProgressBar percentage={percentage} variant="medium" />
+                <div class="flex justify-between items-center text-green-800 text-xs mt-1">
+                  <span class="font-semibold">
+                    {formatAmount(raisedAmount)} collecte
+                  </span>
+                  <span>Objectif : {formatAmount(totalAmount)}</span>
+                </div>
+              </div>
+            )}
+
+            <div class="flex flex-col sm:items-center">
+              <a
+                href="/projet-xhamia-nur"
+                class="inline-flex items-center justify-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              >
+                En savoir plus sur le projet
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

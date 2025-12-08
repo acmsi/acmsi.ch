@@ -1,29 +1,13 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "allowJs": true,
     "baseUrl": ".",
-    "esModuleInterop": true,
-    "incremental": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "es6"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "ES2017"
+    }
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
+  "exclude": ["node_modules", "dist"],
+  "extends": "astro/tsconfigs/strict",
+  "include": ["src/**/*", "tests/**/*"]
 }

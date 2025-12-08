@@ -1,0 +1,333 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import {
+  Mosque,
+  ArrowRight,
+  Calendar,
+  Bank,
+  DeviceMobile,
+  Money,
+  Target,
+  TrendUp,
+} from '@phosphor-icons/react/dist/ssr'
+import { getProject } from '@/lib/content'
+import Ayah from '@/components/ayah.astro'
+import ProgressBar from '@/components/progress-bar.astro'
+import BankDetails from '@/components/react/bank-details'
+import SectionCard from '@/components/section-card.astro'
+import { formatAmount, formatPercentage } from '@/lib/format'
+
+// Récupérer les données du projet d'acquisition depuis Decap CMS
+const acquisitionProject = await getProject('acquisition-mosquee-nur')
+
+// Données par défaut si le projet n'est pas trouvé dans le CMS
+const objectifTotal = acquisitionProject?.entry.data.objectif || 630000
+const montantCollecte = acquisitionProject?.entry.data.montant_leve || 330000
+const pourcentageCollecte = (montantCollecte / objectifTotal) * 100 || 52.4
+const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
+---
+
+<Layout
+  title="Projet Xhamia Nur - Acquisition de la Mosquée - ACMSI"
+  description="Aidez l'ACMSI à racheter la mosquée Nur pour 630'000 CHF. Un projet urgent pour établir notre association sur des bases islamiques solides et sans riba."
+>
+  <!-- Hero Section - Urgent -->
+  <section
+    class="py-16 lg:py-24 bg-gradient-to-br from-green-100/80 to-green-200/80"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <div class="flex justify-center mb-4">
+          <Mosque className="w-16 h-16 text-green-600" weight="duotone" />
+        </div>
+        <h1 class="text-4xl lg:text-6xl font-bold mb-3 text-green-900">
+          Projet Xhamia Nur
+        </h1>
+        <p class="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
+          Un projet urgent de <strong>{formatAmount(objectifTotal)}</strong>{
+            ' '
+          }
+          pour racheter la mosquée Nur et établir l&rsquo;ACMSI sur des bases islamiques
+          solides, <strong>sans riba</strong>.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#faire-un-don"
+            class="bg-green-600 text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-green-700 transition-colors inline-flex items-center justify-center"
+          >
+            Faire un don maintenant
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </a>
+          <a
+            href="#contexte"
+            class="bg-white text-green-600 px-8 py-4 rounded-lg font-medium text-lg border-2 border-green-600 hover:bg-green-50 transition-colors"
+          >
+            Comprendre la situation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress Section -->
+  <section class="py-12 bg-white border-b">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2">Progression de la collecte</h2>
+        <p class="text-gray-600">
+          Chaque contribution nous rapproche de l&apos;acquisition
+        </p>
+      </div>
+
+      <ProgressBar percentage={pourcentageCollecte} variant="thick" />
+
+      <div
+        class="flex flex-wrap gap-1 justify-between items-center sm:text-lg my-2"
+      >
+        <span class="flex-1 min-w-0 max-w-fit font-semibold text-green-600">
+          {formatAmount(montantCollecte)} collectés
+        </span>
+        <span class="flex-1 min-w-0 max-w-fit text-right text-gray-600">
+          Objectif : {formatAmount(objectifTotal)}
+        </span>
+      </div>
+
+      <div
+        class="flex flex-wrap gap-1 justify-between items-center text-sm text-gray-500"
+      >
+        <span>
+          {formatPercentage(pourcentageCollecte)} de l&apos;objectif atteint
+        </span>
+        <span class="flex items-center">
+          <Calendar className="w-4 h-4 mr-1" />
+          Mis à jour le {derniereMaj.toLocaleDateString('fr-CH')}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- La Situation -->
+  <section id="contexte" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">La Situation Actuelle</h2>
+        <div class="w-16 h-1 bg-green-500 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="prose prose-lg mx-auto">
+        <div class="bg-amber-50 border-l-4 border-amber-400 p-6 mb-8">
+          <div class="flex">
+            <div class="ml-3">
+              <h3 class="text-lg font-medium text-amber-800 mb-2">
+                Situation urgente
+              </h3>
+              <p class="text-amber-700">
+                La mosquée Nur a été acquise par des membres généreux à titre
+                privé en 2023 pour sécuriser ce lieu essentiel.{' '}
+                <strong>
+                  Malheureusement, cet achat nécessite actuellement un emprunt
+                  bancaire avec intérêts (riba)
+                </strong>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xl text-gray-700 mb-6">
+          <strong> Qu&apos;Allah récompense ces membres exceptionnels </strong>{
+            ' '
+          }
+          qui ont pris cette initiative courageuse pour préserver notre lieu de culte
+          ! Grâce à leur geste, la mosquée Nur fonctionne aujourd&apos;hui et sert
+          notre communauté.
+        </p>
+
+        <p class="text-lg text-gray-700 mb-6">
+          Aujourd&apos;hui, l&apos;ACMSI doit{' '}
+          <strong>
+            racheter la mosquée pour {formatAmount(objectifTotal)}
+          </strong>{' '}
+          afin d&apos;établir l&apos;association sur des bases islamiques solides
+          et d&apos;éliminer définitivement la riba de cette acquisition.
+        </p>
+
+        <div
+          class="not-prose bg-green-50 border border-green-200 rounded-lg p-6"
+        >
+          <div class="flex items-start space-x-3">
+            <Target
+              className="w-8 h-8 text-green-800 flex-shrink-0 mt-1"
+              weight="duotone"
+            />
+            <div>
+              <h3 class="text-lg font-semibold text-green-900 my-2">
+                Objectif de cette collecte
+              </h3>
+              <ul class="list-disc list-inside text-green-800 space-y-2">
+                <li>
+                  Racheter la mosquée Nur par l&apos;ACMSI (
+                  {formatAmount(objectifTotal)})
+                </li>
+                <li>Éliminer la riba de cette acquisition</li>
+                <li>
+                  Établir l&apos;association sur ses propres bases islamiques
+                </li>
+                <li>Garantir la pérennité du lieu de culte</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <Ayah
+          arabicText="مَنْ بَنَى مَسْجِدًا يَبْتَغِي بِهِ وَجْهَ اللَّهِ بَنَى اللَّهُ لَهُ مِثْلَهُ فِي الْجَنَّةِ"
+          translationText="Celui qui construit une mosquée pour Allah, Allah lui construit son équivalent au Paradis."
+          reference="Sahih Muslim 533"
+          class="text-gray-700"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Comment donner -->
+  <section id="faire-un-don" class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Comment contribuer au projet ?</h2>
+        <p class="text-lg text-gray-600">
+          Plusieurs moyens s&apos;offrent à vous pour soutenir ce projet urgent
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Paiement en ligne -->
+        <SectionCard
+          title="Paiement en ligne"
+          id="don-en-ligne"
+          iconBgColor="bg-green-100"
+        >
+          <DeviceMobile
+            slot="icon"
+            className="w-8 h-8 text-green-600"
+            weight="duotone"
+          />
+          <p class="text-gray-600 mb-3">
+            Faites un don sécurisé par Twint, carte de crédit ou autres méthodes
+            de paiement en ligne.
+          </p>
+          <a
+            href="https://pay.raisenow.io/fnsym"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-700 transition-colors"
+          >
+            Faire un don en ligne
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </a>
+        </SectionCard>
+
+        <!-- Don à la mosquée -->
+        <SectionCard title="À la mosquée" iconBgColor="bg-green-100">
+          <Money
+            slot="icon"
+            className="w-8 h-8 text-green-600"
+            weight="duotone"
+          />
+          <p class="text-gray-600 mb-3">
+            Remettez votre don directement lors des prières ou contactez-nous au
+            :
+          </p>
+          <a
+            href="tel:+41792763500"
+            class="font-semibold text-green-600 hover:text-green-700 transition-colors"
+          >
+            +41 (0) 79 276 35 00
+          </a>
+        </SectionCard>
+
+        <!-- IBAN - Prend toute la largeur -->
+        <SectionCard
+          title="Virement bancaire"
+          id="coordonnees-bancaires"
+          iconBgColor="bg-green-100"
+          class="md:col-span-2"
+        >
+          <Bank
+            slot="icon"
+            className="w-8 h-8 text-green-600"
+            weight="duotone"
+          />
+          <BankDetails client:visible message="Projet Xhamia Nur" />
+          <div class="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
+            <p class="text-sm font-semibold text-amber-900">
+              Important : Précisez &quot;Projet Xhamia Nur&quot; dans la
+              communication
+            </p>
+          </div>
+        </SectionCard>
+      </div>
+
+      <!-- Transparence -->
+      <div class="mt-12 bg-white rounded-lg shadow-sm p-6">
+        <div class="text-center mb-4">
+          <div
+            class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3"
+          >
+            <TrendUp className="w-8 h-8 text-green-600" weight="duotone" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Transparence financière</h3>
+          <p class="text-gray-600">
+            Nous nous engageons à une totale transparence sur l&apos;utilisation
+            des fonds collectés pour l&apos;acquisition.
+          </p>
+        </div>
+
+        <div class="bg-green-50 rounded-lg p-4">
+          <h4 class="font-semibold text-green-900 mb-2 text-sm">
+            Utilisation des fonds
+          </h4>
+          <p class="text-base text-green-800">
+            100% des dons collectés via cette campagne seront utilisés
+            exclusivement pour l&apos;acquisition de la mosquée Nur par
+            l&apos;ACMSI. Aucun frais administratif n&apos;est prélevé sur ces
+            dons.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appel final -->
+  <section
+    class="py-16 bg-gradient-to-t from-gray-900 to-nur-navy-900 text-white"
+  >
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xl mb-6">جَزَاكُمُ اللَّهُ خَيْرًا</p>
+      <div class="mb-8">
+        <Ayah
+          arabicText="وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ۖ وَلَا تَعَاوَنُوا عَلَى الْإِثْمِ وَالْعُدْوَانِ"
+          translationText="Et entraidez-vous dans l'accomplissement des bonnes œuvres et de la piété et ne vous entraidez pas dans le péché et la transgression."
+          reference="Sourate 5 Al-Maida, Le Festin - Verset 2"
+          verseNumber="2"
+          class="opacity-90"
+        />
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#faire-un-don"
+          class="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+        >
+          Faire un don maintenant
+        </a>
+        <a
+          href="/contact"
+          class="border-2 text-white border-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-gray-900 transition-colors"
+        >
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

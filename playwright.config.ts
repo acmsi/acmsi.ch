@@ -28,7 +28,7 @@ export default defineConfig({
   /* Shared settings optimized for speed */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:4321',
 
     /* Minimal tracing for speed */
     trace: 'retain-on-failure',
@@ -48,15 +48,21 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server before starting the tests */
-  webServer: {
-    command: process.env.CI
-      ? 'npm run start'
-      : 'npm run build && npm run start',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: process.env.CI ? 120 * 1000 : 60 * 1000,
-  },
+  /* Run your local dev server and CMS proxy before starting the tests */
+  webServer: [
+    {
+      command: 'npm run dev',
+      url: 'http://localhost:4321',
+      reuseExistingServer: !process.env.CI,
+      timeout: process.env.CI ? 120 * 1000 : 60 * 1000,
+    },
+    {
+      command: 'npm run cms-proxy',
+      port: 8081, // Just check if port is accepting connections (CMS proxy returns 404 for /)
+      reuseExistingServer: !process.env.CI,
+      timeout: 30 * 1000,
+    },
+  ],
 
   /* Faster timeouts */
   timeout: 15 * 1000,

@@ -118,7 +118,7 @@ test.describe('Jumma Prayer Information', () => {
   test('prayer times link navigates to correct section', async ({ page }) => {
     await page.goto('/')
 
-    // Click on prayer times link in hero (not footer)
+    // Click on prayer times link (scoped to main section to avoid matching footer link)
     await page
       .getByRole('main')
       .getByRole('link', { name: 'Horaires des prières' })
@@ -127,7 +127,7 @@ test.describe('Jumma Prayer Information', () => {
     // Should navigate to contact page with anchor
     await expect(page).toHaveURL('/contact#horaires-prieres')
 
-    // The prayer times section should be visible
+    // The prayer times section should be visible (use heading role to be specific)
     await expect(
       page.getByRole('heading', { name: 'Horaires des Prières' }),
     ).toBeVisible()
