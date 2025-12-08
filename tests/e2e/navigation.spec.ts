@@ -10,7 +10,9 @@ import { test, expect, Page } from '@playwright/test'
  * Waits for React hydration and ensures the menu opens
  */
 async function openMobileMenu(page: Page) {
-  const menuButton = page.getByRole('banner').getByRole('button', { name: 'Menu' })
+  const menuButton = page
+    .getByRole('banner')
+    .getByRole('button', { name: 'Menu' })
   await expect(menuButton).toBeVisible()
   // Wait for React hydration before clicking
   await page.waitForTimeout(100)
