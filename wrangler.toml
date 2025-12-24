@@ -1,9 +1,0 @@
-# Wrangler configuration for Cloudflare Pages
-# https://developers.cloudflare.com/workers/wrangler/configuration/
-
-name = "acmsi-website"
-compatibility_date = "2025-12-08"
-compatibility_flags = ["nodejs_compat"]
-
-# Pages-specific configuration
-pages_build_output_dir = "./dist"

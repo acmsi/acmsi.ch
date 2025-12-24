@@ -10,7 +10,8 @@
       "WebFetch(domain:github.com)",
       "Bash(find:*)",
       "Bash(cat:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "WebSearch"
     ],
     "ask": [],
     "deny": []
