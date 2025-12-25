@@ -15,4 +15,10 @@
   "observability": {
     "enabled": true,
   },
+
+  // Custom domains (Cloudflare handles DNS and SSL automatically)
+  "routes": [
+    { "pattern": "acmsi.ch", "custom_domain": true },
+    { "pattern": "www.acmsi.ch", "custom_domain": true },
+  ],
 }
