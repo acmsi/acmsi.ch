@@ -33,6 +33,15 @@ const currentYear = new Date().getFullYear()
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Preload critical fonts to prevent CLS -->
+    <link
+      rel="preload"
+      href="/fonts/mada/Mada-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
