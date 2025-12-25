@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, envField } from 'astro/config'
 import react from '@astrojs/react'
 import cloudflare from '@astrojs/cloudflare'
 
@@ -8,6 +8,20 @@ export default defineConfig({
 
   // Hybrid rendering: static by default, opt-in to server rendering
   output: 'static',
+
+  // Environment variables schema for OAuth
+  env: {
+    schema: {
+      GITHUB_CLIENT_ID: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GITHUB_CLIENT_SECRET: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+    },
+  },
 
   // Cloudflare Pages adapter
   adapter: cloudflare({
