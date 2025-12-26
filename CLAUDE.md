@@ -7,7 +7,7 @@ code in this repository.
 
 This is the official website for ACMSI (Association Culturelle Musulmane de
 Saint-Imier), a Swiss mosque association. It's an Astro v5 website with content
-management capabilities, deployed to Cloudflare Pages.
+management capabilities, deployed to Cloudflare Workers.
 
 ## Development Commands
 
@@ -54,10 +54,11 @@ management capabilities, deployed to Cloudflare Pages.
 ### Astro Configuration
 
 - **Astro v5** with hybrid static/server rendering
-- **Cloudflare Pages** adapter for edge deployment
+- **Cloudflare Workers** adapter for edge deployment
 - **React** integration for interactive components (islands architecture)
 - **Tailwind CSS v4** integration for styling
 - TypeScript paths configured with `@/*` alias for `/src/*`
+- **Environment variables** via `astro:env/server` with schema in `astro.config.ts`
 
 ### Component Architecture
 
@@ -189,7 +190,7 @@ Security headers are configured in `public/_headers`:
 
 ### External Resources
 
-- GitHub OAuth for CMS authentication via Cloudflare Pages Functions
+- GitHub OAuth for CMS authentication via Astro API routes (`src/pages/api/`)
 - MapLibre GL resources loaded from unpkg.com CDN
 - Sources are reputable and trusted (GitHub, unpkg.com)
 
@@ -201,10 +202,13 @@ Security headers are configured in `public/_headers`:
 
 ## Deployment
 
-- **Cloudflare Pages** for edge deployment
-- Automatic builds on push to main branch
+- **Cloudflare Workers** for edge deployment via `wrangler deploy`
+- Configuration in `wrangler.jsonc`
 - Static pages pre-rendered at build time
-- Dynamic pages rendered at the edge via Cloudflare Workers
+- API routes (OAuth) rendered at the edge
+- Environment variables:
+  - `GITHUB_CLIENT_ID` - Set in `wrangler.jsonc` vars
+  - `GITHUB_CLIENT_SECRET` - Set via `wrangler secret put` or Cloudflare dashboard
 
 ## Content Editing Workflow
 
