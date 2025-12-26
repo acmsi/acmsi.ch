@@ -3,6 +3,18 @@
 
 console.log('🔧 Loading custom preview template...')
 
+// Register custom preview styles for better image display
+CMS.registerPreviewStyle(
+  `
+  [class*="WidgetPreviewContainer"] img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`,
+  { raw: true },
+)
+
 // Check if CMS is available
 if (typeof CMS === 'undefined') {
   console.error('❌ CMS not available when loading preview template')
