@@ -128,4 +128,4 @@ For detailed development guidelines, architecture information, and coding standa
 
 This project is licensed under the ISC License - see the [LICENSE.md](LICENSE.md) file for details.
 
-© 2024 Association Culturelle Musulmane de Saint-Imier (ACMSI)
+© 2026 Association Culturelle Musulmane de Saint-Imier (ACMSI)
