@@ -6,6 +6,14 @@ import cloudflare from '@astrojs/cloudflare'
 export default defineConfig({
   site: 'https://www.acmsi.ch',
 
+  // Ensure consistent URLs without trailing slashes
+  trailingSlash: 'never',
+
+  // Build pages as /contact.html instead of /contact/index.html
+  build: {
+    format: 'file',
+  },
+
   // Hybrid rendering: static by default, opt-in to server rendering
   output: 'static',
 

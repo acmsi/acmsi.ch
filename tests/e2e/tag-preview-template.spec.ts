@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import yaml from 'js-yaml'
 
 // Extend Window interface for CMS
 interface CMS {
@@ -12,7 +15,19 @@ declare global {
   }
 }
 
-// Helper to login to CMS
+// Check if local_backend is enabled in CMS config
+function isLocalBackendEnabled(): boolean {
+  try {
+    const configPath = join(process.cwd(), 'public/admin/config.yml')
+    const configContent = readFileSync(configPath, 'utf8')
+    const config = yaml.load(configContent) as { local_backend?: boolean }
+    return config.local_backend === true
+  } catch {
+    return false
+  }
+}
+
+// Helper to login to CMS (requires local_backend: true)
 async function loginToCms(page: import('@playwright/test').Page) {
   await page.goto('/admin/index.html')
   await page.waitForLoadState('domcontentloaded')
@@ -33,11 +48,19 @@ test.describe('Tag Custom Preview Template', () => {
   })
 
   test('should load CMS admin interface', async ({ page }) => {
+    test.skip(
+      !isLocalBackendEnabled(),
+      'CMS admin requires local_backend: true for testing',
+    )
     await loginToCms(page)
     // If we got here, the CMS loaded successfully
   })
 
   test('should load custom preview template script', async ({ page }) => {
+    test.skip(
+      !isLocalBackendEnabled(),
+      'CMS admin requires local_backend: true for testing',
+    )
     await loginToCms(page)
 
     // Check if our custom preview template script loaded
@@ -49,6 +72,10 @@ test.describe('Tag Custom Preview Template', () => {
   })
 
   test('should show custom preview when editing a tag', async ({ page }) => {
+    test.skip(
+      !isLocalBackendEnabled(),
+      'CMS admin requires local_backend: true for testing',
+    )
     await loginToCms(page)
 
     // Navigate to Tags collection
