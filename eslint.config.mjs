@@ -1,28 +1,19 @@
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
+import eslintPluginAstro from 'eslint-plugin-astro'
+import tseslint from 'typescript-eslint'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
-
-const eslintConfig = [
+export default [
   {
     ignores: [
       'node_modules/**',
-      '.next/**',
-      'out/**',
-      'build/**',
-      'next-env.d.ts',
+      'dist/**',
+      '.astro/**',
+      '.wrangler/**',
       'test-results/**',
       'playwright-report/**',
       'playwright/.cache/**',
+      'src/env.d.ts',
     ],
   },
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  ...tseslint.configs.recommended,
+  ...eslintPluginAstro.configs.recommended,
 ]
-
-export default eslintConfig

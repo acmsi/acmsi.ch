@@ -12,10 +12,10 @@ const __dirname = path.dirname(__filename)
  * Test to ensure that donation links are working and accessible
  */
 test('Donation Links', async t => {
-  const donationPagePath = path.join(__dirname, '../src/app/donation/page.tsx')
+  const donationPagePath = path.join(__dirname, '../src/pages/donation.astro')
   const projectPagePath = path.join(
     __dirname,
-    '../src/app/projet-xhamia-nur/page.tsx',
+    '../src/pages/projet-xhamia-nur/index.astro',
   )
 
   await t.test('donation page file exists', () => {

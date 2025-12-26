@@ -1,14 +1,15 @@
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import * as fs from 'fs'
 import * as path from 'path'
 
 // Performance thresholds (in milliseconds unless noted)
+// These thresholds are for production builds tested via wrangler pages dev
 const THRESHOLDS = {
-  fcp: 2500, // First Contentful Paint
-  lcp: 4000, // Largest Contentful Paint
-  cls: 0.25, // Cumulative Layout Shift (unitless)
+  fcp: 1500, // First Contentful Paint
+  lcp: 2500, // Largest Contentful Paint
+  cls: 0.1, // Cumulative Layout Shift (unitless)
   tbt: 300, // Total Blocking Time
-  ttfb: 800, // Time To First Byte
+  ttfb: 600, // Time To First Byte
 }
 
 // Pages to audit
@@ -198,7 +199,7 @@ test.describe('Performance Metrics', () => {
 
   for (const pageConfig of PAGES_TO_AUDIT) {
     test(`${pageConfig.name} page performance`, async ({ page }) => {
-      const baseURL = process.env.BASE_URL || 'http://localhost:3000'
+      const baseURL = process.env.BASE_URL || 'http://localhost:4321'
       await page.goto(`${baseURL}${pageConfig.path}`)
 
       const metrics = await collectMetrics(page)
@@ -262,7 +263,7 @@ test.describe('Performance Summary Report', () => {
     // Increase timeout as we're testing all pages sequentially
     test.setTimeout(60000)
 
-    const baseURL = process.env.BASE_URL || 'http://localhost:3000'
+    const baseURL = process.env.BASE_URL || 'http://localhost:4321'
     const results: Array<{ page: string; metrics: PerformanceMetrics }> = []
 
     for (const pageConfig of PAGES_TO_AUDIT) {
@@ -385,7 +386,7 @@ test.describe('Network Throttled Performance', () => {
       latency: 400, // 400ms RTT
     })
 
-    const baseURL = process.env.BASE_URL || 'http://localhost:3000'
+    const baseURL = process.env.BASE_URL || 'http://localhost:4321'
     await page.goto(baseURL, { timeout: 45000 })
 
     const metrics = await collectMetrics(page)

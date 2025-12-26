@@ -1,8 +1,12 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: acmsi/acmsi.ch
   branch: main
+  base_url: https://acmsi.ch
+  auth_endpoint: /api/auth
 
 # When using the default proxy server port
+# Set to true only during local development with `npm run cms-proxy`
 local_backend: false
 
 media_folder: public/images/uploads # Media files will be stored in the repo under public/images/uploads
@@ -11,7 +15,7 @@ public_folder: /images/uploads # The src attribute for uploaded media will begin
 collections:
   - name: 'actualites' # Used in routes, e.g., /admin/collections/actualites
     label: 'Actualités' # Used in the UI
-    folder: 'content/actualites' # The path to the folder where the documents are stored
+    folder: 'src/content/actualites' # Updated path for Astro
     create: true # Allow users to create new documents in this collection
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
@@ -41,7 +45,7 @@ collections:
 
   - name: 'tags' # Collection pour les tags
     label: 'Tags'
-    folder: 'content/tags'
+    folder: 'src/content/tags' # Updated path for Astro
     create: true
     slug: '{{slug}}'
     fields:
@@ -61,7 +65,7 @@ collections:
 
   - name: 'projets' # Collection pour les projets
     label: 'Projets'
-    folder: 'content/projects'
+    folder: 'src/content/projects' # Updated path for Astro
     create: true
     slug: '{{slug}}'
     fields:
@@ -147,7 +151,7 @@ collections:
 
   - name: 'galleries' # Collection pour les galeries photo
     label: 'Galeries Photo'
-    folder: 'content/galleries'
+    folder: 'src/content/galleries' # Updated path for Astro
     create: true
     slug: '{{slug}}'
     fields:
@@ -202,12 +206,12 @@ collections:
                 name: 'alt',
                 widget: 'string',
                 required: false,
-                hint: 'Description de l&apos;image pour l&apos;accessibilité',
+                hint: "Description de l'image pour l'accessibilité",
               },
             ],
         }
       - {
-          label: 'Ordre d&apos;affichage',
+          label: "Ordre d'affichage",
           name: 'order',
           widget: 'number',
           value_type: 'int',

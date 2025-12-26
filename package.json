@@ -1,14 +1,15 @@
 {
   "name": "acmsi-website",
-  "version": "0.1.0",
+  "type": "module",
+  "version": "0.2.0",
   "private": true,
   "license": "ISC",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "wrangler dev --port 4321",
+    "check": "astro check",
     "lint": "eslint .",
-    "export": "next build && next export",
     "test:unit": "node --test",
     "test:components": "playwright test -c playwright-ct.config.ts",
     "test:components:ui": "playwright test -c playwright-ct.config.ts --ui",
@@ -26,16 +27,16 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/react": "^4.4.2",
     "@phosphor-icons/react": "^2.1.10",
+    "astro": "^5.16.4",
     "clsx": "^2.1.1",
-    "gray-matter": "^4.0.3",
-    "next": "^15.5.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@eslint/eslintrc": "^3",
     "@playwright/experimental-ct-react": "^1.57.0-alpha-2025-11-15",
     "@playwright/test": "^1.57.0-alpha-2025-11-15",
@@ -47,11 +48,14 @@
     "@types/react-dom": "^19",
     "decap-server": "^3.2.0",
     "eslint": "^9",
-    "eslint-config-next": "^15",
+    "eslint-plugin-astro": "^1.5.0",
     "playwright": "^1.57.0-alpha-2025-11-15",
     "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-sort-json": "^4.1.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.49.0",
+    "wrangler": "^4.54.0"
   },
   "prettier": {
     "semi": false,
@@ -59,6 +63,7 @@
     "singleQuote": true,
     "trailingComma": "all",
     "plugins": [
+      "prettier-plugin-astro",
       "prettier-plugin-sort-json"
     ],
     "jsonRecursiveSort": true,
@@ -67,6 +72,12 @@
         "files": "package.json",
         "options": {
           "printWidth": 120
+        }
+      },
+      {
+        "files": "*.astro",
+        "options": {
+          "parser": "astro"
         }
       }
     ]

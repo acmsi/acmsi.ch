@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/experimental-ct-react'
 import path from 'path'
+import { fileURLToPath } from 'url'
+import tailwindcss from '@tailwindcss/postcss'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   testDir: './src/components',
@@ -27,8 +31,7 @@ export default defineConfig({
       },
       css: {
         postcss: {
-          // eslint-disable-next-line @typescript-eslint/no-require-imports
-          plugins: [require('@tailwindcss/postcss')],
+          plugins: [tailwindcss()],
         },
       },
     },

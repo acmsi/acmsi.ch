@@ -1,0 +1,133 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { getAllNews, getProjectSummary } from '@/lib/content'
+import { CaretLeftIcon } from '@phosphor-icons/react/dist/ssr'
+import ProjectBanner from '@/components/project-banner.astro'
+import Breadcrumbs from '@/components/breadcrumbs.astro'
+
+export async function getStaticPaths() {
+  const articles = await getAllNews()
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }))
+}
+
+const { article } = Astro.props
+const projectData = await getProjectSummary()
+
+// Render markdown content
+const { Content } = await article.render()
+---
+
+<Layout
+  title={`${article.data.title} - ACMSI`}
+  description={article.data.excerpt || `Article: ${article.data.title}`}
+>
+  <!-- Breadcrumb -->
+  <Breadcrumbs
+    items={[
+      { href: '/actualites', label: 'Actualites' },
+      { label: article.data.title },
+    ]}
+  />
+
+  <!-- Article Header -->
+  <section class="py-16 bg-linear-to-b from-white/60 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div
+          class="flex items-center justify-center text-sm text-gray-600 mb-4"
+        >
+          <time datetime={article.data.date.toISOString()}>
+            {
+              article.data.date.toLocaleDateString('fr-CH', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }
+          </time>
+          <span class="mx-2">•</span>
+          <span>{article.data.author}</span>
+        </div>
+
+        <h1 class="text-3xl lg:text-4xl font-bold mb-3">
+          {article.data.title}
+        </h1>
+
+        {
+          article.data.excerpt && (
+            <p class="text-xl max-w-3xl mx-auto">{article.data.excerpt}</p>
+          )
+        }
+
+        {
+          article.data.tags && article.data.tags.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+              {article.data.tags.map(tag => (
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      {
+        article.data.featured_image && (
+          <div class="mb-12 relative aspect-video">
+            <img
+              src={article.data.featured_image}
+              alt={article.data.title}
+              class="w-full h-full rounded-lg shadow-lg object-cover"
+            />
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="prose sm:prose-lg max-w-none text-gray-700 prose-headings:text-gray-900 prose-links:text-teal-600 prose-strong:text-gray-900"
+      >
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <a
+          href="/actualites"
+          class="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors inline-flex items-center"
+        >
+          <CaretLeftIcon className="w-4 h-4 mr-2" weight="bold" />
+          Retour aux actualites
+        </a>
+
+        <a
+          href="/contact"
+          class="text-teal-600 font-medium hover:text-teal-700 transition-colors"
+        >
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Banner -->
+  <ProjectBanner
+    variant="thin"
+    showProgress={true}
+    totalAmount={projectData?.total_objectif || 630000}
+    raisedAmount={projectData?.total_leve || 0}
+    percentage={projectData?.pourcentage_global || 0}
+  />
+</Layout>

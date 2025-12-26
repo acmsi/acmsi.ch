@@ -1,0 +1,494 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import {
+  MapPinIcon,
+  EnvelopeIcon,
+  PhoneIcon,
+  WhatsappLogoIcon,
+  CarSimpleIcon,
+  HeartIcon,
+  LetterCirclePIcon,
+} from '@phosphor-icons/react/dist/ssr'
+import MosqueLocationMap from '@/components/react/mosque-location-map'
+import ProjectBanner from '@/components/project-banner.astro'
+import { getProjectSummary } from '@/lib/content'
+
+const projectData = await getProjectSummary()
+---
+
+<Layout
+  title="Contact - ACMSI"
+  description="Contactez l'Association Culturelle Musulmane de Saint-Imier. Adresse, horaires et informations pratiques."
+>
+  <!-- Hero Section -->
+  <section class="py-16 lg:py-24 bg-linear-to-b from-white/20 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-3">Nous Contacter</h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Nous sommes la pour vous accueillir et repondre a toutes vos questions
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="pb-9 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Details -->
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Informations de Contact</h2>
+
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                <MapPinIcon
+                  className="w-8 h-8 text-gray-600"
+                  weight="duotone"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold leading-tight">Adresse</h3>
+                <address>
+                  ACMSI - Mosquee Nur
+                  <br />
+                  Rue de la Clef 45
+                  <br />
+                  2610 Saint-Imier, Suisse
+                </address>
+                <a
+                  href="/contact#parking-info"
+                  class="mt-3 inline-flex items-center hover:text-teal-700 transition-colors"
+                >
+                  <LetterCirclePIcon
+                    weight="duotone"
+                    className="text-blue-500 w-5 h-5 mr-1"
+                  />
+                  Informations Stationnement
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                <EnvelopeIcon
+                  className="w-8 h-8 text-gray-600"
+                  weight="duotone"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold leading-tight">Email</h3>
+                <p>
+                  <a
+                    href="mailto:contact@acmsi.ch"
+                    class="text-teal-600 hover:text-teal-700"
+                  >
+                    contact@acmsi.ch
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                <PhoneIcon className="w-8 h-8 text-gray-600" weight="duotone" />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold leading-tight">Telephone</h3>
+                <p>
+                  <a
+                    href="tel:+41799601790"
+                    class="text-teal-600 hover:text-teal-700"
+                  >
+                    079 960 17 90
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0"
+              >
+                <WhatsappLogoIcon
+                  className="w-8 h-8 text-gray-600"
+                  weight="duotone"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold leading-tight">
+                  WhatsApp Communauté
+                </h3>
+                <p class="mb-2">
+                  Rejoignez notre communauté sur WhatsApp pour rester informé
+                  des activités de la mosquée
+                </p>
+                <a
+                  href="https://chat.whatsapp.com/FsRYOthycLQLCmekiojmQ2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium"
+                >
+                  Rejoindre la communauté →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prayer Times -->
+        <div id="horaires-prières">
+          <h2 class="text-3xl font-bold mb-6">Horaires des Prières</h2>
+
+          <!-- Desktop/Tablet iframe -->
+          <div class="w-full mb-6 hidden sm:block">
+            <iframe
+              src="//mawaqit.net/fr/w/mosquée-nur-2610-saint-imier-switzerland?showOnly5PrayerTimes=0"
+              class="widget w-full rounded-lg aspect-[510/250] min-h-[250px] border-0 overflow-hidden"
+              title="Horaires des prières Mosquee Nur"></iframe>
+          </div>
+
+          <!-- Mobile iframe -->
+          <div class="w-full mb-6 block sm:hidden">
+            <iframe
+              src="//mawaqit.net/fr/m/mosquée-nur-2610-saint-imier-switzerland?showNotification=0&showSearchButton=0&showFooter=0&showFlashMessage=0&view=mobile"
+              class="mobile w-full rounded-lg min-h-[520px] border-0 overflow-hidden"
+              title="Horaires des prières Mosquee Nur"></iframe>
+          </div>
+
+          <div id="jumma" class="bg-gray-50 rounded-lg p-6">
+            <h4 class="font-semibold mb-2">Jumma – Prière du Vendredi</h4>
+            <dl class="space-y-2">
+              <div class="flex justify-between items-center">
+                <dt>Khutbah</dt>
+                <dd>12:15</dd>
+              </div>
+              <div class="flex justify-between items-center">
+                <dt>Prière</dt>
+                <dd>12:30</dd>
+              </div>
+            </dl>
+
+            <div class="mt-4 p-3 bg-red-50 rounded-lg">
+              <div class="flex items-start">
+                <LetterCirclePIcon
+                  className="w-5 h-5 mr-2 text-red-900 flex-shrink-0 mt-0.5"
+                />
+                <p class="text-red-900">
+                  <strong>Stationnement Jumma:</strong> Ne pas se garer devant la
+                  mosquée, ces places sont réservées aux personnes a mobilite reduite
+                  et a l&apos;Imam.{' '}
+                  <a
+                    href="#parking-info"
+                    class="hover:text-red-700 transition-colors underline mt-2 block"
+                  >
+                    Voir les informations completes pour les options de parking
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Parking Information Section -->
+  <section id="parking-info" class="py-16 bg-gray-900/92 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-9">
+        <h2 class="text-3xl font-bold mb-4 text-white">
+          Informations de Stationnement
+        </h2>
+        <p class="text-xl text-gray-300 mb-6">
+          Soyons exemplaires dans notre comportement, y compris lors du
+          stationnement
+        </p>
+        <div class="w-16 h-1 bg-teal-500 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="bg-white text-gray-900 rounded-lg shadow-lg p-6 sm:p-8">
+        <div class="space-y-8 sm:space-y-6">
+          <!-- Mobile: icon centered above title, Desktop: icon left of title with indented content -->
+          <div>
+            <div class="flex justify-center mb-3 sm:hidden">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center"
+              >
+                <CarSimpleIcon
+                  className="w-7 h-7 text-orange-700"
+                  weight="duotone"
+                />
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-center sm:hidden">
+              Places limitées devant la mosquée
+            </h3>
+            <div class="hidden sm:flex sm:items-start sm:space-x-4">
+              <div
+                class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+              >
+                <CarSimpleIcon
+                  className="w-6 h-6 text-orange-700"
+                  weight="duotone"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 mt-2">
+                  Places limitées devant la mosquée
+                </h3>
+                <p class="text-gray-700 leading-relaxed text-pretty">
+                  Le stationnement devant la mosquée est très limité. Pendant la
+                  priere du vendredi (Jumma) et durant le Ramadan, nous
+                  demandons a la communauté de ne pas s&apos;y garer car ces
+                  places sont{' '}
+                  <strong>
+                    réservées aux personnes a mobilite reduite, ainsi qu&apos;a
+                    l&apos;Imam{' '}
+                  </strong>{' '}
+                  qui prend sur son emploi du temps charge pour guider notre communauté.
+                </p>
+                <p class="text-gray-700 my-2 text-pretty">
+                  Rappelons que{' '}
+                  <strong>
+                    l&apos;intention et le comportement sont plus importants que
+                    la ponctualite
+                  </strong>
+                  .
+                </p>
+              </div>
+            </div>
+            <div class="sm:hidden">
+              <p class="text-gray-700 leading-relaxed text-pretty">
+                Le stationnement devant la mosquée est très limité. Pendant la
+                priere du vendredi (Jumma) et durant le Ramadan, nous demandons
+                a la communauté de ne pas s&apos;y garer car ces places sont{
+                  ' '
+                }
+                <strong>
+                  réservées aux personnes a mobilite reduite, ainsi qu&apos;a
+                  l&apos;Imam{' '}
+                </strong>{' '}
+                qui prend sur son emploi du temps charge pour guider notre communauté.
+              </p>
+              <p class="text-gray-700 my-2 text-pretty">
+                Rappelons que{' '}
+                <strong>
+                  l&apos;intention et le comportement sont plus importants que
+                  la ponctualite
+                </strong>
+                .
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-center mb-3 sm:hidden">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center"
+              >
+                <HeartIcon
+                  className="w-7 h-7 text-green-600"
+                  weight="duotone"
+                />
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-center sm:hidden">
+              Exemplarite et courtoisie envers nos voisins
+            </h3>
+            <div class="hidden sm:flex sm:items-start sm:space-x-4">
+              <div
+                class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+              >
+                <HeartIcon
+                  className="w-6 h-6 text-green-600"
+                  weight="duotone"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 mt-2">
+                  Exemplarite et courtoisie envers nos voisins
+                </h3>
+                <p class="text-gray-700 leading-relaxed text-pretty">
+                  Nous encourageons notre communauté a agir de manière
+                  exemplaire :{' '}
+                  <strong>
+                    respecter scrupuleusement les emplacements de stationnement
+                  </strong>
+                  , ne jamais bloquer les entrees de garage, les trottoirs, et faire
+                  preuve de{' '}
+                  <strong>
+                    courtoisie et de bienveillance envers nos voisins
+                  </strong>
+                  . Notre comportement reflete les valeurs de notre foi. Et plutot
+                  que de payer des contraventions, nous vous invitons a{' '}
+                  <a
+                    href="/donation"
+                    class="text-teal-600 hover:text-teal-700 font-medium"
+                  >
+                    faire des dons a la mosquée
+                  </a>{' '}
+                  qui en a bien besoin !
+                </p>
+              </div>
+            </div>
+            <div class="sm:hidden">
+              <p class="text-gray-700 leading-relaxed text-pretty">
+                Nous encourageons notre communauté a agir de manière exemplaire
+                :{' '}
+                <strong>
+                  respecter scrupuleusement les emplacements de stationnement
+                </strong>
+                , ne jamais bloquer les entrees de garage, les trottoirs, et faire
+                preuve de{' '}
+                <strong>
+                  courtoisie et de bienveillance envers nos voisins
+                </strong>
+                . Notre comportement reflete les valeurs de notre foi. Et plutot
+                que de payer des contraventions, nous vous invitons a{' '}
+                <a
+                  href="/donation"
+                  class="text-teal-600 hover:text-teal-700 font-medium"
+                >
+                  faire des dons a la mosquée
+                </a>{' '}
+                qui en a bien besoin !
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-center mb-3 sm:hidden">
+              <div
+                class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center"
+              >
+                <LetterCirclePIcon
+                  className="w-7 h-7 text-blue-600"
+                  weight="duotone"
+                />
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-center sm:hidden">
+              Options de stationnement
+            </h3>
+            <div class="hidden sm:flex sm:items-start sm:space-x-4">
+              <div
+                class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+              >
+                <LetterCirclePIcon
+                  className="w-6 h-6 text-blue-600"
+                  weight="duotone"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 mt-2">
+                  Options de stationnement
+                </h3>
+                <p class="text-gray-700 leading-relaxed text-pretty">
+                  Saint-Imier dispose de{' '}
+                  <strong>
+                    nombreuses places gratuites dans les rues avoisinantes
+                  </strong>{' '}
+                  de la mosquée.
+                </p>
+                <p class="text-gray-700 my-2 text-pretty">
+                  Plusieurs parkings publics a 5min a pied sont disponibles :
+                </p>
+                <ul class="text-gray-700 my-2 ml-4 list-disc">
+                  <li>
+                    <strong>Parking de la Patinoire</strong>
+                  </li>
+                  <li>
+                    <strong>Parking en face de la Migros</strong>
+                  </li>
+                  <li>
+                    <strong>Parking au centre de la commune</strong>
+                  </li>
+                </ul>
+                <p class="text-gray-700 my-2 text-pretty">
+                  Ces options sont particulierement recommandees lors
+                  d&apos;evenements importants comme les prières du vendredi ou
+                  durant le Ramadan. Consultez la carte ci-dessous pour
+                  visualiser leurs emplacements.
+                </p>
+              </div>
+            </div>
+            <div class="sm:hidden">
+              <p class="text-gray-700 leading-relaxed text-pretty">
+                Saint-Imier dispose de{' '}
+                <strong>
+                  nombreuses places gratuites dans les rues avoisinantes
+                </strong>{' '}
+                de la mosquée.
+              </p>
+              <p class="text-gray-700 my-2 text-pretty">
+                Plusieurs parkings publics a 5min a pied sont disponibles :
+              </p>
+              <ul class="text-gray-700 my-2 ml-4 list-disc">
+                <li>
+                  <strong>Parking de la Patinoire</strong>
+                </li>
+                <li>
+                  <strong>Parking en face de la Migros</strong>
+                </li>
+                <li>
+                  <strong>Parking au centre de la commune</strong>
+                </li>
+              </ul>
+              <p class="text-gray-700 my-2 text-pretty">
+                Ces options sont particulierement recommandees lors
+                d&apos;evenements importants comme les prières du vendredi ou
+                durant le Ramadan. Consultez la carte ci-dessous pour visualiser
+                leurs emplacements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-9">
+        <h2 class="text-3xl font-bold mb-4">Nous Localiser</h2>
+        <p class="text-lg">Trouvez facilement la mosquée Nur a Saint-Imier</p>
+      </div>
+
+      <div>
+        <MosqueLocationMap client:idle />
+        <div class="mt-2 font-alt text-center">
+          <a
+            href="https://maps.app.goo.gl/3n9PYEvDBE7LHkpT9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-lg font-medium text-teal-600 hover:text-teal-700 transition-colors"
+          >
+            <MapPinIcon
+              className="w-5 h-5 mr-2 inline-block"
+              weight="duotone"
+            />
+            Mosquee Nur - Rue de la Clef 45, 2610 Saint-Imier, Suisse
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Banner -->
+  <ProjectBanner
+    variant="thin"
+    showProgress={true}
+    totalAmount={projectData?.total_objectif || 630000}
+    raisedAmount={projectData?.total_leve || 0}
+    percentage={projectData?.pourcentage_global || 0}
+  />
+</Layout>

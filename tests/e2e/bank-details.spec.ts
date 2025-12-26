@@ -106,6 +106,11 @@ test.describe('Copy Button Functionality', () => {
     const ibanCopyButton = bankSection.getByRole('button', {
       name: "Copier l'IBAN",
     })
+
+    // Scroll into view and wait for React hydration (client:visible)
+    await ibanCopyButton.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500) // Wait for React to hydrate
+
     await expect(ibanCopyButton).toBeVisible()
 
     // Click the copy button
@@ -133,6 +138,11 @@ test.describe('Copy Button Functionality', () => {
     const swiftCopyButton = bankSection.getByRole('button', {
       name: 'Copier le SWIFT',
     })
+
+    // Scroll into view and wait for React hydration (client:visible)
+    await swiftCopyButton.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500) // Wait for React to hydrate
+
     await expect(swiftCopyButton).toBeVisible()
 
     // Click the copy button
@@ -160,6 +170,11 @@ test.describe('Copy Button Functionality', () => {
     const beneficiaryCopyButton = bankSection.getByRole('button', {
       name: 'Copier le bénéficiaire',
     })
+
+    // Scroll into view and wait for React hydration (client:visible)
+    await beneficiaryCopyButton.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500) // Wait for React to hydrate
+
     await expect(beneficiaryCopyButton).toBeVisible()
 
     // Click the copy button
@@ -182,6 +197,11 @@ test.describe('Copy Button Functionality', () => {
     const addressCopyButton = bankSection.getByRole('button', {
       name: "Copier l'adresse",
     })
+
+    // Scroll into view and wait for React hydration (client:visible)
+    await addressCopyButton.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500) // Wait for React to hydrate
+
     await expect(addressCopyButton).toBeVisible()
 
     // Click the copy button
@@ -201,6 +221,11 @@ test.describe('Copy Button Functionality', () => {
     const ibanCopyButton = bankSection.getByRole('button', {
       name: "Copier l'IBAN",
     })
+
+    // Scroll into view and wait for React hydration (client:visible)
+    await ibanCopyButton.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(500) // Wait for React to hydrate
+
     await ibanCopyButton.click()
 
     // Should show copied state

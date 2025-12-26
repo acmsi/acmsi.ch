@@ -1,0 +1,32 @@
+{
+  // Wrangler configuration for Cloudflare Workers (Astro SSR)
+  // https://developers.cloudflare.com/workers/wrangler/configuration/
+  "name": "acmsi-website",
+  "main": "dist/_worker.js/index.js",
+  "compatibility_date": "2025-12-08",
+  "compatibility_flags": ["nodejs_compat"],
+  // Static assets configuration
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  // Custom domains (Cloudflare handles DNS and SSL automatically)
+  "routes": [
+    {
+      "pattern": "acmsi.ch",
+      "custom_domain": true,
+      "zone_name": "acmsi.ch",
+    },
+    {
+      "pattern": "www.acmsi.ch",
+      "custom_domain": true,
+      "zone_name": "acmsi.ch",
+    },
+  ],
+  "vars": {
+    "GITHUB_CLIENT_ID": "Ov23li44CIi4JyQmBQhy",
+  },
+}

@@ -8,10 +8,10 @@ the Balkans, especially Albanian.
 This website www.acmsi.ch will be built with
 the following stack:
 
- - Next.js v15
- - Decap CMS, a headless CMS.
- - Node +v23 with Typescript
- - Netlify for deployment
+ - Astro v5
+ - Decap CMS, a headless CMS with GitHub OAuth
+ - Node +v24 with Typescript
+ - Cloudflare Pages for deployment
  - Tailwind CSS v4 and Tailwind UI (Tailwind Plus)
  - Github Actions CI
  - Playwright for end-to-end tests

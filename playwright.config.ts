@@ -2,7 +2,8 @@ import { defineConfig, devices } from '@playwright/test'
 
 /**
  * Playwright configuration for ACMSI website e2e tests
- * Focused on testing date formatting functionality and core features
+ * - In CI: Tests run against production build (wrangler pages dev)
+ * - Locally: Tests run against dev server (astro dev) for faster iteration
  */
 export default defineConfig({
   testDir: './tests/e2e',
@@ -28,7 +29,7 @@ export default defineConfig({
   /* Shared settings optimized for speed */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:4321',
 
     /* Minimal tracing for speed */
     trace: 'retain-on-failure',
@@ -48,15 +49,38 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server before starting the tests */
-  webServer: {
-    command: process.env.CI
-      ? 'npm run start'
-      : 'npm run build && npm run start',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: process.env.CI ? 120 * 1000 : 60 * 1000,
-  },
+  /* Run your local dev server or production preview before starting the tests */
+  webServer: process.env.CI
+    ? [
+        {
+          // In CI: use production build with wrangler
+          command: 'npm run preview',
+          url: 'http://localhost:4321',
+          reuseExistingServer: false,
+          timeout: 120 * 1000,
+        },
+        {
+          command: 'npm run cms-proxy',
+          port: 8081,
+          reuseExistingServer: false,
+          timeout: 30 * 1000,
+        },
+      ]
+    : [
+        {
+          // Locally: use dev server for faster iteration
+          command: 'npm run dev',
+          url: 'http://localhost:4321',
+          reuseExistingServer: true,
+          timeout: 60 * 1000,
+        },
+        {
+          command: 'npm run cms-proxy',
+          port: 8081,
+          reuseExistingServer: true,
+          timeout: 30 * 1000,
+        },
+      ],
 
   /* Faster timeouts */
   timeout: 15 * 1000,

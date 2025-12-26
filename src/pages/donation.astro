@@ -1,0 +1,385 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import {
+  MosqueIcon,
+  ChalkboardTeacherIcon,
+  UsersFourIcon,
+  HandHeartIcon,
+  CreditCardIcon,
+  ArrowRightIcon,
+  UsersIcon,
+  ShieldIcon,
+  QrCodeIcon,
+  BankIcon,
+} from '@phosphor-icons/react/dist/ssr'
+import { Donation as DonationIcon } from '@/components/icons'
+import ProjectBanner from '@/components/project-banner.astro'
+import CardKeyPoint from '@/components/card-key-point.astro'
+import BankDetails from '@/components/react/bank-details'
+import SectionCard from '@/components/section-card.astro'
+import { getProjectSummary } from '@/lib/content'
+import { formatAmount } from '@/lib/format'
+
+const projectData = await getProjectSummary()
+---
+
+<Layout
+  title="Donation - ACMSI"
+  description="Soutenez l'Association Culturelle Musulmane de Saint-Imier et la mosquée Nur par vos dons."
+>
+  <!-- Hero Section -->
+  <section class="py-16 lg:py-24 bg-linear-to-b from-white/20 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-3">
+          Soutenir notre Mosquée
+        </h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Votre générosité nous aide à maintenir et développer les services de
+          la mosquée Nur pour toute la communauté
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projet Xhamia Nur Banner -->
+  <ProjectBanner
+    variant="compact"
+    showProgress={true}
+    totalAmount={projectData?.total_objectif || 630000}
+    raisedAmount={projectData?.total_leve || 0}
+    percentage={projectData?.pourcentage_global || 0}
+  />
+
+  <!-- Importance Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">
+          L&rsquo;importance de votre soutien
+        </h2>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 *:bg-gray-50 *:p-6 *:rounded-lg"
+      >
+        <CardKeyPoint
+          title="Entretien de la mosquée"
+          description="Maintenance des locaux, chauffage, électricité et tous les frais nécessaires au bon fonctionnement de notre lieu de culte."
+          iconBgColor="bg-gray-100"
+          iconColor="text-gray-600"
+        >
+          <MosqueIcon slot="icon" className="w-8 h-8" weight="duotone" />
+        </CardKeyPoint>
+
+        <CardKeyPoint
+          title="Programmes éducatifs"
+          description="Financement des cours d'arabe, d'éducation islamique et des matériaux pédagogiques pour nos enfants et adultes."
+          iconBgColor="bg-gray-100"
+          iconColor="text-gray-600"
+        >
+          <ChalkboardTeacherIcon
+            slot="icon"
+            className="w-8 h-8"
+            weight="duotone"
+          />
+        </CardKeyPoint>
+
+        <CardKeyPoint
+          title="Activités communautaires"
+          description="Organisation d'événements, conférences et activités qui renforcent les liens au sein de notre communauté."
+          iconBgColor="bg-gray-100"
+          iconColor="text-gray-600"
+        >
+          <UsersFourIcon slot="icon" className="w-8 h-8" weight="duotone" />
+        </CardKeyPoint>
+
+        <CardKeyPoint
+          title="Actions solidaires"
+          description="Soutien aux familles dans le besoin et participation aux œuvres caritatives locales et internationales."
+          iconBgColor="bg-gray-100"
+          iconColor="text-gray-600"
+        >
+          <HandHeartIcon slot="icon" className="w-8 h-8" weight="duotone" />
+        </CardKeyPoint>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adhesion Membres -->
+  <section
+    id="adhesion"
+    class="py-16 bg-linear-to-b from-teal-100/90 via-teal-100/70 to-teal-50 border-t-4 border-teal-500"
+  >
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <div
+          class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4"
+        >
+          <UsersIcon className="w-8 h-8 text-teal-600" weight="duotone" />
+        </div>
+        <h2 class="text-3xl font-bold mb-4 text-teal-900">
+          Adhésion à l&apos;ACMSI
+        </h2>
+        <p class="text-lg text-teal-800">
+          Devenez membre officiel de notre association
+        </p>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-sm p-6">
+        <div
+          class="flex flex-col sm:flex-row items-center sm:items-start gap-4"
+        >
+          <div
+            class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0"
+          >
+            <ShieldIcon className="w-8 h-8 text-teal-600" weight="duotone" />
+          </div>
+          <div class="flex-1">
+            <h3
+              class="text-xl text-center sm:text-left font-semibold mb-3 text-teal-900"
+            >
+              Cotisation annuelle : {formatAmount(360)} minimum par foyer
+            </h3>
+            <p class="text-gray-700 mb-4">
+              L&apos;adhésion à l&apos;ACMSI vous permet de participer
+              pleinement à la vie de notre association et de bénéficier de tous
+              nos services communautaires.
+            </p>
+            <div class="bg-teal-50 p-4 rounded-lg">
+              <p class="text-sm text-teal-800 mb-3">
+                <strong>Avantages inclus :</strong>
+              </p>
+              <ul class="text-sm text-teal-800 space-y-1 list-disc list-inside">
+                <li>
+                  Assurance communautaire pour frais d&apos;enterrement
+                  (rapatriement, etc.) — l&apos;épouse et les enfants
+                  jusqu&apos;à 21 ans sont couverts
+                </li>
+                <li>
+                  Possibilité de louer la salle cafétéria de la mosquée pour
+                  mariages, enterrements, iftars et autres événements
+                </li>
+                <li>Services communautaires dédiés aux membres</li>
+              </ul>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <a
+                href="https://pay.raisenow.io/xthpj"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center bg-white text-teal-600 border-teal-600 px-4 py-3 rounded-lg font-medium hover:bg-teal-600 hover:text-white transition-colors border border-teal-600"
+              >
+                <CreditCardIcon className="w-5 h-5 mr-2" weight="duotone" />
+                Payer en ligne
+                <ArrowRightIcon className="w-4 h-4 ml-2" />
+              </a>
+
+              <div class="text-center">
+                <span class="text-sm text-gray-500 font-medium"> - OU - </span>
+              </div>
+
+              <details class="bg-white border border-teal-200 rounded-lg">
+                <summary
+                  class="px-4 py-3 cursor-pointer hover:bg-teal-50 rounded-lg flex items-center justify-between"
+                >
+                  <div class="flex items-center">
+                    <QrCodeIcon
+                      className="w-5 h-5 text-teal-600 mr-2"
+                      weight="duotone"
+                    />
+                    <span class="font-medium text-teal-900">
+                      Voir QR Code
+                    </span>
+                  </div>
+                  <svg
+                    class="w-4 h-4 text-teal-600 transform transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="px-4 pb-4 border-t border-teal-100">
+                  <p class="text-sm text-gray-600 mb-3 mt-3">
+                    Scannez ce QR code avec votre appareil pour payer
+                    directement votre cotisation annuelle de{' '}
+                    {formatAmount(360)}.
+                  </p>
+                  <div class="flex justify-center">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border">
+                      <!-- Mobile: Square format -->
+                      <img
+                        src="/pay_plus_square_white_FR.svg"
+                        alt="QR Code pour paiement adhesion ACMSI"
+                        width="200"
+                        height="200"
+                        class="max-w-full sm:hidden"
+                      />
+                      <!-- Desktop: Landscape format -->
+                      <img
+                        src="/pay_plus_landscape_white_FR.svg"
+                        alt="QR Code pour paiement adhesion ACMSI"
+                        width="500"
+                        height="180"
+                        class="max-w-full hidden sm:block"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <a
+          href="/contact"
+          class="inline-flex w-full sm:w-auto items-center justify-center bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
+        >
+          Devenir membre
+          <ArrowRightIcon className="w-4 h-4 ml-2" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation Methods -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Comment faire un don</h2>
+        <p class="text-lg">
+          Plusieurs moyens s&apos;offrent à vous pour soutenir notre association
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Paiement en ligne -->
+        <SectionCard
+          title="Paiement en ligne"
+          id="don-en-ligne"
+          iconBgColor="bg-teal-100"
+        >
+          <CreditCardIcon
+            slot="icon"
+            className="w-8 h-8 text-teal-600"
+            weight="duotone"
+          />
+          <p class="text-gray-600 mb-4">
+            Faites un don sécurisé par Twint, carte de crédit ou autres méthodes
+            de paiement en ligne
+          </p>
+          <a
+            href="https://donate.raisenow.io/wfphr"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center bg-teal-600 text-white px-4 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors"
+          >
+            <CreditCardIcon className="w-5 h-5 mr-2" weight="duotone" />
+            Faire un don en ligne
+            <ArrowRightIcon className="w-4 h-4 ml-2" />
+          </a>
+        </SectionCard>
+
+        <!-- Bank Transfer -->
+        <SectionCard title="Virement bancaire" id="coordonnees-bancaires">
+          <BankIcon
+            slot="icon"
+            className="w-8 h-8 text-gray-600"
+            weight="duotone"
+          />
+          <p class="text-gray-600 mb-4">
+            Effectuez un virement sur le compte de l&rsquo;ACMSI
+          </p>
+          <BankDetails
+            client:visible
+            message="Don libre ACMSI"
+            ibanColorClass="text-teal-600"
+          />
+          <div class="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
+            <p class="text-sm font-semibold text-amber-900">
+              Important : Précisez &quot;Don libre ACMSI&quot; dans la
+              communication
+            </p>
+          </div>
+        </SectionCard>
+
+        <!-- Cash Donation -->
+        <SectionCard title="Don en espèces">
+          <DonationIcon
+            slot="icon"
+            className="w-8 h-8 text-gray-600"
+            weight="duotone"
+          />
+          <p class="text-gray-600 mb-4">
+            Remettez votre don directement à la mosquée lors des prières ou
+            événements
+          </p>
+          <p class="text-sm text-gray-600">
+            Les responsables de la mosquée sont disponibles après les prières du
+            vendredi pour recevoir vos dons et répondre à vos questions.
+          </p>
+        </SectionCard>
+
+        <!-- Zakat -->
+        <SectionCard title="Zakat et Sadaqah" class="border-2 border-gray-200">
+          <HandHeartIcon
+            slot="icon"
+            className="w-8 h-8 text-gray-600"
+            weight="duotone"
+          />
+          <p class="text-gray-600 mb-4">
+            L&rsquo;ACMSI accepte et redistribue la Zakat selon les préceptes
+            islamiques
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <p class="text-sm text-gray-700">
+              <strong>Important :</strong> Précisez lors de votre don s&rsquo;il
+              s&rsquo;agit de Zakat afin qu&rsquo;elle soit distribuée conformément
+              aux règles islamiques aux bénéficiaires éligibles de notre communauté.
+            </p>
+          </div>
+        </SectionCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact for Donations -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-6">Questions sur les dons ?</h2>
+      <p class="text-lg mb-8">
+        N&rsquo;hésitez pas à nous contacter pour toute question concernant les
+        dons.
+      </p>
+      <a
+        href="/contact"
+        class="bg-gray-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors inline-block"
+      >
+        Nous contacter
+      </a>
+    </div>
+  </section>
+
+  <!-- Gratitude Section -->
+  <section class="py-16 bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-6">
+        Qu&rsquo;Allah vous récompense
+      </h2>
+      <p class="text-xl text-gray-300 mb-4">جَزَاكُمُ اللَّهُ خَيْرًا</p>
+      <p class="text-lg text-gray-300">
+        Votre générosité contribue au rayonnement de notre communauté et au
+        bien-être spirituel de tous nos fidèles.
+      </p>
+    </div>
+  </section>
+</Layout>
