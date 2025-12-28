@@ -11,7 +11,9 @@
       "Bash(find:*)",
       "Bash(cat:*)",
       "Bash(npm install:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npm outdated:*)",
+      "Bash(npm update:*)"
     ],
     "ask": [],
     "deny": []
