@@ -31,7 +31,7 @@ test('Donation Links', async t => {
 
   await t.test('contains online payment link in donation page', () => {
     assert.ok(
-      donationPageContent.includes('https://donate.raisenow.io/wfphr'),
+      donationPageContent.includes('https://donate.raisenow.io/fnsym'),
       'Should contain online payment link',
     )
   })
@@ -44,7 +44,7 @@ test('Donation Links', async t => {
   })
 
   await t.test('online payment link is accessible', async () => {
-    const donationUrl = 'https://donate.raisenow.io/wfphr'
+    const donationUrl = 'https://donate.raisenow.io/fnsym'
 
     try {
       const controller = new AbortController()
