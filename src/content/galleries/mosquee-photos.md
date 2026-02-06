@@ -16,20 +16,23 @@ photos:
     alt: Intérieur de la mosquée Nur
     description: L'intérieur de notre mosquée Nur
     photographer: Nasser
+  - image: /images/uploads/library-2-of-2.jpeg
+    title: Entré de la mosquée
+  - image: /images/uploads/xhamia-mosquee-nur-1-of-1.jpeg
+    title: Balcon pour l'espace des femmes
   - image: /images/uploads/farsh.png
     title: Tapis de prière de la mosquée
     description: Le magnifique tapis de prière qui décore notre salle de prière principale
     alt: Tapis de prière traditionnel avec motifs géométriques verts et dorés
   - image: /images/uploads/xhamia-mosquee-nur-1-of-11.jpeg
-    title: Ramadan 2024
+    title: Ramadan 2025 – Ramadan 1446
     description: ''
-    alt: Photo montrant l'intérieur de la mosquée Nur et les fidèle en train
-      d'écouter l'Iman
-  - image: /images/uploads/xhamia-mosquee-nur-5-of-11.jpeg
-    title: Installation du tapis temporaire dans la mosquée Nur
-    alt: Cette photo montre l'intérieur de la mosquée Nur avec l'installation du
-      tapis de prière temporaire
-    description: Installation du tapis temporaire dans la mosquée Nur
+    alt: Photo montrant l'intérieur de la mosquée Nur et les fidèles en train
+      d'écouter l'Imam
+  - image: /images/uploads/all-photos-1-of-1-1-.jpeg
+    title: ''
+  - image: /images/uploads/1761170501816-4.jpg
+    title: Bâtiment de la mosquée Nur
 order: 1
 published: true
 ---
