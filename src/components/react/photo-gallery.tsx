@@ -203,12 +203,19 @@ export default function PhotoGallery({
           const visibilityClasses: string[] = []
 
           // For each breakpoint, check if this photo should be visible
+          let wasHiddenAtPreviousBreakpoint = false
           for (const { breakpoint, cols, rows } of breakpoints) {
             const actualCount = getActualThumbnailCount(cols, rows, isFixedRows)
+            const prefix = getBreakpointPrefix(breakpoint)
+            const isHiddenAtThisBreakpoint = index >= actualCount
 
-            if (index >= actualCount) {
-              const prefix = getBreakpointPrefix(breakpoint)
+            if (isHiddenAtThisBreakpoint) {
               visibilityClasses.push(`${prefix}hidden`)
+              wasHiddenAtPreviousBreakpoint = true
+            } else if (wasHiddenAtPreviousBreakpoint) {
+              // Photo was hidden at a smaller breakpoint but should be visible here
+              visibilityClasses.push(`${prefix}block`)
+              wasHiddenAtPreviousBreakpoint = false
             }
           }
 

@@ -10,7 +10,8 @@ import {
   TargetIcon,
   TrendUpIcon,
 } from '@phosphor-icons/react/dist/ssr'
-import { getProject } from '@/lib/content'
+import { getProject, getGallery } from '@/lib/content'
+import PhotoGallery from '@/components/react/photo-gallery'
 import Ayah from '@/components/ayah.astro'
 import ProgressBar from '@/components/progress-bar.astro'
 import BankDetails from '@/components/react/bank-details'
@@ -19,6 +20,17 @@ import { formatAmount, formatPercentage } from '@/lib/format'
 
 // Récupérer les données du projet d'acquisition depuis Decap CMS
 const acquisitionProject = await getProject('acquisition-mosquee-nur')
+
+// Récupérer les données de la galerie photos du projet
+const mosqueGallery = await getGallery('projet-xhamia-nur')
+
+// Transformer les données pour le composant PhotoGallery
+const galleryData = mosqueGallery
+  ? {
+      ...mosqueGallery.data,
+      photos: mosqueGallery.data.photos,
+    }
+  : null
 
 // Données par défaut si le projet n'est pas trouvé dans le CMS
 const objectifTotal = acquisitionProject?.entry.data.objectif || 630000
@@ -179,6 +191,19 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
           </div>
         </div>
       </div>
+
+      {
+        galleryData && (
+          <div class="mt-10">
+            <PhotoGallery
+              client:visible
+              gallery={galleryData}
+              maxCols={{ default: 2, md: 4 }}
+              maxRows={1}
+            />
+          </div>
+        )
+      }
 
       <div class="mt-12">
         <Ayah
