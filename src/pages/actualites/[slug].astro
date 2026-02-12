@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { getAllNews, getProjectSummary } from '@/lib/content'
+import { optimizedSrc } from '@/lib/images'
 import { CaretLeftIcon } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner.astro'
 import Breadcrumbs from '@/components/breadcrumbs.astro'
@@ -79,7 +80,7 @@ const { Content } = await article.render()
         article.data.featured_image && (
           <div class="mb-12 relative aspect-video">
             <img
-              src={article.data.featured_image}
+              src={optimizedSrc(article.data.featured_image, 'medium')}
               alt={article.data.title}
               class="w-full h-full rounded-lg shadow-lg object-cover"
             />

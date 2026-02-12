@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type { GalleryData, Photo } from '@/lib/content'
+import { optimizedSrc } from '@/lib/images'
 import PhotoLightbox from './photo-lightbox'
 
 type Breakpoint = 'default' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
@@ -257,7 +258,7 @@ export default function PhotoGallery({
               }}
             >
               <img
-                src={photo.image}
+                src={optimizedSrc(photo.image, 'thumb')}
                 alt={photo.alt || photo.title || 'Photo de galerie'}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
