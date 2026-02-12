@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { getAllNews, getProjectSummary } from '@/lib/content'
+import { optimizedSrc } from '@/lib/images'
 import { NewspaperIcon, XIcon } from '@phosphor-icons/react/dist/ssr'
 import ProjectBanner from '@/components/project-banner.astro'
 
@@ -111,7 +112,7 @@ const allTags = Array.from(
                 {article.data.featured_image && (
                   <div class="aspect-video bg-gray-100 relative">
                     <img
-                      src={article.data.featured_image}
+                      src={optimizedSrc(article.data.featured_image, 'thumb')}
                       alt={article.data.title}
                       class="absolute inset-0 w-full h-full object-cover"
                       loading="lazy"

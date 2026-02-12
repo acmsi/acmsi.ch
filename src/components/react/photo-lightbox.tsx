@@ -9,6 +9,7 @@ import {
   ArrowsInIcon,
 } from '@phosphor-icons/react'
 import type { Photo } from '@/lib/content'
+import { optimizedSrc } from '@/lib/images'
 
 interface PhotoLightboxProps {
   photos: Photo[]
@@ -250,7 +251,7 @@ export default function PhotoLightbox({
           }}
         >
           <img
-            src={currentPhoto.image}
+            src={optimizedSrc(currentPhoto.image, 'large')}
             alt={currentPhoto.alt || currentPhoto.title || 'Photo de galerie'}
             className="absolute inset-0 w-full h-full object-contain pointer-events-none"
             draggable={false}
@@ -318,7 +319,7 @@ export default function PhotoLightbox({
                     }`}
                   >
                     <img
-                      src={photo.image}
+                      src={optimizedSrc(photo.image, 'thumb')}
                       alt={photo.alt || photo.title || 'Miniature'}
                       className="absolute inset-0 w-full h-full object-cover"
                       loading="lazy"
