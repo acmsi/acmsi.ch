@@ -4,14 +4,29 @@ import {
   UsersThreeIcon,
   BookOpenIcon,
   HeartIcon,
+  ClockCounterClockwiseIcon,
+  MosqueIcon,
 } from '@phosphor-icons/react/dist/ssr'
-import { Ruku } from '@/components/icons'
+import { Ruku, Salah } from '@/components/icons'
 import ProjectBanner from '@/components/project-banner.astro'
 import PhotoGallery from '@/components/react/photo-gallery'
 import { getProjectSummary, getGallery } from '@/lib/content'
 
 const projectData = await getProjectSummary()
 const mosqueGallery = await getGallery('mosquee-photos')
+
+let membresActifs = 60
+try {
+  const res = await fetch(
+    'https://script.google.com/macros/s/AKfycbxEPnCPCJ687vzXMDmc8M66COZmco0kuzTOcXXtMRZXG71dkaRTVNwMVoWXDFgrIQQmeQ/exec',
+  )
+  if (res.ok) {
+    const data = await res.json()
+    if (data.membres_actifs) membresActifs = data.membres_actifs
+  }
+} catch {
+  // fallback to default value
+}
 
 // Transform gallery data for the component
 const galleryData = mosqueGallery
@@ -59,6 +74,67 @@ const galleryData = mosqueGallery
             symbolisant notre aspiration à être une source de guidance
             spirituelle et de paix dans notre communauté locale.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quelques chiffres -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-6">Quelques chiffres</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <UsersThreeIcon
+              className="w-8 h-8 text-gray-600"
+              weight="duotone"
+            />
+          </div>
+          <p class="text-3xl font-bold mb-1">~{membresActifs}</p>
+          <p class="text-gray-600">Membres/Foyers</p>
+        </div>
+
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <ClockCounterClockwiseIcon
+              className="w-8 h-8 text-gray-600"
+              weight="duotone"
+            />
+          </div>
+          <p class="text-3xl font-bold mb-1">1993</p>
+          <p class="text-gray-600">
+            Premi&egrave;re mosqu&eacute;e de St-Imier
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <MosqueIcon className="w-8 h-8 text-gray-600" weight="duotone" />
+          </div>
+          <p class="text-3xl font-bold mb-1">2023</p>
+          <p class="text-gray-600">Mosqu&eacute;e Nur</p>
+          <p class="text-sm text-gray-500">Rue de la Clef 45</p>
+        </div>
+
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <Salah className="w-8 h-8 text-gray-600" weight="duotone" />
+          </div>
+          <p class="text-3xl font-bold mb-1">~230</p>
+          <p class="text-gray-600">Capacit&eacute; (pri&egrave;res)</p>
+          <p class="text-sm text-gray-500">~150 hommes, ~70 femmes</p>
         </div>
       </div>
     </div>
