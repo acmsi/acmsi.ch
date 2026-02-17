@@ -6,6 +6,10 @@ import cloudflare from '@astrojs/cloudflare'
 export default defineConfig({
   site: 'https://www.acmsi.ch',
 
+  redirects: {
+    '/parking': '/contact#parking-info',
+  },
+
   // Ensure consistent URLs without trailing slashes
   trailingSlash: 'never',
 
