@@ -57,8 +57,8 @@ Pour rester informé au quotidien, n'hésitez pas à rejoindre notre
 
 Notre mosquée a besoin de votre soutien pour le
 [projet d'acquisition de la mosquée Nur](/projet-xhamia-nur). Ce projet urgent
-vise à racheter la mosquée pour établir l'ACMSI sur des bases islamiques
-solides et éliminer définitivement la riba. Chaque contribution, petite ou
+vise à acquérir la mosquée au nom de l'association et libérer les membres
+qui portent seuls l'hypothèque au profit de tous. Chaque contribution, petite ou
 grande, nous rapproche de cet objectif essentiel de 630'000 CHF.
 
 Consultez la page du [projet Xhamia Nur](/projet-xhamia-nur#faire-un-don) pour
