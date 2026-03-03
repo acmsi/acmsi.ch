@@ -1,8 +1,8 @@
 ---
 type: projet_global
 nom: Acquisition Mosquée Nur
-description: Projet urgent pour le rachat de la mosquée Nur par l'ACMSI afin
-  d'établir l'association sur des bases islamiques solides et d'éliminer la riba
+description: Projet urgent pour l'acquisition de la mosquée Nur par l'ACMSI,
+  libre de toute hypothèque
 objectif: 630000
 montant_leve: 323619
 derniere_maj: 2026-01-07T21:33:00.000+01:00
@@ -15,13 +15,13 @@ priorite: 1
 
 La mosquée Nur a été acquise en 2023 par des membres généreux de notre communauté à titre privé pour sécuriser ce lieu essentiel. **Qu'Allah les récompense pour ce geste exceptionnel !**
 
-Cependant, cet achat nécessite actuellement un emprunt bancaire avec intérêts (riba), ce qui va à l'encontre de nos valeurs islamiques.
+Cependant, ces membres portent seuls la charge d'un emprunt bancaire avec intérêts (riba) contracté à titre personnel, une situation qui devait être temporaire et que la communauté se doit de corriger.
 
 ## L'Objectif de cette Collecte
 
 L'ACMSI doit maintenant racheter la mosquée pour **630'000 CHF** afin de :
 
-- **Éliminer définitivement la riba** de cette acquisition
+- **Libérer les membres** qui portent cette hypothèque à titre personnel
 - **Établir l'association sur ses propres bases islamiques**
 - **Garantir la pérennité** du lieu de culte
 - **Sécuriser l'avenir** de notre communauté dans ses propres murs
@@ -30,7 +30,7 @@ L'ACMSI doit maintenant racheter la mosquée pour **630'000 CHF** afin de :
 
 Chaque contribution nous rapproche de cet objectif vital. En donnant pour l'acquisition de la mosquée Nur, vous participez directement à :
 
-1. **L'élimination de la riba** - Conformément aux principes islamiques
+1. **Soulager nos membres** - Qui portent cette hypothèque à titre personnel
 2. **La sécurisation du lieu de culte** - Pour les générations futures
 3. **Le renforcement de la communauté** - Sur des bases solides et islamiques
 4. **La reconnaissance envers nos frères** - Qui ont pris ce risque pour nous

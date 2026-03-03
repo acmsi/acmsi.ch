@@ -41,7 +41,7 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
 
 <Layout
   title="Projet Xhamia Nur - Acquisition de la Mosquée - ACMSI"
-  description="Aidez l'ACMSI à racheter la mosquée Nur pour 630'000 CHF. Un projet urgent pour établir notre association sur des bases islamiques solides et sans riba."
+  description="Aidez l'ACMSI à acquérir la mosquée Nur pour 630'000 CHF. Un projet urgent pour que la communauté assume collectivement la responsabilité de son lieu de culte."
 >
   <!-- Hero Section - Urgent -->
   <section
@@ -59,8 +59,12 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
           Un projet urgent de <strong>{formatAmount(objectifTotal)}</strong>{
             ' '
           }
-          pour racheter la mosquée Nur et établir l&rsquo;ACMSI sur des bases islamiques
-          solides, <strong>sans riba</strong>.
+          pour que l&rsquo;ACMSI acquière la mosquée Nur et que la communauté{
+            ' '
+          }
+          <strong
+            >assume collectivement la responsabilité de son lieu de culte</strong
+          >.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a
@@ -160,8 +164,8 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
           <strong>
             racheter la mosquée pour {formatAmount(objectifTotal)}
           </strong>{' '}
-          afin d&apos;établir l&apos;association sur des bases islamiques solides
-          et d&apos;éliminer définitivement la riba de cette acquisition.
+          afin de libérer ces membres de la responsabilité qu&apos;ils portent à titre
+          personnel et acquérir la mosquée libre de toute hypothèque.
         </p>
 
         <div
@@ -181,7 +185,10 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
                   Racheter la mosquée Nur par l&apos;ACMSI (
                   {formatAmount(objectifTotal)})
                 </li>
-                <li>Éliminer la riba de cette acquisition</li>
+                <li>
+                  Libérer les membres qui portent cette hypothèque à titre
+                  personnel
+                </li>
                 <li>
                   Établir l&apos;association sur ses propres bases islamiques
                 </li>
