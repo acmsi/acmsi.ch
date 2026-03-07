@@ -4,8 +4,8 @@ nom: Acquisition Mosquée Nur
 description: Projet urgent pour l'acquisition de la mosquée Nur par l'ACMSI,
   libre de toute hypothèque
 objectif: 630000
-montant_leve: 323619
-derniere_maj: 2026-01-07T21:33:00.000+01:00
+montant_leve: 333122
+derniere_maj: 2026-03-07T20:37:00.000+01:00
 priorite: 1
 ---
 
