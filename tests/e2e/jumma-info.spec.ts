@@ -1,9 +1,15 @@
 import { test, expect } from '@playwright/test'
+import { jummaShort, jummaTime } from '@/lib/jumma'
 
 /**
  * End-to-end tests for Jumma prayer information
  * Ensures consistency between homepage and contact page
  */
+
+const khutbaShort = jummaShort('khutba')
+const prayerShort = jummaShort('prayer')
+const khutbaTime = jummaTime('khutba')
+const prayerTime = jummaTime('prayer')
 
 test.describe('Jumma Prayer Information', () => {
   test('homepage displays Jumma times in hero section', async ({ page }) => {
@@ -11,11 +17,11 @@ test.describe('Jumma Prayer Information', () => {
 
     // Check Jumma time is displayed as a link
     const jummaLink = page.getByRole('main').getByRole('link', {
-      name: /Jumma : 12h15/,
+      name: new RegExp(`Jumma : ${khutbaShort}`),
     })
     await expect(jummaLink).toBeVisible()
     await expect(jummaLink).toHaveAttribute('href', '/contact#jumma')
-    await expect(page.getByText('(Salat 12h30)')).toBeVisible()
+    await expect(page.getByText(`(Salat ${prayerShort})`)).toBeVisible()
   })
 
   test('homepage has links to prayer times and parking info', async ({
@@ -53,17 +59,21 @@ test.describe('Jumma Prayer Information', () => {
       jummaSection.getByRole('heading', { name: 'Jumma – Prière du Vendredi' }),
     ).toBeVisible()
 
-    // Check Khutbah time matches homepage (12:15 = 12h15)
+    // Check Khutbah time matches homepage
     await expect(
       jummaSection.getByRole('term').filter({ hasText: 'Khutbah' }),
     ).toBeVisible()
-    await expect(jummaSection.getByText('12:15', { exact: true })).toBeVisible()
+    await expect(
+      jummaSection.getByText(khutbaTime, { exact: true }),
+    ).toBeVisible()
 
-    // Check Salat time matches homepage (12:30 = 12h30)
+    // Check Salat time matches homepage
     await expect(
       jummaSection.getByRole('term').filter({ hasText: 'Prière' }),
     ).toBeVisible()
-    await expect(jummaSection.getByText('12:30', { exact: true })).toBeVisible()
+    await expect(
+      jummaSection.getByText(prayerTime, { exact: true }),
+    ).toBeVisible()
   })
 
   test('Jumma times are consistent between homepage and contact page', async ({
@@ -72,13 +82,13 @@ test.describe('Jumma Prayer Information', () => {
     // Get times from homepage
     await page.goto('/')
     const homepageJummaText = await page
-      .locator('text=Jumma : 12h15')
+      .locator(`text=Jumma : ${khutbaShort}`)
       .textContent()
     const homepageSalatText = await page
-      .locator('text=(Salat 12h30)')
+      .locator(`text=(Salat ${prayerShort})`)
       .textContent()
 
-    // Extract times (format: 12h15 -> 12:15)
+    // Extract times (format: 16h20 -> 16:20)
     const homepageKhutbah = homepageJummaText?.match(/(\d{1,2})h(\d{2})/)
     const homepageSalat = homepageSalatText?.match(/(\d{1,2})h(\d{2})/)
 
@@ -103,7 +113,7 @@ test.describe('Jumma Prayer Information', () => {
     // Click on Jumma link in hero
     await page
       .getByRole('main')
-      .getByRole('link', { name: /Jumma : 12h15/ })
+      .getByRole('link', { name: new RegExp(`Jumma : ${khutbaShort}`) })
       .click()
 
     // Should navigate to contact page with anchor
