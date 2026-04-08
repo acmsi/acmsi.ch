@@ -8,6 +8,7 @@ import {
   LetterCirclePIcon,
 } from '@phosphor-icons/react/dist/ssr'
 import { getProjectSummary } from '@/lib/content'
+import { jummaShort } from '@/lib/jumma'
 import ProjectBanner from '@/components/project-banner.astro'
 
 const projectData = await getProjectSummary()
@@ -59,8 +60,8 @@ const projectData = await getProjectSummary()
                 className="w-5 h-5 text-nur-teal-600"
                 weight="duotone"
               />
-              <span class="font-medium">Jumma : 12h15</span>
-              <span class="text-gray-500">(Salat 12h30)</span>
+              <span class="font-medium">Jumma : {jummaShort('khutba')}</span>
+              <span class="text-gray-500">(Salat {jummaShort('prayer')})</span>
             </a>
 
             <a
