@@ -1,8 +1,25 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 
-// Re-export types from config
-export type { Photo, GalleryType, DateDisplayFormat } from '@/content/config'
-import type { Photo, GalleryType } from '@/content/config'
+// Types that were previously in src/content/config.ts
+// Now defined inline since collections are configured in astro.config.ts
+
+export type Photo = {
+  image: string
+  title?: string
+  description?: string
+  photographer?: string
+  date?: string
+  alt?: string
+}
+
+export type GalleryType =
+  | 'mosque'
+  | 'renovations'
+  | 'historical'
+  | 'events'
+  | 'other'
+
+export type DateDisplayFormat = 'full' | 'month' | 'quarter'
 
 // Type aliases for cleaner code
 export type NewsArticle = CollectionEntry<'actualites'>
@@ -58,7 +75,7 @@ export async function getAllNewsTags(): Promise<string[]> {
   const articles = await getAllNews()
   const tagSet = new Set<string>()
   articles.forEach(article => {
-    article.data.tags.forEach(tag => tagSet.add(tag))
+    article.data.tags.forEach((tag: string) => tagSet.add(tag))
   })
   return Array.from(tagSet).sort()
 }

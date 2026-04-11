@@ -2,7 +2,7 @@
   // Wrangler configuration for Cloudflare Workers (Astro SSR)
   // https://developers.cloudflare.com/workers/wrangler/configuration/
   "name": "acmsi-website",
-  "main": "dist/_worker.js/index.js",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2025-12-08",
   "compatibility_flags": ["nodejs_compat"],
   // Enable workers.dev subdomain for preview URLs
