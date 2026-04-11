@@ -9,7 +9,9 @@ export type Tag = CollectionEntry<'tags'>
 // Sub-types extracted from collection schemas
 export type Photo = NonNullable<GalleryEntry['data']['photos']>[number]
 export type GalleryType = GalleryEntry['data']['type']
-export type DateDisplayFormat = NonNullable<BudgetProject['data']['echeance_format']>
+export type DateDisplayFormat = NonNullable<
+  BudgetProject['data']['echeance_format']
+>
 
 // Flat gallery data type for components (data extracted from GalleryEntry)
 export interface GalleryData {
