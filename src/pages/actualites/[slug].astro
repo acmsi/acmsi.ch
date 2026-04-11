@@ -9,7 +9,7 @@ import Breadcrumbs from '@/components/breadcrumbs.astro'
 export async function getStaticPaths() {
   const articles = await getAllNews()
   return articles.map(article => ({
-    params: { slug: article.slug },
+    params: { slug: article.id },
     props: { article },
   }))
 }
