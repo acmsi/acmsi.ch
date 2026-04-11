@@ -1,31 +1,15 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 
-// Types that were previously in src/content/config.ts
-// Now defined inline since collections are configured in astro.config.ts
-
-export type Photo = {
-  image: string
-  title?: string
-  description?: string
-  photographer?: string
-  date?: string
-  alt?: string
-}
-
-export type GalleryType =
-  | 'mosque'
-  | 'renovations'
-  | 'historical'
-  | 'events'
-  | 'other'
-
-export type DateDisplayFormat = 'full' | 'month' | 'quarter'
-
-// Type aliases for cleaner code
+// Types derived from Astro v6 generated content types
 export type NewsArticle = CollectionEntry<'actualites'>
 export type GalleryEntry = CollectionEntry<'galleries'>
 export type BudgetProject = CollectionEntry<'projects'>
 export type Tag = CollectionEntry<'tags'>
+
+// Sub-types extracted from collection schemas
+export type Photo = NonNullable<GalleryEntry['data']['photos']>[number]
+export type GalleryType = GalleryEntry['data']['type']
+export type DateDisplayFormat = NonNullable<BudgetProject['data']['echeance_format']>
 
 // Flat gallery data type for components (data extracted from GalleryEntry)
 export interface GalleryData {
