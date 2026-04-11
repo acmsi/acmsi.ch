@@ -49,6 +49,7 @@
     "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "chromium-bidi": "^15.0.0",
     "decap-server": "^3.2.0",
     "eslint": "^9",
     "eslint-plugin-astro": "^1.5.0",

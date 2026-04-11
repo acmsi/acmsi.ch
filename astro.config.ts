@@ -60,7 +60,7 @@ export default defineConfig({
     css: {
       postcss: './postcss.config.mjs',
     },
-    // Exclude dev dependencies from SSR bundle
+    // Exclude dev/test dependencies from SSR bundle and dependency optimization
     ssr: {
       external: [
         'playwright',
@@ -69,9 +69,7 @@ export default defineConfig({
         '@playwright/experimental-ct-react',
         'fsevents',
         'lightningcss',
-        'chromium-bidi', 'chromium-bidi/lib/cjs/bidiMapper/BidiMapper', 'chromium-bidi/lib/cjs/cdp/CdpConnection',
       ],
-      // Prevent Vite from trying to optimize these
       noExternal: [],
     },
     optimizeDeps: {
@@ -82,7 +80,6 @@ export default defineConfig({
         '@playwright/experimental-ct-react',
         'fsevents',
         'lightningcss',
-        'chromium-bidi', 'chromium-bidi/lib/cjs/bidiMapper/BidiMapper', 'chromium-bidi/lib/cjs/cdp/CdpConnection',
       ],
     },
   },
