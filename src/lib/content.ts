@@ -1,14 +1,17 @@
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 
-// Re-export types from config
-export type { Photo, GalleryType, DateDisplayFormat } from '@/content/config'
-import type { Photo, GalleryType } from '@/content/config'
-
-// Type aliases for cleaner code
+// Types derived from Astro v6 generated content types
 export type NewsArticle = CollectionEntry<'actualites'>
 export type GalleryEntry = CollectionEntry<'galleries'>
 export type BudgetProject = CollectionEntry<'projects'>
 export type Tag = CollectionEntry<'tags'>
+
+// Sub-types extracted from collection schemas
+export type Photo = NonNullable<GalleryEntry['data']['photos']>[number]
+export type GalleryType = GalleryEntry['data']['type']
+export type DateDisplayFormat = NonNullable<
+  BudgetProject['data']['echeance_format']
+>
 
 // Flat gallery data type for components (data extracted from GalleryEntry)
 export interface GalleryData {
@@ -58,7 +61,7 @@ export async function getAllNewsTags(): Promise<string[]> {
   const articles = await getAllNews()
   const tagSet = new Set<string>()
   articles.forEach(article => {
-    article.data.tags.forEach(tag => tagSet.add(tag))
+    article.data.tags.forEach((tag: string) => tagSet.add(tag))
   })
   return Array.from(tagSet).sort()
 }

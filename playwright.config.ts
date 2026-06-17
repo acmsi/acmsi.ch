@@ -1,10 +1,16 @@
 import { defineConfig, devices } from '@playwright/test'
 
 /**
- * Playwright configuration for ACMSI website e2e tests
- * - In CI: Tests run against production build (wrangler pages dev)
- * - Locally: Tests run against dev server (astro dev) for faster iteration
+ * Playwright configuration for ACMSI functional e2e tests.
+ *
+ * - Locally: runs against `astro dev` on :4321 for fast iteration.
+ * - In CI: runs against the production `wrangler dev` on :4321.
+ *
+ * Performance tests live in `playwright-perf.config.ts` — they need a
+ * production build and shouldn't slow down local functional runs.
  */
+const isCI = !!process.env.CI
+
 export default defineConfig({
   testDir: './tests/e2e',
 
@@ -12,13 +18,13 @@ export default defineConfig({
   fullyParallel: true,
 
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  forbidOnly: isCI,
 
   /* Minimal retries for speed */
-  retries: process.env.CI ? 1 : 0,
+  retries: isCI ? 1 : 0,
 
   /* Use more workers for speed */
-  workers: process.env.CI ? 2 : undefined,
+  workers: isCI ? 2 : undefined,
 
   /* Simplified reporter for speed */
   reporter: [
@@ -28,20 +34,12 @@ export default defineConfig({
 
   /* Shared settings optimized for speed */
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:4321',
-
-    /* Minimal tracing for speed */
+    baseURL: 'http://localhost:4321',
     trace: 'retain-on-failure',
-
-    /* Screenshots only on failure */
     screenshot: 'only-on-failure',
-
-    /* No video recording for speed */
     video: 'off',
   },
 
-  /* Single browser project for speed */
   projects: [
     {
       name: 'chromium',
@@ -49,38 +47,20 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server or production preview before starting the tests */
-  webServer: process.env.CI
-    ? [
-        {
-          // In CI: use production build with wrangler
-          command: 'npm run preview',
-          url: 'http://localhost:4321',
-          reuseExistingServer: false,
-          timeout: 120 * 1000,
-        },
-        {
-          command: 'npm run cms-proxy',
-          port: 8081,
-          reuseExistingServer: false,
-          timeout: 30 * 1000,
-        },
-      ]
-    : [
-        {
-          // Locally: use dev server for faster iteration
-          command: 'npm run dev',
-          url: 'http://localhost:4321',
-          reuseExistingServer: true,
-          timeout: 60 * 1000,
-        },
-        {
-          command: 'npm run cms-proxy',
-          port: 8081,
-          reuseExistingServer: true,
-          timeout: 30 * 1000,
-        },
-      ],
+  webServer: [
+    {
+      command: isCI ? 'npm run preview' : 'npm run dev',
+      url: 'http://localhost:4321',
+      reuseExistingServer: !isCI,
+      timeout: isCI ? 120 * 1000 : 60 * 1000,
+    },
+    {
+      command: 'npm run cms-proxy',
+      port: 8081,
+      reuseExistingServer: true,
+      timeout: 30 * 1000,
+    },
+  ],
 
   /* Faster timeouts */
   timeout: 15 * 1000,
