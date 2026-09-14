@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../fixtures/browser'
 
 test('news links open an article with rendered Markdown', async ({ page }) => {
   await page.goto('/actualites')

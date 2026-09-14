@@ -1,4 +1,4 @@
-import { test, expect, type Page, type Locator } from '@playwright/test'
+import { test, expect, type Page, type Locator } from '../fixtures/browser'
 
 /**
  * End-to-end tests for bank details displayed on donation and project pages
