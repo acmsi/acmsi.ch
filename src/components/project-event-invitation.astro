@@ -1,0 +1,58 @@
+---
+import { eventAnnouncement } from '@/lib/event-announcement'
+---
+
+<aside
+  data-project-event
+  aria-labelledby="project-event-title"
+  hidden
+  class="mt-10 overflow-hidden rounded-2xl border border-teal-200 bg-white shadow-sm"
+>
+  <div class="grid sm:grid-cols-[210px_minmax(0,1fr)]">
+    <div
+      class="islamic-pattern islamic-pattern-sm flex flex-col items-center justify-center px-6 py-8 text-white"
+      style="--pattern-background-color: #115e59; --pattern-foreground-color: #216d66;"
+    >
+      <time datetime="2026-09-27T14:00:00+02:00" class="text-center">
+        <span class="block text-lg font-semibold">Dimanche</span>
+        <span class="block text-8xl font-bold leading-none my-2">27</span>
+        <span class="block text-xl font-semibold">septembre 2026</span>
+        <span
+          class="inline-block mt-5 rounded-full bg-white px-5 py-2 text-3xl font-bold text-teal-900"
+          >14 h</span
+        >
+      </time>
+    </div>
+    <div class="p-6 sm:p-8">
+      <p class="text-sm font-semibold text-teal-700 mb-3">
+        Rencontre de soutien · Saint-Imier
+      </p>
+      <h2
+        id="project-event-title"
+        class="text-2xl font-bold text-teal-950 mb-4"
+      >
+        Ensemble pour atteindre l’objectif
+      </h2>
+      <p class="leading-relaxed text-gray-700 mb-4">
+        Cette rencontre vise à réunir les fonds nécessaires à l’acquisition de
+        la mosquée Nur. Venez participer et partagez l’invitation autour de
+        vous.
+      </p>
+      <p class="text-sm text-gray-600 mb-6">
+        Rue de la Clef 45, 2610 Saint-Imier<br />Ouvert aux hommes et aux
+        femmes.
+      </p>
+      <a
+        href={eventAnnouncement.articleUrl}
+        class="inline-flex justify-center rounded-lg bg-teal-700 px-5 py-3 font-semibold text-white hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700"
+        >Découvrir la rencontre</a
+      >
+    </div>
+  </div>
+</aside>
+
+<script>
+  import { isEventAnnouncementActive } from '@/lib/event-announcement'
+  const invitation = document.querySelector<HTMLElement>('[data-project-event]')
+  if (invitation) invitation.hidden = !isEventAnnouncementActive()
+</script>
