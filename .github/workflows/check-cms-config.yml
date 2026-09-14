@@ -18,8 +18,8 @@ jobs:
         with:
           node-version-file: '.tool-versions'
 
-      - name: Install js-yaml
-        run: npm install js-yaml
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run CMS config tests
         run: node --test tests/check-cms-config.test.ts

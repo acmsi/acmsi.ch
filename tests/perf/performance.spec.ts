@@ -199,8 +199,7 @@ test.describe('Performance Metrics', () => {
 
   for (const pageConfig of PAGES_TO_AUDIT) {
     test(`${pageConfig.name} page performance`, async ({ page }) => {
-      const baseURL = process.env.BASE_URL || 'http://localhost:4321'
-      await page.goto(`${baseURL}${pageConfig.path}`)
+      await page.goto(pageConfig.path)
 
       const metrics = await collectMetrics(page)
 
@@ -263,11 +262,10 @@ test.describe('Performance Summary Report', () => {
     // Increase timeout as we're testing all pages sequentially
     test.setTimeout(60000)
 
-    const baseURL = process.env.BASE_URL || 'http://localhost:4321'
     const results: Array<{ page: string; metrics: PerformanceMetrics }> = []
 
     for (const pageConfig of PAGES_TO_AUDIT) {
-      await page.goto(`${baseURL}${pageConfig.path}`)
+      await page.goto(pageConfig.path)
       const metrics = await collectMetrics(page)
       results.push({ page: pageConfig.name, metrics })
     }
@@ -338,7 +336,6 @@ test.describe('Performance Summary Report', () => {
       JSON.stringify(
         {
           timestamp: new Date().toISOString(),
-          baseURL,
           thresholds: THRESHOLDS,
           results: results.map(r => ({
             page: r.page,
@@ -386,8 +383,7 @@ test.describe('Network Throttled Performance', () => {
       latency: 400, // 400ms RTT
     })
 
-    const baseURL = process.env.BASE_URL || 'http://localhost:4321'
-    await page.goto(baseURL, { timeout: 45000 })
+    await page.goto('/', { timeout: 45000 })
 
     const metrics = await collectMetrics(page)
 

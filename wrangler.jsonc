@@ -2,11 +2,18 @@
   // Wrangler configuration for Cloudflare Workers (Astro SSR)
   // https://developers.cloudflare.com/workers/wrangler/configuration/
   "name": "acmsi-website",
-  "main": "dist/_worker.js/index.js",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2025-12-08",
   "compatibility_flags": ["nodejs_compat"],
   // Enable workers.dev subdomain for preview URLs
   "workers_dev": true,
+  // Reuse the existing session namespace instead of provisioning it on upload.
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "91c454f4804444228d5adfac6f1ac0e9",
+    },
+  ],
   // Static assets configuration
   "assets": {
     "binding": "ASSETS",
