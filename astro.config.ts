@@ -37,7 +37,7 @@ export default defineConfig({
 
   // Cloudflare Pages adapter
   adapter: cloudflare({
-    imageService: 'cloudflare',
+    imageService: 'cloudflare-binding',
   }),
 
   integrations: [
@@ -60,30 +60,24 @@ export default defineConfig({
     css: {
       postcss: './postcss.config.mjs',
     },
-    // Exclude dev dependencies from SSR bundle
-    ssr: {
-      external: [
-        'playwright',
-        'playwright-core',
-        '@playwright/test',
-        '@playwright/experimental-ct-react',
-        'fsevents',
-        'lightningcss',
-        'chromium-bidi',
-      ],
-      // Prevent Vite from trying to optimize these
-      noExternal: [],
-    },
+    // Exclude native addons and test dependencies from dependency optimization.
+    // In Vite 7's environment API, root-level optimizeDeps only applies to the
+    // client environment. Server environments (ssr/prerender) are configured
+    // separately via the `environments` key below.
     optimizeDeps: {
-      exclude: [
-        'playwright',
-        'playwright-core',
-        '@playwright/test',
-        '@playwright/experimental-ct-react',
-        'fsevents',
-        'lightningcss',
-        'chromium-bidi',
-      ],
+      exclude: ['fsevents'],
+    },
+    environments: {
+      ssr: {
+        optimizeDeps: {
+          exclude: ['fsevents'],
+        },
+      },
+      prerender: {
+        optimizeDeps: {
+          exclude: ['fsevents'],
+        },
+      },
     },
   },
 })
