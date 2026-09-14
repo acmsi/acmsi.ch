@@ -39,19 +39,31 @@ test('one news entry links to all translations and their matching flyers', async
     const gap = paragraph!.y - flyer!.y - flyer!.height
     expect(gap).toBeGreaterThanOrEqual(24)
     expect(gap).toBeLessThanOrEqual(80)
+    await page.evaluate(() => document.fonts.ready)
     const breadcrumb = page.getByRole('navigation', { name: 'Fil d’Ariane' })
-    const parent = await breadcrumb.getByRole('link').boundingBox()
-    const current = await breadcrumb
-      .locator('[aria-current="page"]')
-      .boundingBox()
-    const separator = await breadcrumb
-      .locator('[aria-hidden="true"]')
-      .boundingBox()
-    expect(Math.abs(parent!.y - separator!.y)).toBeLessThan(1)
-    expect(separator!.x).toBeGreaterThan(parent!.x + parent!.width)
-    expect(current!.y).toBeGreaterThan(parent!.y)
-    expect(current!.x).toBe(parent!.x)
-    expect(current!.x + current!.width).toBeLessThanOrEqual(375)
+    for (const width of [375, 240]) {
+      await page.setViewportSize({ width, height: 812 })
+      const parent = await breadcrumb.getByRole('link').boundingBox()
+      const current = await breadcrumb
+        .locator('[aria-current="page"]')
+        .boundingBox()
+      const separator = await breadcrumb
+        .locator('[aria-hidden="true"]')
+        .boundingBox()
+      expect(Math.abs(parent!.y - separator!.y)).toBeLessThan(1)
+      expect(separator!.x).toBeGreaterThan(parent!.x + parent!.width)
+      if (Math.abs(current!.y - parent!.y) < 1) {
+        // Short titles can fit beside the parent with the Mada font.
+        expect(width).toBe(375)
+        expect(current!.x).toBeGreaterThan(separator!.x + separator!.width)
+        expect(current!.height).toBeLessThanOrEqual(parent!.height + 1)
+      } else {
+        expect(current!.y).toBeGreaterThan(parent!.y)
+        expect(current!.x).toBe(parent!.x)
+      }
+      expect(current!.x + current!.width).toBeLessThanOrEqual(width)
+    }
+    await page.setViewportSize({ width: 375, height: 812 })
     await expect(
       page.locator(`section[lang="${language}"] img`),
     ).toHaveAttribute('src', new RegExp(`${language}\\.jpeg`))
