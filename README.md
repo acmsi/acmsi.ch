@@ -23,11 +23,11 @@ npm run dev
 - **Linting**: `npm run lint` - Check code quality
 - **Formatting**: `npm run format` - Format code with Prettier
 
-For a complete list of commands and detailed documentation, see [CLAUDE.md](./CLAUDE.md).
+For a complete list of commands and detailed documentation, see [AGENTS.md](./AGENTS.md).
 
 ## Tech Stack
 
-- **Framework**: [Astro v5](https://astro.build/) with hybrid static/server rendering
+- **Framework**: [Astro v6](https://astro.build/) with hybrid static/server rendering
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with custom "nur" color palette
 - **Content Management**: [Decap CMS](https://decapcms.org/) with GitHub OAuth
@@ -122,7 +122,7 @@ wrangler deploy
 
 ## Contributing
 
-For detailed development guidelines, architecture information, and coding standards, please refer to [CLAUDE.md](./CLAUDE.md).
+For detailed development guidelines, architecture information, and coding standards, please refer to [AGENTS.md](./AGENTS.md).
 
 ## License
 
