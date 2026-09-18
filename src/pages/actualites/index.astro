@@ -109,7 +109,7 @@ const allTags = Array.from(
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map(article => (
               <article class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200">
-                {article.data.featured_image && (
+                {article.data.featured_image ? (
                   <div class="aspect-video bg-gray-100 relative">
                     <img
                       src={optimizedSrc(article.data.featured_image, 'thumb')}
@@ -118,6 +118,12 @@ const allTags = Array.from(
                       loading="lazy"
                     />
                   </div>
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    class="aspect-video islamic-pattern islamic-pattern-sm"
+                    style="--pattern-background-color: #115e59; --pattern-foreground-color: #397b73;"
+                  />
                 )}
                 <div class="p-6">
                   <div class="flex items-center text-sm text-gray-500 mb-3">

@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content'
+import { defineCollection, reference } from 'astro:content'
 import { z } from 'astro/zod'
 import { glob } from 'astro/loaders'
 
@@ -67,6 +67,17 @@ const tags = defineCollection({
 
 export const collections = {
   actualites,
+  translations: defineCollection({
+    loader: glob({ pattern: '**/*.md', base: 'src/content/translations' }),
+    schema: z.object({
+      article: reference('actualites'),
+      language: z.enum(['sq', 'de', 'bs']),
+      title: z.string(),
+      excerpt: z.string(),
+      featured_image: z.string().optional(),
+      published: z.boolean().default(true),
+    }),
+  }),
   galleries,
   projects,
   tags,

@@ -92,6 +92,7 @@ const projectData = await getProjectSummary()
   {
     projectData && (
       <ProjectBanner
+        showEvent={true}
         variant="full"
         showProgress={true}
         totalAmount={projectData.total_objectif}

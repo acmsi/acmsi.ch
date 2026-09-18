@@ -1,0 +1,30 @@
+---
+import NewsArticle from '@/components/news-article.astro'
+import { getCollection, getEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+  const translations = await getCollection(
+    'translations',
+    ({ data }) => data.published,
+  )
+  const paths = []
+  const seen = new Set<string>()
+  for (const translation of translations) {
+    const article = await getEntry(translation.data.article)
+    if (!article)
+      throw new Error(`Missing source article for ${translation.id}`)
+    if (!article.data.published) continue
+    const key = `${article.id}/${translation.data.language}`
+    if (seen.has(key)) throw new Error(`Duplicate article translation: ${key}`)
+    seen.add(key)
+    paths.push({
+      params: { slug: article.id, language: translation.data.language },
+      props: { article, translation },
+    })
+  }
+  return paths
+}
+const { article, translation } = Astro.props
+---
+
+<NewsArticle article={article} translation={translation} />

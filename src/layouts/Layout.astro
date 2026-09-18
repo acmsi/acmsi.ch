@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css'
 import MobileMenu from '@/components/react/mobile-menu'
+import EventAnnouncement from '@/components/event-announcement.astro'
 import {
   LetterCirclePIcon,
   InstagramLogoIcon,
@@ -107,6 +108,8 @@ const currentYear = new Date().getFullYear()
         </div>
       </nav>
     </header>
+
+    <EventAnnouncement />
 
     <main>
       <slot />

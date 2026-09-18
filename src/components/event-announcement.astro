@@ -1,0 +1,472 @@
+---
+import {
+  eventAnnouncement as event,
+  flyerUrl,
+  eventBannerMessages,
+  eventViewerText,
+} from '@/lib/event-announcement'
+---
+
+<aside class="event-invitation" aria-label="Rencontre du 27 septembre" hidden>
+  <div class="invitation-viewport">
+    <div class="invitation-message" lang="fr">
+      <span
+        ><strong data-banner-date>{eventBannerMessages[0].date}</strong> — <span
+          data-banner-text>{eventBannerMessages[0].text}</span
+        ></span
+      >
+      <button type="button" data-open-flyers
+        >{eventBannerMessages[0].action}</button
+      >
+    </div>
+  </div>
+</aside>
+
+<dialog class="event-viewer" aria-labelledby="event-title">
+  <header class="viewer-header">
+    <h2 id="event-title" data-viewer-text="title">
+      {eventViewerText.fr.title}
+    </h2>
+    <button
+      type="button"
+      class="close-viewer"
+      aria-label="Fermer l’invitation"
+      autofocus>✕</button
+    >
+  </header>
+  <div class="viewer-languages" role="group" aria-label="Langue du flyer">
+    {
+      event.languages.map(language => (
+        <button
+          type="button"
+          lang={language.code}
+          data-language={language.code}
+          aria-pressed={language.code === 'fr'}
+        >
+          {language.label}
+        </button>
+      ))
+    }
+  </div>
+  <div class="viewer-content">
+    <div class="flyer-stage" tabindex="0" aria-label="Flyer, zone de lecture">
+      <img
+        width="1620"
+        height="2025"
+        alt="Invitation à la rencontre du 27 septembre 2026 — Français"
+        decoding="async"
+      />
+    </div>
+    <div class="event-details">
+      <p class="event-date">
+        <span data-viewer-text="date">{eventViewerText.fr.date}</span><br
+        /><strong data-viewer-text="time">{eventViewerText.fr.time}</strong>
+      </p>
+      <h3 data-viewer-text="heading">{eventViewerText.fr.heading}</h3>
+      <p data-viewer-text="description">{eventViewerText.fr.description}</p>
+      <p>Rue de la Clef 45<br />2610 Saint-Imier</p>
+      <p data-viewer-text="audience">{eventViewerText.fr.audience}</p>
+      <a class="article-link" data-viewer-text="article" href={event.articleUrl}
+        >Découvrir la rencontre</a
+      >
+      <div class="flyer-tools">
+        <button type="button" data-zoom aria-pressed="false"
+          >Agrandir le flyer</button
+        >
+        <a
+          data-download
+          href={flyerUrl('fr')}
+          download="invitation-mosquee-nur-fr.jpeg">Télécharger</a
+        >
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import {
+    eventAnnouncement,
+    eventBannerMessages,
+    eventViewerText,
+    flyerUrl,
+    isEventAnnouncementActive,
+    selectFlyerLanguage,
+    type FlyerLanguage,
+  } from '@/lib/event-announcement'
+
+  const dialog = document.querySelector<HTMLDialogElement>('.event-viewer')!
+  const invitation = document.querySelector<HTMLElement>('.event-invitation')!
+  const image = dialog.querySelector<HTMLImageElement>('img')!
+  const download = dialog.querySelector<HTMLAnchorElement>('[data-download]')!
+  const zoom = dialog.querySelector<HTMLButtonElement>('[data-zoom]')!
+  const stage = dialog.querySelector<HTMLElement>('.flyer-stage')!
+  let currentLanguage: FlyerLanguage = 'fr'
+  let previousOverflow = ''
+  let previousFocus: HTMLElement | null = null
+
+  function setLanguage(language: FlyerLanguage) {
+    currentLanguage = language
+    const text = eventViewerText[language]
+    dialog.lang = language
+    dialog
+      .querySelectorAll<HTMLElement>('[data-viewer-text]')
+      .forEach(element => {
+        element.textContent =
+          text[element.dataset.viewerText as keyof typeof text]
+      })
+    dialog
+      .querySelector('.close-viewer')!
+      .setAttribute('aria-label', text.close)
+    dialog
+      .querySelector('.viewer-languages')!
+      .setAttribute('aria-label', text.languages)
+    stage.setAttribute('aria-label', text.stage)
+    download.textContent = text.download
+    zoom.textContent =
+      zoom.getAttribute('aria-pressed') === 'true' ? text.unzoom : text.zoom
+    dialog.querySelector<HTMLAnchorElement>('.article-link')!.href =
+      eventAnnouncement.articleUrl + (language === 'fr' ? '' : `/${language}`)
+    image.src = flyerUrl(language)
+    image.alt = text.alt
+    image.lang = language
+    download.href = flyerUrl(language)
+    download.download = `invitation-mosquee-nur-${language}.jpeg`
+    dialog
+      .querySelectorAll<HTMLButtonElement>('[data-language]')
+      .forEach(button => {
+        button.setAttribute(
+          'aria-pressed',
+          String(button.dataset.language === language),
+        )
+      })
+    stage.scrollTo(0, 0)
+  }
+
+  function openInvitation() {
+    if (dialog.open) return
+    previousFocus =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null
+    previousOverflow = document.body.style.overflow
+    dialog.showModal()
+    document.body.style.overflow = 'hidden'
+    try {
+      sessionStorage.setItem(eventAnnouncement.sessionKey, '1')
+    } catch (error) {
+      console.warn(
+        'Impossible de mémoriser l’invitation pour cette session.',
+        error,
+      )
+    }
+  }
+
+  dialog
+    .querySelector('.close-viewer')!
+    .addEventListener('click', () => dialog.close())
+  dialog.addEventListener('close', () => {
+    document.body.style.overflow = previousOverflow
+    previousFocus?.focus()
+  })
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return
+    const rect = dialog.getBoundingClientRect()
+    if (
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom
+    )
+      dialog.close()
+  })
+  dialog
+    .querySelectorAll<HTMLButtonElement>('[data-language]')
+    .forEach(button => {
+      button.addEventListener('click', () =>
+        setLanguage(button.dataset.language as FlyerLanguage),
+      )
+    })
+  zoom.addEventListener('click', () => {
+    const expanded = zoom.getAttribute('aria-pressed') !== 'true'
+    zoom.setAttribute('aria-pressed', String(expanded))
+    zoom.textContent = expanded
+      ? eventViewerText[currentLanguage].unzoom
+      : eventViewerText[currentLanguage].zoom
+    stage.classList.toggle('is-zoomed', expanded)
+  })
+
+  if (isEventAnnouncementActive()) {
+    invitation.hidden = false
+    const message = invitation.querySelector<HTMLElement>(
+      '.invitation-message',
+    )!
+    const openButton =
+      invitation.querySelector<HTMLButtonElement>('[data-open-flyers]')!
+    let bannerIndex = 0
+    let transitioning = false
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    openButton.addEventListener('click', () => {
+      setLanguage(eventBannerMessages[bannerIndex].lang as FlyerLanguage)
+      openInvitation()
+    })
+    window.setInterval(async () => {
+      if (
+        transitioning ||
+        reducedMotion.matches ||
+        document.hidden ||
+        dialog.open ||
+        invitation.matches(':hover, :focus-within')
+      )
+        return
+      transitioning = true
+      await message.animate(
+        [
+          { transform: 'translateY(0)', opacity: 1 },
+          { transform: 'translateY(-70%)', opacity: 0 },
+        ],
+        {
+          duration: 350,
+          easing: 'cubic-bezier(0.4, 0, 1, 1)',
+          fill: 'forwards',
+        },
+      ).finished
+      bannerIndex = (bannerIndex + 1) % eventBannerMessages.length
+      const next = eventBannerMessages[bannerIndex]
+      message.lang = next.lang
+      message.querySelector('[data-banner-date]')!.textContent = next.date
+      message.querySelector('[data-banner-text]')!.textContent = next.text
+      openButton.textContent = next.action
+      await message.animate(
+        [
+          { transform: 'translateY(70%)', opacity: 0 },
+          { transform: 'translateY(0)', opacity: 1 },
+        ],
+        {
+          duration: 550,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'forwards',
+        },
+      ).finished
+      message.getAnimations().forEach(animation => animation.cancel())
+      transitioning = false
+    }, 6000)
+    setLanguage(selectFlyerLanguage(navigator.languages))
+    let seen = false
+    try {
+      seen = sessionStorage.getItem(eventAnnouncement.sessionKey) === '1'
+    } catch (error) {
+      console.warn(
+        'Impossible de lire la préférence de session de l’invitation.',
+        error,
+      )
+    }
+    if (!seen) openInvitation()
+  }
+</script>
+
+<style>
+  .event-invitation {
+    background: #115e59;
+    color: white;
+  }
+  .invitation-viewport {
+    max-width: 80rem;
+    margin: auto;
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .event-invitation button {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .invitation-viewport {
+    overflow: hidden;
+  }
+  .invitation-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    min-height: 2rem;
+  }
+  .event-viewer {
+    margin: auto;
+    width: min(1100px, calc(100vw - 3rem));
+    max-height: calc(100dvh - 3rem);
+    padding: 0;
+    border: 0;
+    border-radius: 0.75rem;
+    background: #fefdfb;
+    color: #134e4a;
+    box-shadow: 0 24px 80px #0006;
+  }
+  .event-viewer::backdrop {
+    background: #042f2ed9;
+  }
+  .viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1.25rem 0.25rem;
+  }
+  .viewer-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .close-viewer {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    cursor: pointer;
+    font-size: 1.3rem;
+    border-radius: 50%;
+  }
+  .close-viewer:hover {
+    background: #faf0e0;
+  }
+  .viewer-languages {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem 1.25rem 0.85rem;
+    flex-wrap: wrap;
+  }
+  .viewer-languages button {
+    min-height: 40px;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    border: 1px solid #115e5933;
+    cursor: pointer;
+  }
+  .viewer-languages button[aria-pressed='true'] {
+    background: #115e59;
+    color: white;
+    border-color: #115e59;
+  }
+  .viewer-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+  }
+  .flyer-stage {
+    background: #ede8d8;
+    overflow: auto;
+    height: min(73dvh, 810px);
+    text-align: center;
+  }
+  .flyer-stage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .flyer-stage.is-zoomed img {
+    width: 1620px;
+    max-width: none;
+    height: auto;
+  }
+  .event-details {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .event-date {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .event-details h3 {
+    font-family: var(--font-family-headings);
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+  .event-details p {
+    line-height: 1.45;
+  }
+  .article-link {
+    display: block;
+    text-align: center;
+    background: #115e59;
+    color: white;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+  }
+  .flyer-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+    margin-top: auto;
+  }
+  .flyer-tools button,
+  .flyer-tools a {
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+    cursor: pointer;
+    min-height: 36px;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  .flyer-stage:focus-visible {
+    outline: 3px solid #d4a855;
+    outline-offset: 3px;
+  }
+  @media (max-width: 680px) {
+    .invitation-viewport {
+      padding: 0.65rem 1rem;
+      font-size: 0.9rem;
+    }
+    .invitation-message {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.3rem;
+      min-height: 5.5rem;
+    }
+    .invitation-message button {
+      align-self: flex-end;
+    }
+    .event-viewer {
+      width: calc(100vw - 1rem);
+      max-height: calc(100dvh - 1rem);
+    }
+    .viewer-header {
+      padding-inline: 0.8rem;
+    }
+    .viewer-languages {
+      display: flex;
+      flex-wrap: wrap;
+      padding-inline: 0.8rem;
+      gap: 0.3rem;
+    }
+    .viewer-languages button {
+      flex: 1 0 auto;
+      padding-inline: 0.65rem;
+      font-size: 0.85rem;
+    }
+    .viewer-content {
+      display: block;
+    }
+    .flyer-stage {
+      height: min(62dvh, 125vw);
+    }
+    .event-details {
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+    .event-details > p,
+    .event-details h3 {
+      display: none;
+    }
+    .flyer-tools {
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+  }
+</style>

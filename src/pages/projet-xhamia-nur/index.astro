@@ -17,6 +17,7 @@ import ProgressBar from '@/components/progress-bar.astro'
 import BankDetails from '@/components/react/bank-details'
 import SectionCard from '@/components/section-card.astro'
 import { formatAmount, formatPercentage } from '@/lib/format'
+import ProjectEventInvitation from '@/components/project-event-invitation.astro'
 
 // Récupérer les données du projet d'acquisition depuis Decap CMS
 const acquisitionProject = await getProject('acquisition-mosquee-nur')
@@ -119,6 +120,7 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
           Mis à jour le {derniereMaj.toLocaleDateString('fr-CH')}
         </span>
       </div>
+      <ProjectEventInvitation />
     </div>
   </section>
 
