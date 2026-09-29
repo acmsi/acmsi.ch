@@ -3,7 +3,6 @@ import Layout from '@/layouts/Layout.astro'
 import {
   MosqueIcon,
   ArrowRightIcon,
-  CalendarIcon,
   BankIcon,
   DeviceMobileIcon,
   MoneyIcon,
@@ -13,11 +12,9 @@ import {
 import { getProject, getGallery } from '@/lib/content'
 import PhotoGallery from '@/components/react/photo-gallery'
 import Ayah from '@/components/ayah.astro'
-import ProgressBar from '@/components/progress-bar.astro'
 import BankDetails from '@/components/react/bank-details'
 import SectionCard from '@/components/section-card.astro'
-import { formatAmount, formatPercentage } from '@/lib/format'
-import ProjectEventInvitation from '@/components/project-event-invitation.astro'
+import { formatAmount } from '@/lib/format'
 
 // Récupérer les données du projet d'acquisition depuis Decap CMS
 const acquisitionProject = await getProject('acquisition-mosquee-nur')
@@ -35,14 +32,11 @@ const galleryData = mosqueGallery
 
 // Données par défaut si le projet n'est pas trouvé dans le CMS
 const objectifTotal = acquisitionProject?.entry.data.objectif || 630000
-const montantCollecte = acquisitionProject?.entry.data.montant_leve || 330000
-const pourcentageCollecte = (montantCollecte / objectifTotal) * 100 || 52.4
-const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
 ---
 
 <Layout
   title="Projet Xhamia Nur - Acquisition de la Mosquée - ACMSI"
-  description="Aidez l'ACMSI à acquérir la mosquée Nur pour 630'000 CHF. Un projet urgent pour que la communauté assume collectivement la responsabilité de son lieu de culte."
+  description="Après la rencontre du 27 septembre, le bilan des dons et promesses pour l'acquisition de la mosquée Nur est en cours de vérification."
 >
   <!-- Hero Section - Urgent -->
   <section
@@ -57,9 +51,9 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
           Projet Xhamia Nur
         </h1>
         <p class="text-xl lg:text-2xl max-w-4xl mx-auto mb-8 text-green-800">
-          Un projet urgent de <strong>{formatAmount(objectifTotal)}</strong>{
-            ' '
-          }
+          Un objectif d&apos;acquisition de <strong
+            >{formatAmount(objectifTotal)}</strong
+          >{' '}
           pour que l&rsquo;ACMSI acquière la mosquée Nur et que la communauté{
             ' '
           }
@@ -86,41 +80,25 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
     </div>
   </section>
 
-  <!-- Progress Section -->
+  <!-- Status of the acquisition funding -->
   <section class="py-12 bg-white border-b">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold mb-2">Progression de la collecte</h2>
+        <h2 class="text-2xl font-bold mb-2">Où en est le projet ?</h2>
         <p class="text-gray-600">
-          Chaque contribution nous rapproche de l&apos;acquisition
+          Les dons et promesses reçus autour de la rencontre du 27 septembre
+          sont en cours de vérification. Le montant confirmé sera publié dès que
+          le bilan sera terminé. L&apos;acquisition de la mosquée par
+          l&apos;ACMSI reste à finaliser.
         </p>
       </div>
-
-      <ProgressBar percentage={pourcentageCollecte} variant="thick" />
-
-      <div
-        class="flex flex-wrap gap-1 justify-between items-center sm:text-lg my-2"
-      >
-        <span class="flex-1 min-w-0 max-w-fit font-semibold text-green-600">
-          {formatAmount(montantCollecte)} collectés
-        </span>
-        <span class="flex-1 min-w-0 max-w-fit text-right text-gray-600">
-          Objectif : {formatAmount(objectifTotal)}
-        </span>
-      </div>
-
-      <div
-        class="flex flex-wrap gap-1 justify-between items-center text-sm text-gray-500"
-      >
-        <span>
-          {formatPercentage(pourcentageCollecte)} de l&apos;objectif atteint
-        </span>
-        <span class="flex items-center">
-          <CalendarIcon className="w-4 h-4 mr-1" />
-          Mis à jour le {derniereMaj.toLocaleDateString('fr-CH')}
-        </span>
-      </div>
-      <ProjectEventInvitation />
+      <p class="text-center">
+        <a
+          href="/actualites/2026-09-14-rencontre-soutien-mosquee-nur"
+          class="font-semibold text-teal-700 underline hover:text-teal-900"
+          >Voir la mise à jour de la rencontre</a
+        >
+      </p>
     </div>
   </section>
 
@@ -137,7 +115,7 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
           <div class="flex">
             <div class="ml-3">
               <h3 class="text-lg font-medium text-amber-800 mb-2">
-                Situation urgente
+                Situation de l&apos;acquisition
               </h3>
               <p class="text-amber-700">
                 La mosquée Nur a été acquise par des membres généreux à titre
@@ -231,7 +209,7 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-4">Comment contribuer au projet ?</h2>
         <p class="text-lg text-gray-600">
-          Plusieurs moyens s&apos;offrent à vous pour soutenir ce projet urgent
+          Plusieurs moyens s&apos;offrent à vous pour soutenir ce projet
         </p>
       </div>
 
@@ -323,10 +301,11 @@ const derniereMaj = acquisitionProject?.entry.data.derniere_maj || new Date()
             Utilisation des fonds
           </h4>
           <p class="text-base text-green-800">
-            100% des dons collectés via cette campagne seront utilisés
-            exclusivement pour l&apos;acquisition de la mosquée Nur par
-            l&apos;ACMSI. Aucun frais administratif n&apos;est prélevé sur ces
-            dons.
+            Tous les dons collectés dans le cadre de cette campagne sont
+            destinés exclusivement à l&apos;acquisition de la mosquée Nur par
+            l&apos;ACMSI. Une fois cette acquisition entièrement financée, tout
+            excédent éventuel sera réservé uniquement aux futurs travaux de la
+            mosquée. Aucun frais administratif n&apos;est prélevé sur ces dons.
           </p>
         </div>
       </div>

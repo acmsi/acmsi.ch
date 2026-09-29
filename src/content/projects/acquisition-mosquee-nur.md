@@ -39,8 +39,8 @@ Chaque contribution nous rapproche de cet objectif vital. En donnant pour l'acqu
 
 Nous nous engageons à une transparence totale :
 
-- **100% des dons** sont utilisés pour l'acquisition
+- **Tous les dons de cette campagne** sont destinés exclusivement à l'acquisition de la mosquée ; une fois celle-ci entièrement financée, tout excédent éventuel sera réservé uniquement aux futurs travaux de la mosquée
 - **Aucun frais administratif** n'est prélevé
-- **Suivi régulier** de la progression publié sur le site
+- **Bilan de la collecte** publié sur le site après vérification des dons et des promesses
 
 _Qu'Allah récompense généreusement tous ceux qui contribuent à ce projet essentiel._
