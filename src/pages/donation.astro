@@ -44,9 +44,8 @@ const projectData = await getProjectSummary()
 
   <!-- Projet Xhamia Nur Banner -->
   <ProjectBanner
-    showEvent={true}
     variant="compact"
-    showProgress={true}
+    showProgress={false}
     totalAmount={projectData?.total_objectif || 630000}
     raisedAmount={projectData?.total_leve || 0}
     percentage={projectData?.pourcentage_global || 0}
@@ -260,6 +259,13 @@ const projectData = await getProjectSummary()
         <p class="text-lg">
           Plusieurs moyens s&apos;offrent à vous pour soutenir notre association
         </p>
+        <p class="mt-4 text-gray-700">
+          Un don libre à l&apos;ACMSI soutient les besoins de la mosquée,
+          notamment son entretien, ses activités et ses futurs travaux. Pour un
+          don destiné au projet d&apos;acquisition de la mosquée, indiquez-le
+          expressément : tout excédent éventuel une fois l&apos;acquisition
+          financée sera réservé aux futurs travaux de la mosquée.
+        </p>
       </div>
 
       <div class="space-y-8">
@@ -308,7 +314,9 @@ const projectData = await getProjectSummary()
           <div class="bg-amber-50 border-l-4 border-amber-500 p-3 mt-1">
             <p class="text-sm font-semibold text-amber-900">
               Important : Précisez &quot;Don libre ACMSI&quot; dans la
-              communication
+              communication pour un don sans affectation particulière. Pour un
+              don destiné à l&apos;acquisition, indiquez &quot;Projet Xhamia
+              Nur&quot;.
             </p>
           </div>
         </SectionCard>

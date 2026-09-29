@@ -7,6 +7,12 @@ featured_image: /images/evenements/2026-09-27/bs.jpeg
 published: true
 ---
 
+<aside class="not-prose rounded-xl border border-teal-200 bg-teal-50 p-6 text-teal-950" aria-label="Ažuriranje od 29. septembra 2026.">
+  <p class="mb-2 font-bold">Ažuriranje od 29. septembra 2026.</p>
+  <p class="mb-3">Elhamdulillah! Hvala brojnim ljudima koji su 27. septembra bili u džamiji Nur, gostima koji su obogatili program, volonterima i svima koji su podržali projekt.</p>
+  <p>Prve informacije o donacijama i obećanim prilozima ohrabrujuće su u odnosu na cilj od 630’000 CHF. Iznosi i uplate još se provjeravaju. Objavit ćemo novi članak s potvrđenim bilansom čim bude dostupan. Kupovina džamije od strane ACMSI-ja još nije završena.</p>
+</aside>
+
 ACMSI vas poziva na susret podrške projektu džamije Nur,
 **u nedjelju, 27. septembra 2026. u 14:00**, na adresi **Rue de la Clef 45, 2610 Saint-Imier**.
 

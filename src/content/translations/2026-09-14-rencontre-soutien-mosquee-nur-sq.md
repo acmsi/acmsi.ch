@@ -7,6 +7,12 @@ featured_image: /images/evenements/2026-09-27/sq.jpeg
 published: true
 ---
 
+<aside class="not-prose rounded-xl border border-teal-200 bg-teal-50 p-6 text-teal-950" aria-label="Përditësim i 29 shtatorit 2026">
+  <p class="mb-2 font-bold">Përditësim i 29 shtatorit 2026</p>
+  <p class="mb-3">Elhamdulilah! Faleminderit njerëzve të shumtë që ishin të pranishëm në xhaminë Nur më 27 shtator, të ftuarve që pasuruan programin, vullnetarëve dhe të gjithëve që mbështetën projektin.</p>
+  <p>Të dhënat e para për donacionet dhe premtimet janë inkurajuese për objektivin prej 630’000 CHF. Shumat dhe pagesat ende po verifikohen. Do të publikojmë një artikull të ri me bilancin e konfirmuar sapo të jetë gati. Blerja e xhamisë nga ACMSI ende duhet të përfundojë.</p>
+</aside>
+
 ACMSI ju fton në një takim për të mbështetur projektin e xhamisë Nur,
 **të dielën, më 27 shtator 2026, në orën 14:00**, në **Rue de la Clef 45, 2610 Saint-Imier**.
 

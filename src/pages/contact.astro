@@ -506,9 +506,8 @@ const projectData = await getProjectSummary()
 
   <!-- Project Banner -->
   <ProjectBanner
-    showEvent={true}
     variant="thin"
-    showProgress={true}
+    showProgress={false}
     totalAmount={projectData?.total_objectif || 630000}
     raisedAmount={projectData?.total_leve || 0}
     percentage={projectData?.pourcentage_global || 0}

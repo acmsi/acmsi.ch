@@ -35,10 +35,13 @@ test('one news entry links to all translations and their matching flyers', async
       'Shqip',
     ])
     const flyer = await page.locator('section[lang] img').boundingBox()
-    const paragraph = await page.locator('.prose > p').first().boundingBox()
-    const gap = paragraph!.y - flyer!.y - flyer!.height
+    const update = page.locator('.prose > aside').first()
+    await expect(update).toBeVisible()
+    const updateBox = await update.boundingBox()
+    const gap = updateBox!.y - flyer!.y - flyer!.height
     expect(gap).toBeGreaterThanOrEqual(24)
     expect(gap).toBeLessThanOrEqual(80)
+    await expect(update).toContainText('630’000 CHF')
     await page.evaluate(() => document.fonts.ready)
     const breadcrumb = page.getByRole('navigation', { name: 'Fil d’Ariane' })
     for (const width of [375, 240]) {

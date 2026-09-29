@@ -10,6 +10,12 @@ tags:
   - événement
 ---
 
+<aside class="not-prose rounded-xl border border-teal-200 bg-teal-50 p-6 text-teal-950" aria-label="Mise à jour du 29 septembre 2026">
+  <p class="mb-2 font-bold">Mise à jour du 29 septembre 2026</p>
+  <p class="mb-3">Alhamdulillah ! Merci aux nombreuses personnes présentes à la mosquée Nur le 27 septembre, aux invités qui ont animé la journée, aux bénévoles et à toutes celles et ceux qui ont soutenu le projet.</p>
+  <p>Les premiers retours sur les dons et les promesses sont encourageants pour l’objectif de 630’000 CHF. Les montants et les versements sont encore en cours de vérification. Nous publierons un nouvel article avec le bilan confirmé dès qu’il sera disponible. L’acquisition de la mosquée par l’ACMSI reste à finaliser.</p>
+</aside>
+
 L’ACMSI vous invite à une rencontre de soutien au projet de la mosquée Nur,
 **dimanche 27 septembre 2026 à 14 h**, à la **Rue de la Clef 45, 2610 Saint-Imier**.
 

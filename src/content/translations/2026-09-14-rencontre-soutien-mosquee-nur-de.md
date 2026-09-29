@@ -7,6 +7,12 @@ featured_image: /images/evenements/2026-09-27/de.jpeg
 published: true
 ---
 
+<aside class="not-prose rounded-xl border border-teal-200 bg-teal-50 p-6 text-teal-950" aria-label="Aktualisierung vom 29. September 2026">
+  <p class="mb-2 font-bold">Aktualisierung vom 29. September 2026</p>
+  <p class="mb-3">Alhamdulillah! Vielen Dank an die vielen Menschen, die am 27. September in der Nur-Moschee dabei waren, an die Gäste, die das Programm gestaltet haben, an die Freiwilligen und an alle, die das Projekt unterstützt haben.</p>
+  <p>Die ersten Rückmeldungen zu Spenden und Zusagen sind mit Blick auf das Ziel von 630’000 CHF ermutigend. Die Beträge und Zahlungseingänge werden noch geprüft. Wir veröffentlichen einen neuen Artikel mit der bestätigten Bilanz, sobald sie vorliegt. Der Erwerb der Moschee durch die ACMSI steht noch aus.</p>
+</aside>
+
 Die ACMSI lädt Sie zu einem Treffen zur Unterstützung des Projekts der Nur-Moschee ein:
 **Sonntag, 27. September 2026, um 14 Uhr**, **Rue de la Clef 45, 2610 Saint-Imier**.
 
