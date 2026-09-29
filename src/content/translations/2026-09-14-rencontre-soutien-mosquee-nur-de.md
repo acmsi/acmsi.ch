@@ -2,7 +2,7 @@
 article: 2026-09-14-rencontre-soutien-mosquee-nur
 language: de
 title: 'Am 27. September treffen wir uns für die Nur-Moschee'
-excerpt: 'Ein Treffen für Frauen und Männer am Sonntag, 27. September, um 14 Uhr in Saint-Imier, um gemeinsam das Projekt der Nur-Moschee zu unterstützen.'
+excerpt: 'Ein Treffen für alle am Sonntag, 27. September, um 14 Uhr in Saint-Imier, um gemeinsam das Projekt der Nur-Moschee zu unterstützen.'
 featured_image: /images/evenements/2026-09-27/de.jpeg
 published: true
 ---
@@ -12,7 +12,7 @@ Die ACMSI lädt Sie zu einem Treffen zur Unterstützung des Projekts der Nur-Mos
 
 Gemeinsam für ein Haus Allahs, gemeinsam für die kommenden Generationen:
 Kommen wir zusammen und tragen wir zum Projekt unserer Moschee bei.
-**Frauen und Männer sind herzlich willkommen.**
+**Alle sind herzlich willkommen.**
 
 ## Die Gäste
 

@@ -2,7 +2,7 @@
 article: 2026-09-14-rencontre-soutien-mosquee-nur
 language: bs
 title: 'Okupimo se 27. septembra za džamiju Nur'
-excerpt: 'Susret otvoren za muškarce i žene, u nedjelju 27. septembra u 14:00 u Saint-Imieru, kako bismo zajedno podržali projekt džamije Nur.'
+excerpt: 'Susret otvoren za sve, u nedjelju 27. septembra u 14:00 u Saint-Imieru, kako bismo zajedno podržali projekt džamije Nur.'
 featured_image: /images/evenements/2026-09-27/bs.jpeg
 published: true
 ---
@@ -12,7 +12,7 @@ ACMSI vas poziva na susret podrške projektu džamije Nur,
 
 Zajedno za Allahovu kuću, zajedno za generacije koje dolaze:
 okupimo se i doprinesimo projektu naše džamije.
-**Muškarci i žene su dobrodošli.**
+**Svi su dobrodošli.**
 
 ## Gosti
 

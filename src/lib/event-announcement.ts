@@ -73,7 +73,7 @@ export const eventViewerText = {
     heading: 'Ensemble pour la mosquée Nur',
     description:
       'Retrouvons-nous pour soutenir le projet de la mosquée, ensemble et pour les générations à venir.',
-    audience: 'Ouvert aux hommes et aux femmes.',
+    audience: 'Tout le monde est bienvenu.',
     article: 'Découvrir la rencontre',
     zoom: 'Agrandir le flyer',
     unzoom: 'Voir le flyer entier',
@@ -90,7 +90,7 @@ export const eventViewerText = {
     heading: 'Së bashku për xhaminë Nur',
     description:
       'Të mblidhemi për të mbështetur projektin e xhamisë, së bashku dhe për brezat që vijnë.',
-    audience: 'E hapur për burra dhe gra.',
+    audience: 'Të gjithë janë të mirëpritur.',
     article: 'Më shumë për takimin',
     zoom: 'Zmadho fletushkën',
     unzoom: 'Shiko fletushkën e plotë',
@@ -107,7 +107,7 @@ export const eventViewerText = {
     heading: 'Gemeinsam für die Nur-Moschee',
     description:
       'Kommen wir zusammen, um das Moscheeprojekt zu unterstützen – gemeinsam und für die kommenden Generationen.',
-    audience: 'Frauen und Männer sind willkommen.',
+    audience: 'Alle sind herzlich willkommen.',
     article: 'Mehr über das Treffen',
     zoom: 'Flyer vergrössern',
     unzoom: 'Ganzen Flyer anzeigen',
@@ -124,7 +124,7 @@ export const eventViewerText = {
     heading: 'Zajedno za džamiju Nur',
     description:
       'Okupimo se da podržimo projekt džamije, zajedno i za generacije koje dolaze.',
-    audience: 'Otvoreno za muškarce i žene.',
+    audience: 'Svi su dobrodošli.',
     article: 'Više o susretu',
     zoom: 'Povećaj letak',
     unzoom: 'Prikaži cijeli letak',

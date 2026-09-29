@@ -3,7 +3,7 @@ title: 'Le 27 septembre, retrouvons-nous pour la mosquée Nur'
 date: 2026-09-14T10:00:00+02:00
 author: ACMSI
 featured_image: /images/evenements/2026-09-27/fr.jpeg
-excerpt: 'Une rencontre ouverte aux hommes et aux femmes, dimanche 27 septembre à 14 h à Saint-Imier, pour soutenir ensemble le projet de la mosquée Nur.'
+excerpt: 'Une rencontre ouverte à tout le monde, dimanche 27 septembre à 14 h à Saint-Imier, pour soutenir ensemble le projet de la mosquée Nur.'
 published: true
 tags:
   - annonce
@@ -15,7 +15,7 @@ L’ACMSI vous invite à une rencontre de soutien au projet de la mosquée Nur,
 
 Ensemble pour une maison d’Allah, ensemble pour les générations à venir :
 retrouvons-nous pour partager ce moment et contribuer au projet de notre mosquée.
-**Les hommes et les femmes sont les bienvenus.**
+**Tout le monde est bienvenu.**
 
 ## Les invités
 

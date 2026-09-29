@@ -2,7 +2,7 @@
 article: 2026-09-14-rencontre-soutien-mosquee-nur
 language: sq
 title: 'Më 27 shtator, të mblidhemi për xhaminë Nur'
-excerpt: 'Një takim i hapur për burra dhe gra, të dielën më 27 shtator në orën 14:00 në Saint-Imier, për të mbështetur së bashku projektin e xhamisë Nur.'
+excerpt: 'Një takim i hapur për të gjithë, të dielën më 27 shtator në orën 14:00 në Saint-Imier, për të mbështetur së bashku projektin e xhamisë Nur.'
 featured_image: /images/evenements/2026-09-27/sq.jpeg
 published: true
 ---
@@ -12,7 +12,7 @@ ACMSI ju fton në një takim për të mbështetur projektin e xhamisë Nur,
 
 Bashkë për një shtëpi të Allahut, bashkë për brezat që vijnë:
 të mblidhemi për ta ndarë këtë moment dhe për të kontribuar në projektin e xhamisë sonë.
-**Burrat dhe gratë janë të mirëpritur.**
+**Të gjithë janë të mirëpritur.**
 
 ## Të ftuarit
 
