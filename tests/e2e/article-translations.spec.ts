@@ -10,27 +10,15 @@ test('one news entry links to all translations and their matching flyers', async
   await expect(page.locator('article')).toHaveCount(2)
   await page
     .getByRole('heading', {
-      name: 'Rencontre du 27 septembre : merci pour votre soutien à la mosquée Nur',
+      name: 'Le 27 septembre, retrouvons-nous pour la mosquée Nur',
     })
     .getByRole('link')
     .click()
   for (const [language, name, title] of [
-    [
-      'sq',
-      'Shqip',
-      'Takimi i 27 shtatorit: faleminderit për mbështetjen ndaj xhamisë Nur',
-    ],
-    [
-      'de',
-      'Deutsch',
-      'Treffen vom 27. September: Danke für Ihre Unterstützung der Nur-Moschee',
-    ],
-    ['bs', 'Bosanski', 'Susret od 27. septembra: hvala na podršci džamiji Nur'],
-    [
-      'fr',
-      'Français',
-      'Rencontre du 27 septembre : merci pour votre soutien à la mosquée Nur',
-    ],
+    ['sq', 'Shqip', 'Më 27 shtator, të mblidhemi për xhaminë Nur'],
+    ['de', 'Deutsch', 'Am 27. September treffen wir uns für die Nur-Moschee'],
+    ['bs', 'Bosanski', 'Okupimo se 27. septembra za džamiju Nur'],
+    ['fr', 'Français', 'Le 27 septembre, retrouvons-nous pour la mosquée Nur'],
   ]) {
     await page
       .locator('nav[aria-label]')
@@ -98,7 +86,7 @@ test('a shared translation URL and language links work without JavaScript', asyn
   const page = await context.newPage()
   await page.goto(`http://localhost:4321${articleUrl}/de`)
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Treffen vom 27. September: Danke für Ihre Unterstützung der Nur-Moschee',
+    'Am 27. September treffen wir uns für die Nur-Moschee',
   )
   await page
     .getByRole('navigation', { name: 'Sprache des Artikels' })

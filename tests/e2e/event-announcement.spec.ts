@@ -73,7 +73,7 @@ test('French fallback, zoom and article work on a narrow screen', async ({
   await expect(page).toHaveURL(/tag=/)
   await expect(
     page.getByRole('heading', {
-      name: 'Rencontre du 27 septembre : merci pour votre soutien à la mosquée Nur',
+      name: 'Le 27 septembre, retrouvons-nous pour la mosquée Nur',
     }),
   ).toBeVisible()
   await expect(

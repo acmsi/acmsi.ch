@@ -1,9 +1,9 @@
 ---
-title: 'Rencontre du 27 septembre : merci pour votre soutien à la mosquée Nur'
+title: 'Le 27 septembre, retrouvons-nous pour la mosquée Nur'
 date: 2026-09-14T10:00:00+02:00
 author: ACMSI
 featured_image: /images/evenements/2026-09-27/fr.jpeg
-excerpt: 'La rencontre du 27 septembre est terminée. Merci à toutes les personnes qui ont soutenu la mosquée Nur ; le bilan des dons et promesses est en cours de vérification.'
+excerpt: 'Une rencontre ouverte à tout le monde, dimanche 27 septembre à 14 h à Saint-Imier, pour soutenir ensemble le projet de la mosquée Nur.'
 published: true
 tags:
   - annonce
@@ -12,11 +12,9 @@ tags:
 
 <aside class="not-prose rounded-xl border border-teal-200 bg-teal-50 p-6 text-teal-950" aria-label="Mise à jour du 29 septembre 2026">
   <p class="mb-2 font-bold">Mise à jour du 29 septembre 2026</p>
-  <p class="mb-3">La rencontre du 27 septembre s’est bien déroulée. Merci aux nombreuses personnes présentes sur place, aux invités qui ont animé cette journée, aux bénévoles et à toutes celles et ceux qui ont soutenu la mosquée Nur.</p>
-  <p>Les premiers retours sur les dons et les promesses sont encourageants pour l’objectif de 630’000 CHF. Les montants et les versements sont encore en cours de vérification. Nous publierons un bilan confirmé dès qu’il sera disponible. L’acquisition de la mosquée par l’ACMSI reste à finaliser.</p>
+  <p class="mb-3">Alhamdulillah ! Merci aux nombreuses personnes présentes à la mosquée Nur le 27 septembre, aux invités qui ont animé la journée, aux bénévoles et à toutes celles et ceux qui ont soutenu le projet.</p>
+  <p>Les premiers retours sur les dons et les promesses sont encourageants pour l’objectif de 630’000 CHF. Les montants et les versements sont encore en cours de vérification. Nous publierons un nouvel article avec le bilan confirmé dès qu’il sera disponible. L’acquisition de la mosquée par l’ACMSI reste à finaliser.</p>
 </aside>
-
-## Invitation initiale
 
 L’ACMSI vous invite à une rencontre de soutien au projet de la mosquée Nur,
 **dimanche 27 septembre 2026 à 14 h**, à la **Rue de la Clef 45, 2610 Saint-Imier**.

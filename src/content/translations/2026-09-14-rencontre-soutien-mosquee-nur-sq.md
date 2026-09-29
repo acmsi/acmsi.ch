@@ -1,19 +1,17 @@
 ---
 article: 2026-09-14-rencontre-soutien-mosquee-nur
 language: sq
-title: 'Takimi i 27 shtatorit: faleminderit për mbështetjen ndaj xhamisë Nur'
-excerpt: 'Takimi i 27 shtatorit përfundoi. Faleminderit të gjithëve që mbështetën xhaminë Nur; bilanci i donacioneve dhe premtimeve po verifikohet.'
+title: 'Më 27 shtator, të mblidhemi për xhaminë Nur'
+excerpt: 'Një takim i hapur për të gjithë, të dielën më 27 shtator në orën 14:00 në Saint-Imier, për të mbështetur së bashku projektin e xhamisë Nur.'
 featured_image: /images/evenements/2026-09-27/sq.jpeg
 published: true
 ---
 
 <aside class="not-prose rounded-xl border border-teal-200 bg-teal-50 p-6 text-teal-950" aria-label="Përditësim i 29 shtatorit 2026">
   <p class="mb-2 font-bold">Përditësim i 29 shtatorit 2026</p>
-  <p class="mb-3">Takimi i 27 shtatorit shkoi mirë. Faleminderit njerëzve të shumtë që ishin të pranishëm, të ftuarve që pasuruan programin, vullnetarëve dhe të gjithëve që mbështetën xhaminë Nur.</p>
-  <p>Të dhënat e para për donacionet dhe premtimet janë inkurajuese për objektivin prej 630’000 CHF. Shumat dhe pagesat ende po verifikohen. Do të publikojmë bilancin e konfirmuar sapo të jetë gati. Blerja e xhamisë nga ACMSI ende duhet të përfundojë.</p>
+  <p class="mb-3">Elhamdulilah! Faleminderit njerëzve të shumtë që ishin të pranishëm në xhaminë Nur më 27 shtator, të ftuarve që pasuruan programin, vullnetarëve dhe të gjithëve që mbështetën projektin.</p>
+  <p>Të dhënat e para për donacionet dhe premtimet janë inkurajuese për objektivin prej 630’000 CHF. Shumat dhe pagesat ende po verifikohen. Do të publikojmë një artikull të ri me bilancin e konfirmuar sapo të jetë gati. Blerja e xhamisë nga ACMSI ende duhet të përfundojë.</p>
 </aside>
-
-## Ftesa fillestare
 
 ACMSI ju fton në një takim për të mbështetur projektin e xhamisë Nur,
 **të dielën, më 27 shtator 2026, në orën 14:00**, në **Rue de la Clef 45, 2610 Saint-Imier**.
