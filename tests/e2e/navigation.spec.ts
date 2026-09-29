@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test'
+import { test, expect, type Page } from '../fixtures/browser'
 
 /**
  * End-to-end tests for navigation functionality

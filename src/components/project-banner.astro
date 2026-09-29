@@ -5,10 +5,12 @@ import {
   TrendUpIcon,
 } from '@phosphor-icons/react/dist/ssr'
 import ProgressBar from './progress-bar.astro'
+import ProjectEventInvitation from './project-event-invitation.astro'
 import { formatAmount, formatPercentage } from '@/lib/format'
 
 interface Props {
   variant?: 'compact' | 'full' | 'thin'
+  showEvent?: boolean
   showProgress?: boolean
   totalAmount?: number
   raisedAmount?: number
@@ -17,6 +19,7 @@ interface Props {
 
 const {
   variant = 'compact',
+  showEvent = false,
   showProgress = false,
   totalAmount = 630000,
   raisedAmount = 330000,
@@ -70,6 +73,7 @@ const {
             </a>
           </div>
         </div>
+        {showEvent && <ProjectEventInvitation />}
       </div>
     </section>
   )
@@ -125,6 +129,7 @@ const {
             <ArrowRightIcon className="w-4 h-4 ml-2" />
           </a>
         </div>
+        {showEvent && <ProjectEventInvitation />}
       </div>
     </section>
   )
@@ -185,6 +190,7 @@ const {
             </div>
           </div>
         </div>
+        {showEvent && <ProjectEventInvitation />}
       </div>
     </section>
   )

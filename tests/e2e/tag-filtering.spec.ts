@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../fixtures/browser'
 
 test.describe('Tag Filtering on Actualités Page', () => {
   test.beforeEach(async ({ page }) => {

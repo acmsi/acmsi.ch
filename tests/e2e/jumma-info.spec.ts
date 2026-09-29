@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../fixtures/browser'
 import { jummaShort, jummaTime } from '@/lib/jumma'
 
 /**

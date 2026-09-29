@@ -1,0 +1,219 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { render, getCollection, type CollectionEntry } from 'astro:content'
+import { getProjectSummary } from '@/lib/content'
+import { optimizedSrc } from '@/lib/images'
+import { CaretLeftIcon } from '@phosphor-icons/react/dist/ssr'
+import ProjectBanner from '@/components/project-banner.astro'
+import Breadcrumbs from '@/components/breadcrumbs.astro'
+
+interface Props {
+  article: CollectionEntry<'actualites'>
+  translation?: CollectionEntry<'translations'>
+}
+const { article: original, translation } = Astro.props
+const language = translation?.data.language ?? 'fr'
+const article = {
+  ...original,
+  data: { ...original.data, ...translation?.data },
+}
+const translations = await getCollection(
+  'translations',
+  ({ data }) => data.published && data.article.id === original.id,
+)
+const names = { fr: 'Français', sq: 'Shqip', de: 'Deutsch', bs: 'Bosanski' }
+const labels = {
+  fr: {
+    language: 'Langue de l’article',
+    back: 'Retour aux actualités',
+    contact: 'Nous contacter',
+  },
+  sq: {
+    language: 'Gjuha e artikullit',
+    back: 'Kthehu te lajmet',
+    contact: 'Na kontaktoni',
+  },
+  de: {
+    language: 'Sprache des Artikels',
+    back: 'Zurück zu den Neuigkeiten',
+    contact: 'Kontakt aufnehmen',
+  },
+  bs: {
+    language: 'Jezik članka',
+    back: 'Nazad na novosti',
+    contact: 'Kontaktirajte nas',
+  },
+}[language]
+const alternatives = [
+  { language: 'fr', url: `/actualites/${original.id}`, name: names.fr },
+  ...(['sq', 'de', 'bs'] as const)
+    .filter(lang => translations.some(entry => entry.data.language === lang))
+    .map(lang => ({
+      language: lang,
+      url: `/actualites/${original.id}/${lang}`,
+      name: names[lang],
+    })),
+].sort((a, b) => a.name.localeCompare(b.name, 'fr'))
+const projectData = await getProjectSummary()
+
+// Render markdown content
+const { Content } = await render(translation ?? original)
+---
+
+<Layout
+  title={`${article.data.title} - ACMSI`}
+  description={article.data.excerpt || `Article: ${article.data.title}`}
+>
+  <Fragment slot="head">
+    {
+      translations.length > 0 &&
+        alternatives.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.language}
+            href={new URL(item.url, Astro.site)}
+          />
+        ))
+    }
+  </Fragment>
+  <!-- Breadcrumb -->
+  <Breadcrumbs
+    items={[
+      { href: '/actualites', label: 'Actualites' },
+      { label: article.data.title },
+    ]}
+  />
+
+  {
+    translations.length > 0 && (
+      <nav
+        aria-label={labels.language}
+        lang={language}
+        class="max-w-4xl mx-auto px-4 pt-8"
+      >
+        <p class="text-center text-lg font-bold text-gray-900 mb-4">
+          {labels.language}
+        </p>
+        <div class="flex flex-wrap justify-center gap-2">
+          {alternatives.map(item => (
+            <a
+              href={item.url}
+              lang={item.language}
+              hreflang={item.language}
+              aria-current={language === item.language ? 'page' : undefined}
+              class:list={[
+                'px-4 py-3 rounded-lg border text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700',
+                language === item.language
+                  ? 'bg-teal-700 text-white border-teal-700'
+                  : 'bg-white border-gray-300 text-gray-700 hover:bg-teal-50',
+              ]}
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </nav>
+    )
+  }
+  <!-- Article Header -->
+  <section
+    lang={language}
+    class="pt-16 pb-6 bg-linear-to-b from-white/60 to-white"
+  >
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div
+          class="flex items-center justify-center text-sm text-gray-600 mb-4"
+        >
+          <time datetime={article.data.date.toISOString()}>
+            {
+              article.data.date.toLocaleDateString(language, {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }
+          </time>
+          <span class="mx-2">•</span>
+          <span>{article.data.author}</span>
+        </div>
+
+        <h1 class="text-3xl lg:text-4xl font-bold mb-3">
+          {article.data.title}
+        </h1>
+
+        {
+          article.data.excerpt && (
+            <p class="text-xl max-w-3xl mx-auto">{article.data.excerpt}</p>
+          )
+        }
+
+        {
+          article.data.tags && article.data.tags.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+              {article.data.tags.map(tag => (
+                <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      {
+        article.data.featured_image && (
+          <div>
+            <img
+              src={optimizedSrc(article.data.featured_image, 'medium')}
+              alt={article.data.title}
+              class="w-full max-h-[80vh] rounded-lg object-contain"
+            />
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <section lang={language} class="pt-4 pb-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="prose sm:prose-lg max-w-none text-gray-700 prose-headings:text-gray-900 prose-links:text-teal-600 prose-strong:text-gray-900"
+      >
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation -->
+  <section lang={language} class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <a
+          href="/actualites"
+          class="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors inline-flex items-center"
+        >
+          <CaretLeftIcon className="w-4 h-4 mr-2" weight="bold" />
+          {labels.back}
+        </a>
+
+        <a
+          href="/contact"
+          class="text-teal-600 font-medium hover:text-teal-700 transition-colors"
+        >
+          {labels.contact}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Banner -->
+  <ProjectBanner
+    variant="thin"
+    showProgress={true}
+    totalAmount={projectData?.total_objectif || 630000}
+    raisedAmount={projectData?.total_leve || 0}
+    percentage={projectData?.pourcentage_global || 0}
+  />
+</Layout>

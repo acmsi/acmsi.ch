@@ -43,6 +43,37 @@ collections:
       - { label: 'Contenu', name: 'body', widget: 'markdown' }
       - { label: 'Publié', name: 'published', widget: 'boolean', default: true }
 
+  - name: 'translations'
+    label: 'Traductions des actualités'
+    folder: 'src/content/translations'
+    create: true
+    slug: '{{fields.article}}-{{fields.language}}'
+    fields:
+      - label: 'Article français'
+        name: 'article'
+        widget: 'relation'
+        collection: 'actualites'
+        search_fields: ['title']
+        value_field: '{{slug}}'
+        display_fields: ['title']
+      - label: 'Langue'
+        name: 'language'
+        widget: 'select'
+        options:
+          - { label: 'Shqip', value: 'sq' }
+          - { label: 'Deutsch', value: 'de' }
+          - { label: 'Bosanski', value: 'bs' }
+      - { label: 'Titre', name: 'title', widget: 'string' }
+      - { label: 'Résumé', name: 'excerpt', widget: 'text' }
+      - {
+          label: 'Image de couverture',
+          name: 'featured_image',
+          widget: 'image',
+          required: false,
+        }
+      - { label: 'Contenu', name: 'body', widget: 'markdown' }
+      - { label: 'Publié', name: 'published', widget: 'boolean', default: true }
+
   - name: 'tags' # Collection pour les tags
     label: 'Tags'
     folder: 'src/content/tags' # Updated path for Astro

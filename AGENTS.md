@@ -83,6 +83,7 @@ Astro Content Collections with Zod schemas for type-safe content:
 - Import Zod from `astro/zod`; use collection entry `id` for article URLs and `render(entry)` from `astro:content` for Markdown.
 - **Collections**:
   - `actualites` - News articles
+  - `translations` - Translated article bodies; reference a French article and inherit its date, author and tags. Listed only through the article language links, not the news feed.
   - `tags` - Article tags
   - `projects` - Fundraising projects
   - `galleries` - Photo galleries
@@ -127,6 +128,7 @@ Content utility library at `src/lib/content.ts` handles:
 ├── /a-propos                   # About page
 ├── /actualites                 # News section
 │   └── /actualites/[slug]      # Individual news articles
+│       └── /[language]         # Published translations (sq, de, bs)
 ├── /contact                    # Contact page
 ├── /credits                    # Credits & acknowledgments page
 ├── /donation                   # Donation page
