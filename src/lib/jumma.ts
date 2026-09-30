@@ -1,6 +1,6 @@
 /** Jumma (Friday prayer) schedules — single source of truth */
 const winter = { khutba: { h: 12, m: 15 }, prayer: { h: 12, m: 30 } } as const
-const summer = { khutba: { h: 16, m: 20 }, prayer: { h: 16, m: 30 } } as const
+const summer = { khutba: { h: 16, m: 20 }, prayer: { h: 16, m: 20 } } as const
 
 function isSummerTime(date: Date = new Date()): boolean {
   const offset = new Intl.DateTimeFormat('en', {
