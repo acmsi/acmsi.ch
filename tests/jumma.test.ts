@@ -1,22 +1,26 @@
 import { it } from 'node:test'
 import assert from 'node:assert/strict'
+import { getJummaSchedule } from '../src/lib/jumma.ts'
 
-it('displays the summer Jumma prayer at 16:20 on both pages', async () => {
-  const RealDate = Date
-  class SummerDate extends RealDate {
-    constructor() {
-      super('2026-09-30T12:00:00Z')
-    }
+it('uses the announced October schedules for the upcoming Friday', () => {
+  for (const [date, h, m] of [
+    ['2026-10-10', 16, 10],
+    ['2026-10-16', 16, 10],
+    ['2026-10-17', 16, 5],
+    ['2026-10-23', 16, 5],
+    ['2026-10-24', 12, 30],
+    ['2026-10-30', 12, 30],
+  ] as const) {
+    assert.deepEqual(getJummaSchedule(new Date(`${date}T12:00:00Z`)).prayer, {
+      h,
+      m,
+    })
   }
-  globalThis.Date = SummerDate as DateConstructor
-  try {
-    const { jummaShort, jummaTime, jummaAltTime } =
-      await import('../src/lib/jumma.ts')
-    assert.equal(jummaShort('prayer'), '16h20')
-    assert.equal(jummaTime('prayer'), '16:20')
-    assert.equal(jummaTime('khutba'), '16:20')
-    assert.equal(jummaAltTime('prayer'), '12:30')
-  } finally {
-    globalThis.Date = RealDate
-  }
+})
+
+it('preserves the regular summer schedule before the October changes', () => {
+  assert.deepEqual(getJummaSchedule(new Date('2026-09-30T12:00:00Z')).prayer, {
+    h: 16,
+    m: 20,
+  })
 })

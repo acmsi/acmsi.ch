@@ -57,6 +57,9 @@ export default defineConfig({
 
   // Vite configuration for Tailwind CSS v4
   vite: {
+    define: {
+      __JUMMA_BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    },
     css: {
       postcss: './postcss.config.mjs',
     },

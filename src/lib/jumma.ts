@@ -9,11 +9,37 @@ function isSummerTime(date: Date = new Date()): boolean {
   })
     .format(date)
     .match(/GMT\+(\d+)/)
-  return offset?.[1] === '2'
+  return Number(offset?.[1]) === 2
 }
 
-export const isSummer = isSummerTime()
-export const jumma = isSummer ? summer : winter
+// Cloudflare prerender uses an epoch clock outside requests.
+declare const __JUMMA_BUILD_TIME__: string
+const scheduleDate =
+  typeof __JUMMA_BUILD_TIME__ === 'undefined'
+    ? new Date()
+    : new Date(__JUMMA_BUILD_TIME__)
+export const isSummer = isSummerTime(scheduleDate)
+/** Schedule for the upcoming Friday, using the Swiss calendar date. */
+export function getJummaSchedule(date: Date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en', {
+    timeZone: 'Europe/Zurich',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date)
+  const part = (type: string) => parts.find(value => value.type === type)?.value
+  const today = `${part('year')}-${part('month')}-${part('day')}`
+  if (today > '2026-10-09' && today <= '2026-10-16') {
+    return { khutba: { h: 16, m: 10 }, prayer: { h: 16, m: 10 } }
+  }
+  if (today > '2026-10-16' && today <= '2026-10-23') {
+    return { khutba: { h: 16, m: 5 }, prayer: { h: 16, m: 5 } }
+  }
+  if (today > '2026-10-23' && today < '2026-10-30') return winter
+  return isSummerTime(date) ? summer : winter
+}
+
+export const jumma = getJummaSchedule(scheduleDate)
 export const jummaAlt = isSummer ? winter : summer
 
 function pad(n: number) {
