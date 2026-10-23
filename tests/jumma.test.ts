@@ -4,10 +4,8 @@ import { getJummaSchedule } from '../src/lib/jumma.ts'
 
 it('uses the announced October schedules for the upcoming Friday', () => {
   for (const [date, h, m] of [
-    ['2026-10-10', 16, 10],
-    ['2026-10-16', 16, 10],
-    ['2026-10-17', 16, 5],
-    ['2026-10-23', 16, 5],
+    ['2026-10-17', 15, 55],
+    ['2026-10-23', 15, 55],
     ['2026-10-24', 12, 30],
     ['2026-10-30', 12, 30],
   ] as const) {

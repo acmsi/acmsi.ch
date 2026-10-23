@@ -29,11 +29,8 @@ export function getJummaSchedule(date: Date = new Date()) {
   }).formatToParts(date)
   const part = (type: string) => parts.find(value => value.type === type)?.value
   const today = `${part('year')}-${part('month')}-${part('day')}`
-  if (today > '2026-10-09' && today <= '2026-10-16') {
-    return { khutba: { h: 16, m: 10 }, prayer: { h: 16, m: 10 } }
-  }
   if (today > '2026-10-16' && today <= '2026-10-23') {
-    return { khutba: { h: 16, m: 5 }, prayer: { h: 16, m: 5 } }
+    return { khutba: { h: 15, m: 55 }, prayer: { h: 15, m: 55 } }
   }
   if (today > '2026-10-23' && today < '2026-10-30') return winter
   return isSummerTime(date) ? summer : winter
