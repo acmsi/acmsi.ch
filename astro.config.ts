@@ -5,6 +5,8 @@ import cloudflare from '@astrojs/cloudflare'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.acmsi.ch',
+  // Keep Astro 6 HTML-aware whitespace between inline elements.
+  compressHTML: true,
 
   redirects: {
     '/parking': '/contact#parking-info',
