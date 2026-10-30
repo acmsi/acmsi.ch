@@ -1,5 +1,5 @@
 import { test, expect } from '../fixtures/browser'
-import { jummaShort, jummaTime } from '@/lib/jumma'
+import { jumma, jummaShort, jummaTime } from '@/lib/jumma'
 
 /**
  * End-to-end tests for Jumma prayer information
@@ -8,6 +8,7 @@ import { jummaShort, jummaTime } from '@/lib/jumma'
 
 const khutbaShort = jummaShort('khutba')
 const prayerShort = jummaShort('prayer')
+const salatText = `(${jumma.salatLabel} ${prayerShort})`
 const khutbaTime = jummaTime('khutba')
 const prayerTime = jummaTime('prayer')
 
@@ -21,7 +22,7 @@ test.describe('Jumma Prayer Information', () => {
     })
     await expect(jummaLink).toBeVisible()
     await expect(jummaLink).toHaveAttribute('href', '/contact#jumma')
-    await expect(page.getByText(`(Salat ${prayerShort})`)).toBeVisible()
+    await expect(page.getByText(salatText)).toBeVisible()
   })
 
   test('homepage has links to prayer times and parking info', async ({
@@ -69,7 +70,7 @@ test.describe('Jumma Prayer Information', () => {
 
     // Check Salat time matches homepage
     await expect(
-      jummaSection.getByRole('term').filter({ hasText: 'Prière' }),
+      jummaSection.getByRole('term').filter({ hasText: jumma.prayerLabel }),
     ).toBeVisible()
     await expect(
       jummaSection.getByText(prayerTime, { exact: true }),
@@ -85,7 +86,7 @@ test.describe('Jumma Prayer Information', () => {
       .locator(`text=Jumma : ${khutbaShort}`)
       .textContent()
     const homepageSalatText = await page
-      .locator(`text=(Salat ${prayerShort})`)
+      .locator(`text=${salatText}`)
       .textContent()
 
     // Extract times (format: 16h20 -> 16:20)

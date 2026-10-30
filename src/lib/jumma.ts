@@ -1,6 +1,16 @@
 /** Jumma (Friday prayer) schedules — single source of truth */
-const winter = { khutba: { h: 12, m: 15 }, prayer: { h: 12, m: 30 } } as const
-const summer = { khutba: { h: 16, m: 20 }, prayer: { h: 16, m: 20 } } as const
+const winter = {
+  khutba: { h: 12, m: 20 },
+  prayer: { h: 12, m: 45 },
+  prayerLabel: 'Fin de la prière',
+  salatLabel: 'Fin de la Salat',
+} as const
+const summer = {
+  khutba: { h: 16, m: 20 },
+  prayer: { h: 16, m: 20 },
+  prayerLabel: 'Prière',
+  salatLabel: 'Salat',
+} as const
 
 function isSummerTime(date: Date = new Date()): boolean {
   const offset = new Intl.DateTimeFormat('en', {
@@ -43,7 +53,7 @@ export function jummaTime(slot: 'khutba' | 'prayer') {
   return `${t.h}:${pad(t.m)}`
 }
 
-/** Alternate schedule time, e.g. "12:15" when current is summer */
+/** Alternate schedule time, e.g. "12:20" when current is summer */
 export function jummaAltTime(slot: 'khutba' | 'prayer') {
   const t = jummaAlt[slot]
   return `${t.h}:${pad(t.m)}`

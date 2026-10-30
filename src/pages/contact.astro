@@ -13,7 +13,7 @@ import {
 import MosqueLocationMap from '@/components/react/mosque-location-map'
 import ProjectBanner from '@/components/project-banner.astro'
 import { getProjectSummary } from '@/lib/content'
-import { jummaTime, jummaAltTime, isSummer } from '@/lib/jumma'
+import { jumma, jummaTime, jummaAltTime, isSummer } from '@/lib/jumma'
 
 const projectData = await getProjectSummary()
 ---
@@ -173,7 +173,7 @@ const projectData = await getProjectSummary()
                 <dd>{jummaTime('khutba')}</dd>
               </div>
               <div class="flex justify-between items-center">
-                <dt>Prière</dt>
+                <dt>{jumma.prayerLabel}</dt>
                 <dd>{jummaTime('prayer')}</dd>
               </div>
             </dl>
@@ -184,7 +184,7 @@ const projectData = await getProjectSummary()
                 isSummer ? (
                   <>
                     En heure d&apos;hiver, la Khutbah est à{' '}
-                    {jummaAltTime('khutba')} et la prière à{' '}
+                    {jummaAltTime('khutba')} et la prière se termine à{' '}
                     {jummaAltTime('prayer')}.
                   </>
                 ) : (
